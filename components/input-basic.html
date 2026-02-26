@@ -1,0 +1,13 @@
+<!-- 상태 클래스: input-digitek-error / input-digitek-success / input-digitek-disabled -->
+<!-- aria-describedby로 에러/성공 메시지 연결 -->
+<!-- [주의] 접근성을 위해 label 요소 또는 aria-label 속성이 필요합니다 -->
+<!-- [커스텀] name 속성을 업무에 맞게 변경하세요 -->
+<div>
+  <div class="input-digitek">
+    <input class="input-digitek-field" name="myField" placeholder="내용을 입력해 주세요" aria-describedby="input-error-msg-1 input-success-msg-1" />
+  </div>
+  <!-- 에러 메시지 (에러 시 표시) -->
+  <p id="input-error-msg-1" class="input-digitek-error-msg" style="display: none;">오류 메시지</p>
+  <!-- 성공 메시지 (성공 시 표시) -->
+  <p id="input-success-msg-1" class="input-digitek-success-msg" style="display: none;">올바른 입력입니다</p>
+</div>

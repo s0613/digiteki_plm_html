@@ -1,0 +1,58 @@
+<!-- 열 정렬 헤더: 정렬 방향 아이콘 표시 -->
+<!-- [커스텀] 정렬 대상 th에 버튼 또는 클릭 이벤트를 추가하고, 아이콘 방향을 토글 -->
+<!-- [커스텀] Thymeleaf 예시:
+     주의: th:href는 <a> 태그에서만 동작합니다. <button>에는 사용할 수 없습니다.
+     <th scope="col" th:classappend="${sortField == 'partNo'} ? 'sort-active'"
+         th:attr="aria-sort=${sortField == 'partNo'} ? (${sortDir == 'asc'} ? 'ascending' : 'descending') : 'none'">
+       <a th:href="@{?(sort=partNo,dir=${sortDir == 'asc' ? 'desc' : 'asc'})}"
+          style="display: inline-flex; align-items: center; gap: 4px; text-decoration: none; color: inherit;">
+         부품번호
+       </a>
+     </th>
+-->
+<table class="table-digitek" aria-label="정렬 테이블 예시">
+  <thead>
+    <tr>
+      <!-- 정렬 없는 열 -->
+      <th scope="col">No</th>
+      <!-- 오름차순 정렬 중인 열 -->
+      <th scope="col" aria-sort="ascending">
+        <button type="button" style="display: inline-flex; align-items: center; gap: 4px; cursor: pointer; user-select: none; background: none; border: none; padding: 0; font: inherit; color: inherit;">
+          부품번호
+          <!-- 오름차순 아이콘 (위 화살표) -->
+          <i class="dicon dicon-chevron-up icon-digitek-14" aria-hidden="true" style="color: #2F66BA;"></i>
+        </button>
+      </th>
+      <!-- 내림차순 정렬 중인 열 -->
+      <th scope="col" aria-sort="descending">
+        <button type="button" style="display: inline-flex; align-items: center; gap: 4px; cursor: pointer; user-select: none; background: none; border: none; padding: 0; font: inherit; color: inherit;">
+          부품명
+          <!-- 내림차순 아이콘 (아래 화살표) -->
+          <i class="dicon dicon-chevron-down icon-digitek-14" aria-hidden="true" style="color: #2F66BA;"></i>
+        </button>
+      </th>
+      <!-- 정렬 가능하지만 미적용 열 -->
+      <th scope="col" aria-sort="none">
+        <button type="button" style="display: inline-flex; align-items: center; gap: 4px; cursor: pointer; user-select: none; background: none; border: none; padding: 0; font: inherit; color: inherit;">
+          요청일
+          <!-- 정렬 미적용 아이콘 (흐린 색) -->
+          <i class="dicon dicon-chevron-down icon-digitek-14" aria-hidden="true" style="color: #ccc;"></i>
+        </button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>H00.015-56</td>
+      <td>FET_N-Channel_BSS138P</td>
+      <td>2025-04-30</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>H00.015-57</td>
+      <td>FET_P-Channel_BSS84P</td>
+      <td>2025-05-01</td>
+    </tr>
+  </tbody>
+</table>

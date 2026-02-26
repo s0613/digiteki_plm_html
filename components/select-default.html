@@ -1,0 +1,22 @@
+<!-- [커스텀] select-digitek-placeholder 텍스트: 사용자에게 보이는 안내 문구 변경 -->
+<!-- [커스텀] name 속성: 폼 제출 시 사용할 필드명 변경 -->
+<!-- [커스텀] option value/텍스트: 실제 데이터로 교체 -->
+<!-- Thymeleaf: <option th:each="item : ${items}" th:value="${item.code}" th:text="${item.name}"> -->
+<!-- digitek.js가 숨겨진 <select>의 옵션으로 드롭다운을 자동 생성합니다 -->
+<!-- [커스텀] 외부 label이 있다면 aria-labelledby="라벨id"를 아래 button에 추가하세요 -->
+<!-- 예시: <label id="select-label-1">분류</label> → aria-labelledby="select-label-1" -->
+<div class="select-digitek">
+  <button type="button" class="select-digitek-trigger" aria-haspopup="listbox" aria-expanded="false">
+    <!-- [커스텀] 플레이스홀더 텍스트 변경 -->
+    <span class="select-digitek-text select-digitek-placeholder">선택하세요</span>
+    <i class="dicon dicon-chevron-down select-digitek-icon" aria-hidden="true"></i>
+  </button>
+  <select style="display:none" name="myField">
+    <!-- 플레이스홀더 옵션: value="" + disabled + selected으로 기본 선택 표시 -->
+    <option value="" disabled selected>선택하세요</option>
+    <!-- [커스텀] 아래 옵션을 실제 데이터로 교체 -->
+    <option value="opt1">옵션 1</option>
+    <option value="opt2">옵션 2</option>
+    <option value="opt3">옵션 3</option>
+  </select>
+</div>

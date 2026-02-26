@@ -1,0 +1,138 @@
+<!-- 초기 내용이 있는 상태: contenteditable 영역 안에 HTML 직접 삽입 -->
+<!-- [커스텀] text-editor-digitek-icon-btn-active 클래스: 현재 커서 위치의 서식 상태를 활성 표시 -->
+<!-- [커스텀] 초기 내용(h1, p, ul 등)을 실제 데이터로 교체 -->
+<!-- Thymeleaf 연동 예시: th:utext="${content}" 로 서버 HTML을 그대로 출력 -->
+<!-- 주의: #{} 는 i18n 메시지 소스용, 서버 변수 바인딩에는 ${} 를 사용하세요 -->
+<div class="text-editor-digitek">
+  <div class="text-editor-digitek-toolbar">
+    <!-- 실행 취소 / 다시 실행 -->
+    <div class="text-editor-digitek-toolbar-group">
+      <button type="button" class="text-editor-digitek-icon-btn" title="실행 취소 (Ctrl+Z)">
+        <i class="dicon dicon-undo icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="다시 실행 (Ctrl+Y)">
+        <i class="dicon dicon-redo icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+    </div>
+    <!-- 텍스트 크기 -->
+    <div class="text-editor-digitek-dropdown-container">
+      <div class="text-editor-digitek-split-btn">
+        <button type="button" class="text-editor-digitek-size-btn" title="현재 크기 적용">본문</button>
+        <button type="button" class="text-editor-digitek-chevron-btn" title="크기 선택" aria-haspopup="listbox" aria-expanded="false">
+          <i class="dicon dicon-chevron-down-sm icon-digitek-16 text-digitek-secondary" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <!-- 정렬 -->
+    <div class="text-editor-digitek-dropdown-container">
+      <button type="button" class="text-editor-digitek-bar-btn" aria-label="텍스트 정렬" aria-haspopup="listbox" aria-expanded="false">
+        <i class="dicon dicon-align-left icon-digitek-20 text-digitek-secondary"></i>
+        <i class="dicon dicon-chevron-down-sm icon-digitek-16 text-digitek-secondary" aria-hidden="true"></i>
+      </button>
+    </div>
+    <!-- 색상 -->
+    <div class="text-editor-digitek-dropdown-container">
+      <div class="text-editor-digitek-split-btn">
+        <button type="button" class="text-editor-digitek-color-btn" title="현재 색상 적용">
+          <span class="text-editor-digitek-color-swatch" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="text-editor-digitek-chevron-btn" title="색상 선택" aria-haspopup="listbox" aria-expanded="false">
+          <i class="dicon dicon-chevron-down-sm icon-digitek-16 text-digitek-secondary" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <!-- 서식 (굵게 활성 상태 예시: text-editor-digitek-icon-btn-active 클래스 추가) -->
+    <div class="text-editor-digitek-toolbar-group">
+      <button type="button" class="text-editor-digitek-icon-btn text-editor-digitek-icon-btn-active" title="굵게 (Ctrl+B)">
+        <i class="dicon dicon-bold icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="기울임 (Ctrl+I)">
+        <i class="dicon dicon-italic icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="밑줄 (Ctrl+U)">
+        <i class="dicon dicon-underline icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="취소선">
+        <i class="dicon dicon-strikethrough icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="인라인 코드">
+        <i class="dicon dicon-inline-code icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="서식 지우기">
+        <i class="dicon dicon-clear-format icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+    </div>
+    <!-- 리스트 -->
+    <div class="text-editor-digitek-toolbar-group">
+      <button type="button" class="text-editor-digitek-icon-btn" title="글머리 기호">
+        <i class="dicon dicon-bulleted-list icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="번호 매기기">
+        <i class="dicon dicon-numbered-list icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+    </div>
+    <!-- 미디어 -->
+    <div class="text-editor-digitek-toolbar-group">
+      <button type="button" class="text-editor-digitek-icon-btn" title="링크">
+        <i class="dicon dicon-link icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="이미지">
+        <i class="dicon dicon-image icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="코드 블록">
+        <i class="dicon dicon-code icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="구분선">
+        <i class="dicon dicon-horizontal-rule icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+    </div>
+  </div>
+  <!-- [커스텀] 아래 초기 내용을 실제 데이터(Thymeleaf: th:utext="${content}")로 교체 -->
+  <div class="text-editor-digitek-contents" contenteditable="true" role="textbox" aria-multiline="true" aria-label="텍스트 편집기">
+    <p>우리는 매일 수많은 선택 속에서 살아갑니다. 어떤 버튼을 누를지, 어떤 문장을 읽을지, 어떤 화면에서 머무를지. 이 모든 경험은 아주 작은 요소들로부터 시작됩니다. 단어 하나, 줄 간격 하나, 여백 및 픽셀의 차이가 사용자의 인상을 완전히 바꿔놓기도 합니다.</p>
+    <h3>부머리말 (18px)</h3>
+    <p>우리는 매일 수많은 선택 속에서 살아갑니다. 어떤 버튼을 누를지, 어떤 문장을 읽을지, 어떤 화면에서 머무를지. 이 모든 경험은 아주 작은 요소들로부터 시작됩니다. 단어 하나, 줄 간격 하나, 여백 및 픽셀의 차이가 사용자의 인상을 완전히 바꿔놓기도 합니다.</p>
+    <h2>머리말 (20px)</h2>
+    <p>우리는 매일 수많은 선택 속에서 살아갑니다. 어떤 버튼을 누를지, 어떤 문장을 읽을지, 어떤 화면에서 머무를지. 이 모든 경험은 아주 작은 요소들로부터 시작됩니다. 단어 하나, 줄 간격 하나, 여백 및 픽셀의 차이가 사용자의 인상을 완전히 바꿔놓기도 합니다.</p>
+    <h1>제목 (26px)</h1>
+    <p>우리는 매일 수많은 선택 속에서 살아갑니다. 어떤 버튼을 누를지, 어떤 문장을 읽을지, 어떤 화면에서 머무를지. 이 모든 경험은 아주 작은 요소들로부터 시작됩니다.</p>
+    <ul>
+      <li>리스트</li>
+      <li>리스트</li>
+      <li>리스트</li>
+      <li>리스트</li>
+    </ul>
+    <ol>
+      <li>리스트</li>
+      <li>리스트</li>
+      <li>리스트</li>
+      <li>리스트</li>
+    </ol>
+    <p>가끔은 아무 의미 없는 텍스트가 가장 유용할 때가 있습니다. <em>실제 콘텐츠가 들어오기 전, 화면이 어떻게 채워지는지 확인해야 할 때</em>, 또는 컴포넌트가 길이에 따라 어떻게 반응하는지 확인해야 할 때가 있습니다.</p>
+    <p><em>기울임</em>, <u>밑줄</u> 텍스트입니다. 실제 프로젝트에서도 이러한 목적으로 수많은 임시 문구들이 사용됩니다.</p>
+    <p><s>가끔은 아무 의미 없는 텍스트가 가장 유용할 때가 있습니다. 실제 콘텐츠가 들어오기 전, 화면이 어떻게 채워지는지 확인해야 할 때, 또는 컴포넌트가 길이에 따라 어떻게 반응하는지 확인해야 할 때가 있습니다. 실제 프로젝트에서도 이러한 목적으로 수많은 임시 문구들이 사용됩니다.</s></p>
+    <p><a href="#">링크</a></p>
+    <p><a href="https://test-link.co.kr">https://test-link.co.kr</a></p>
+    <p><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='240' viewBox='0 0 400 240'%3E%3Crect width='400' height='240' fill='%23e5e5ec'/%3E%3Crect x='60' y='40' width='80' height='160' fill='%23c5c5d0'/%3E%3Crect x='160' y='60' width='80' height='140' fill='%23b0b0be'/%3E%3Crect x='260' y='20' width='80' height='180' fill='%23c5c5d0'/%3E%3Crect x='65' y='50' width='14' height='10' fill='%23e5e5ec'/%3E%3Crect x='83' y='50' width='14' height='10' fill='%23e5e5ec'/%3E%3Crect x='101' y='50' width='14' height='10' fill='%23e5e5ec'/%3E%3Crect x='65' y='68' width='14' height='10' fill='%23e5e5ec'/%3E%3Crect x='83' y='68' width='14' height='10' fill='%23e5e5ec'/%3E%3Crect x='101' y='68' width='14' height='10' fill='%23e5e5ec'/%3E%3C/svg%3E" alt="이미지 예시" /></p>
+    <pre><code>for (var i=1; i &lt;= 20; i++) {
+  if (i % 15 == 0)
+    console.log("FizzBuzz");
+  else if (i % 3 == 0)
+    console.log("Fizz");
+  else if (i % 5 == 0)
+    console.log("Buzz");
+  else
+    console.log(i);
+}</code></pre>
+    <div class="text-editor-digitek-attachment">
+      <i class="dicon dicon-file icon-digitek-16 text-digitek-secondary" aria-hidden="true"></i>
+      <div class="text-editor-digitek-attachment-info">
+        <span class="text-editor-digitek-attachment-name">서비스소개서_최종.pptx</span>
+        <span class="text-editor-digitek-attachment-size">(12.1MB)</span>
+      </div>
+      <button type="button" class="text-editor-digitek-attachment-remove" aria-label="첨부파일 제거">
+        <i class="dicon dicon-close icon-digitek-16 text-digitek-secondary" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,454 @@
+/**
+ * 아이콘 CSS — 자동 생성 파일 (수동 편집 금지)
+ *
+ * 생성 명령어 : npx tsx scripts/generate-icon-css.ts
+ * 아이콘 소스 : src/icons/registry.ts → public/images/icons/*.png
+ * 생성일      : 2026-02-25
+ * 아이콘 수   : 65개 (PNG 59개 + multicolor 6개)
+ *
+ * ── 동작 원리 ───────────────────────────────────────────────────────
+ * background-image 속성으로 PNG 아이콘 파일을 표시합니다.
+ * 아이콘 색상을 변경하려면 public/images/icons/ 디렉토리의 PNG 파일을 교체하세요.
+ * 색상 변형이 필요한 아이콘은 {name}-white.png, {name}-blue.png 등으로 제공됩니다.
+ *
+ * ── 사용법 ──────────────────────────────────────────────────────────
+ * <i class="dicon dicon-{name}"></i>
+ *
+ * ── 색상 변경 ───────────────────────────────────────────────────────
+ * PNG 파일 교체로 색상을 변경합니다.
+ * 예) public/images/icons/search.png 파일을 원하는 색상의 PNG로 교체
+ * 흰색/파란색 변형: dicon-search + white 클래스 조합 또는 별도 PNG 참조
+ *
+ * ── 크기 변경 ───────────────────────────────────────────────────────
+ * 각 아이콘의 기본 크기는 클래스 내 width/height 로 정의되어 있습니다.
+ * 필요 시 인라인 스타일이나 별도 CSS로 재정의할 수 있습니다.
+ *
+ * ── 카테고리 ────────────────────────────────────────────────────────
+ * navigation    : 방향 탐색 및 UI 컨트롤용 체브론·구분자 아이콘
+ * action        : 검색·편집·복사 등 사용자 액션을 나타내는 아이콘
+ * file          : 파일, 폴더, 업로드 등 파일 시스템 관련 아이콘
+ * communication : 알림, 메일, 링크 등 커뮤니케이션 관련 아이콘
+ * chart         : 막대·파이 등 데이터 시각화용 차트 아이콘
+ * editor        : 리치 텍스트 에디터 툴바용 서식·정렬 아이콘
+ * status        : 완료·확인 등 상태를 나타내는 아이콘
+ * layout        : 사이드바·레이어·설정 등 레이아웃 제어 아이콘
+ */
+
+/**
+ * 공통 베이스 클래스
+ * <i> 태그에만 적용되도록 스코프를 한정하여 다른 요소와 충돌을 방지합니다.
+ * - display: inline-block     : 인라인 배치, 크기 지정 가능
+ * - vertical-align: middle    : 텍스트와 수직 정렬
+ * - background-repeat: no-repeat : 아이콘 반복 방지
+ * - background-position: center  : 아이콘 중앙 정렬
+ * - background-size: contain     : 아이콘 크기 자동 맞춤
+ */
+i.dicon {
+  display: inline-block;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+ * NAVIGATION — 방향 탐색 및 UI 컨트롤용 체브론·구분자 아이콘
+ * 클래스 패턴: .dicon-chevron-down-*
+ * 아이콘 수  : 13개
+ * ══════════════════════════════════════════════════════════════*/
+/* 펼치기 화살표 | 20×20px | mode: stroke */
+.dicon-chevron-down {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/chevron-down.png");
+}
+/* 작은 펼치기 화살표 | 16×16px | mode: stroke */
+.dicon-chevron-down-sm {
+  width: 16px;
+  height: 16px;
+  background-image: url("../images/icons/chevron-down-sm.png");
+}
+/* 접기 화살표 | 24×24px | mode: stroke */
+.dicon-chevron-up {
+  width: 24px;
+  height: 24px;
+  background-image: url("../images/icons/chevron-up.png");
+}
+/* 작은 접기 화살표 | 20×20px | mode: stroke */
+.dicon-chevron-up-sm {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/chevron-up-sm.png");
+}
+/* 이전 | 16×16px | mode: stroke */
+.dicon-chevron-prev {
+  width: 16px;
+  height: 16px;
+  background-image: url("../images/icons/chevron-prev.png");
+}
+/* 다음 | 16×16px | mode: stroke */
+.dicon-chevron-next {
+  width: 16px;
+  height: 16px;
+  background-image: url("../images/icons/chevron-next.png");
+}
+/* 담당자 선택 | 6×3px | mode: stroke */
+.dicon-chevron-assignee {
+  width: 6px;
+  height: 3px;
+  background-image: url("../images/icons/chevron-assignee.png");
+}
+/* 레벨 선택 | 14×14px | mode: stroke */
+.dicon-chevron-level {
+  width: 14px;
+  height: 14px;
+  background-image: url("../images/icons/chevron-level.png");
+}
+/* 왼쪽 | 20×20px | mode: stroke */
+.dicon-chevron-left {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/chevron-left.png");
+}
+/* 오른쪽 | 20×20px | mode: stroke */
+.dicon-chevron-right {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/chevron-right.png");
+}
+/* 초소형 펼치기 화살표 | 8×5px | mode: stroke */
+.dicon-chevron-down-xs {
+  width: 8px;
+  height: 5px;
+  background-image: url("../images/icons/chevron-down-xs.png");
+}
+/* 브레드크럼 구분자 | 8×14px | mode: stroke */
+.dicon-breadcrumb-separator {
+  width: 8px;
+  height: 14px;
+  background-image: url("../images/icons/breadcrumb-separator.png");
+}
+/* 토글 화살표 | 10×6px | mode: stroke */
+.dicon-toggle-chevron {
+  width: 10px;
+  height: 6px;
+  background-image: url("../images/icons/toggle-chevron.png");
+}
+
+/* ═══════════════════════════════════════════════════════════════
+ * ACTION — 검색·편집·복사 등 사용자 액션을 나타내는 아이콘
+ * 클래스 패턴: .dicon-search-*
+ * 아이콘 수  : 12개
+ * ══════════════════════════════════════════════════════════════*/
+/* 검색 | 20×20px | mode: stroke */
+.dicon-search {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/search.png");
+}
+/* 검색 (대) | 24×24px | mode: stroke */
+.dicon-search-lg {
+  width: 24px;
+  height: 24px;
+  background-image: url("../images/icons/search-lg.png");
+}
+/* 캘린더 | 20×20px | mode: stroke */
+.dicon-calendar {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/calendar.png");
+}
+/* 복사 | 16×16px | mode: stroke */
+.dicon-copy {
+  width: 16px;
+  height: 16px;
+  background-image: url("../images/icons/copy.png");
+}
+/* 닫기 | 14×14px | mode: stroke */
+.dicon-close {
+  width: 14px;
+  height: 14px;
+  background-image: url("../images/icons/close.png");
+}
+/* 편집 | 20×20px | mode: stroke */
+.dicon-pencil {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/pencil.png");
+}
+/* 새로고침 (사이드바) | 20×20px | mode: stroke */
+.dicon-reload {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/reload.png");
+}
+/* 새로고침 | 24×24px | mode: stroke */
+.dicon-refresh {
+  width: 24px;
+  height: 24px;
+  background-image: url("../images/icons/refresh.png");
+}
+/* 화면 맞춤 | 13×13px | mode: stroke */
+.dicon-expand {
+  width: 13px;
+  height: 13px;
+  background-image: url("../images/icons/expand.png");
+}
+/* 확대 (대) | 18×18px | mode: stroke */
+.dicon-expand-lg {
+  width: 18px;
+  height: 18px;
+  background-image: url("../images/icons/expand-lg.png");
+}
+/* 축소 | 18×18px | mode: stroke */
+.dicon-shrink {
+  width: 18px;
+  height: 18px;
+  background-image: url("../images/icons/shrink.png");
+}
+/* 보기 | 14×14px | mode: stroke */
+.dicon-eye {
+  width: 14px;
+  height: 14px;
+  background-image: url("../images/icons/eye.png");
+}
+
+/* ═══════════════════════════════════════════════════════════════
+ * FILE — 파일, 폴더, 업로드 등 파일 시스템 관련 아이콘
+ * 클래스 패턴: .dicon-file-blank-*
+ * 아이콘 수  : 5개
+ * ══════════════════════════════════════════════════════════════*/
+/* 빈 파일 | 20×20px | mode: stroke */
+.dicon-file-blank {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/file-blank.png");
+}
+/* 폴더 | 20×20px | mode: stroke */
+.dicon-folder {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/folder.png");
+}
+/* 폴더 편집 | 20×20px | mode: stroke */
+.dicon-folder-edit {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/folder-edit.png");
+}
+/* 클라우드 업로드 | 37×24px | mode: stroke */
+.dicon-cloud-upload {
+  width: 37px;
+  height: 24px;
+  background-image: url("../images/icons/cloud-upload.png");
+}
+/* 엑셀 | 13×13px | mode: fill */
+.dicon-excel {
+  width: 13px;
+  height: 13px;
+  background-image: url("../images/icons/excel.png");
+}
+
+/* ═══════════════════════════════════════════════════════════════
+ * COMMUNICATION — 알림, 메일, 링크 등 커뮤니케이션 관련 아이콘
+ * 클래스 패턴: .dicon-bell-*
+ * 아이콘 수  : 3개
+ * ══════════════════════════════════════════════════════════════*/
+/* 알림 | 30×30px | mode: stroke */
+.dicon-bell {
+  width: 30px;
+  height: 30px;
+  background-image: url("../images/icons/bell.png");
+}
+/* 메일 | 30×30px | mode: stroke */
+.dicon-mail {
+  width: 30px;
+  height: 30px;
+  background-image: url("../images/icons/mail.png");
+}
+/* 링크 | 20×20px | mode: stroke */
+.dicon-link {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/link.png");
+}
+
+/* ═══════════════════════════════════════════════════════════════
+ * CHART — 막대·파이 등 데이터 시각화용 차트 아이콘
+ * 클래스 패턴: .dicon-chart-bar-*
+ * 아이콘 수  : 2개
+ * ══════════════════════════════════════════════════════════════*/
+/* 막대 차트 | 20×20px | mode: stroke */
+.dicon-chart-bar {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/chart-bar.png");
+}
+/* 파이 차트 | 20×20px | mode: stroke */
+.dicon-chart-pie {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/chart-pie.png");
+}
+
+/* ═══════════════════════════════════════════════════════════════
+ * EDITOR — 리치 텍스트 에디터 툴바용 서식·정렬 아이콘
+ * 클래스 패턴: .dicon-undo-*
+ * 아이콘 수  : 17개
+ * ══════════════════════════════════════════════════════════════*/
+/* 실행 취소 | 20×20px | mode: fill */
+.dicon-undo {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/undo.png");
+}
+/* 다시 실행 | 20×20px | mode: fill */
+.dicon-redo {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/redo.png");
+}
+/* 굵게 | 20×20px | mode: fill */
+.dicon-bold {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/bold.png");
+}
+/* 기울임 | 20×20px | mode: fill */
+.dicon-italic {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/italic.png");
+}
+/* 밑줄 | 20×20px | mode: fill */
+.dicon-underline {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/underline.png");
+}
+/* 취소선 | 20×20px | mode: fill */
+.dicon-strikethrough {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/strikethrough.png");
+}
+/* 인라인 코드 | 20×20px | mode: fill */
+.dicon-inline-code {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/inline-code.png");
+}
+/* 서식 지우기 | 20×20px | mode: fill */
+.dicon-clear-format {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/clear-format.png");
+}
+/* 글머리 기호 | 20×20px | mode: fill */
+.dicon-bulleted-list {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/bulleted-list.png");
+}
+/* 번호 목록 | 20×20px | mode: fill */
+.dicon-numbered-list {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/numbered-list.png");
+}
+/* 이미지 | 20×20px | mode: fill */
+.dicon-image {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/image.png");
+}
+/* 코드 블록 | 20×20px | mode: fill */
+.dicon-code {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/code.png");
+}
+/* 수평선 | 20×20px | mode: fill */
+.dicon-horizontal-rule {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/horizontal-rule.png");
+}
+/* 왼쪽 정렬 | 20×20px | mode: fill */
+.dicon-align-left {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/align-left.png");
+}
+/* 가운데 정렬 | 20×20px | mode: fill */
+.dicon-align-center {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/align-center.png");
+}
+/* 오른쪽 정렬 | 20×20px | mode: fill */
+.dicon-align-right {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/align-right.png");
+}
+/* 양쪽 정렬 | 20×20px | mode: fill */
+.dicon-align-justify {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/align-justify.png");
+}
+
+/* ═══════════════════════════════════════════════════════════════
+ * STATUS — 완료·확인 등 상태를 나타내는 아이콘
+ * 클래스 패턴: .dicon-check-*
+ * 아이콘 수  : 2개
+ * ══════════════════════════════════════════════════════════════*/
+/* 체크 | 13×9px | mode: stroke */
+.dicon-check {
+  width: 13px;
+  height: 9px;
+  background-image: url("../images/icons/check.png");
+}
+/* 체크 (대) | 16×16px | mode: stroke */
+.dicon-check-lg {
+  width: 16px;
+  height: 16px;
+  background-image: url("../images/icons/check-lg.png");
+}
+
+/* ═══════════════════════════════════════════════════════════════
+ * LAYOUT — 사이드바·레이어·설정 등 레이아웃 제어 아이콘
+ * 클래스 패턴: .dicon-bar-left-*
+ * 아이콘 수  : 5개
+ * ══════════════════════════════════════════════════════════════*/
+/* 사이드바 패널 | 24×24px | mode: stroke */
+.dicon-bar-left {
+  width: 24px;
+  height: 24px;
+  background-image: url("../images/icons/bar-left.png");
+}
+/* 레이어 | 20×20px | mode: stroke */
+.dicon-layer {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/layer.png");
+}
+/* 설정 | 20×20px | mode: stroke */
+.dicon-settings {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/settings.png");
+}
+/* 플라스크 (시험) | 20×20px | mode: fill */
+.dicon-flask {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/flask.png");
+}
+/* 시작 화살표 | 20×20px | mode: fill */
+.dicon-start-arrow {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/icons/start-arrow.png");
+}

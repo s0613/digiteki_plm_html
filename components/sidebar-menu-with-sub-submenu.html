@@ -1,0 +1,66 @@
+<!-- 3레벨 메뉴 구조 -->
+<li class="nav-item">
+  <!-- [커스텀] href="#"은 JavaScript에서 preventDefault()로 처리하세요 -->
+  <a class="sidebar-digitek-menu-item sidebar-digitek-parent-open" href="#" aria-expanded="true">
+    <span class="sidebar-digitek-icon-label">
+      <i class="dicon dicon-chart-bar icon-digitek-20"></i>
+      <span class="sidebar-digitek-menu-label">시험/시작/해석</span>
+    </span>
+    <span class="sidebar-digitek-chevron sidebar-digitek-chevron-open">
+      <i class="dicon dicon-chevron-down icon-digitek-20"></i>
+    </span>
+  </a>
+  <ul class="nav flex-column sidebar-digitek-submenu" style="max-height: 336px;" aria-label="시험/시작/해석 하위 메뉴">
+    <!-- 2레벨: 시험 (아이콘 있음, 3레벨 없음) -->
+    <li class="nav-item">
+      <a class="sidebar-digitek-submenu-item" href="#">
+        <span class="sidebar-digitek-icon-label">
+          <i class="dicon dicon-flask icon-digitek-20"></i>
+          <span class="sidebar-digitek-menu-label">시험</span>
+        </span>
+      </a>
+    </li>
+    <!-- 2레벨: 시작 (3레벨 있으므로 chevron 표시) -->
+    <li class="nav-item">
+      <!-- [커스텀] href="#"은 JavaScript에서 preventDefault()로 처리하세요 -->
+      <a class="sidebar-digitek-submenu-item" href="#" aria-expanded="true">
+        <span class="sidebar-digitek-icon-label">
+          <i class="dicon dicon-start-arrow icon-digitek-20"></i>
+          <span class="sidebar-digitek-menu-label">시작</span>
+        </span>
+        <span class="sidebar-digitek-chevron sidebar-digitek-chevron-open">
+          <i class="dicon dicon-chevron-down icon-digitek-16"></i>
+        </span>
+      </a>
+      <!-- 3레벨 서브-서브메뉴 -->
+      <ul class="nav flex-column sidebar-digitek-sub-submenu" style="max-height: 240px;" aria-label="시작 하위 메뉴">
+        <li class="nav-item">
+          <a class="sidebar-digitek-sub-submenu-item" href="#">
+            <span class="sidebar-digitek-menu-label">시작 검색</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <!-- [커스텀] 현재 활성 3레벨 메뉴에 'sidebar-digitek-sub-active' 클래스 + aria-current="page" 추가 -->
+          <a class="sidebar-digitek-sub-submenu-item sidebar-digitek-sub-active" href="#" aria-current="page">
+            <span class="sidebar-digitek-menu-label">시작 의뢰 등록</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="sidebar-digitek-sub-submenu-item" href="#">
+            <span class="sidebar-digitek-menu-label">시작 결과 등록</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="sidebar-digitek-sub-submenu-item" href="#">
+            <span class="sidebar-digitek-menu-label">MPR 검색</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="sidebar-digitek-sub-submenu-item" href="#">
+            <span class="sidebar-digitek-menu-label">MPR 등록</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>

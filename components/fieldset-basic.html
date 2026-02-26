@@ -1,0 +1,38 @@
+<!-- [커스텀] <legend> 텍스트로 섹션 제목 변경 -->
+<!-- [커스텀] formfield-digitek-label-required 클래스로 필수 항목 표시 -->
+<!-- [커스텀] name 속성을 업무에 맞게 변경하세요 -->
+<fieldset class="fieldset-digitek">
+  <legend class="fieldset-digitek-legend">기본 정보</legend>
+  <div class="fieldset-digitek-content">
+    <div class="formfield-digitek-grid">
+      <div class="formfield-digitek-row">
+        <div class="formfield-digitek">
+          <label for="field-project-name" class="formfield-digitek-label formfield-digitek-label-required">프로젝트명</label>
+          <div class="input-digitek">
+            <input id="field-project-name" name="projectName" type="text" class="input-digitek-field" placeholder="프로젝트명을 입력하세요" required aria-required="true" />
+          </div>
+        </div>
+        <div class="formfield-digitek">
+          <label for="field-manager" class="formfield-digitek-label">담당자</label>
+          <div class="input-digitek">
+            <input id="field-manager" name="manager" type="text" class="input-digitek-field" placeholder="담당자명" />
+          </div>
+        </div>
+      </div>
+      <div class="formfield-digitek-row">
+        <div class="formfield-digitek">
+          <label for="field-start-date" class="formfield-digitek-label">시작일</label>
+          <div class="input-digitek">
+            <input id="field-start-date" name="startDate" type="date" class="input-digitek-field" />
+          </div>
+        </div>
+        <div class="formfield-digitek">
+          <label for="field-end-date" class="formfield-digitek-label">종료일</label>
+          <div class="input-digitek">
+            <input id="field-end-date" name="endDate" type="date" class="input-digitek-field" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fieldset>

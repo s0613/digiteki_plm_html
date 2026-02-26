@@ -1,0 +1,108 @@
+<!-- PMS Gantt 레이아웃: 좌측 테이블 + 드래그 리사이저 + 우측 타임라인 -->
+<!-- 리사이저를 좌우로 드래그하여 테이블/타임라인 너비 조절 가능 -->
+<div class="pms-digitek-gantt">
+  <div class="pms-digitek-gantt-container" style="max-height: 500px;">
+    <!-- 좌측 테이블 (기본 680px, JS로 동적 조절) -->
+    <div class="pms-digitek-gantt-table-wrap">
+      <table class="pms-digitek-gantt-table">
+        <thead>
+          <tr>
+            <th scope="col" class="pms-digitek-gantt-col-task">Task</th>
+            <th scope="col" class="pms-digitek-gantt-col-priority">Priority</th>
+            <th scope="col" class="pms-digitek-gantt-col-level">Level</th>
+            <th scope="col" class="pms-digitek-gantt-col-role">Role</th>
+            <th scope="col" class="pms-digitek-gantt-col-date">Start Date</th>
+            <th scope="col" class="pms-digitek-gantt-col-date">Last Date</th>
+            <th scope="col" class="pms-digitek-gantt-col-status">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="pms-digitek-gantt-row-project">
+            <td colspan="7">AP/NF 중국향 OIL-PUMP 신규사양 개발 프로젝트</td>
+          </tr>
+          <tr class="pms-digitek-gantt-row-level-0">
+            <td class="pms-digitek-gantt-td-task">
+              <div class="pms-digitek-gantt-task-name">
+                <button type="button" class="pms-digitek-gantt-toggle" aria-label="접기">
+                  <i class="dicon dicon-toggle-chevron" aria-hidden="true"></i>
+                </button>
+                <span>제품 설계</span>
+              </div>
+            </td>
+            <td class="pms-digitek-gantt-td-priority">
+              <span class="badge-digitek-priority">
+                <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+                <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+                <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+                <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+                <span class="badge-digitek-priority-dot badge-digitek-priority-dot-empty"></span>
+              </span>
+            </td>
+            <td class="pms-digitek-gantt-td-level">14</td>
+            <td class="pms-digitek-gantt-td-role">홍길동</td>
+            <td class="pms-digitek-gantt-td-date">2025.12.05</td>
+            <td class="pms-digitek-gantt-td-date">2026.01.03</td>
+            <td class="pms-digitek-gantt-td-status">
+              <span class="pms-digitek-gantt-status-cell">
+                <span class="progress-digitek-circular" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="--percent: 50; --progress-size: 20px; --progress-width: 3px;"></span>
+                <span style="font-size: 11px; color: #767676;">50%</span>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- 드래그 가능한 구분선 리사이저 (hover 시 파란색 하이라이트) -->
+    <div class="pms-digitek-gantt-resizer"></div>
+    <!-- 우측 타임라인 (flex: 1) -->
+    <div class="pms-digitek-gantt-timeline-wrap">
+      <!-- 타임라인 헤더 -->
+      <div class="pms-digitek-gantt-header">
+        <div class="pms-digitek-gantt-header-months">
+          <div class="pms-digitek-gantt-header-month pms-digitek-gantt-month-4w">Dec. 2025</div>
+          <div class="pms-digitek-gantt-header-month pms-digitek-gantt-month-4w">Jan. 2026</div>
+        </div>
+        <div class="pms-digitek-gantt-header-weeks">
+          <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W1</div>
+          <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W2</div>
+          <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W3</div>
+          <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W4</div>
+          <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W1</div>
+          <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W2</div>
+          <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W3</div>
+          <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W4</div>
+        </div>
+      </div>
+      <!-- 타임라인 바 영역 -->
+      <div class="pms-digitek-gantt-timeline" style="position: relative;">
+        <div class="pms-digitek-gantt-timeline-rows">
+          <!-- 프로젝트 타이틀 빈 행 -->
+          <div class="pms-digitek-gantt-timeline-row" style="height: 37px;">
+            <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+            <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+            <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+            <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+            <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+            <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+            <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+            <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+          </div>
+          <div class="pms-digitek-gantt-timeline-row" style="height: 37px;">
+            <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+            <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+            <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+            <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+            <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+            <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+            <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+            <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+            <div class="pms-digitek-gantt-bar pms-digitek-gantt-bar-blue" style="left: 20px; width: 150px;">
+              <img class="pms-digitek-gantt-bar-avatar" src="/images/icons/avatar.png" width="16" height="16" alt="" aria-hidden="true" style="border-radius: 50%; opacity: 0.7;">
+              내용을 입력해 주세요.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

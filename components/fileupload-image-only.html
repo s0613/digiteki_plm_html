@@ -1,0 +1,15 @@
+<!-- accept="image/*": 이미지 파일만 선택 가능 -->
+<!-- [커스텀] accept 속성으로 허용 파일 형식 변경:
+  accept="image/*"           → 모든 이미지
+  accept=".jpg,.jpeg,.png"   → JPG, PNG만
+  accept=".pdf"              → PDF만
+  accept=".pdf,.docx,.xlsx"  → 문서 형식
+-->
+<!-- [커스텀] 안내 텍스트에 허용 파일 형식 명시 권장 -->
+<!-- [접근성] 키보드 접근성을 위한 keydown 이벤트 처리 필요 -->
+<!-- container.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') container.click(); }); -->
+<div class="file-upload-digitek" role="button" tabindex="0" aria-label="파일 업로드">
+  <i class="dicon dicon-cloud-upload file-upload-digitek-icon h-digitek-24 text-digitek-blue" style="width: 37px;" aria-hidden="true"></i>
+  <p class="file-upload-digitek-label">이 곳에 눌러 파일을 선택하거나, Drag &amp; Drop 하기</p>
+  <input type="file" class="file-upload-digitek-input" accept="image/*" />
+</div>

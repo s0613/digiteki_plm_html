@@ -1,0 +1,29 @@
+<!-- 닫힘 상태: accordion-digitek-inner-header-open 클래스 없음, content에 hidden 속성 -->
+<!-- [커스텀] aria-expanded="false"로 닫힘 상태 명시 (스크린리더 접근성) -->
+<!-- JS 토글 방법:
+  header.addEventListener('click', () => {
+    const isOpen = header.classList.toggle('accordion-digitek-inner-header-open');
+    header.setAttribute('aria-expanded', String(isOpen));
+    const content = header.nextElementSibling;
+    if (isOpen) content.removeAttribute('hidden');
+    else content.setAttribute('hidden', '');
+    const icon = header.querySelector('.accordion-digitek-chevron');
+    if (isOpen) icon.classList.remove('accordion-digitek-chevron-closed');
+    else icon.classList.add('accordion-digitek-chevron-closed');
+  });
+  // 키보드 접근성: Enter/Space로도 토글
+  header.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      header.click();
+    }
+  });
+-->
+<div class="accordion-digitek-inner">
+  <div class="accordion-digitek-inner-header" role="button" tabindex="0"
+       aria-expanded="false" aria-controls="accordion-inner-content-1">
+    <span class="accordion-digitek-inner-title">서브 섹션 제목</span>
+    <i class="dicon dicon-chevron-up-sm accordion-digitek-chevron accordion-digitek-chevron-closed" aria-hidden="true"></i>
+  </div>
+  <div id="accordion-inner-content-1" class="accordion-digitek-inner-content" hidden></div>
+</div>

@@ -1,0 +1,35 @@
+<!-- 중간 페이지 상태: 이전/다음 버튼 모두 활성화 -->
+<!-- [커스텀] 현재 활성 페이지 항목에 'active' 클래스 추가 -->
+<!-- [커스텀] 총 페이지 수 변경 시 페이지 번호 항목 추가/제거 -->
+<nav aria-label="페이지 탐색">
+  <ul class="pagination pagination-digitek">
+    <!-- 이전 버튼: 활성화 -->
+    <li class="page-item">
+      <button type="button" class="page-link page-link-digitek" aria-label="이전 페이지">
+        <i class="dicon dicon-chevron-prev" aria-hidden="true"></i>
+      </button>
+    </li>
+    <li class="page-item">
+      <button type="button" class="page-link page-link-digitek">1</button>
+    </li>
+    <li class="page-item">
+      <button type="button" class="page-link page-link-digitek">2</button>
+    </li>
+    <!-- [커스텀] 현재 페이지 항목: 'active' 클래스 + aria-current="page" -->
+    <li class="page-item active">
+      <button type="button" class="page-link page-link-digitek" aria-current="page">3</button>
+    </li>
+    <li class="page-item">
+      <button type="button" class="page-link page-link-digitek">4</button>
+    </li>
+    <li class="page-item">
+      <button type="button" class="page-link page-link-digitek">5</button>
+    </li>
+    <!-- 다음 버튼: 활성화 -->
+    <li class="page-item">
+      <button type="button" class="page-link page-link-digitek" aria-label="다음 페이지">
+        <i class="dicon dicon-chevron-next" aria-hidden="true"></i>
+      </button>
+    </li>
+  </ul>
+</nav>

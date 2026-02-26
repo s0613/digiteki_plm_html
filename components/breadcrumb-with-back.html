@@ -1,0 +1,22 @@
+<!-- 뒤로가기 버튼 + 브레드크럼 조합 -->
+<!-- [커스텀] JS 연동: 뒤로가기 버튼 클릭 시 history.back() 또는 특정 경로로 이동 -->
+<!-- [커스텀] 뒤로가기 버튼 href: th:href="@{${previousUrl}}" 또는 onclick="history.back()" -->
+<nav aria-label="breadcrumb">
+  <button type="button" class="breadcrumb-digitek-back-btn">
+    <i class="dicon dicon-breadcrumb-separator text-digitek-tertiary" aria-hidden="true"></i>
+    <span class="breadcrumb-digitek-depth">뒤로</span>
+  </button>
+  <ol class="breadcrumb breadcrumb-digitek" style="margin-left: 16px;">
+    <!-- 중간 항목: clickable -->
+    <!-- [커스텀] 링크 경로 변경: th:href="@{/home}" -->
+    <li class="breadcrumb-digitek-item">
+      <a href="#" class="breadcrumb-digitek-depth breadcrumb-digitek-clickable">홈</a>
+    </li>
+    <!-- 마지막 항목(현재 페이지): non-clickable -->
+    <!-- [커스텀] 현재 페이지명 변경: th:text="${pageTitle}" -->
+    <li class="breadcrumb-digitek-item" aria-current="page">
+      <i class="dicon dicon-breadcrumb-separator" aria-hidden="true"></i>
+      <span class="breadcrumb-digitek-depth">현재 페이지</span>
+    </li>
+  </ol>
+</nav>

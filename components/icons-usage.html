@@ -1,0 +1,56 @@
+<!-- ── HTML 아이콘 사용법 ── -->
+
+<!-- 1. 기본 사용법: class="dicon dicon-{아이콘명}" aria-hidden="true" -->
+<!-- [커스텀] dicon-{아이콘명}: navigation/action/file/communication/chart/editor/status/layout 카탈로그 참조 -->
+<i class="dicon dicon-search" aria-hidden="true"></i>
+
+<!-- 2. 크기 변경: icon-digitek-{size} 클래스 사용 -->
+<!-- [커스텀] 지원 크기: icon-digitek-13 | 14 | 16 | 20 | 24 | 30 -->
+<i class="dicon dicon-search icon-digitek-13" aria-hidden="true"></i>
+<i class="dicon dicon-search icon-digitek-16" aria-hidden="true"></i>
+<i class="dicon dicon-search icon-digitek-20" aria-hidden="true"></i>
+<i class="dicon dicon-search icon-digitek-24" aria-hidden="true"></i>
+<i class="dicon dicon-search icon-digitek-30" aria-hidden="true"></i>
+
+<!-- 3. 색상 변경 방법 1: 부모 요소의 color 상속 -->
+<!-- [커스텀] 부모 span/div에 color를 지정하면 아이콘 색이 자동으로 따라감 -->
+<span style="color: #2F66BA;">
+  <i class="dicon dicon-bell icon-digitek-30" aria-hidden="true"></i>
+</span>
+
+<!-- 4. 색상 변경 방법 2: style로 직접 지정 -->
+<!-- [커스텀] style="color: {색상코드}" 로 원하는 색상 지정 -->
+<i class="dicon dicon-bell icon-digitek-30" aria-hidden="true" style="color: #EF4444;"></i>
+
+<!-- 5. 색상 변경 방법 3: text-digitek-* 유틸 클래스 사용 -->
+<i class="dicon dicon-check text-digitek-white" aria-hidden="true"></i>
+
+<!-- 6. 텍스트와 함께 사용 (버튼 내부) -->
+<!-- [커스텀] 버튼 텍스트 앞에 아이콘 배치 시 gap으로 간격 조정 -->
+<button class="pms-digitek-action-chip">
+  <i class="dicon dicon-eye icon-digitek-13" aria-hidden="true" style="color: #4D4D4D;"></i>
+  미지정 Task 보기
+</button>
+
+<!-- 7. 접근성: 아이콘이 의미를 전달할 때 aria-label 사용 -->
+<!-- [커스텀] 장식용 아이콘: aria-hidden="true" / 의미 전달 아이콘: aria-label 추가 -->
+<button type="button" aria-label="검색">
+  <i class="dicon dicon-search icon-digitek-20" aria-hidden="true"></i>
+</button>
+
+<!-- ── React 사용법 ── -->
+<!--
+import { Icon } from "@/icons";
+
+// 기본 (크기: 기본값 20px)
+<Icon name="search" aria-hidden />
+
+// 크기 변경 (size prop)
+<Icon name="bell" size={30} />
+
+// 색상 변경 (color prop 또는 className)
+<Icon name="chevron-down" size={16} color="#2F66BA" />
+
+// className + style
+<Icon name="chevron-down" className="my-class" style={{ transform: "rotate(180deg)" }} />
+-->

@@ -1,0 +1,58 @@
+<!-- 아코디언 내부에서 필드셋으로 관련 필드를 그룹핑하는 예시 -->
+<!-- [커스텀] name 속성을 업무에 맞게 변경하세요 -->
+<div class="accordion-digitek-inner">
+  <div class="accordion-digitek-inner-header accordion-digitek-inner-header-open" role="button" tabindex="0">
+    <span class="accordion-digitek-inner-title">프로젝트 설정</span>
+    <i class="dicon dicon-chevron-up-sm accordion-digitek-chevron" aria-hidden="true"></i>
+  </div>
+  <div class="accordion-digitek-inner-content">
+    <fieldset class="fieldset-digitek" style="margin-bottom: 16px;">
+      <legend class="fieldset-digitek-legend">기본 정보</legend>
+      <div class="fieldset-digitek-content">
+        <div class="formfield-digitek-grid">
+          <div class="formfield-digitek-row">
+            <div class="formfield-digitek">
+              <label for="field-nested-project-name" class="formfield-digitek-label formfield-digitek-label-required">프로젝트명</label>
+              <div class="input-digitek">
+                <input id="field-nested-project-name" name="nestedProjectName" type="text" class="input-digitek-field" placeholder="입력" required aria-required="true" />
+              </div>
+            </div>
+            <div class="formfield-digitek">
+              <label for="field-nested-category-trigger" class="formfield-digitek-label">분류</label>
+              <div class="select-digitek">
+                <button id="field-nested-category-trigger" type="button" class="select-digitek-trigger" aria-haspopup="listbox" aria-expanded="false">
+                  <span class="select-digitek-text select-digitek-placeholder">선택</span>
+                  <i class="dicon dicon-chevron-down select-digitek-icon" aria-hidden="true"></i>
+                </button>
+                <select style="display:none" name="nestedCategory">
+                  <option value="" disabled selected>선택</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset class="fieldset-digitek">
+      <legend class="fieldset-digitek-legend">일정 정보</legend>
+      <div class="fieldset-digitek-content">
+        <div class="formfield-digitek-grid">
+          <div class="formfield-digitek-row">
+            <div class="formfield-digitek">
+              <label for="field-nested-start-date" class="formfield-digitek-label">시작일</label>
+              <div class="input-digitek">
+                <input id="field-nested-start-date" name="nestedStartDate" type="date" class="input-digitek-field" />
+              </div>
+            </div>
+            <div class="formfield-digitek">
+              <label for="field-nested-end-date" class="formfield-digitek-label">종료일</label>
+              <div class="input-digitek">
+                <input id="field-nested-end-date" name="nestedEndDate" type="date" class="input-digitek-field" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

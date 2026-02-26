@@ -1,0 +1,601 @@
+
+    <!-- PMS 콘텐츠 영역 -->
+    <div class="flex-grow-1" style="overflow-y: auto; background: #fff;">
+      <div class="pms-digitek-detail">
+
+  <!-- ① 헤더: 목록으로 + 제목 + 액션 버튼 -->
+  <div class="pms-digitek-header">
+    <div class="pms-digitek-header-left">
+      <nav aria-label="브레드크럼">
+        <ol class="breadcrumb breadcrumb-digitek">
+          <li class="breadcrumb-item breadcrumb-digitek-item">
+            <button type="button" class="breadcrumb-digitek-back-btn">
+              <i class="dicon dicon-chevron-left" aria-hidden="true"></i>
+              <span class="breadcrumb-digitek-depth">목록으로</span>
+            </button>
+          </li>
+        </ol>
+      </nav>
+      <!-- [커스텀] th:text="${project.name}" 으로 프로젝트명 동적 바인딩 -->
+      <h2 class="pms-digitek-header-title">AP/NF 중국항 OIL-PUMP 신규사양 개발 프로젝트</h2>
+    </div>
+    <div class="pms-digitek-header-actions">
+      <button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-44">체크아웃</button>
+      <button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-44">보류승인요청</button>
+      <button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-44">정지승인요청</button>
+      <button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-44">변경이력</button>
+    </div>
+  </div>
+
+  <!-- ② 탭 영역 -->
+  <!-- [커스텀] 활성 탭 변경: 활성 탭 버튼에 class="btn btn-light tab-digitek-active" + aria-selected="true",
+       비활성 탭에 class="btn btn-link" + aria-selected="false" 를 적용하세요 -->
+  <div class="pms-digitek-tabs">
+    <div class="btn-group tab-digitek-group tab-digitek-group-auto" role="tablist">
+      <button type="button" class="btn btn-light tab-digitek tab-digitek-sm tab-digitek-active" role="tab" aria-selected="true">프로젝트 Master</button>
+      <button type="button" class="btn btn-link tab-digitek tab-digitek-sm" role="tab" aria-selected="false">조직</button>
+      <button type="button" class="btn btn-link tab-digitek tab-digitek-sm" role="tab" aria-selected="false">WBS</button>
+      <button type="button" class="btn btn-link tab-digitek tab-digitek-sm" role="tab" aria-selected="false">산출물</button>
+      <button type="button" class="btn btn-link tab-digitek tab-digitek-sm" role="tab" aria-selected="false">Open-Issue</button>
+      <button type="button" class="btn btn-link tab-digitek tab-digitek-sm" role="tab" aria-selected="false">DVP&amp;R</button>
+    </div>
+  </div>
+
+  <!-- ③ 프로젝트 정보 상세 아코디언 -->
+  <div class="accordion-digitek-page">
+    <div class="accordion-digitek-page-header accordion-digitek-page-header-open" role="button" tabindex="0"
+         aria-expanded="true" aria-controls="pms-info-panel">
+      <span class="accordion-digitek-page-title">프로젝트 정보 상세</span>
+      <i class="dicon dicon-chevron-up accordion-digitek-chevron" aria-hidden="true"></i>
+    </div>
+    <div id="pms-info-panel" class="accordion-digitek-page-content">
+      <div class="pms-digitek-info-section">
+        <!-- 좌측: Phase Stepper (5단계) -->
+        <div class="pms-digitek-info-section-left">
+          <div class="pms-digitek-phase-stepper">
+            <!-- Step 1: 제품 설계 (완료, blue check) -->
+            <div class="pms-digitek-phase-step">
+              <span class="pms-digitek-phase-step-icon">
+                <span class="badge-digitek-status-icon badge-digitek-status-icon-blue">
+                  <i class="dicon dicon-check" style="color:white" aria-hidden="true"></i>
+                </span>
+              </span>
+              <div class="pms-digitek-phase-step-text">
+                <span class="pms-digitek-phase-step-label">제품 설계</span>
+                <span class="pms-digitek-phase-step-date">2025-01-09</span>
+              </div>
+            </div>
+            <!-- Step 2: 설계 검증 및 양산 설계 (진행중, 22%) -->
+            <div class="pms-digitek-phase-step pms-digitek-phase-step-active">
+              <span class="pms-digitek-phase-step-icon">
+                <span class="badge-digitek-status-icon badge-digitek-status-icon-green">
+                  <span class="badge-digitek-status-icon-text">22%</span>
+                </span>
+              </span>
+              <div class="pms-digitek-phase-step-text">
+                <span class="pms-digitek-phase-step-label pms-digitek-phase-step-label-active">설계 검증 및 양산 설계</span>
+                <span class="pms-digitek-phase-step-date">2025-01-09</span>
+              </div>
+            </div>
+            <!-- Step 3: 부품 및 공정 개발(P1) (비활성) -->
+            <div class="pms-digitek-phase-step">
+              <span class="pms-digitek-phase-step-icon">
+                <span class="badge-digitek-status-icon badge-digitek-status-icon-gray">
+                  <i class="dicon dicon-check" style="color:#999999" aria-hidden="true"></i>
+                </span>
+              </span>
+              <div class="pms-digitek-phase-step-text">
+                <span class="pms-digitek-phase-step-label">부품 및 공정 개발(P1)</span>
+                <span class="pms-digitek-phase-step-date">2025-01-09</span>
+              </div>
+            </div>
+            <!-- Step 4: 양산 검증(P2) (비활성) -->
+            <div class="pms-digitek-phase-step">
+              <span class="pms-digitek-phase-step-icon">
+                <span class="badge-digitek-status-icon badge-digitek-status-icon-gray">
+                  <i class="dicon dicon-check" style="color:#999999" aria-hidden="true"></i>
+                </span>
+              </span>
+              <div class="pms-digitek-phase-step-text">
+                <span class="pms-digitek-phase-step-label">양산 검증(P2)</span>
+                <span class="pms-digitek-phase-step-date">2025-01-09</span>
+              </div>
+            </div>
+            <!-- Step 5: 양산투입 준비(SOP) (비활성) -->
+            <div class="pms-digitek-phase-step">
+              <span class="pms-digitek-phase-step-icon">
+                <span class="badge-digitek-status-icon badge-digitek-status-icon-gray">
+                  <i class="dicon dicon-check" style="color:#999999" aria-hidden="true"></i>
+                </span>
+              </span>
+              <div class="pms-digitek-phase-step-text">
+                <span class="pms-digitek-phase-step-label">양산투입 준비(SOP)</span>
+                <span class="pms-digitek-phase-step-date">2025-01-09</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 우측: 정보 그리드 + 구분선 + 고객 일정 -->
+        <div class="pms-digitek-info-section-right">
+          <!-- 프로젝트 일정 정보 그리드 -->
+          <div class="pms-digitek-info-grid">
+            <div class="pms-digitek-info-title">프로젝트 일정</div>
+            <div class="pms-digitek-info-field-full">
+              <span class="pms-digitek-info-label"><span class="badge-digitek-category">프로젝트명</span></span>
+              <!-- [커스텀] th:text="${project.name}" 으로 동적 바인딩 -->
+              <span class="pms-digitek-info-value">AP/NF 중국항 OIL-PUMP 신규사양 개발 프로젝트</span>
+            </div>
+            <div class="pms-digitek-info-row">
+              <div class="pms-digitek-info-field">
+                <span class="pms-digitek-info-label"><span class="badge-digitek-category">프로젝트코드</span></span>
+                <!-- [커스텀] th:text="${project.code}" 으로 동적 바인딩 -->
+                <span class="pms-digitek-info-value">MH202505-0001</span>
+              </div>
+              <div class="pms-digitek-info-field">
+                <span class="pms-digitek-info-label"><span class="badge-digitek-category">상태</span></span>
+                <!-- [커스텀] th:text="${project.progressPercent + '%'}" 으로 진행률 동적 바인딩 -->
+                <span class="pms-digitek-info-value">
+                  <span style="display: inline-flex; align-items: center; gap: 8px;">
+                    <span class="progress-digitek-circular" role="progressbar" aria-valuenow="68" style="--percent: 68; --progress-color: #2f66ba; --progress-bg: rgba(47, 102, 186, 0.16); --progress-width: 2px;"></span>
+                    <span>67.5%</span>
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="pms-digitek-info-row">
+              <div class="pms-digitek-info-field">
+                <span class="pms-digitek-info-label"><span class="badge-digitek-category">개발제품유형</span></span>
+                <!-- [커스텀] th:text="${project.productType}" 으로 동적 바인딩 -->
+                <span class="pms-digitek-info-value">파생</span>
+              </div>
+              <div class="pms-digitek-info-field">
+                <span class="pms-digitek-info-label"><span class="badge-digitek-category">설계권한</span></span>
+                <!-- [커스텀] 설계권한 상태에 따라 badge-digitek-permission-approved/pending/rejected 클래스 변경 -->
+                <span class="pms-digitek-info-value">
+                  <span class="badge-digitek-permission badge-digitek-permission-approved">
+                    <span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>
+                    승인됨
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="pms-digitek-info-row">
+              <div class="pms-digitek-info-field">
+                <span class="pms-digitek-info-label"><span class="badge-digitek-category">생산지</span></span>
+                <!-- [커스텀] th:text="${project.factory}" 으로 동적 바인딩 -->
+                <span class="pms-digitek-info-value">안산공장</span>
+              </div>
+              <div class="pms-digitek-info-field">
+                <span class="pms-digitek-info-label"><span class="badge-digitek-category">명화 SOP</span></span>
+                <!-- [커스텀] th:text="${#temporals.format(project.sopDate, 'yyyy-MM-dd')}" 으로 날짜 동적 바인딩 -->
+                <span class="pms-digitek-info-value">2025-01-09</span>
+              </div>
+            </div>
+            <div class="pms-digitek-info-row">
+              <div class="pms-digitek-info-field">
+                <span class="pms-digitek-info-label"><span class="badge-digitek-category">개발착수일</span></span>
+                <!-- [커스텀] th:text="${#temporals.format(project.startDate, 'yyyy-MM-dd')}" 으로 동적 바인딩 -->
+                <span class="pms-digitek-info-value">2025-01-09</span>
+              </div>
+              <div class="pms-digitek-info-field">
+                <span class="pms-digitek-info-label"><span class="badge-digitek-category">WBS 시작일</span></span>
+                <!-- [커스텀] th:text="${#temporals.format(project.wbsStartDate, 'yyyy-MM-dd')}" 으로 동적 바인딩 -->
+                <span class="pms-digitek-info-value">2025-01-09</span>
+              </div>
+            </div>
+            <div class="pms-digitek-info-row">
+              <div class="pms-digitek-info-field">
+                <span class="pms-digitek-info-label"><span class="badge-digitek-category">PM</span></span>
+                <!-- [커스텀] th:text="${project.pm.name}" 으로 동적 바인딩 -->
+                <span class="pms-digitek-info-value">이래근</span>
+              </div>
+              <div class="pms-digitek-info-field">
+                <span class="pms-digitek-info-label"><span class="badge-digitek-category">PL</span></span>
+                <!-- [커스텀] th:text="${project.pl.name}" 으로 동적 바인딩 -->
+                <span class="pms-digitek-info-value">이래근</span>
+              </div>
+            </div>
+            <div class="pms-digitek-info-row">
+              <div class="pms-digitek-info-field">
+                <span class="pms-digitek-info-label"><span class="badge-digitek-category">사업부/법인</span></span>
+                <!-- [커스텀] th:text="${project.division}" 으로 동적 바인딩 -->
+                <span class="pms-digitek-info-value">본사</span>
+              </div>
+              <div class="pms-digitek-info-field">
+                <span class="pms-digitek-info-label"><span class="badge-digitek-category">품질경영담당자</span></span>
+                <!-- [커스텀] th:text="${project.qualityManager.name}" 으로 동적 바인딩 -->
+                <span class="pms-digitek-info-value">이래근</span>
+              </div>
+            </div>
+          </div>
+          <!-- 구분선 -->
+          <div class="pms-digitek-info-divider"></div>
+          <!-- 고객 일정 타임라인 -->
+          <div class="pms-digitek-customer-timeline">
+            <div class="pms-digitek-timeline-title">고객 일정</div>
+            <div class="pms-digitek-timeline-track">
+              <div class="pms-digitek-milestone">
+                <div class="pms-digitek-milestone-circle">
+                  <i class="dicon dicon-pencil" aria-hidden="true"></i>
+                </div>
+                <div class="pms-digitek-milestone-info">
+                  <span class="pms-digitek-milestone-label">Proto</span>
+                  <span class="pms-digitek-milestone-date">2025-01-09</span>
+                </div>
+              </div>
+              <div class="pms-digitek-timeline-connector"></div>
+              <div class="pms-digitek-milestone">
+                <div class="pms-digitek-milestone-circle">
+                  <i class="dicon dicon-pencil" aria-hidden="true"></i>
+                </div>
+                <div class="pms-digitek-milestone-info">
+                  <span class="pms-digitek-milestone-label">P1</span>
+                  <span class="pms-digitek-milestone-date">2025-04-15</span>
+                </div>
+              </div>
+              <div class="pms-digitek-timeline-connector"></div>
+              <div class="pms-digitek-milestone">
+                <div class="pms-digitek-milestone-circle">
+                  <i class="dicon dicon-pencil" aria-hidden="true"></i>
+                </div>
+                <div class="pms-digitek-milestone-info">
+                  <span class="pms-digitek-milestone-label">P2</span>
+                  <span class="pms-digitek-milestone-date">2025-08-20</span>
+                </div>
+              </div>
+              <div class="pms-digitek-timeline-connector"></div>
+              <div class="pms-digitek-milestone">
+                <div class="pms-digitek-milestone-circle">
+                  <i class="dicon dicon-pencil" aria-hidden="true"></i>
+                </div>
+                <div class="pms-digitek-milestone-info">
+                  <span class="pms-digitek-milestone-label">SOP</span>
+                  <span class="pms-digitek-milestone-date">2026-01-09</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ 일정계획 아코디언 (프로젝트 Master 탭 내용) -->
+  <div class="accordion-digitek-inner">
+    <div class="accordion-digitek-inner-header accordion-digitek-inner-header-open" role="button" tabindex="0"
+         aria-expanded="true" aria-controls="pms-schedule-panel">
+      <span class="accordion-digitek-inner-title">일정계획</span>
+      <span class="accordion-digitek-inner-header-right">
+        <div class="pms-digitek-legend">
+          <span class="badge-digitek-progress">
+            <span class="badge-digitek-progress-dot badge-digitek-dot-waiting"></span>
+            <span class="badge-digitek-progress-text">진행 대기</span>
+          </span>
+          <span class="badge-digitek-progress">
+            <span class="badge-digitek-progress-dot badge-digitek-dot-before-start"></span>
+            <span class="badge-digitek-progress-text">시작 전</span>
+          </span>
+          <span class="badge-digitek-progress">
+            <span class="badge-digitek-progress-dot badge-digitek-dot-in-progress"></span>
+            <span class="badge-digitek-progress-text">진행중</span>
+          </span>
+          <span class="badge-digitek-progress">
+            <span class="badge-digitek-progress-dot badge-digitek-dot-completed"></span>
+            <span class="badge-digitek-progress-text">종료</span>
+          </span>
+          <span class="badge-digitek-progress">
+            <span class="badge-digitek-progress-dot badge-digitek-dot-delayed"></span>
+            <span class="badge-digitek-progress-text">지연</span>
+          </span>
+        </div>
+      </span>
+      <i class="dicon dicon-chevron-up-sm accordion-digitek-chevron" aria-hidden="true"></i>
+    </div>
+    <div id="pms-schedule-panel" class="accordion-digitek-inner-content">
+      <!-- 필터 + 액션 바 -->
+      <div class="pms-digitek-filter-bar">
+        <div class="pms-digitek-filter-bar-left">
+          <span class="badge-digitek-level">
+            <span class="badge-digitek-level-left">
+              <span class="badge-digitek-level-label">Level</span>
+              <span class="badge-digitek-level-divider"></span>
+            </span>
+            <span class="badge-digitek-level-right">
+              <span class="badge-digitek-level-value">L1</span>
+              <span class="badge-digitek-level-chevron">
+                <i class="dicon dicon-chevron-level" aria-hidden="true"></i>
+              </span>
+            </span>
+          </span>
+          <span class="badge-digitek-level">
+            <span class="badge-digitek-level-left">
+              <span class="badge-digitek-level-label">Level</span>
+              <span class="badge-digitek-level-divider"></span>
+            </span>
+            <span class="badge-digitek-level-right">
+              <span class="badge-digitek-level-value">L2</span>
+              <span class="badge-digitek-level-chevron">
+                <i class="dicon dicon-chevron-level" aria-hidden="true"></i>
+              </span>
+            </span>
+          </span>
+          <span class="badge-digitek-level">
+            <span class="badge-digitek-level-left">
+              <span class="badge-digitek-level-label">Level</span>
+              <span class="badge-digitek-level-divider"></span>
+            </span>
+            <span class="badge-digitek-level-right">
+              <span class="badge-digitek-level-value">L3</span>
+              <span class="badge-digitek-level-chevron">
+                <i class="dicon dicon-chevron-level" aria-hidden="true"></i>
+              </span>
+            </span>
+          </span>
+          <span class="badge-digitek-level">
+            <span class="badge-digitek-level-left">
+              <span class="badge-digitek-level-label">Level</span>
+              <span class="badge-digitek-level-divider"></span>
+            </span>
+            <span class="badge-digitek-level-right">
+              <span class="badge-digitek-level-value">L4</span>
+              <span class="badge-digitek-level-chevron">
+                <i class="dicon dicon-chevron-level" aria-hidden="true"></i>
+              </span>
+            </span>
+          </span>
+          <span class="badge-digitek-level">
+            <span class="badge-digitek-level-left">
+              <span class="badge-digitek-level-label">Level</span>
+              <span class="badge-digitek-level-divider"></span>
+            </span>
+            <span class="badge-digitek-level-right">
+              <span class="badge-digitek-level-value">L5</span>
+              <span class="badge-digitek-level-chevron">
+                <i class="dicon dicon-chevron-level" aria-hidden="true"></i>
+              </span>
+            </span>
+          </span>
+        </div>
+        <div class="pms-digitek-filter-bar-right">
+          <button type="button" class="pms-digitek-action-chip">
+            <i class="dicon dicon-eye" aria-hidden="true"></i>
+            미지정 Task 보기
+          </button>
+          <button type="button" class="pms-digitek-action-chip">
+            <i class="dicon dicon-excel" aria-hidden="true"></i>
+            Excel 다운로드
+          </button>
+          <button type="button" class="pms-digitek-action-chip">
+            <i class="dicon dicon-refresh icon-digitek-11" aria-hidden="true"></i>
+            새로고침
+          </button>
+          <button type="button" class="pms-digitek-action-chip">
+            <i class="dicon dicon-expand" aria-hidden="true"></i>
+            화면 맞춤
+          </button>
+        </div>
+      </div>
+      <!-- Gantt 차트 (테이블 + 리사이저 + 타임라인) -->
+      <div class="pms-digitek-gantt">
+        <div class="pms-digitek-gantt-container" style="max-height: 500px;">
+          <!-- 좌측 테이블 -->
+          <div class="pms-digitek-gantt-table-wrap">
+            <table class="pms-digitek-gantt-table">
+              <thead>
+                <tr>
+                  <th scope="col" class="pms-digitek-gantt-col-task">Task</th>
+                  <th scope="col" class="pms-digitek-gantt-col-priority">Priority</th>
+                  <th scope="col" class="pms-digitek-gantt-col-level">Level</th>
+                  <th scope="col" class="pms-digitek-gantt-col-role">Role</th>
+                  <th scope="col" class="pms-digitek-gantt-col-date">Start Date</th>
+                  <th scope="col" class="pms-digitek-gantt-col-date">Last Date</th>
+                  <th scope="col" class="pms-digitek-gantt-col-status">Status</th>
+                </tr>
+              </thead>
+              <!-- [커스텀] Gantt 행 반복: th:each="task : ${project.tasks}" 로 동적 렌더링 -->
+              <tbody>
+                <tr class="pms-digitek-gantt-row-project">
+                  <!-- [커스텀] th:text="${project.name}" 으로 프로젝트명 동적 바인딩 -->
+                  <td colspan="7">AP/NF 중국항 OIL-PUMP 신규사양 개발 프로젝트</td>
+                </tr>
+                <tr class="pms-digitek-gantt-row-level-0">
+                  <td class="pms-digitek-gantt-td-task">
+                    <div class="pms-digitek-gantt-task-name">
+                      <button type="button" class="pms-digitek-gantt-toggle" aria-label="접기">
+                        <i class="dicon dicon-toggle-chevron" aria-hidden="true"></i>
+                      </button>
+                      <span>제품 설계</span>
+                    </div>
+                  </td>
+                  <td class="pms-digitek-gantt-td-priority">
+                    <span class="badge-digitek-priority">
+                      <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+                      <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+                      <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+                      <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+                      <span class="badge-digitek-priority-dot badge-digitek-priority-dot-empty"></span>
+                    </span>
+                  </td>
+                  <td class="pms-digitek-gantt-td-level">14</td>
+                  <td class="pms-digitek-gantt-td-role">홍길동</td>
+                  <td class="pms-digitek-gantt-td-date">2025.12.05</td>
+                  <td class="pms-digitek-gantt-td-date">2026.01.03</td>
+                  <td class="pms-digitek-gantt-td-status">
+                    <span class="pms-digitek-gantt-status-cell">
+                      <span class="progress-digitek-circular" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="--percent: 50; --progress-size: 20px; --progress-width: 3px;"></span>
+                      <span style="font-size: 11px; color: #767676;">50%</span>
+                    </span>
+                  </td>
+                </tr>
+                <tr class="pms-digitek-gantt-row-level-1">
+                  <td class="pms-digitek-gantt-td-task-l1">
+                    <div class="pms-digitek-gantt-task-name">
+                      <button type="button" class="pms-digitek-gantt-toggle" aria-label="접기">
+                        <i class="dicon dicon-toggle-chevron" aria-hidden="true"></i>
+                      </button>
+                      <span>개발 일정</span>
+                    </div>
+                  </td>
+                  <td class="pms-digitek-gantt-td-priority">
+                    <span class="badge-digitek-priority">
+                      <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+                      <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+                      <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+                      <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+                      <span class="badge-digitek-priority-dot badge-digitek-priority-dot-empty"></span>
+                    </span>
+                  </td>
+                  <td class="pms-digitek-gantt-td-level">14</td>
+                  <td class="pms-digitek-gantt-td-role">홍길동</td>
+                  <td class="pms-digitek-gantt-td-date">2025.12.05</td>
+                  <td class="pms-digitek-gantt-td-date">2026.01.03</td>
+                  <td class="pms-digitek-gantt-td-status">
+                    <span class="pms-digitek-gantt-status-cell">
+                      <span class="progress-digitek-circular" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="--percent: 50; --progress-size: 20px; --progress-width: 3px;"></span>
+                      <span style="font-size: 11px; color: #767676;">50%</span>
+                    </span>
+                  </td>
+                </tr>
+                <tr class="pms-digitek-gantt-row-level-2">
+                  <td class="pms-digitek-gantt-td-task-l2">
+                    <div class="pms-digitek-gantt-task-name">
+                      <span class="pms-digitek-gantt-toggle-placeholder"></span>
+                      <span>생산 준비</span>
+                    </div>
+                  </td>
+                  <td class="pms-digitek-gantt-td-priority">
+                    <span class="badge-digitek-priority">
+                      <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+                      <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+                      <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+                      <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+                      <span class="badge-digitek-priority-dot badge-digitek-priority-dot-empty"></span>
+                    </span>
+                  </td>
+                  <td class="pms-digitek-gantt-td-level">14</td>
+                  <td class="pms-digitek-gantt-td-role">홍길동</td>
+                  <td class="pms-digitek-gantt-td-date">2025.12.05</td>
+                  <td class="pms-digitek-gantt-td-date">2026.01.03</td>
+                  <td class="pms-digitek-gantt-td-status">
+                    <span class="pms-digitek-gantt-status-cell">
+                      <span class="progress-digitek-circular" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="--percent: 50; --progress-size: 20px; --progress-width: 3px;"></span>
+                      <span style="font-size: 11px; color: #767676;">50%</span>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- 드래그 가능한 구분선 리사이저 -->
+          <div class="pms-digitek-gantt-resizer"></div>
+          <!-- 우측 타임라인 -->
+          <div class="pms-digitek-gantt-timeline-wrap">
+            <!-- 타임라인 헤더 -->
+            <div class="pms-digitek-gantt-header">
+              <div class="pms-digitek-gantt-header-months">
+                <div class="pms-digitek-gantt-header-month pms-digitek-gantt-month-5w">Dec. 2025</div>
+                <div class="pms-digitek-gantt-header-month pms-digitek-gantt-month-4w">Jan. 2026</div>
+                <div class="pms-digitek-gantt-header-month pms-digitek-gantt-month-4w">Feb. 2026</div>
+              </div>
+              <div class="pms-digitek-gantt-header-weeks">
+                <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W1</div>
+                <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W2</div>
+                <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W3</div>
+                <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W4</div>
+                <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W5</div>
+                <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W1</div>
+                <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W2</div>
+                <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W3</div>
+                <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W4</div>
+                <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W1</div>
+                <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W2</div>
+                <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W3</div>
+                <div class="pms-digitek-gantt-header-week pms-digitek-gantt-week-cell">W4</div>
+              </div>
+            </div>
+            <!-- 타임라인 바 영역 -->
+            <div class="pms-digitek-gantt-timeline" style="position: relative; min-height: 200px;">
+              <div class="pms-digitek-gantt-timeline-rows">
+                <!-- 프로젝트 타이틀 빈 행 -->
+                <div class="pms-digitek-gantt-timeline-row" style="height: 37px;">
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                </div>
+                <div class="pms-digitek-gantt-timeline-row" style="height: 37px;">
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-bar pms-digitek-gantt-bar-blue" style="left: 20px; width: 180px;">
+                    <img class="pms-digitek-gantt-bar-avatar" src="/images/icons/avatar.png" width="16" height="16" alt="" aria-hidden="true" style="border-radius: 50%; opacity: 0.7;">
+                    내용을 입력해 주세요.
+                  </div>
+                </div>
+                <div class="pms-digitek-gantt-timeline-row" style="height: 37px;">
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-bar pms-digitek-gantt-bar-green" style="left: 60px; width: 150px;">
+                    <img class="pms-digitek-gantt-bar-avatar" src="/images/icons/avatar.png" width="16" height="16" alt="" aria-hidden="true" style="border-radius: 50%; opacity: 0.7;">
+                    내용을 입력해 주세요.
+                  </div>
+                </div>
+                <div class="pms-digitek-gantt-timeline-row" style="height: 37px;">
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-timeline-cell pms-digitek-gantt-week-cell"></div>
+                  <div class="pms-digitek-gantt-bar pms-digitek-gantt-bar-red" style="left: 80px; width: 120px;">
+                    <img class="pms-digitek-gantt-bar-avatar" src="/images/icons/avatar.png" width="16" height="16" alt="" aria-hidden="true" style="border-radius: 50%; opacity: 0.7;">
+                    내용을 입력해 주세요.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      </div><!-- /pms-digitek-detail -->
+    </div><!-- /콘텐츠 영역 -->

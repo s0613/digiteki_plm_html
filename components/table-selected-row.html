@@ -1,0 +1,42 @@
+<!-- 체크박스 선택 행: checked 상태 + 하이라이트 배경 -->
+<!-- [커스텀] JS로 체크박스 change 이벤트 시 tr에 background 스타일을 토글하거나,
+     Thymeleaf에서 th:style="'background:' + (${item.selected} ? '#EEF4FF' : 'transparent')" 로 바인딩 -->
+<div class="table-digitek-scroll">
+  <table class="table-digitek" aria-label="부품 목록">
+    <thead>
+      <tr>
+        <th class="table-digitek-checkbox" scope="col"><input type="checkbox" aria-label="전체 선택"></th>
+        <th scope="col">부품번호</th>
+        <th scope="col">부품명</th>
+        <th scope="col">담당자</th>
+        <th scope="col">요청일</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 선택된 행: background 색상으로 강조 -->
+      <tr style="background: #EEF4FF;">
+        <td class="table-digitek-checkbox"><input type="checkbox" checked aria-label="행 선택"></td>
+        <td>H00.015-56</td>
+        <td>FET_N-Channel_BSS138P</td>
+        <td>김수민</td>
+        <td>2025-04-30</td>
+      </tr>
+      <!-- 미선택 행 -->
+      <tr>
+        <td class="table-digitek-checkbox"><input type="checkbox" aria-label="행 선택"></td>
+        <td>H00.015-57</td>
+        <td>FET_P-Channel_BSS84P</td>
+        <td>이태길</td>
+        <td>2025-05-01</td>
+      </tr>
+      <!-- 미선택 행 -->
+      <tr>
+        <td class="table-digitek-checkbox"><input type="checkbox" aria-label="행 선택"></td>
+        <td>H00.015-58</td>
+        <td>Resistor_0402</td>
+        <td>홍길동</td>
+        <td>2025-05-02</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

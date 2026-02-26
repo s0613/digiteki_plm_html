@@ -1,0 +1,29 @@
+<!-- 브레드크럼 구조: 중간 항목(clickable) → 마지막 항목(non-clickable, span 사용) -->
+<!-- [커스텀] 경로 depth에 따라 <li class="breadcrumb-digitek-item"> 항목 추가/제거 -->
+<!-- [커스텀] Thymeleaf 동적 경로 생성 예시:
+     <li class="breadcrumb-digitek-item" th:each="crumb, stat : ${breadcrumbs}">
+       <i class="dicon dicon-breadcrumb-separator" th:if="${!stat.first}" aria-hidden="true"></i>
+       <a th:if="${!stat.last}" th:href="@{${crumb.url}}" th:text="${crumb.name}"
+          class="breadcrumb-digitek-depth breadcrumb-digitek-clickable"></a>
+       <span th:if="${stat.last}" th:text="${crumb.name}" class="breadcrumb-digitek-depth"></span>
+     </li> -->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb breadcrumb-digitek">
+    <!-- 중간 항목: breadcrumb-digitek-clickable 클래스 + <a> 태그 사용 -->
+    <!-- [커스텀] 링크 경로 변경: th:href="@{/home}" -->
+    <!-- [커스텀] 항목명 변경: th:text="${menu.name}" -->
+    <li class="breadcrumb-digitek-item">
+      <a href="#" class="breadcrumb-digitek-depth breadcrumb-digitek-clickable">홈</a>
+    </li>
+    <li class="breadcrumb-digitek-item">
+      <i class="dicon dicon-breadcrumb-separator" aria-hidden="true"></i>
+      <a href="#" class="breadcrumb-digitek-depth breadcrumb-digitek-clickable">카테고리</a>
+    </li>
+    <!-- 마지막 항목(현재 페이지): <span> 태그 사용, 클릭 불가 -->
+    <!-- [커스텀] 현재 페이지명 변경: th:text="${pageTitle}" -->
+    <li class="breadcrumb-digitek-item" aria-current="page">
+      <i class="dicon dicon-breadcrumb-separator" aria-hidden="true"></i>
+      <span class="breadcrumb-digitek-depth">현재 페이지</span>
+    </li>
+  </ol>
+</nav>

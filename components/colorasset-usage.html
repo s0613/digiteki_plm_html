@@ -1,0 +1,75 @@
+<!-- ── ColorAsset 사용법 ── -->
+
+<!-- 1. 기본 HTML 사용법:
+     class="color-asset-digitek color-asset-digitek-{색상명}"
+     색상명: black | red | blue | orange | green | gray
+-->
+<div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+
+  <!-- black (#111111) -->
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; color: #555;">
+    <div class="color-asset-digitek color-asset-digitek-black" role="button" tabindex="0" aria-label="검정색 선택"></div>
+    <span>black</span>
+    <span style="color: #999;">#111111</span>
+  </div>
+
+  <!-- red (var(--digitek-error) = #EF4444) -->
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; color: #555;">
+    <div class="color-asset-digitek color-asset-digitek-red" role="button" tabindex="0" aria-label="빨간색 선택"></div>
+    <span>red</span>
+    <span style="color: #999;">#EF4444</span>
+  </div>
+
+  <!-- blue (var(--digitek-primary) = #2F66BA) -->
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; color: #555;">
+    <div class="color-asset-digitek color-asset-digitek-blue" role="button" tabindex="0" aria-label="파란색 선택"></div>
+    <span>blue</span>
+    <span style="color: #999;">#2F66BA</span>
+  </div>
+
+  <!-- orange (#FF8A00) -->
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; color: #555;">
+    <div class="color-asset-digitek color-asset-digitek-orange" role="button" tabindex="0" aria-label="주황색 선택"></div>
+    <span>orange</span>
+    <span style="color: #999;">#FF8A00</span>
+  </div>
+
+  <!-- green (#00C896) -->
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; color: #555;">
+    <div class="color-asset-digitek color-asset-digitek-green" role="button" tabindex="0" aria-label="녹색 선택"></div>
+    <span>green</span>
+    <span style="color: #999;">#00C896</span>
+  </div>
+
+  <!-- gray (var(--digitek-text-disabled)) -->
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; color: #555;">
+    <div class="color-asset-digitek color-asset-digitek-gray" role="button" tabindex="0" aria-label="회색 선택"></div>
+    <span>gray</span>
+    <span style="color: #999;">#BDBDBD</span>
+  </div>
+
+</div>
+
+<!-- 2. [커스텀] 선택 상태 토글 (JS):
+     // 사용 예시:
+     // role="button" div는 키보드 이벤트를 직접 처리해야 합니다 (브라우저 자동 처리 없음)
+     // var swatches = document.querySelectorAll('[role="button"].color-asset-digitek');
+     // swatches.forEach(function (el) {
+     //   function toggle() {
+     //     var isSelected = el.classList.toggle('color-asset-digitek-selected');
+     //     el.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+     //   }
+     //   el.addEventListener('click', toggle);
+     //   el.addEventListener('keydown', function (e) {
+     //     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+     //   });
+     // });
+-->
+
+<!-- 3. [커스텀] Thymeleaf 선택 상태 바인딩:
+     <div class="color-asset-digitek color-asset-digitek-blue"
+          th:classappend="${selectedColor == 'blue'} ? 'color-asset-digitek-selected'"
+          role="button" tabindex="0">
+       <span th:if="${selectedColor == 'blue'}" class="color-asset-digitek-checkmark" aria-hidden="true"><i class="dicon dicon-check"></i></span>
+     </div>
+-->

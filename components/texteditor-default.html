@@ -1,0 +1,99 @@
+<!-- 외부 JS 라이브러리 없음: contenteditable 기반 순수 HTML/CSS/JS 에디터 -->
+<!-- 툴바 버튼은 document.execCommand() 또는 직접 DOM 조작으로 기능 구현 -->
+<!-- [커스텀] data-placeholder 속성으로 빈 상태 안내 텍스트 변경 -->
+<!-- [커스텀] text-editor-digitek-icon-btn-active 클래스로 활성 버튼 상태(강조) 표시 -->
+<!-- 초기화 예시 (execCommand 방식):
+  const editor = document.querySelector('.text-editor-digitek-contents');
+  document.querySelector('[title="굵게 (Ctrl+B)"]').addEventListener('click', () => {
+    document.execCommand('bold');
+    editor.focus();
+  });
+-->
+<div class="text-editor-digitek">
+  <div class="text-editor-digitek-toolbar">
+    <!-- 실행 취소 / 다시 실행 -->
+    <div class="text-editor-digitek-toolbar-group">
+      <button type="button" class="text-editor-digitek-icon-btn" title="실행 취소 (Ctrl+Z)">
+        <i class="dicon dicon-undo icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="다시 실행 (Ctrl+Y)">
+        <i class="dicon dicon-redo icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+    </div>
+    <!-- 텍스트 크기 -->
+    <div class="text-editor-digitek-dropdown-container">
+      <div class="text-editor-digitek-split-btn">
+        <button type="button" class="text-editor-digitek-size-btn" title="현재 크기 적용">본문</button>
+        <button type="button" class="text-editor-digitek-chevron-btn" title="크기 선택" aria-haspopup="listbox" aria-expanded="false">
+          <i class="dicon dicon-chevron-down-sm icon-digitek-16 text-digitek-secondary" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <!-- 정렬 -->
+    <div class="text-editor-digitek-dropdown-container">
+      <button type="button" class="text-editor-digitek-bar-btn" aria-label="텍스트 정렬" aria-haspopup="listbox" aria-expanded="false">
+        <i class="dicon dicon-align-left icon-digitek-20 text-digitek-secondary"></i>
+        <i class="dicon dicon-chevron-down-sm icon-digitek-16 text-digitek-secondary" aria-hidden="true"></i>
+      </button>
+    </div>
+    <!-- 색상 -->
+    <div class="text-editor-digitek-dropdown-container">
+      <div class="text-editor-digitek-split-btn">
+        <button type="button" class="text-editor-digitek-color-btn" title="현재 색상 적용">
+          <span class="text-editor-digitek-color-swatch" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="text-editor-digitek-chevron-btn" title="색상 선택" aria-haspopup="listbox" aria-expanded="false">
+          <i class="dicon dicon-chevron-down-sm icon-digitek-16 text-digitek-secondary" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <!-- 서식 -->
+    <div class="text-editor-digitek-toolbar-group">
+      <button type="button" class="text-editor-digitek-icon-btn" title="굵게 (Ctrl+B)">
+        <i class="dicon dicon-bold icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="기울임 (Ctrl+I)">
+        <i class="dicon dicon-italic icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="밑줄 (Ctrl+U)">
+        <i class="dicon dicon-underline icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="취소선">
+        <i class="dicon dicon-strikethrough icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="인라인 코드">
+        <i class="dicon dicon-inline-code icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="서식 지우기">
+        <i class="dicon dicon-clear-format icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+    </div>
+    <!-- 리스트 -->
+    <div class="text-editor-digitek-toolbar-group">
+      <button type="button" class="text-editor-digitek-icon-btn" title="글머리 기호">
+        <i class="dicon dicon-bulleted-list icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="번호 매기기">
+        <i class="dicon dicon-numbered-list icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+    </div>
+    <!-- 미디어 -->
+    <div class="text-editor-digitek-toolbar-group">
+      <button type="button" class="text-editor-digitek-icon-btn" title="링크">
+        <i class="dicon dicon-link icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="이미지">
+        <i class="dicon dicon-image icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="코드 블록">
+        <i class="dicon dicon-code icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+      <button type="button" class="text-editor-digitek-icon-btn" title="구분선">
+        <i class="dicon dicon-horizontal-rule icon-digitek-20 text-digitek-secondary"></i>
+      </button>
+    </div>
+  </div>
+  <!-- [커스텀] data-placeholder로 빈 상태 안내 텍스트 변경 -->
+  <!-- [커스텀] aria-label로 스크린리더용 에디터 영역 설명 변경 -->
+  <div class="text-editor-digitek-contents" contenteditable="true" role="textbox" aria-multiline="true" aria-label="텍스트 편집기" data-placeholder="내용을 입력하세요..."></div>
+</div>

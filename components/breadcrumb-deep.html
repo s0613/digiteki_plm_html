@@ -1,0 +1,30 @@
+<!-- 4depth 브레드크럼: 홈 → 상위 카테고리 → 하위 카테고리 → 현재 페이지 -->
+<!-- [커스텀] 각 depth의 링크 경로: th:href="@{/path}" -->
+<!-- [커스텀] 각 depth의 항목명: th:text="${menu.name}" -->
+<!-- [커스텀] Thymeleaf th:each 동적 생성 예시:
+     <li class="breadcrumb-digitek-item" th:each="crumb, stat : ${breadcrumbs}">
+       <i class="dicon dicon-breadcrumb-separator" th:if="${!stat.first}" aria-hidden="true"></i>
+       <a th:if="${!stat.last}" th:href="@{${crumb.url}}" th:text="${crumb.name}"
+          class="breadcrumb-digitek-depth breadcrumb-digitek-clickable"></a>
+       <span th:if="${stat.last}" th:text="${crumb.name}" class="breadcrumb-digitek-depth"></span>
+     </li> -->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb breadcrumb-digitek">
+    <li class="breadcrumb-digitek-item">
+      <a href="#" class="breadcrumb-digitek-depth breadcrumb-digitek-clickable">홈</a>
+    </li>
+    <li class="breadcrumb-digitek-item">
+      <i class="dicon dicon-breadcrumb-separator" aria-hidden="true"></i>
+      <a href="#" class="breadcrumb-digitek-depth breadcrumb-digitek-clickable">PMS</a>
+    </li>
+    <li class="breadcrumb-digitek-item">
+      <i class="dicon dicon-breadcrumb-separator" aria-hidden="true"></i>
+      <a href="#" class="breadcrumb-digitek-depth breadcrumb-digitek-clickable">프로젝트 관리</a>
+    </li>
+    <!-- 마지막 항목: span 사용, 클릭 불가 -->
+    <li class="breadcrumb-digitek-item" aria-current="page">
+      <i class="dicon dicon-breadcrumb-separator" aria-hidden="true"></i>
+      <span class="breadcrumb-digitek-depth">프로젝트 상세</span>
+    </li>
+  </ol>
+</nav>

@@ -1,0 +1,64 @@
+<!-- Thymeleaf th:each 를 사용한 동적 페이지네이션 예시 -->
+<!-- [커스텀] totalPages: 총 페이지 수 (서버에서 전달) -->
+<!-- [커스텀] currentPage: 현재 페이지 번호, 1부터 시작 (서버에서 전달) -->
+<!-- [커스텀] pageUrl: 페이지 이동 URL 패턴 (예: /list?page=) -->
+<!--
+<nav aria-label="페이지 탐색">
+  <ul class="pagination pagination-digitek">
+    <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+      <button type="button" class="page-link page-link-digitek"
+              th:disabled="${currentPage == 1}"
+              th:onclick="|location.href='@{${pageUrl}}' + (${currentPage} - 1)|"
+              aria-label="이전 페이지">
+        <i class="dicon dicon-chevron-prev" aria-hidden="true"></i>
+      </button>
+    </li>
+    <li class="page-item"
+        th:each="i : ${#numbers.sequence(1, totalPages)}"
+        th:classappend="${i == currentPage} ? 'active'">
+      <button type="button" class="page-link page-link-digitek"
+              th:text="${i}"
+              th:attr="aria-current=${i == currentPage} ? 'page'"
+              th:onclick="|location.href='@{${pageUrl}}' + ${i}|"></button>
+    </li>
+    <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled'">
+      <button type="button" class="page-link page-link-digitek"
+              th:disabled="${currentPage == totalPages}"
+              th:onclick="|location.href='@{${pageUrl}}' + (${currentPage} + 1)|"
+              aria-label="다음 페이지">
+        <i class="dicon dicon-chevron-next" aria-hidden="true"></i>
+      </button>
+    </li>
+  </ul>
+</nav>
+-->
+<!-- 위 Thymeleaf 예시의 정적 렌더링 미리보기 (5페이지, 현재 3페이지) -->
+<nav aria-label="페이지 탐색">
+  <ul class="pagination pagination-digitek">
+    <li class="page-item">
+      <button type="button" class="page-link page-link-digitek" aria-label="이전 페이지">
+        <i class="dicon dicon-chevron-prev" aria-hidden="true"></i>
+      </button>
+    </li>
+    <li class="page-item">
+      <button type="button" class="page-link page-link-digitek">1</button>
+    </li>
+    <li class="page-item">
+      <button type="button" class="page-link page-link-digitek">2</button>
+    </li>
+    <li class="page-item active">
+      <button type="button" class="page-link page-link-digitek" aria-current="page">3</button>
+    </li>
+    <li class="page-item">
+      <button type="button" class="page-link page-link-digitek">4</button>
+    </li>
+    <li class="page-item">
+      <button type="button" class="page-link page-link-digitek">5</button>
+    </li>
+    <li class="page-item">
+      <button type="button" class="page-link page-link-digitek" aria-label="다음 페이지">
+        <i class="dicon dicon-chevron-next" aria-hidden="true"></i>
+      </button>
+    </li>
+  </ul>
+</nav>

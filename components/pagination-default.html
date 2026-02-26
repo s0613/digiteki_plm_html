@@ -1,0 +1,47 @@
+<!-- 첫 페이지 상태: 이전 버튼 disabled -->
+<!-- [커스텀] 총 페이지 수에 따라 <li class="page-item"> 페이지 번호 항목 추가/제거 -->
+<!-- [커스텀] 현재 활성 페이지 항목에 'active' 클래스 추가 -->
+<!-- [커스텀] Thymeleaf th:each 동적 페이지 번호 생성 예시:
+     <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}"
+         th:classappend="${i == currentPage} ? 'active'">
+       <button type="button" class="page-link page-link-digitek"
+               th:text="${i}"
+               th:attr="aria-current=${i == currentPage} ? 'page'"></button>
+     </li> -->
+<!-- [커스텀] Thymeleaf 이전/다음 버튼 disabled 처리:
+     th:classappend="${currentPage == 1} ? 'disabled'"
+     th:attr="disabled=${currentPage == 1}" (이전)
+     th:classappend="${currentPage == totalPages} ? 'disabled'"
+     th:attr="disabled=${currentPage == totalPages}" (다음) -->
+<nav aria-label="페이지 탐색">
+  <ul class="pagination pagination-digitek">
+    <!-- 이전 버튼: 첫 페이지일 때 disabled -->
+    <li class="page-item disabled">
+      <button type="button" class="page-link page-link-digitek" disabled aria-label="이전 페이지">
+        <i class="dicon dicon-chevron-prev" aria-hidden="true"></i>
+      </button>
+    </li>
+    <!-- [커스텀] 현재 활성 페이지 항목에 'active' 클래스 추가 -->
+    <li class="page-item active">
+      <button type="button" class="page-link page-link-digitek" aria-current="page">1</button>
+    </li>
+    <li class="page-item">
+      <button type="button" class="page-link page-link-digitek">2</button>
+    </li>
+    <li class="page-item">
+      <button type="button" class="page-link page-link-digitek">3</button>
+    </li>
+    <li class="page-item">
+      <button type="button" class="page-link page-link-digitek">4</button>
+    </li>
+    <li class="page-item">
+      <button type="button" class="page-link page-link-digitek">5</button>
+    </li>
+    <!-- 다음 버튼 -->
+    <li class="page-item">
+      <button type="button" class="page-link page-link-digitek" aria-label="다음 페이지">
+        <i class="dicon dicon-chevron-next" aria-hidden="true"></i>
+      </button>
+    </li>
+  </ul>
+</nav>

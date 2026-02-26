@@ -1,0 +1,108 @@
+<!-- PMS Gantt 테이블 행 예시: Level 0 (그룹) + Level 1 (태스크) + Level 2 (하위 태스크) -->
+<table class="pms-digitek-gantt-table">
+  <thead>
+    <tr>
+      <th scope="col" class="pms-digitek-gantt-col-task">Task</th>
+      <th scope="col" class="pms-digitek-gantt-col-priority">Priority</th>
+      <th scope="col" class="pms-digitek-gantt-col-level">Level</th>
+      <th scope="col" class="pms-digitek-gantt-col-role">Role</th>
+      <th scope="col" class="pms-digitek-gantt-col-date">Start Date</th>
+      <th scope="col" class="pms-digitek-gantt-col-date">Last Date</th>
+      <th scope="col" class="pms-digitek-gantt-col-status">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Project title row -->
+    <tr class="pms-digitek-gantt-row-project">
+      <td colspan="7">AP/NF 중국향 OIL-PUMP 신규사양 개발 프로젝트</td>
+    </tr>
+    <!-- Level 0: 그룹 행 -->
+    <tr class="pms-digitek-gantt-row-level-0">
+      <td class="pms-digitek-gantt-td-task">
+        <div class="pms-digitek-gantt-task-name">
+          <button type="button" class="pms-digitek-gantt-toggle" aria-label="접기">
+            <i class="dicon dicon-toggle-chevron" aria-hidden="true"></i>
+          </button>
+          <span>제품 설계</span>
+        </div>
+      </td>
+      <td class="pms-digitek-gantt-td-priority">
+        <span class="badge-digitek-priority">
+          <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+          <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+          <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+          <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+          <span class="badge-digitek-priority-dot badge-digitek-priority-dot-empty"></span>
+        </span>
+      </td>
+      <td class="pms-digitek-gantt-td-level">14</td>
+      <td class="pms-digitek-gantt-td-role">홍길동</td>
+      <td class="pms-digitek-gantt-td-date">2025.12.05</td>
+      <td class="pms-digitek-gantt-td-date">2026.01.03</td>
+      <td class="pms-digitek-gantt-td-status">
+        <span class="pms-digitek-gantt-status-cell">
+          <span class="progress-digitek-circular" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="--percent: 50; --progress-size: 20px; --progress-width: 3px;"></span>
+          <span style="font-size: 11px; color: #767676;">50%</span>
+        </span>
+      </td>
+    </tr>
+    <!-- Level 1: 하위 태스크 -->
+    <tr class="pms-digitek-gantt-row-level-1">
+      <td class="pms-digitek-gantt-td-task-l1">
+        <div class="pms-digitek-gantt-task-name">
+          <button type="button" class="pms-digitek-gantt-toggle" aria-label="접기">
+            <i class="dicon dicon-toggle-chevron" aria-hidden="true"></i>
+          </button>
+          <span>개발 일정</span>
+        </div>
+      </td>
+      <td class="pms-digitek-gantt-td-priority">
+        <span class="badge-digitek-priority">
+          <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+          <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+          <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+          <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+          <span class="badge-digitek-priority-dot badge-digitek-priority-dot-empty"></span>
+        </span>
+      </td>
+      <td class="pms-digitek-gantt-td-level">14</td>
+      <td class="pms-digitek-gantt-td-role">홍길동</td>
+      <td class="pms-digitek-gantt-td-date">2025.12.05</td>
+      <td class="pms-digitek-gantt-td-date">2026.01.03</td>
+      <td class="pms-digitek-gantt-td-status">
+        <span class="pms-digitek-gantt-status-cell">
+          <span class="progress-digitek-circular" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="--percent: 50; --progress-size: 20px; --progress-width: 3px;"></span>
+          <span style="font-size: 11px; color: #767676;">50%</span>
+        </span>
+      </td>
+    </tr>
+    <!-- Level 2: 최하위 태스크 -->
+    <tr class="pms-digitek-gantt-row-level-2">
+      <td class="pms-digitek-gantt-td-task-l2">
+        <div class="pms-digitek-gantt-task-name">
+          <span class="pms-digitek-gantt-toggle-placeholder"></span>
+          <span>생산 준비</span>
+        </div>
+      </td>
+      <td class="pms-digitek-gantt-td-priority">
+        <span class="badge-digitek-priority">
+          <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+          <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+          <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+          <span class="badge-digitek-priority-dot badge-digitek-priority-dot-filled"></span>
+          <span class="badge-digitek-priority-dot badge-digitek-priority-dot-empty"></span>
+        </span>
+      </td>
+      <td class="pms-digitek-gantt-td-level">14</td>
+      <td class="pms-digitek-gantt-td-role">홍길동</td>
+      <td class="pms-digitek-gantt-td-date">2025.12.05</td>
+      <td class="pms-digitek-gantt-td-date">2026.01.03</td>
+      <td class="pms-digitek-gantt-td-status">
+        <span class="pms-digitek-gantt-status-cell">
+          <span class="progress-digitek-circular" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="--percent: 50; --progress-size: 20px; --progress-width: 3px;"></span>
+          <span style="font-size: 11px; color: #767676;">50%</span>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>

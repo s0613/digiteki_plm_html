@@ -1,0 +1,14 @@
+<!-- 언어 선택 드롭다운 (닫힘 상태) -->
+<!-- [커스텀] JS 연동: 버튼 클릭 시 'open' 클래스 토글, aria-expanded 값도 함께 변경 -->
+<!-- [커스텀] 선택된 언어 표시: th:text="${session.locale == 'ko' ? 'KO' : 'EN'}" -->
+<div class="gnb-digitek-locale-wrap">
+  <button class="gnb-digitek-locale-btn" aria-label="언어 선택" aria-haspopup="menu" aria-expanded="false">
+    KO
+    <i class="dicon dicon-chevron-down-sm" style="width: 12px; height: 12px;" aria-hidden="true"></i>
+  </button>
+  <div class="gnb-digitek-locale-dropdown" role="menu">
+    <!-- [커스텀] 현재 선택 언어 옵션에 'active' 클래스 추가 -->
+    <button class="gnb-digitek-locale-option active" role="menuitem">KO</button>
+    <button class="gnb-digitek-locale-option" role="menuitem">EN</button>
+  </div>
+</div>

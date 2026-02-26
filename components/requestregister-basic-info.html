@@ -1,0 +1,252 @@
+<!-- 기본 정보 섹션: 폼 그리드 (2열/3열) + 에디터(이미지 포함) + 파일카드 -->
+<div class="accordion-digitek-page">
+  <div class="accordion-digitek-page-header accordion-digitek-page-header-open" role="button" tabindex="0"
+       aria-expanded="true" aria-controls="section-basic-info">
+    <span class="accordion-digitek-page-title">1. 기본 정보</span>
+    <i class="dicon dicon-chevron-up accordion-digitek-chevron" aria-hidden="true"></i>
+  </div>
+  <div class="accordion-digitek-page-content" id="section-basic-info">
+    <div class="request-digitek-form-grid">
+
+      <!-- Row 1: 2열 (의뢰 제목 / 의뢰 번호) -->
+      <div class="request-digitek-form-row request-digitek-form-row-2">
+        <div class="request-digitek-form-field">
+          <label class="request-digitek-form-label" for="field-title">의뢰 제목</label>
+          <input type="text" id="field-title" class="form-control input-digitek" placeholder="내용을 입력해 주세요">
+        </div>
+        <div class="request-digitek-form-field">
+          <label class="request-digitek-form-label" for="field-request-no">의뢰 번호</label>
+          <input type="text" id="field-request-no" class="form-control input-digitek" placeholder="(자동 입력)" disabled>
+        </div>
+      </div>
+
+      <!-- Row 2: 3열 (차종 (Car) / 제품 상태 / 제품 상태) -->
+      <div class="request-digitek-form-row request-digitek-form-row-3">
+        <div class="request-digitek-form-field">
+          <label class="request-digitek-form-label" id="label-car-type">차종 (Car)</label>
+          <div class="select-digitek">
+            <div class="select-digitek-trigger" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="label-car-type">
+              <span class="select-digitek-placeholder">항목을 선택해 주세요</span>
+              <i class="dicon dicon-chevron-down select-digitek-icon" aria-hidden="true"></i>
+            </div>
+            <!-- [커스텀] name 속성을 실제 필드명으로 변경 (예: name="carType") -->
+            <select style="display:none" name="selectField">
+              <option value="" disabled selected>항목을 선택해 주세요</option>
+              <option value="a">항목 A</option>
+              <option value="b">항목 B</option>
+              <option value="c">항목 C</option>
+            </select>
+          </div>
+        </div>
+        <div class="request-digitek-form-field">
+          <label class="request-digitek-form-label" id="label-product-status-r2c2">제품 상태</label>
+          <div class="select-digitek">
+            <div class="select-digitek-trigger" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="label-product-status-r2c2">
+              <span class="select-digitek-placeholder">항목을 선택해 주세요</span>
+              <i class="dicon dicon-chevron-down select-digitek-icon" aria-hidden="true"></i>
+            </div>
+            <!-- [커스텀] name 속성을 실제 필드명으로 변경 (예: name="carType") -->
+            <select style="display:none" name="selectField">
+              <option value="" disabled selected>항목을 선택해 주세요</option>
+              <option value="a">항목 A</option>
+              <option value="b">항목 B</option>
+              <option value="c">항목 C</option>
+            </select>
+          </div>
+        </div>
+        <div class="request-digitek-form-field">
+          <label class="request-digitek-form-label" id="label-product-status-r2c3">제품 상태</label>
+          <div class="select-digitek">
+            <div class="select-digitek-trigger" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="label-product-status-r2c3">
+              <span class="select-digitek-placeholder">항목을 선택해 주세요</span>
+              <i class="dicon dicon-chevron-down select-digitek-icon" aria-hidden="true"></i>
+            </div>
+            <!-- [커스텀] name 속성을 실제 필드명으로 변경 (예: name="carType") -->
+            <select style="display:none" name="selectField">
+              <option value="" disabled selected>항목을 선택해 주세요</option>
+              <option value="a">항목 A</option>
+              <option value="b">항목 B</option>
+              <option value="c">항목 C</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: 3열 (T/Code / 제품 상태 / 제품 상태) -->
+      <div class="request-digitek-form-row request-digitek-form-row-3">
+        <div class="request-digitek-form-field">
+          <label class="request-digitek-form-label" id="label-tcode-r3c1">T/Code</label>
+          <div class="select-digitek">
+            <div class="select-digitek-trigger" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="label-tcode-r3c1">
+              <span class="select-digitek-placeholder">항목을 선택해 주세요</span>
+              <i class="dicon dicon-chevron-down select-digitek-icon" aria-hidden="true"></i>
+            </div>
+            <!-- [커스텀] name 속성을 실제 필드명으로 변경 (예: name="carType") -->
+            <select style="display:none" name="selectField">
+              <option value="" disabled selected>항목을 선택해 주세요</option>
+              <option value="a">항목 A</option>
+              <option value="b">항목 B</option>
+              <option value="c">항목 C</option>
+            </select>
+          </div>
+        </div>
+        <div class="request-digitek-form-field">
+          <label class="request-digitek-form-label" id="label-product-status-r3c2">제품 상태</label>
+          <div class="select-digitek">
+            <div class="select-digitek-trigger" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="label-product-status-r3c2">
+              <span class="select-digitek-placeholder">항목을 선택해 주세요</span>
+              <i class="dicon dicon-chevron-down select-digitek-icon" aria-hidden="true"></i>
+            </div>
+            <!-- [커스텀] name 속성을 실제 필드명으로 변경 (예: name="carType") -->
+            <select style="display:none" name="selectField">
+              <option value="" disabled selected>항목을 선택해 주세요</option>
+              <option value="a">항목 A</option>
+              <option value="b">항목 B</option>
+              <option value="c">항목 C</option>
+            </select>
+          </div>
+        </div>
+        <div class="request-digitek-form-field">
+          <label class="request-digitek-form-label" id="label-product-status-r3c3">제품 상태</label>
+          <div class="select-digitek">
+            <div class="select-digitek-trigger" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="label-product-status-r3c3">
+              <span class="select-digitek-placeholder">항목을 선택해 주세요</span>
+              <i class="dicon dicon-chevron-down select-digitek-icon" aria-hidden="true"></i>
+            </div>
+            <!-- [커스텀] name 속성을 실제 필드명으로 변경 (예: name="carType") -->
+            <select style="display:none" name="selectField">
+              <option value="" disabled selected>항목을 선택해 주세요</option>
+              <option value="a">항목 A</option>
+              <option value="b">항목 B</option>
+              <option value="c">항목 C</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 4: 3열 (T/Code / 제품 상태 / 제품 상태) -->
+      <div class="request-digitek-form-row request-digitek-form-row-3">
+        <div class="request-digitek-form-field">
+          <label class="request-digitek-form-label" id="label-tcode-r4c1">T/Code</label>
+          <div class="select-digitek">
+            <div class="select-digitek-trigger" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="label-tcode-r4c1">
+              <span class="select-digitek-placeholder">항목을 선택해 주세요</span>
+              <i class="dicon dicon-chevron-down select-digitek-icon" aria-hidden="true"></i>
+            </div>
+            <!-- [커스텀] name 속성을 실제 필드명으로 변경 (예: name="carType") -->
+            <select style="display:none" name="selectField">
+              <option value="" disabled selected>항목을 선택해 주세요</option>
+              <option value="a">항목 A</option>
+              <option value="b">항목 B</option>
+              <option value="c">항목 C</option>
+            </select>
+          </div>
+        </div>
+        <div class="request-digitek-form-field">
+          <label class="request-digitek-form-label" id="label-product-status-r4c2">제품 상태</label>
+          <div class="select-digitek">
+            <div class="select-digitek-trigger" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="label-product-status-r4c2">
+              <span class="select-digitek-placeholder">항목을 선택해 주세요</span>
+              <i class="dicon dicon-chevron-down select-digitek-icon" aria-hidden="true"></i>
+            </div>
+            <!-- [커스텀] name 속성을 실제 필드명으로 변경 (예: name="carType") -->
+            <select style="display:none" name="selectField">
+              <option value="" disabled selected>항목을 선택해 주세요</option>
+              <option value="a">항목 A</option>
+              <option value="b">항목 B</option>
+              <option value="c">항목 C</option>
+            </select>
+          </div>
+        </div>
+        <div class="request-digitek-form-field">
+          <label class="request-digitek-form-label" id="label-product-status-r4c3">제품 상태</label>
+          <div class="select-digitek">
+            <div class="select-digitek-trigger" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="label-product-status-r4c3">
+              <span class="select-digitek-placeholder">항목을 선택해 주세요</span>
+              <i class="dicon dicon-chevron-down select-digitek-icon" aria-hidden="true"></i>
+            </div>
+            <!-- [커스텀] name 속성을 실제 필드명으로 변경 (예: name="carType") -->
+            <select style="display:none" name="selectField">
+              <option value="" disabled selected>항목을 선택해 주세요</option>
+              <option value="a">항목 A</option>
+              <option value="b">항목 B</option>
+              <option value="c">항목 C</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 요청 사유 (에디터 + 하단 파일카드 통합) -->
+      <div class="request-digitek-form-row">
+        <div class="request-digitek-form-field">
+          <label class="request-digitek-form-label" id="label-reason">요청 사유</label>
+          <div class="request-digitek-editor-wrap">
+            <div class="text-editor-digitek">
+              <div class="text-editor-digitek-toolbar">
+                <div class="text-editor-digitek-toolbar-group">
+                  <button type="button" class="text-editor-digitek-icon-btn" title="실행 취소"><i class="dicon dicon-undo" aria-hidden="true"></i></button>
+                  <button type="button" class="text-editor-digitek-icon-btn" title="다시 실행"><i class="dicon dicon-redo" aria-hidden="true"></i></button>
+                </div>
+                <div class="text-editor-digitek-split-btn">
+                  <button type="button" class="text-editor-digitek-size-btn">본문</button>
+                  <button type="button" class="text-editor-digitek-chevron-btn"><i class="dicon dicon-chevron-down-sm" aria-hidden="true"></i></button>
+                </div>
+                <button type="button" class="text-editor-digitek-bar-btn"><i class="dicon dicon-bar-left" aria-hidden="true"></i><i class="dicon dicon-chevron-down-sm" aria-hidden="true"></i></button>
+                <div class="text-editor-digitek-split-btn">
+                  <button type="button" class="text-editor-digitek-color-btn"><span class="text-editor-digitek-color-swatch" aria-hidden="true"></span></button>
+                  <button type="button" class="text-editor-digitek-chevron-btn"><i class="dicon dicon-chevron-down-sm" aria-hidden="true"></i></button>
+                </div>
+                <div class="text-editor-digitek-toolbar-group">
+                  <button type="button" class="text-editor-digitek-icon-btn" title="굵게"><i class="dicon dicon-bold" aria-hidden="true"></i></button>
+                  <button type="button" class="text-editor-digitek-icon-btn" title="기울임"><i class="dicon dicon-italic" aria-hidden="true"></i></button>
+                  <button type="button" class="text-editor-digitek-icon-btn" title="밑줄"><i class="dicon dicon-underline" aria-hidden="true"></i></button>
+                  <button type="button" class="text-editor-digitek-icon-btn" title="취소선"><i class="dicon dicon-strikethrough" aria-hidden="true"></i></button>
+                  <button type="button" class="text-editor-digitek-icon-btn" title="인라인 코드"><i class="dicon dicon-inline-code" aria-hidden="true"></i></button>
+                  <button type="button" class="text-editor-digitek-icon-btn" title="서식 지우기"><i class="dicon dicon-clear-format" aria-hidden="true"></i></button>
+                </div>
+                <div class="text-editor-digitek-toolbar-group">
+                  <button type="button" class="text-editor-digitek-icon-btn" title="글머리 기호"><i class="dicon dicon-bulleted-list" aria-hidden="true"></i></button>
+                  <button type="button" class="text-editor-digitek-icon-btn" title="번호 매기기"><i class="dicon dicon-numbered-list" aria-hidden="true"></i></button>
+                </div>
+                <div class="text-editor-digitek-toolbar-group">
+                  <button type="button" class="text-editor-digitek-icon-btn" title="링크"><i class="dicon dicon-link" aria-hidden="true"></i></button>
+                  <button type="button" class="text-editor-digitek-icon-btn" title="이미지"><i class="dicon dicon-image" aria-hidden="true"></i></button>
+                  <button type="button" class="text-editor-digitek-icon-btn" title="코드 블록"><i class="dicon dicon-code" aria-hidden="true"></i></button>
+                  <button type="button" class="text-editor-digitek-icon-btn" title="구분선"><i class="dicon dicon-horizontal-rule" aria-hidden="true"></i></button>
+                </div>
+              </div>
+              <!-- ⚠️ Thymeleaf 적용 시: 서버 데이터 삽입은 반드시 sanitization 후 사용. th:utext 직접 사용 금지 (XSS 위험) -->
+              <div class="text-editor-digitek-contents" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="label-reason">
+                <p>본문 (16px)</p>
+                <p>우리는 매일 수많은 선택 속에서 살아갑니다. 어떤 버튼을 누를지, 어떤 문장을 읽을지, 어떤 화면에서 머무를지. 그 모든 경험은 아주 작은 요소들로부터 시작됩니다.</p>
+                <p><strong>우리는 매일 수많은 선택 속에서 살아갑니다. 어떤 버튼을 누를지, 어떤 문장을 읽을지, 어떤 화면에서 머무를지.</strong></p>
+                <h3>부머리말 (18px)</h3>
+                <p>우리는 매일 수많은 선택 속에서 살아갑니다.</p>
+                <h2>머리말 (20px)</h2>
+                <p>우리는 매일 수많은 선택 속에서 살아갑니다.</p>
+                <h1>제목 (26px)</h1>
+                <ul><li>리스트</li><li>리스트</li><li>리스트</li></ul>
+                <ol><li>리스트</li><li>리스트</li><li>리스트</li></ol>
+                <img src="https://placehold.co/620x349" alt="샘플 이미지" style="max-width:620px;width:100%;border-radius:4px;">
+              </div>
+            </div>
+            <div class="request-digitek-editor-bottom">
+              <div class="request-digitek-attachments">
+                <div class="request-digitek-file-card">
+                  <div class="request-digitek-file-card-content">
+                    <div class="request-digitek-file-card-header">
+                      <span class="request-digitek-file-card-name">서비스소개서_최종.pptx</span>
+                      <button type="button" class="request-digitek-file-card-remove" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button>
+                    </div>
+                    <span class="request-digitek-file-card-size">(12.1MB)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<!-- 열림 상태: accordion-digitek-page-header-open 클래스 추가, content에 hidden 없음 -->
+<!-- [커스텀] aria-expanded="true"로 열림 상태 명시 (스크린리더 접근성) -->
+<!-- JS 토글 방법:
+  header.addEventListener('click', () => {
+    const isOpen = header.classList.toggle('accordion-digitek-page-header-open');
+    header.setAttribute('aria-expanded', String(isOpen));
+    const content = header.nextElementSibling;
+    if (isOpen) content.removeAttribute('hidden');
+    else content.setAttribute('hidden', '');
+    const icon = header.querySelector('.accordion-digitek-chevron');
+    if (isOpen) icon.classList.remove('accordion-digitek-chevron-closed');
+    else icon.classList.add('accordion-digitek-chevron-closed');
+  });
+  // 키보드 접근성: Enter/Space로도 토글
+  header.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      header.click();
+    }
+  });
+-->
+<div class="accordion-digitek-page">
+  <div class="accordion-digitek-page-header accordion-digitek-page-header-open" role="button" tabindex="0"
+       aria-expanded="true" aria-controls="accordion-page-content-2">
+    <span class="accordion-digitek-page-title">섹션 제목</span>
+    <i class="dicon dicon-chevron-up accordion-digitek-chevron" aria-hidden="true"></i>
+  </div>
+  <div id="accordion-page-content-2" class="accordion-digitek-page-content">
+    <p>아코디언 내용이 여기에 표시됩니다.</p>
+  </div>
+</div>

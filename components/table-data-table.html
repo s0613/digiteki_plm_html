@@ -1,0 +1,80 @@
+<!-- 데이터 테이블: 체크박스 + 다열 데이터 -->
+<!-- [커스텀] aria-label: 테이블 목적에 맞게 변경 (예: "부품 목록", "결재 내역") -->
+<div class="table-digitek-scroll">
+  <table class="table-digitek" aria-label="부품 목록">
+    <thead>
+      <tr>
+        <!-- [커스텀] 열 헤더: th 내 텍스트를 컬럼명에 맞게 변경 -->
+        <th class="table-digitek-checkbox" scope="col"><input type="checkbox" aria-label="전체 선택"></th>
+        <th scope="col">부품번호</th>
+        <th scope="col">부품명</th>
+        <th scope="col">Rev</th>
+        <th scope="col">단위</th>
+        <th scope="col">Qty</th>
+        <th scope="col">Amount</th>
+        <th scope="col">요청일</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- [커스텀] Thymeleaf 반복 예시:
+           <tr th:each="item : ${itemList}">
+             <td class="table-digitek-checkbox"><input type="checkbox" aria-label="행 선택"></td>
+             <td th:text="${item.partNo}">H00.015-56</td>
+             <td th:text="${item.partName}">FET_N-Channel_BSS138P</td>
+             <td th:text="${item.rev}">제품 1</td>
+             <td th:text="${item.unit}">차종</td>
+             <td th:text="${item.qty}">김수민</td>
+             <td th:text="${item.amount}">김수민</td>
+             <td><span class="table-digitek-date" th:text="${item.requestDate}">2025-04-30</span></td>
+           </tr>
+      -->
+      <tr>
+        <td class="table-digitek-checkbox"><input type="checkbox" checked aria-label="행 선택"></td>
+        <!-- [커스텀] td 내 텍스트를 실제 데이터 필드로 교체 -->
+        <td>H00.015-56</td>
+        <td>FET_N-Channel_BSS138P</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td>김수민</td>
+        <td>김수민</td>
+        <td><span class="table-digitek-date">2025-04-30 <i class="dicon dicon-calendar" aria-hidden="true"></i></span></td>
+      </tr>
+      <tr>
+        <td class="table-digitek-checkbox"><input type="checkbox" checked aria-label="행 선택"></td>
+        <td>H00.015-56</td>
+        <td>FET_N-Channel_BSS138P</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td>김수민</td>
+        <td>김수민</td>
+        <td><span class="table-digitek-date">2025-04-30 <i class="dicon dicon-calendar" aria-hidden="true"></i></span></td>
+      </tr>
+      <tr>
+        <td class="table-digitek-checkbox"><input type="checkbox" aria-label="행 선택"></td>
+        <td>H00.015-56</td>
+        <td>FET_N-Channel_BSS138P</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td>김수민</td>
+        <td>김수민</td>
+        <td><span class="table-digitek-date">2025-04-30 <i class="dicon dicon-calendar" aria-hidden="true"></i></span></td>
+      </tr>
+      <!-- 입력 행 -->
+      <tr class="table-digitek-input-row">
+        <td class="table-digitek-checkbox"><input type="checkbox" disabled aria-label="행 선택"></td>
+        <td><input type="text" class="form-control input-digitek input-digitek-sm" placeholder="입력"></td>
+        <td><input type="text" class="form-control input-digitek input-digitek-sm" placeholder="입력"></td>
+        <td><input type="text" class="form-control input-digitek input-digitek-sm" placeholder="입력"></td>
+        <td><input type="text" class="form-control input-digitek input-digitek-sm" placeholder="입력"></td>
+        <td><input type="text" class="form-control input-digitek input-digitek-sm" placeholder="입력"></td>
+        <td><input type="text" class="form-control input-digitek input-digitek-sm" placeholder="입력"></td>
+        <td><span class="table-digitek-date">0000-00-00</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="table-digitek-actions">
+  <button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-44">검색 추가</button>
+  <button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-44">삭제</button>
+  <button type="button" class="btn btn-digitek btn-digitek-secondary btn-digitek-44">추가</button>
+</div>

@@ -1,0 +1,17 @@
+<!-- 언어 선택 드롭다운 (열림 상태) -->
+<!-- [커스텀] JS 연동: gnb-digitek-locale-wrap에 'open' 클래스 추가 시 드롭다운 표시 -->
+<!-- JS 예시: document.querySelector('.gnb-digitek-locale-btn').addEventListener('click', function() {
+       this.closest('.gnb-digitek-locale-wrap').classList.toggle('open');
+       this.setAttribute('aria-expanded', this.closest('.gnb-digitek-locale-wrap').classList.contains('open'));
+     }); -->
+<div class="gnb-digitek-locale-wrap open">
+  <button class="gnb-digitek-locale-btn" aria-label="언어 선택" aria-haspopup="menu" aria-expanded="true">
+    KO
+    <i class="dicon dicon-chevron-down-sm" style="width: 12px; height: 12px;" aria-hidden="true"></i>
+  </button>
+  <div class="gnb-digitek-locale-dropdown" role="menu">
+    <!-- [커스텀] 현재 선택 언어 옵션에 'active' 클래스 추가 -->
+    <button class="gnb-digitek-locale-option active" role="menuitem">KO</button>
+    <button class="gnb-digitek-locale-option" role="menuitem">EN</button>
+  </div>
+</div>

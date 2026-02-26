@@ -1,0 +1,15 @@
+<!-- 다중 파일 선택: multiple 속성으로 복수 파일 업로드 허용 -->
+<!-- [커스텀] accept 속성으로 허용 파일 형식 제한 가능: accept=".pdf,.docx,.xlsx" -->
+<!-- [커스텀] 파일 선택 후 파일 목록을 표시하려면 아래 JS 참고:
+  input.addEventListener('change', (e) => {
+    const files = Array.from(e.target.files);
+    // files 배열을 순회해 파일명/크기를 UI에 렌더링
+  });
+-->
+<!-- [접근성] 키보드 접근성을 위한 keydown 이벤트 처리 필요 -->
+<!-- container.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') container.click(); }); -->
+<div class="file-upload-digitek" role="button" tabindex="0" aria-label="파일 업로드">
+  <i class="dicon dicon-cloud-upload file-upload-digitek-icon h-digitek-24 text-digitek-blue" style="width: 37px;" aria-hidden="true"></i>
+  <p class="file-upload-digitek-label">이 곳에 눌러 파일을 선택하거나, Drag &amp; Drop 하기</p>
+  <input type="file" class="file-upload-digitek-input" multiple />
+</div>

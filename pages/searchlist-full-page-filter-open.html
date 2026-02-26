@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>검색 목록형 (Search List Page) - 전체 페이지 (필터 펼친 상태)</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/digitek.css">
+  <link rel="stylesheet" href="../css/icons.css">
+  <style>body { margin: 0; background: #fff; }</style>
+</head>
+<body>
+<!-- 검색 목록형 페이지 (필터 펼침): Sidebar + GNB + Content 전체 레이아웃 -->
+<div class="layout-digitek">
+  <!-- 펼침: sidebar-digitek-expanded (250px) / 접힘: sidebar-digitek-collapsed (96px) -->
+<!-- 3레벨 메뉴 구조: 1레벨(메뉴) → 2레벨(서브메뉴) → 3레벨(서브-서브메뉴) -->
+<!-- [커스텀] 현재 활성 메뉴 아이템에 'sidebar-digitek-active' 클래스 추가 -->
+<!-- [커스텀] Thymeleaf 현재 경로 기반 active 처리 예시:
+     th:classappend="${#strings.startsWith(#httpServletRequest.requestURI, '/pms')} ? 'sidebar-digitek-active'" -->
+<nav class="sidebar-digitek sidebar-digitek-expanded" aria-label="메인 메뉴">
+  <!-- 헤더 -->
+  <div class="sidebar-digitek-header justify-content-between">
+    <div class="sidebar-digitek-logo">
+      <!-- [커스텀] 로고 이미지를 교체하려면 /images/icons/logo.png 파일을 교체하세요 -->
+      <img src="../images/icons/logo.png" width="54" height="26" alt="로고" aria-hidden="true">
+    </div>
+    <button class="sidebar-toggle-btn" aria-label="메뉴 접기">
+      <i class="dicon dicon-bar-left icon-digitek-24"></i>
+    </button>
+  </div>
+
+  <!-- 메뉴 영역 -->
+  <div class="flex-grow-1 overflow-auto sidebar-digitek-menu-area">
+    <ul class="nav flex-column">
+      <!-- 결재 관리 (하위 메뉴 없음) -->
+      <li class="nav-item">
+        <a class="sidebar-digitek-menu-item" href="#">
+          <span class="sidebar-digitek-icon-label">
+            <i class="dicon dicon-file-blank icon-digitek-20"></i>
+            <span class="sidebar-digitek-menu-label">결재 관리</span>
+          </span>
+        </a>
+      </li>
+
+      <!-- 문서 관리 (하위 메뉴 없음) -->
+      <li class="nav-item">
+        <a class="sidebar-digitek-menu-item" href="#">
+          <span class="sidebar-digitek-icon-label">
+            <i class="dicon dicon-folder icon-digitek-20"></i>
+            <span class="sidebar-digitek-menu-label">문서 관리</span>
+          </span>
+        </a>
+      </li>
+
+      <!-- 부품 관리 (하위 메뉴 없음) -->
+      <li class="nav-item">
+        <a class="sidebar-digitek-menu-item" href="#">
+          <span class="sidebar-digitek-icon-label">
+            <i class="dicon dicon-settings icon-digitek-20"></i>
+            <span class="sidebar-digitek-menu-label">부품 관리</span>
+          </span>
+        </a>
+      </li>
+
+      <!-- 도면 관리 (하위 메뉴 없음) -->
+      <li class="nav-item">
+        <a class="sidebar-digitek-menu-item" href="#">
+          <span class="sidebar-digitek-icon-label">
+            <i class="dicon dicon-folder-edit icon-digitek-20"></i>
+            <span class="sidebar-digitek-menu-label">도면 관리</span>
+          </span>
+        </a>
+      </li>
+
+      <!-- PMS (펼쳐진 2레벨 서브메뉴) -->
+      <li class="nav-item">
+        <!-- [커스텀] href="#"은 JavaScript에서 preventDefault()로 처리하세요 -->
+        <a class="sidebar-digitek-menu-item" href="#" aria-expanded="true">
+          <span class="sidebar-digitek-icon-label">
+            <i class="dicon dicon-layer icon-digitek-20"></i>
+            <span class="sidebar-digitek-menu-label">PMS</span>
+          </span>
+          <span class="sidebar-digitek-chevron sidebar-digitek-chevron-open">
+            <i class="dicon dicon-chevron-down icon-digitek-20"></i>
+          </span>
+        </a>
+        <!-- 2레벨 서브메뉴: max-height = 항목 수 x 48px (4개 = 192px) -->
+        <ul class="nav flex-column sidebar-digitek-submenu" style="max-height: 192px;" aria-label="PMS 하위 메뉴">
+          <li class="nav-item">
+            <a class="sidebar-digitek-submenu-item" href="#">
+              <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+              <span class="sidebar-digitek-menu-label">프로젝트 검색</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="sidebar-digitek-submenu-item" href="#">
+              <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+              <span class="sidebar-digitek-menu-label">프로젝트 등록</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="sidebar-digitek-submenu-item" href="#">
+              <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+              <span class="sidebar-digitek-menu-label">My Task</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="sidebar-digitek-submenu-item" href="#">
+              <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+              <span class="sidebar-digitek-menu-label">이슈 검색</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- 설계 변경 (하위 메뉴 없음) -->
+      <li class="nav-item">
+        <a class="sidebar-digitek-menu-item" href="#">
+          <span class="sidebar-digitek-icon-label">
+            <i class="dicon dicon-reload icon-digitek-20"></i>
+            <span class="sidebar-digitek-menu-label">설계 변경</span>
+          </span>
+        </a>
+      </li>
+
+      <!-- 시험/시작/해석 (3레벨 메뉴 포함) -->
+      <li class="nav-item">
+        <!-- [커스텀] href="#"은 JavaScript에서 preventDefault()로 처리하세요 -->
+        <a class="sidebar-digitek-menu-item sidebar-digitek-parent-open" href="#" aria-expanded="true">
+          <span class="sidebar-digitek-icon-label">
+            <i class="dicon dicon-chart-bar icon-digitek-20"></i>
+            <span class="sidebar-digitek-menu-label">시험/시작/해석</span>
+          </span>
+          <span class="sidebar-digitek-chevron sidebar-digitek-chevron-open">
+            <i class="dicon dicon-chevron-down icon-digitek-20"></i>
+          </span>
+        </a>
+        <!-- 2레벨 서브메뉴: max-height = (2레벨 항목 수 + 펼쳐진 3레벨 항목 수) x 48px -->
+        <ul class="nav flex-column sidebar-digitek-submenu" style="max-height: 336px;" aria-label="시험/시작/해석 하위 메뉴">
+          <!-- 2레벨: 시험 (아이콘 있음, 3레벨 없음) -->
+          <li class="nav-item">
+            <a class="sidebar-digitek-submenu-item" href="#">
+              <span class="sidebar-digitek-icon-label">
+                <i class="dicon dicon-flask icon-digitek-20"></i>
+                <span class="sidebar-digitek-menu-label">시험</span>
+              </span>
+            </a>
+          </li>
+          <!-- 2레벨: 시작 (아이콘 있음, 3레벨 chevron 16px) -->
+          <li class="nav-item">
+            <!-- [커스텀] href="#"은 JavaScript에서 preventDefault()로 처리하세요 -->
+            <a class="sidebar-digitek-submenu-item" href="#" aria-expanded="true">
+              <span class="sidebar-digitek-icon-label">
+                <i class="dicon dicon-start-arrow icon-digitek-20"></i>
+                <span class="sidebar-digitek-menu-label">시작</span>
+              </span>
+              <span class="sidebar-digitek-chevron sidebar-digitek-chevron-open">
+                <i class="dicon dicon-chevron-down icon-digitek-16"></i>
+              </span>
+            </a>
+            <!-- 3레벨 서브-서브메뉴: max-height = 항목 수 x 48px (5개 = 240px) -->
+            <ul class="nav flex-column sidebar-digitek-sub-submenu" style="max-height: 240px;" aria-label="시작 하위 메뉴">
+              <li class="nav-item">
+                <a class="sidebar-digitek-sub-submenu-item" href="#">
+                  <span class="sidebar-digitek-menu-label">시작 검색</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="sidebar-digitek-sub-submenu-item sidebar-digitek-sub-active" href="#" aria-current="page">
+                  <span class="sidebar-digitek-menu-label">시작 의뢰 등록</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="sidebar-digitek-sub-submenu-item" href="#">
+                  <span class="sidebar-digitek-menu-label">시작 결과 등록</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="sidebar-digitek-sub-submenu-item" href="#">
+                  <span class="sidebar-digitek-menu-label">MPR 검색</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="sidebar-digitek-sub-submenu-item" href="#">
+                  <span class="sidebar-digitek-menu-label">MPR 등록</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <!-- 대시보드 (하위 메뉴 없음) -->
+      <li class="nav-item">
+        <a class="sidebar-digitek-menu-item" href="#">
+          <span class="sidebar-digitek-icon-label">
+            <i class="dicon dicon-chart-pie icon-digitek-20"></i>
+            <span class="sidebar-digitek-menu-label">대시보드</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+  <div class="layout-digitek-main-area">
+    <header class="gnb-digitek">
+  <!-- 검색 인풋 -->
+  <div class="gnb-digitek-search-wrap">
+    <input
+      type="text"
+      class="gnb-digitek-search-field"
+      placeholder="검색어를 입력해 주세요"
+      aria-label="검색어 입력"
+    />
+    <button class="btn-digitek-icon-plain" aria-label="검색">
+      <i class="dicon dicon-search-lg icon-digitek-24 text-digitek-secondary"></i>
+    </button>
+  </div>
+
+  <!-- 우측 영역 -->
+  <div class="gnb-digitek-right">
+    <!-- 알림/메일 아이콘 -->
+    <div class="gnb-digitek-icon-group">
+      <button class="gnb-digitek-icon-btn" aria-label="알림">
+        <i class="dicon dicon-bell icon-digitek-24 text-digitek-secondary"></i>
+        <!-- [커스텀] 알림 뱃지 숫자 변경: th:text="${notificationCount}" -->
+        <!-- [커스텀] 알림 없을 경우 뱃지 숨김: th:if="${notificationCount > 0}" -->
+        <span class="gnb-digitek-badge">5</span>
+      </button>
+
+      <button class="gnb-digitek-icon-btn" aria-label="메일">
+        <i class="dicon dicon-mail icon-digitek-24 text-digitek-secondary"></i>
+        <!-- [커스텀] 메일 뱃지 숫자 변경: th:text="${mailCount}" -->
+        <!-- [커스텀] 메일 없을 경우 뱃지 숨김: th:if="${mailCount > 0}" -->
+        <span class="gnb-digitek-badge">12</span>
+      </button>
+    </div>
+
+    <!-- 다국어 선택 -->
+    <!-- [커스텀] JS 연동: 버튼 클릭 시 gnb-digitek-locale-wrap에 'open' 클래스 토글 -->
+    <!-- [커스텀] 선택된 언어 표시: th:text="${session.locale == 'ko' ? 'KO' : 'EN'}" -->
+    <div class="gnb-digitek-locale-wrap">
+      <button class="gnb-digitek-locale-btn" aria-label="언어 선택" aria-haspopup="menu" aria-expanded="false">
+        KO
+        <i class="dicon dicon-chevron-down-sm" style="width: 12px; height: 12px;" aria-hidden="true"></i>
+      </button>
+      <div class="gnb-digitek-locale-dropdown" role="menu">
+        <!-- [커스텀] 현재 선택 언어 옵션에 'active' 클래스 추가 -->
+        <button class="gnb-digitek-locale-option active" role="menuitem">KO</button>
+        <button class="gnb-digitek-locale-option" role="menuitem">EN</button>
+      </div>
+    </div>
+
+    <!-- 프로필 -->
+    <!-- [커스텀] JS 연동: 클릭 시 프로필 드롭다운 표시 (필요에 따라 구현) -->
+    <!-- [참고] div[role="button"] 키보드 이벤트(Enter/Space)는 digitek.js가 자동 처리합니다 -->
+    <div class="gnb-digitek-profile" role="button" tabindex="0" aria-label="프로필 메뉴" aria-haspopup="menu" aria-expanded="false">
+      <div class="gnb-digitek-avatar">
+        <img src="../images/icons/avatar.png" width="32" height="32" alt="" aria-hidden="true" style="border-radius: 50%;">
+      </div>
+      <!-- [커스텀] 현재 로그인 사용자명 변경: th:text="${user.name}" -->
+      <span class="gnb-digitek-profile-name">사용자 이름</span>
+    </div>
+  </div>
+</header>
+    <!-- 콘텐츠 영역 -->
+    <div class="flex-grow-1 overflow-y-digitek-auto" style="background: var(--digitek-bg-gray);">
+      <div class="searchlist-digitek">
+        <div class="searchlist-digitek-content">
+
+          <!-- 브레드크럼 + 제목 -->
+          <div class="searchlist-digitek-header">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb breadcrumb-digitek">
+                <li class="breadcrumb-digitek-item">
+                  <a href="#" class="breadcrumb-digitek-depth breadcrumb-digitek-clickable">시험/시작/해석</a>
+                </li>
+                <li class="breadcrumb-digitek-item">
+                  <i class="dicon dicon-breadcrumb-separator" aria-hidden="true"></i>
+                  <a href="#" class="breadcrumb-digitek-depth breadcrumb-digitek-clickable">시작</a>
+                </li>
+                <li class="breadcrumb-digitek-item" aria-current="page">
+                  <i class="dicon dicon-breadcrumb-separator" aria-hidden="true"></i>
+                  <span class="breadcrumb-digitek-depth">시작 검색</span>
+                </li>
+              </ol>
+            </nav>
+            <h2 class="searchlist-digitek-title">시작 검색</h2>
+          </div>
+
+          <!-- 검색 패널 -->
+      <!-- [Thymeleaf] th:action="@{/search}" th:method="get" 으로 서버 URL 바인딩 -->
+      <form method="get" action="/search">
+      <div class="searchlist-digitek-search-panel">
+        <!-- 기본 검색 필드 -->
+        <!-- [주의] 아래 id 속성들은 한 페이지에 이 컴포넌트가 한 번만 사용될 때만 유효합니다.
+             동일 페이지에 두 번 이상 포함 시 id 충돌이 발생합니다. Thymeleaf fragment로 동적 id를 사용하세요. -->
+        <div class="searchlist-digitek-search-row">
+          <div class="searchlist-digitek-field">
+            <label for="searchlist-request-title" class="searchlist-digitek-field-label">의뢰 제목</label>
+            <div class="searchlist-digitek-search-input">
+              <input type="text" id="searchlist-request-title" name="requestTitle" placeholder="검색어를 입력해 주세요" />
+              <i class="dicon dicon-search-lg icon-digitek-24" style="color: #767676; flex-shrink: 0;" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="searchlist-digitek-field">
+            <label for="searchlist-request-no" class="searchlist-digitek-field-label">의뢰 번호</label>
+            <div class="searchlist-digitek-search-input">
+              <input type="text" id="searchlist-request-no" name="requestNo" placeholder="검색어를 입력해 주세요" />
+              <i class="dicon dicon-search-lg icon-digitek-24" style="color: #767676; flex-shrink: 0;" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="searchlist-digitek-field-fixed">
+            <span class="searchlist-digitek-field-label-hidden" aria-hidden="true">.</span>
+            <button type="submit" class="btn btn-digitek btn-digitek-primary btn-digitek-48 w-100">검색</button>
+          </div>
+        </div>
+        <!-- 필터 토글 -->
+        <button type="button" class="searchlist-digitek-filter-toggle" aria-expanded="true" aria-controls="searchlist-filter-area" data-toggle="searchlist-filter">
+          <span class="searchlist-digitek-filter-toggle-text">검색 조건 필터 추가</span>
+          <i class="dicon dicon-chevron-up icon-digitek-20 text-digitek-secondary" aria-hidden="true"></i>
+        </button>
+        <!-- 추가 필터 영역 (접힌 상태) -->
+        <div class="searchlist-digitek-filter-area show" id="searchlist-filter-area">
+          <div class="searchlist-digitek-filter-row">
+            <div class="searchlist-digitek-field">
+              <label id="searchlist-label-product-group" class="searchlist-digitek-field-label">제품군</label>
+              <div class="select-digitek">
+                <button type="button" class="select-digitek-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="searchlist-label-product-group">
+                  <span class="select-digitek-text select-digitek-placeholder">항목을 선택해 주세요</span>
+                  <i class="dicon dicon-chevron-down select-digitek-icon" aria-hidden="true"></i>
+                </button>
+                <select style="display:none" name="productGroup">
+                  <option value="">항목을 선택해 주세요</option>
+                  <option value="product1">제품 1</option>
+                  <option value="product2">제품 2</option>
+                </select>
+              </div>
+            </div>
+            <div class="searchlist-digitek-field">
+              <label id="searchlist-label-car-type" class="searchlist-digitek-field-label">차종</label>
+              <div class="select-digitek">
+                <button type="button" class="select-digitek-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="searchlist-label-car-type">
+                  <span class="select-digitek-text select-digitek-placeholder">항목을 선택해 주세요</span>
+                  <i class="dicon dicon-chevron-down select-digitek-icon" aria-hidden="true"></i>
+                </button>
+                <select style="display:none" name="carType">
+                  <option value="">항목을 선택해 주세요</option>
+                  <option value="type1">차종 1</option>
+                  <option value="type2">차종 2</option>
+                </select>
+              </div>
+            </div>
+            <div class="searchlist-digitek-field">
+              <label id="searchlist-label-status" class="searchlist-digitek-field-label">상태</label>
+              <div class="select-digitek">
+                <button type="button" class="select-digitek-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="searchlist-label-status">
+                  <span class="select-digitek-text select-digitek-placeholder">항목을 선택해 주세요</span>
+                  <i class="dicon dicon-chevron-down select-digitek-icon" aria-hidden="true"></i>
+                </button>
+                <select style="display:none" name="status">
+                  <option value="">항목을 선택해 주세요</option>
+                  <option value="approved">승인됨</option>
+                  <option value="pending">대기중</option>
+                  <option value="rejected">거절됨</option>
+                </select>
+              </div>
+            </div>
+            <div class="searchlist-digitek-field">
+              <label id="searchlist-label-request-type" class="searchlist-digitek-field-label">의뢰구분</label>
+              <div class="select-digitek">
+                <button type="button" class="select-digitek-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="searchlist-label-request-type">
+                  <span class="select-digitek-text select-digitek-placeholder">항목을 선택해 주세요</span>
+                  <i class="dicon dicon-chevron-down select-digitek-icon" aria-hidden="true"></i>
+                </button>
+                <select style="display:none" name="requestType">
+                  <option value="">항목을 선택해 주세요</option>
+                  <option value="new">신규</option>
+                  <option value="change">변경</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="searchlist-digitek-filter-row">
+            <div class="searchlist-digitek-field">
+              <label for="searchlist-author" class="searchlist-digitek-field-label">작성자</label>
+              <div class="searchlist-digitek-search-input">
+                <input type="text" id="searchlist-author" name="author" placeholder="검색어를 입력해 주세요" />
+                <i class="dicon dicon-search-lg icon-digitek-24" style="color: #767676; flex-shrink: 0;" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="searchlist-digitek-field">
+              <label id="searchlist-label-created-date" class="searchlist-digitek-field-label">작성일</label>
+              <div class="date-select-digitek">
+                <button type="button" class="date-select-digitek-trigger" aria-labelledby="searchlist-label-created-date" aria-haspopup="dialog">
+                  <span class="date-select-digitek-text date-select-digitek-placeholder">0000-00-00</span>
+                  <i class="dicon dicon-calendar icon-digitek-20" style="color: #767676; flex-shrink: 0;" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <div class="searchlist-digitek-field">
+              <label id="searchlist-label-received-date" class="searchlist-digitek-field-label">접수일</label>
+              <div class="date-select-digitek">
+                <button type="button" class="date-select-digitek-trigger" aria-labelledby="searchlist-label-received-date" aria-haspopup="dialog">
+                  <span class="date-select-digitek-text date-select-digitek-placeholder">0000-00-00</span>
+                  <i class="dicon dicon-calendar icon-digitek-20" style="color: #767676; flex-shrink: 0;" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <div class="searchlist-digitek-field">
+              <label for="searchlist-tcode" class="searchlist-digitek-field-label">T/Code</label>
+              <div class="searchlist-digitek-search-input">
+                <input type="text" id="searchlist-tcode" name="tCode" placeholder="검색어를 입력해 주세요" />
+                <i class="dicon dicon-search-lg icon-digitek-24" style="color: #767676; flex-shrink: 0;" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </form><!-- /form: 검색 패널 끝 -->
+
+
+          <!-- 검색 결과 -->
+      <div class="searchlist-digitek-results">
+        <!-- 결과 헤더 -->
+        <div class="searchlist-digitek-results-header">
+          <!-- [커스텀] th:text="'검색 결과 (' + ${searchResult.totalCount} + ')'" 으로 총 결과 수 동적 바인딩 -->
+          <span class="searchlist-digitek-results-title">검색 결과 <span class="searchlist-digitek-results-count">(1830)</span></span>
+          <div class="searchlist-digitek-results-actions">
+            <a th:href="@{/search(view='list')}" href="/search?view=list" target="_top" class="searchlist-digitek-view-option active" aria-current="page">
+              <i class="dicon dicon-check" style="width: 12px; height: 8px;" aria-hidden="true"></i>
+              목록형 보기
+            </a>
+            <a th:href="@{/search(view='split')}" href="/search?view=split" target="_top" class="searchlist-digitek-view-option">
+              <i class="dicon dicon-check" style="width: 12px; height: 8px;" aria-hidden="true"></i>
+              분할형 보기
+            </a>
+          </div>
+        </div>
+        <!-- 테이블 + 페이지네이션 (결과 토글 영역) -->
+        <div id="searchlist-results-body" class="searchlist-digitek-results-body">
+          <table class="table-digitek" aria-label="검색 결과 목록">
+            <thead>
+              <tr>
+                <th scope="col">의뢰번호</th>
+                <th scope="col">의뢰제목</th>
+                <th scope="col">T/Code</th>
+                <th scope="col">제품군</th>
+                <th scope="col">차종</th>
+                <th scope="col">상태</th>
+                <th scope="col">작성자</th>
+                <th scope="col">작성일</th>
+              </tr>
+            </thead>
+            <!-- [커스텀] th:each="item : ${searchResult.items}" 으로 검색 결과 행 반복 바인딩
+                 각 셀은 th:text="${item.requestNo}" / th:text="${item.title}" 등으로 동적 바인딩 -->
+            <tbody>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+      <tr>
+        <td>H00.015-56</td>
+        <td>시제품 제작</td>
+        <td>t-code-006</td>
+        <td>제품 1</td>
+        <td>차종</td>
+        <td><span class="badge-digitek-permission badge-digitek-permission-approved"><span class="badge-digitek-permission-dot badge-digitek-dot-approved"></span>승인됨</span></td>
+        <td>이백길</td>
+        <td>2025-04-30</td>
+      </tr>
+            </tbody>
+          </table>
+          <!-- 페이지네이션 -->
+          <div class="searchlist-digitek-pagination">
+            <nav aria-label="페이지 탐색">
+              <ul class="pagination pagination-digitek">
+                <li class="page-item disabled">
+                  <button type="button" class="page-link page-link-digitek" disabled aria-label="이전 페이지">
+                    <i class="dicon dicon-chevron-prev" aria-hidden="true"></i>
+                  </button>
+                </li>
+                <li class="page-item active">
+                  <button type="button" class="page-link page-link-digitek" aria-current="page">1</button>
+                </li>
+                <li class="page-item">
+                  <button type="button" class="page-link page-link-digitek">2</button>
+                </li>
+                <li class="page-item">
+                  <button type="button" class="page-link page-link-digitek">3</button>
+                </li>
+                <li class="page-item">
+                  <button type="button" class="page-link page-link-digitek">4</button>
+                </li>
+                <li class="page-item">
+                  <button type="button" class="page-link page-link-digitek">5</button>
+                </li>
+                <li class="page-item">
+                  <button type="button" class="page-link page-link-digitek">6</button>
+                </li>
+                <li class="page-item">
+                  <button type="button" class="page-link page-link-digitek">7</button>
+                </li>
+                <li class="page-item">
+                  <button type="button" class="page-link page-link-digitek">8</button>
+                </li>
+                <li class="page-item">
+                  <button type="button" class="page-link page-link-digitek">9</button>
+                </li>
+                <li class="page-item">
+                  <button type="button" class="page-link page-link-digitek">10</button>
+                </li>
+                <li class="page-item">
+                  <button type="button" class="page-link page-link-digitek" aria-label="다음 페이지">
+                    <i class="dicon dicon-chevron-next" aria-hidden="true"></i>
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../js/jquery.slim.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/digitek.js"></script>
+<script>
+(function() {
+  document.querySelectorAll('[data-toggle="searchlist-filter"]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var expanded = this.getAttribute('aria-expanded') === 'true';
+      var nowExpanded = !expanded;
+      this.setAttribute('aria-expanded', String(nowExpanded));
+      var icon = this.querySelector('.dicon');
+      if (icon) {
+        icon.classList.toggle('dicon-chevron-down', !nowExpanded);
+        icon.classList.toggle('dicon-chevron-up', nowExpanded);
+      }
+      var area = this.closest('.searchlist-digitek-search-panel').querySelector('.searchlist-digitek-filter-area');
+      if (area) {
+        area.classList.toggle('show');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

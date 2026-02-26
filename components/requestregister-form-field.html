@@ -1,0 +1,23 @@
+<!-- 폼 필드: 라벨 + 입력 컴포넌트 -->
+<div class="request-digitek-form-field">
+  <label class="request-digitek-form-label request-digitek-form-label-required" for="field-sample">필드 라벨</label>
+  <input type="text" id="field-sample" class="form-control input-digitek" placeholder="내용을 입력해 주세요">
+</div>
+
+<!-- 셀렉트 필드 -->
+<div class="request-digitek-form-field mt-3">
+  <label class="request-digitek-form-label" id="label-select-sample">셀렉트 라벨</label>
+  <div class="select-digitek">
+    <div class="select-digitek-trigger" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="label-select-sample">
+      <span class="select-digitek-placeholder">항목을 선택해 주세요</span>
+      <i class="dicon dicon-chevron-down select-digitek-icon" aria-hidden="true"></i>
+    </div>
+    <!-- [커스텀] name 속성을 실제 필드명으로 변경 (예: name="carType") -->
+    <select style="display:none" name="selectField">
+      <option value="" disabled selected>항목을 선택해 주세요</option>
+      <option value="a">항목 A</option>
+      <option value="b">항목 B</option>
+      <option value="c">항목 C</option>
+    </select>
+  </div>
+</div>

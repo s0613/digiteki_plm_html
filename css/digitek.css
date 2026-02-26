@@ -1,0 +1,5072 @@
+/**
+ * Digitek PLM UI Components
+ * Bootstrap 4 기반 커스텀 스타일시트
+ *
+ * 포함: 기본 컴포넌트 / 의뢰등록 / PMS 프로젝트 상세
+ *
+ * 사용법:
+ * <link rel="stylesheet" href="bootstrap.min.css">
+ * <link rel="stylesheet" href="digitek.css">
+ *
+ * 커스텀: digitek.css는 수정하지 않고, Bootstrap 유틸리티 클래스(d-flex, gap-2, mb-3 등)로 오버라이드
+ */
+
+/* ========================================================================== */
+/*  디자인 토큰 (CSS Variables)                                                 */
+/* ========================================================================== */
+
+:root {
+  /* 브랜드 */
+  --digitek-primary: #2f66ba;
+  --digitek-primary-hover: #1f489b;
+  --digitek-primary-bg: rgba(47, 102, 186, 0.04);
+
+  /* 텍스트 */
+  --digitek-text-primary: #111;
+  --digitek-text-secondary: #555;
+  --digitek-text-tertiary: #767676;
+  --digitek-text-placeholder: #767676;
+  --digitek-text-disabled: #999;
+  --digitek-text-white: #fff;
+
+  /* 상태 */
+  --digitek-success: #29c23b;
+  --digitek-success-bg: rgba(41, 194, 59, 0.08);
+  --digitek-error: #dc0000;
+  --digitek-error-bg: rgba(220, 0, 0, 0.08);
+  --digitek-warning: #f09436;
+  --digitek-info: #0088ff;
+  --digitek-pending-bg: rgba(153, 153, 153, 0.08);
+
+  /* 보더 */
+  --digitek-border: #e5e5ec;
+  --digitek-border-focus: #0875e3;
+  --digitek-border-success: #2fba82;
+  --digitek-border-error: #dc0000;
+
+  /* 배경 */
+  --digitek-bg-white: #fff;
+  --digitek-bg-gray: #f7f7fb;
+  --digitek-bg-dark: #555;
+  --digitek-bg-dark-hover: #333;
+
+  /* 폰트 */
+  --digitek-font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* 그림자 */
+  --digitek-shadow-dropdown: 0px 4px 8px 0px rgba(17, 17, 17, 0.12);
+  --digitek-shadow-calendar: 0px 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 10px 25px 0px rgba(0, 0, 0, 0.06);
+
+  /* ── Layout Panel Widths ── */
+  /* Search Split: 검색 분할형 레이아웃 */
+  --digitek-split-search-width: 28%;
+  --digitek-split-search-min: 350px;
+  --digitek-split-detail-width: 35%;
+  --digitek-split-detail-min: 450px;
+
+  /* PMS: 프로젝트 정보 섹션 */
+  --digitek-pms-info-left-width: 24%;
+  --digitek-pms-info-left-min: 280px;
+
+  /* PMS Gantt: 간트차트 테이블/타임라인 분할 */
+  --digitek-pms-gantt-table-width: 46.5%;
+  --digitek-pms-gantt-table-min: 560px;
+  --digitek-pms-gantt-timeline-min: 600px;
+
+  /* Gantt Grid: 고정 셀 너비 (타임라인 정렬 유지) */
+  --digitek-gantt-week-cell: 60px;
+  --digitek-gantt-col-task: 160px;
+  --digitek-gantt-col-priority: 90px;
+  --digitek-gantt-col-level: 60px;
+  --digitek-gantt-col-role: 80px;
+  --digitek-gantt-col-date: 100px;
+  --digitek-gantt-col-status: 80px;
+}
+
+/* ========================================================================== */
+/*  Button (버튼)                                                               */
+/* ========================================================================== */
+
+/* 공통 버튼 베이스 */
+.btn-digitek {
+  font-family: var(--digitek-font-family);
+  font-weight: 600;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+/* Primary 버튼 */
+.btn-digitek-primary {
+  background-color: var(--digitek-primary);
+  border-color: var(--digitek-primary);
+  color: var(--digitek-text-white);
+}
+
+.btn-digitek-primary:hover {
+  background-color: var(--digitek-primary-hover);
+  border-color: var(--digitek-primary-hover);
+  color: var(--digitek-text-white);
+}
+
+.btn-digitek-primary:disabled {
+  background-color: var(--digitek-primary);
+  border-color: var(--digitek-primary);
+  color: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+/* Secondary 버튼 (dark gray) */
+.btn-digitek-secondary {
+  background-color: var(--digitek-bg-dark);
+  border-color: var(--digitek-bg-dark);
+  color: var(--digitek-text-white);
+}
+
+.btn-digitek-secondary:hover {
+  background-color: var(--digitek-bg-dark-hover);
+  border-color: var(--digitek-bg-dark-hover);
+  color: var(--digitek-text-white);
+}
+
+.btn-digitek-secondary:disabled {
+  background-color: var(--digitek-bg-dark);
+  border-color: var(--digitek-bg-dark);
+  color: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+/* Outline 버튼 (white + border) */
+.btn-digitek-outline {
+  background-color: var(--digitek-bg-white);
+  border: 1px solid var(--digitek-border);
+  color: var(--digitek-text-primary);
+}
+
+.btn-digitek-outline:hover {
+  background-color: var(--digitek-bg-gray);
+  border-color: var(--digitek-border);
+  color: var(--digitek-text-primary);
+}
+
+.btn-digitek-outline:disabled {
+  background-color: var(--digitek-bg-gray);
+  border-color: var(--digitek-border);
+  color: rgba(17, 17, 17, 0.5);
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+/* 사이즈 24px */
+.btn-digitek-24 {
+  min-width: 58px;
+  padding: 3px 8px;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.3px;
+  border-radius: 2px;
+}
+
+/* 사이즈 36px */
+.btn-digitek-36 {
+  min-width: 68px;
+  padding: 9px 12px;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: -0.325px;
+  border-radius: 4px;
+}
+
+/* 사이즈 44px */
+.btn-digitek-44 {
+  min-width: 80px;
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+  border-radius: 4px;
+}
+
+/* 사이즈 48px */
+.btn-digitek-48 {
+  min-width: 80px;
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+  border-radius: 4px;
+}
+
+/* 사이즈 56px */
+.btn-digitek-56 {
+  min-width: 88px;
+  padding: 16px;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.4px;
+  border-radius: 4px;
+}
+
+/* ========================================================================== */
+/*  Input (입력 필드)                                                           */
+/* ========================================================================== */
+
+/* 인풋 라벨 */
+.input-digitek-label {
+  display: block;
+  font-family: var(--digitek-font-family);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+  color: var(--digitek-text-primary);
+  margin-bottom: 6px;
+}
+
+/* 필수 표시 (*) */
+.input-digitek-label-required::after {
+  content: ' *';
+  color: var(--digitek-error);
+}
+
+/* 기본 인풋 래퍼 */
+.input-digitek {
+  display: flex;
+  width: 304px;
+  padding: 14px 16px;
+  align-items: center;
+  gap: 12px;
+  border-radius: 4px;
+  border: 1px solid var(--digitek-border);
+  background: var(--digitek-bg-white);
+  transition: border-color 0.15s ease-in-out;
+}
+
+.input-digitek:focus-within {
+  border-color: var(--digitek-border-focus);
+}
+
+.input-digitek-disabled {
+  background: linear-gradient(90deg, var(--digitek-bg-gray) 0%, var(--digitek-bg-gray) 100%), var(--digitek-bg-white);
+  cursor: not-allowed;
+}
+
+.input-digitek-error {
+  border-color: var(--digitek-border-error);
+}
+
+.input-digitek-success {
+  border-color: var(--digitek-border-success);
+}
+
+/* 인풋 필드 */
+.input-digitek-field {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  font-family: var(--digitek-font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+  color: var(--digitek-text-primary);
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.input-digitek-field::placeholder {
+  color: var(--digitek-text-placeholder);
+  font-weight: 400;
+}
+
+.input-digitek-field:disabled {
+  color: var(--digitek-text-disabled);
+  background: transparent;
+  cursor: not-allowed;
+}
+
+/* 검색 인풋 래퍼 */
+.input-digitek-search {
+  display: flex;
+  width: 304px;
+  padding: 14px 16px;
+  align-items: center;
+  gap: 12px;
+  border-radius: 4px;
+  border: 1px solid var(--digitek-border);
+  background: var(--digitek-bg-white);
+  transition: border-color 0.15s ease-in-out;
+}
+
+.input-digitek-search:focus-within {
+  border-color: var(--digitek-border-focus);
+}
+
+/* GNB 검색 인풋 (pill) */
+.input-digitek-gnb {
+  display: flex;
+  width: 884px;
+  padding: 12px 20px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--digitek-border);
+  background: var(--digitek-bg-gray);
+  transition: background-color 0.15s ease-in-out;
+}
+
+.input-digitek-gnb:focus-within {
+  background: var(--digitek-bg-white);
+}
+
+.input-digitek-gnb-field {
+  font-family: var(--digitek-font-family);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.375px;
+  color: var(--digitek-text-primary);
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  min-width: 0;
+}
+
+.input-digitek-gnb-field::placeholder {
+  color: var(--digitek-text-placeholder);
+  font-weight: 400;
+}
+
+/* 오류/성공 메시지 */
+.input-digitek-error-msg {
+  font-family: var(--digitek-font-family);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.325px;
+  color: var(--digitek-error);
+  margin-top: 8px;
+}
+
+.input-digitek-success-msg {
+  font-family: var(--digitek-font-family);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.325px;
+  color: var(--digitek-border-success);
+  margin-top: 8px;
+}
+
+/* ========================================================================== */
+/*  Select (셀렉트)                                                             */
+/* ========================================================================== */
+
+/* 셀렉트 컨테이너 */
+.select-digitek {
+  position: relative;
+  width: 335px;
+}
+
+/* 셀렉트 트리거 */
+.select-digitek-trigger {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  font-family: var(--digitek-font-family);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: -0.35px;
+  color: var(--digitek-text-primary);
+  background-color: var(--digitek-bg-white);
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  text-align: left;
+}
+
+.select-digitek-trigger:hover {
+  background-color: var(--digitek-bg-gray);
+}
+
+.select-digitek-trigger-open {
+  border-radius: 4px 4px 0 0;
+  border-bottom-color: var(--digitek-border);
+}
+
+.select-digitek-trigger-disabled {
+  background-color: var(--digitek-bg-gray);
+  color: var(--digitek-text-disabled);
+  cursor: not-allowed;
+}
+
+.select-digitek-trigger-disabled:hover {
+  background-color: var(--digitek-bg-gray);
+}
+
+/* 텍스트 영역 */
+.select-digitek-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.select-digitek-placeholder {
+  color: var(--digitek-text-placeholder);
+}
+
+/* 아이콘 */
+.select-digitek-icon {
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+/* 드롭다운 */
+.select-digitek-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--digitek-bg-white);
+  border: 1px solid var(--digitek-border);
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  overflow: hidden;
+}
+
+/* 옵션 */
+.select-digitek-option {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  width: 100%;
+  font-family: var(--digitek-font-family);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: -0.35px;
+  color: var(--digitek-text-primary);
+  background-color: var(--digitek-bg-white);
+  border: none;
+  border-bottom: 1px solid var(--digitek-border);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease;
+}
+
+.select-digitek-option:last-child {
+  border-bottom: none;
+}
+
+.select-digitek-option:hover {
+  background-color: var(--digitek-bg-gray);
+}
+
+.select-digitek-option-selected {
+  font-weight: 600;
+}
+
+/* ========================================================================== */
+/*  DateSelect (날짜 선택)                                                       */
+/* ========================================================================== */
+
+.date-select-digitek {
+  position: relative;
+  width: 335px;
+}
+
+.date-select-digitek-trigger {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  font-family: var(--digitek-font-family);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: -0.35px;
+  color: var(--digitek-text-primary);
+  background-color: var(--digitek-bg-white);
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.date-select-digitek-trigger:hover {
+  background-color: var(--digitek-bg-gray);
+}
+
+.date-select-digitek-trigger-focused {
+  border-color: var(--digitek-border-focus);
+  background-color: var(--digitek-bg-white);
+}
+
+.date-select-digitek-trigger-disabled {
+  background-color: var(--digitek-bg-gray);
+  color: var(--digitek-text-disabled);
+  cursor: not-allowed;
+}
+
+.date-select-digitek-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.date-select-digitek-placeholder {
+  color: var(--digitek-text-placeholder);
+}
+
+/* 캘린더 */
+.date-select-digitek-calendar {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 20;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 24px 20px;
+  background-color: var(--digitek-bg-white);
+  border-radius: 4px;
+  box-shadow: var(--digitek-shadow-calendar);
+}
+
+.date-select-digitek-calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+}
+
+.date-select-digitek-calendar-title {
+  font-family: var(--digitek-font-family);
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 600;
+  letter-spacing: -0.45px;
+  color: var(--digitek-text-primary);
+  text-align: center;
+}
+
+.date-select-digitek-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.date-select-digitek-nav-btn:hover {
+  opacity: 0.7;
+}
+
+.date-select-digitek-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 295px;
+}
+
+.date-select-digitek-week-header {
+  display: flex;
+  width: 100%;
+}
+
+.date-select-digitek-day-header {
+  flex: 1 0 0;
+  min-width: 0;
+  padding: 12px 15px;
+  font-family: var(--digitek-font-family);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  letter-spacing: -0.325px;
+  color: var(--digitek-text-primary);
+  text-align: center;
+  background-color: var(--digitek-bg-white);
+  border-radius: 2px;
+}
+
+.date-select-digitek-month-weeks {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+}
+
+.date-select-digitek-week-row {
+  display: flex;
+  width: 100%;
+}
+
+.date-select-digitek-day {
+  flex: 1 0 0;
+  min-width: 0;
+  padding: 12px 18px;
+  font-family: var(--digitek-font-family);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
+  letter-spacing: -0.325px;
+  color: var(--digitek-text-primary);
+  text-align: center;
+  background: none;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.date-select-digitek-day:hover {
+  background-color: var(--digitek-bg-gray);
+}
+
+.date-select-digitek-day-weekend {
+  color: var(--digitek-error);
+}
+
+.date-select-digitek-day-other-month {
+  opacity: 0.2;
+}
+
+.date-select-digitek-day-selected {
+  background-color: var(--digitek-primary);
+  color: var(--digitek-text-white) !important;
+}
+
+.date-select-digitek-day-selected:hover {
+  background-color: var(--digitek-primary);
+}
+
+/* ========================================================================== */
+/*  Badge (배지)                                                                */
+/* ========================================================================== */
+
+/* 알림 배지 (숫자) */
+.badge-digitek-notification {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 2px 4px;
+  border-radius: 50px;
+  background-color: var(--digitek-error);
+  font-family: var(--digitek-font-family);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
+  letter-spacing: -0.325px;
+  color: var(--digitek-text-white);
+  text-align: center;
+}
+
+.badge-digitek-notification-single {
+  width: 20px;
+  padding: 0;
+}
+
+.badge-digitek-notification-multi {
+  min-width: 20px;
+  padding: 2px 4px;
+}
+
+/* 상태값 배지 (원형 아이콘) */
+.badge-digitek-status-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 15px 12px;
+  border-radius: 9999px;
+}
+
+.badge-digitek-status-icon-blue {
+  background-color: #4896ec;
+}
+
+.badge-digitek-status-icon-green {
+  background-color: var(--digitek-success);
+}
+
+.badge-digitek-status-icon-gray {
+  background-color: var(--digitek-bg-gray);
+}
+
+.badge-digitek-status-icon-text {
+  font-family: var(--digitek-font-family);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
+  letter-spacing: -0.325px;
+  color: var(--digitek-text-white);
+  text-align: center;
+}
+
+.badge-digitek-status-icon-gray .badge-digitek-status-icon-text {
+  color: var(--digitek-text-disabled);
+}
+
+/* 권한 상태 배지 (pill + dot) */
+.badge-digitek-permission {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  font-family: var(--digitek-font-family);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
+  letter-spacing: -0.325px;
+  gap: 2px;
+}
+
+.badge-digitek-permission-approved {
+  background-color: var(--digitek-success-bg);
+  color: var(--digitek-success);
+}
+
+.badge-digitek-permission-rejected {
+  background-color: var(--digitek-error-bg);
+  color: var(--digitek-error);
+}
+
+.badge-digitek-permission-pending {
+  background-color: var(--digitek-pending-bg);
+  color: var(--digitek-text-disabled);
+}
+
+.badge-digitek-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.badge-digitek-permission-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Permission dot color variants */
+.badge-digitek-dot-approved {
+  background-color: #29c23b;
+}
+
+.badge-digitek-dot-rejected {
+  background-color: #dc0000;
+}
+
+.badge-digitek-dot-pending {
+  background-color: #999999;
+}
+
+/* 진행 상태 배지 (dot + 텍스트) */
+.badge-digitek-progress {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.badge-digitek-progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Progress dot color variants */
+.badge-digitek-dot-waiting {
+  background-color: #999999;
+}
+
+.badge-digitek-dot-before-start {
+  background-color: #f09436;
+}
+
+.badge-digitek-dot-in-progress {
+  background-color: #29c23b;
+}
+
+.badge-digitek-dot-completed {
+  background-color: #4896ec;
+}
+
+.badge-digitek-dot-delayed {
+  background-color: #dc0000;
+}
+
+.badge-digitek-progress-text {
+  font-family: var(--digitek-font-family);
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 600;
+  letter-spacing: -0.375px;
+  color: var(--digitek-text-tertiary);
+}
+
+/* 항목 구분 배지 */
+.badge-digitek-category {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 126px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: var(--digitek-bg-gray);
+  font-family: var(--digitek-font-family);
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 600;
+  letter-spacing: -0.375px;
+  color: var(--digitek-primary);
+  white-space: nowrap;
+}
+
+/* 담당자 배지 */
+.badge-digitek-assignee {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background-color: var(--digitek-primary-bg);
+  border: 1px solid var(--digitek-primary);
+  font-family: var(--digitek-font-family);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
+  letter-spacing: -0.325px;
+  color: var(--digitek-primary);
+  gap: 6px;
+  cursor: pointer;
+}
+
+.badge-digitek-assignee:hover {
+  background-color: rgba(47, 102, 186, 0.08);
+}
+
+/* 중요도 (dots) */
+.badge-digitek-priority {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.badge-digitek-priority-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+.badge-digitek-priority-dot-filled {
+  background-color: #4896ec;
+}
+
+.badge-digitek-priority-dot-empty {
+  border: 1px solid var(--digitek-border);
+  background: transparent;
+}
+
+/* 타임라인 배지 */
+.badge-digitek-timeline {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px;
+  border-radius: 900px;
+  font-family: var(--digitek-font-family);
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: -0.275px;
+  color: var(--digitek-text-white);
+}
+
+.badge-digitek-timeline-blue {
+  background-color: var(--digitek-info);
+}
+
+.badge-digitek-timeline-orange {
+  background-color: var(--digitek-warning);
+}
+
+.badge-digitek-timeline-green {
+  background-color: var(--digitek-success);
+}
+
+.badge-digitek-timeline-red {
+  background-color: var(--digitek-error);
+}
+
+/* 타임라인 바 */
+.badge-digitek-timeline-bar {
+  width: 10px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: var(--digitek-info);
+}
+
+/* 프로필 아바타 */
+.badge-digitek-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 90px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background-color: #e8e8e8;
+}
+
+.badge-digitek-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 레벨 배지 */
+.badge-digitek-level {
+  display: flex;
+  width: 144px;
+  height: 32px;
+  padding: 12px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  border: 1.2px solid var(--digitek-border);
+  box-sizing: border-box;
+  background-color: var(--digitek-bg-white);
+}
+
+.badge-digitek-level-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.badge-digitek-level-label {
+  font-family: var(--digitek-font-family);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  letter-spacing: -0.325px;
+  color: var(--digitek-text-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge-digitek-level-divider {
+  width: 1px;
+  height: 16px;
+  background-color: var(--digitek-border);
+  flex-shrink: 0;
+}
+
+.badge-digitek-level-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.badge-digitek-level-value {
+  font-family: var(--digitek-font-family);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  letter-spacing: -0.325px;
+  color: var(--digitek-text-tertiary);
+  width: 62px;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge-digitek-level-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* 아웃라인 뱃지 (상세 패널 상태 표시용) */
+.badge-digitek-outline-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 4px;
+  background: var(--digitek-bg-white);
+  border: 1px solid var(--digitek-border);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--digitek-text-secondary);
+  white-space: nowrap;
+}
+
+/* ========================================================================== */
+/*  TabButton (탭 버튼)                                                         */
+/* ========================================================================== */
+
+/* 탭 그룹 */
+.tab-digitek-group {
+  display: flex;
+  padding: 8px;
+  align-items: center;
+  border-radius: 4px;
+  background: #F2F2F6;
+}
+
+/* 콘텐츠 너비에 맞추는 인라인 모드 */
+.tab-digitek-group-auto {
+  width: fit-content;
+}
+
+.tab-digitek-group-auto .tab-digitek {
+  flex: none;
+}
+
+/* 탭 공통 */
+.tab-digitek {
+  flex: 1;
+  font-family: var(--digitek-font-family);
+  font-weight: 600;
+  text-align: center;
+  color: var(--digitek-text-tertiary);
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  cursor: pointer;
+}
+
+.tab-digitek:hover,
+.tab-digitek:focus,
+.tab-digitek:active {
+  text-decoration: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* 활성 탭 */
+.tab-digitek-active {
+  background-color: var(--digitek-bg-white) !important;
+  color: var(--digitek-text-primary) !important;
+  border: 1px solid var(--digitek-border) !important;
+}
+
+/* 큰 탭 (16px) */
+.tab-digitek-lg {
+  padding: 8px 6px;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.4px;
+}
+
+/* 작은 탭 (14px) */
+.tab-digitek-sm {
+  padding: 6px 20px;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+}
+
+/* ========================================================================== */
+/*  Pagination (페이지네이션)                                                    */
+/* ========================================================================== */
+
+.pagination-digitek {
+  gap: 8px;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pagination-digitek .page-item {
+  list-style: none;
+}
+
+.pagination-digitek .page-link,
+.page-link-digitek {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 4px;
+  font-family: var(--digitek-font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+  border: none;
+  background-color: var(--digitek-bg-white);
+  color: var(--digitek-text-primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.pagination-digitek .page-link:hover,
+.page-link-digitek:hover,
+.pagination-digitek .page-link:focus,
+.page-link-digitek:focus {
+  background-color: var(--digitek-bg-gray);
+  color: var(--digitek-text-primary);
+  box-shadow: none;
+}
+
+/* 활성 페이지 */
+.pagination-digitek .page-item.active .page-link,
+.page-link-digitek-active {
+  background-color: var(--digitek-primary) !important;
+  color: var(--digitek-text-white) !important;
+  border: none !important;
+}
+
+/* 비활성화 */
+.pagination-digitek .page-item.disabled .page-link,
+.page-link-digitek-disabled {
+  background-color: var(--digitek-bg-white) !important;
+  color: var(--digitek-text-secondary) !important;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========================================================================== */
+/*  Accordion (아코디언)                                                        */
+/* ========================================================================== */
+
+/* 페이지 아코디언 */
+.accordion-digitek-page {
+  border: none;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.accordion-digitek-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  background-color: var(--digitek-primary);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.accordion-digitek-page-header-open {
+  border-radius: 4px 4px 0 0;
+}
+
+.accordion-digitek-page-title {
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 600;
+  letter-spacing: -0.45px;
+  color: var(--digitek-text-white);
+}
+
+.accordion-digitek-page-content {
+  border: 1px solid var(--digitek-border);
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  padding: 16px 24px;
+  background: #fff;
+}
+
+/* 내부 아코디언 */
+.accordion-digitek-inner {
+  border: none;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.accordion-digitek-inner-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--digitek-bg-white);
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.accordion-digitek-inner-header-open {
+  border-radius: 4px 4px 0 0;
+}
+
+.accordion-digitek-inner-title {
+  flex-shrink: 0;
+  min-width: 0;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  color: var(--digitek-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.accordion-digitek-inner-header-right {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end;
+  margin-right: 8px;
+}
+
+.accordion-digitek-inner-content {
+  border: 1px solid var(--digitek-border);
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  padding: 16px;
+}
+
+/* 테이블이 들어가는 내부 아코디언 — 패딩 제거 */
+.accordion-digitek-inner--table .accordion-digitek-inner-content {
+  padding: 0;
+}
+
+/* 아이콘 */
+.accordion-digitek-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.accordion-digitek-chevron-closed {
+  transform: rotate(180deg);
+}
+
+/* ========================================================================== */
+/*  Fieldset (필드셋 그룹핑)                                                     */
+/* ========================================================================== */
+
+/* 컨테이너 */
+.fieldset-digitek {
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+/* 범례 */
+.fieldset-digitek-legend {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--digitek-text-primary);
+  padding: 0 4px;
+  margin-left: 12px;
+  width: auto;
+}
+
+/* 내부 콘텐츠 */
+.fieldset-digitek-content {
+  padding: 16px 20px 20px;
+}
+
+/* compact 변형 */
+.fieldset-digitek-compact .fieldset-digitek-content {
+  padding: 12px 16px 16px;
+}
+
+/* gray 배경 변형 */
+.fieldset-digitek-gray {
+  background: var(--digitek-bg-gray);
+}
+
+/* 범례 없는 경우 */
+.fieldset-digitek-no-legend .fieldset-digitek-content {
+  padding-top: 20px;
+}
+
+/* ── FormField (폼 필드 래퍼) ── */
+
+.formfield-digitek {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formfield-digitek > div {
+  align-self: stretch;
+}
+
+.formfield-digitek-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--digitek-primary);
+}
+
+.formfield-digitek-label-required::after,
+.request-digitek-form-label-required::after {
+  content: ' *';
+  color: var(--digitek-error);
+}
+
+.formfield-digitek .input-digitek,
+.formfield-digitek .select-digitek {
+  width: 100%;
+}
+
+/* ── FormGrid / FormRow (폼 레이아웃) ── */
+
+.formfield-digitek-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formfield-digitek-row {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.formfield-digitek-row > * {
+  flex: 1;
+}
+
+/* ========================================================================== */
+/*  Breadcrumb (브레드크럼)                                                      */
+/* ========================================================================== */
+
+.breadcrumb-digitek {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  padding: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.breadcrumb-digitek-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Bootstrap separator 제거 */
+.breadcrumb-digitek-item::before {
+  display: none !important;
+}
+
+.breadcrumb-digitek-depth {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #525252;
+  text-decoration: none;
+}
+
+.breadcrumb-digitek-depth:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-digitek-clickable {
+  cursor: pointer;
+}
+
+.breadcrumb-digitek-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  text-decoration: none;
+  color: #525252;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.breadcrumb-digitek-back-btn:hover {
+  text-decoration: none;
+}
+
+/* ========================================================================== */
+/*  FileUpload (파일 업로드)                                                     */
+/* ========================================================================== */
+
+.file-upload-digitek {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 96px 0;
+  background-color: #f8fafc;
+  border: 1px dashed var(--digitek-primary);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.file-upload-digitek:hover {
+  background-color: #eef3fb;
+}
+
+.file-upload-digitek-dragging {
+  background-color: #e6eef9;
+}
+
+.file-upload-digitek-icon {
+  flex-shrink: 0;
+  width: 37px;
+  height: 24px;
+}
+
+.file-upload-digitek-label {
+  margin: 0;
+  font-family: var(--digitek-font-family);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+  color: var(--digitek-primary);
+  text-align: center;
+}
+
+.file-upload-digitek-input {
+  display: none;
+}
+
+/* ========================================================================== */
+/*  Progress (진행률 - 원형)                                                     */
+/* ========================================================================== */
+
+/* ── 원형 프로그레스 (conic-gradient) ──
+   사용법: <span class="progress-digitek-circular" style="--percent: 75;"></span>
+   Thymeleaf: <span class="progress-digitek-circular" th:style="'--percent:' + ${progress}" />
+   색상 변경: --progress-color, --progress-bg CSS 변수 오버라이드
+   크기 변경: --progress-size CSS 변수 오버라이드 */
+.progress-digitek-circular {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  --progress-size: 26px;
+  --progress-color: #29C23B;
+  --progress-bg: rgba(41, 194, 59, 0.16);
+  --progress-width: 3.9px;
+  --percent: 0;
+  width: var(--progress-size);
+  height: var(--progress-size);
+  background: conic-gradient(
+    var(--progress-color) calc(var(--percent) * 3.6deg),
+    var(--progress-bg) 0
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - var(--progress-width)),
+    #000 calc(100% - var(--progress-width))
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - var(--progress-width)),
+    #000 calc(100% - var(--progress-width))
+  );
+}
+
+/* ========================================================================== */
+/*  ColorAsset (색상 선택)                                                       */
+/* ========================================================================== */
+
+.color-asset-digitek {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.color-asset-digitek:hover {
+  transform: scale(1.1);
+}
+
+.color-asset-digitek:focus-visible {
+  outline: 2px solid var(--digitek-primary);
+  outline-offset: 2px;
+}
+
+/* 색상 변형 */
+.color-asset-digitek-black {
+  background-color: #111111;
+}
+
+.color-asset-digitek-red {
+  background-color: var(--digitek-error);
+}
+
+.color-asset-digitek-blue {
+  background-color: var(--digitek-primary);
+}
+
+.color-asset-digitek-orange {
+  background-color: #ff8a00;
+}
+
+.color-asset-digitek-green {
+  background-color: #00c896;
+}
+
+.color-asset-digitek-gray {
+  background-color: var(--digitek-text-disabled);
+}
+
+/* 선택 상태 */
+.color-asset-digitek-selected {
+  box-shadow: 0 0 0 2px var(--digitek-bg-white), 0 0 0 4px var(--digitek-primary);
+}
+
+.color-asset-digitek-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  color: #111111;
+  pointer-events: none;
+}
+
+/* ========================================================================== */
+/*  Table (테이블)                                                              */
+/* ========================================================================== */
+
+/* ── 스크롤 컨테이너 ── */
+.table-digitek-scroll {
+  max-height: 320px;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+/* ── 데이터 테이블 ── */
+.table-digitek {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+}
+
+.table-digitek th {
+  background: #f8fafc;
+  font-weight: 400;
+  color: #a3a3a3;
+  text-align: left;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--digitek-border);
+  white-space: nowrap;
+}
+
+.table-digitek td {
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--digitek-border);
+  color: var(--digitek-text-primary);
+  vertical-align: middle;
+}
+
+.table-digitek-checkbox {
+  width: 64px;
+  text-align: center;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.table-digitek-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--digitek-primary);
+  cursor: pointer;
+}
+
+.table-digitek-input-row td {
+  background: #f8fafc;
+  color: #a3a3a3;
+}
+
+.table-digitek-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.table-digitek-date .dicon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: var(--digitek-text-tertiary);
+}
+
+.table-digitek-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px;
+}
+
+/* ── 2열 테이블 (역할/담당자 등) ── */
+.table-digitek-bordered {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-left: 1px solid var(--digitek-border);
+  border-right: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+}
+
+.table-digitek-bordered th {
+  background: var(--digitek-bg-gray);
+  font-weight: 400;
+  color: #999999;
+  text-align: left;
+  padding: 12px 24px;
+  border-top: 1px solid var(--digitek-border);
+  border-bottom: 1px solid var(--digitek-border);
+}
+
+.table-digitek-bordered td {
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--digitek-border);
+  color: var(--digitek-text-primary);
+  vertical-align: middle;
+}
+
+.table-digitek-bordered .table-digitek-input-row td {
+  background: var(--digitek-bg-gray);
+  color: #999999;
+}
+
+.table-digitek-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table-digitek-action-links {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.table-digitek-action-link {
+  color: var(--digitek-primary);
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: -0.35px;
+}
+
+.table-digitek-action-link:hover {
+  color: var(--digitek-primary-hover);
+}
+
+.table-digitek-action-link-muted {
+  color: var(--digitek-text-tertiary);
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: -0.35px;
+}
+
+.table-digitek-action-link-muted:hover {
+  color: var(--digitek-text-secondary);
+}
+
+/* ── 열 너비 유틸리티 ── */
+.table-digitek-col-fixed {
+  width: 300px;
+}
+
+/* ========================================================================== */
+/*  TextEditor (텍스트 에디터)                                                   */
+/* ========================================================================== */
+
+.text-editor-digitek {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid var(--digitek-border);
+  border-radius: 6px;
+  background: var(--digitek-bg-white);
+  overflow: clip;
+  isolation: isolate;
+}
+
+.text-editor-digitek-toolbar {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px;
+  z-index: 2;
+}
+
+.text-editor-digitek-toolbar-group {
+  display: flex;
+  gap: 2px;
+}
+
+.text-editor-digitek-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 0 4px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.text-editor-digitek-icon-btn:hover {
+  background: var(--digitek-bg-gray);
+}
+
+.text-editor-digitek-icon-btn-active {
+  background: var(--digitek-border);
+}
+
+.text-editor-digitek-icon-btn-active:hover {
+  background: #dcdce5;
+}
+
+.text-editor-digitek-bar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  height: 28px;
+  padding: 0 4px 0 8px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  font-family: var(--digitek-font-family);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: -0.35px;
+  color: var(--digitek-text-primary);
+  cursor: pointer;
+}
+
+.text-editor-digitek-bar-btn:hover,
+.text-editor-digitek-bar-btn-open {
+  background: var(--digitek-bg-gray);
+}
+
+.text-editor-digitek-contents {
+  position: relative;
+  z-index: 1;
+  min-height: 420px;
+  padding: 12px 16px 16px;
+  font-family: var(--digitek-font-family);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.35px;
+  color: var(--digitek-text-primary);
+  outline: none;
+  border: none;
+}
+
+.text-editor-digitek-contents:empty::before {
+  content: attr(data-placeholder);
+  color: var(--digitek-text-placeholder);
+}
+
+/* 본문 내 요소 스타일 */
+.text-editor-digitek-contents h1 {
+  font-size: 26px;
+  line-height: 36px;
+  font-weight: 600;
+  letter-spacing: -0.65px;
+  margin: 16px 0 8px;
+}
+
+.text-editor-digitek-contents h2 {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  margin: 14px 0 6px;
+}
+
+.text-editor-digitek-contents h3 {
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 500;
+  letter-spacing: -0.45px;
+  margin: 12px 0 4px;
+}
+
+.text-editor-digitek-contents p {
+  margin: 0 0 8px;
+}
+
+.text-editor-digitek-contents ul,
+.text-editor-digitek-contents ol {
+  margin: 8px 0;
+  padding-left: 24px;
+}
+
+.text-editor-digitek-contents ul {
+  list-style-type: disc;
+}
+
+.text-editor-digitek-contents ol {
+  list-style-type: decimal;
+}
+
+.text-editor-digitek-contents li {
+  margin: 4px 0;
+}
+
+.text-editor-digitek-contents a {
+  color: #087FF7;
+  text-decoration: underline;
+}
+
+.text-editor-digitek-contents a:hover {
+  color: #0056b3;
+}
+
+.text-editor-digitek-contents code {
+  background: var(--digitek-bg-gray);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 13px;
+}
+
+.text-editor-digitek-contents pre {
+  background: var(--digitek-bg-gray);
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-x: auto;
+  margin: 8px 0;
+}
+
+.text-editor-digitek-contents hr {
+  border: none;
+  border-top: 1px solid var(--digitek-border);
+  margin: 16px 0;
+}
+
+.text-editor-digitek-contents img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.text-editor-digitek-contents blockquote {
+  border-left: 3px solid var(--digitek-primary);
+  padding-left: 16px;
+  margin: 8px 0;
+  color: var(--digitek-text-tertiary);
+}
+
+/* 에디터 내 파일 첨부 카드 */
+.text-editor-digitek-attachment {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--digitek-bg-gray);
+  border: 1px solid var(--digitek-border);
+  border-radius: 6px;
+  margin: 4px 0;
+  max-width: 280px;
+}
+
+.text-editor-digitek-attachment-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.text-editor-digitek-attachment-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--digitek-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-editor-digitek-attachment-size {
+  font-size: 12px;
+  color: var(--digitek-text-tertiary);
+}
+
+.text-editor-digitek-attachment-remove {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  color: var(--digitek-text-tertiary);
+  padding: 0;
+}
+
+.text-editor-digitek-attachment-remove:hover {
+  background: var(--digitek-border);
+  color: var(--digitek-text-primary);
+}
+
+/* TextEditor 확장 스타일 */
+
+/* 드롭다운 컨테이너 */
+.text-editor-digitek-dropdown-container {
+  position: relative;
+  display: inline-flex;
+}
+
+/* 스플릿 버튼 */
+.text-editor-digitek-split-btn {
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.text-editor-digitek-size-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 0 8px;
+  border: none;
+  background: transparent;
+  font-family: var(--digitek-font-family);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: -0.35px;
+  color: var(--digitek-text-primary);
+  cursor: pointer;
+}
+
+.text-editor-digitek-size-btn:hover {
+  background: var(--digitek-bg-gray);
+}
+
+.text-editor-digitek-chevron-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.text-editor-digitek-chevron-btn:hover,
+.text-editor-digitek-chevron-btn-open {
+  background: var(--digitek-bg-gray);
+}
+
+.text-editor-digitek-color-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 0 4px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.text-editor-digitek-color-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #111111;
+}
+
+.text-editor-digitek-color-btn:hover {
+  background: var(--digitek-bg-gray);
+}
+
+/* 드롭다운 메뉴 */
+.text-editor-digitek-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  min-width: 120px;
+  margin-top: 4px;
+  padding: 4px;
+  background: var(--digitek-bg-white);
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  box-shadow: var(--digitek-shadow-dropdown);
+}
+
+.text-editor-digitek-size-dropdown {
+  min-width: 100px;
+}
+
+.text-editor-digitek-size-item {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.text-editor-digitek-size-item:hover {
+  background: var(--digitek-bg-gray);
+}
+
+.text-editor-digitek-size-item.text-editor-digitek-selected {
+  background: var(--digitek-primary-bg);
+  color: var(--digitek-primary);
+}
+
+/* 사이즈별 폰트 스타일 */
+.text-editor-digitek-size-body {
+  font-family: var(--digitek-font-family);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.text-editor-digitek-size-subheading {
+  font-family: var(--digitek-font-family);
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 500;
+}
+
+.text-editor-digitek-size-heading {
+  font-family: var(--digitek-font-family);
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+}
+
+.text-editor-digitek-size-title {
+  font-family: var(--digitek-font-family);
+  font-size: 24px;
+  line-height: 34px;
+  font-weight: 600;
+}
+
+/* 정렬 드롭다운 */
+.text-editor-digitek-align-dropdown {
+  min-width: 100px;
+}
+
+.text-editor-digitek-align-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 2px;
+  font-family: var(--digitek-font-family);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--digitek-text-primary);
+}
+
+.text-editor-digitek-align-item:hover {
+  background: var(--digitek-bg-gray);
+}
+
+.text-editor-digitek-align-item.text-editor-digitek-selected {
+  background: var(--digitek-primary-bg);
+  color: var(--digitek-primary);
+}
+
+/* 색상 드롭다운 */
+.text-editor-digitek-color-dropdown {
+  min-width: auto;
+  padding: 8px;
+}
+
+.text-editor-digitek-color-list {
+  display: flex;
+  gap: 4px;
+}
+
+.text-editor-digitek-color-swatch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.text-editor-digitek-color-swatch:hover {
+  background: var(--digitek-bg-gray);
+}
+
+/* 링크 팝오버 */
+.text-editor-digitek-popover {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  padding: 8px;
+  background: var(--digitek-bg-white);
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  box-shadow: var(--digitek-shadow-dropdown);
+}
+
+.text-editor-digitek-popover-input {
+  width: 240px;
+  padding: 8px 12px;
+  font-family: var(--digitek-font-family);
+  font-size: 14px;
+  line-height: 20px;
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  outline: none;
+}
+
+.text-editor-digitek-popover-input:focus {
+  border-color: var(--digitek-border-focus);
+}
+
+.text-editor-digitek-popover-btn {
+  padding: 8px 16px;
+  font-family: var(--digitek-font-family);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--digitek-text-white);
+  background: var(--digitek-primary);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.text-editor-digitek-popover-btn:hover {
+  background: var(--digitek-primary-hover);
+}
+
+/* 이미지 리사이즈 */
+.text-editor-digitek-image-resize-overlay {
+  z-index: 10;
+}
+
+.text-editor-digitek-image-resize-border {
+  position: absolute;
+  inset: 0;
+  border: 2px solid #087FF7;
+  pointer-events: none;
+}
+
+.text-editor-digitek-resize-handle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #087FF7;
+  border: 2px solid var(--digitek-bg-white);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.text-editor-digitek-resize-handle-se {
+  right: -6px;
+  bottom: -6px;
+  cursor: nwse-resize;
+}
+
+/* 첨부파일 */
+.text-editor-digitek-attachment {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 16px;
+  background: var(--digitek-bg-gray);
+  border-radius: 4px;
+}
+
+.text-editor-digitek-attachment-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.text-editor-digitek-attachment-name {
+  font-family: var(--digitek-font-family);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--digitek-text-primary);
+}
+
+.text-editor-digitek-attachment-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.text-editor-digitek-attachment-close:hover {
+  opacity: 1;
+}
+
+.text-editor-digitek-attachment-size {
+  font-family: var(--digitek-font-family);
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--digitek-text-tertiary);
+}
+
+/* ================================================================== */
+/*  GNB (Global Navigation Bar)                                       */
+/* ================================================================== */
+
+.gnb-digitek {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 24px;
+  background-color: #fff;
+  border-bottom: 1px solid var(--digitek-border);
+}
+
+/* 검색 인풋 — pill 형태, 배경 전환 */
+.gnb-digitek-search-wrap {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: var(--digitek-bg-gray);
+  border: 1px solid var(--digitek-border);
+  border-radius: 999px;
+  width: 480px;
+  flex-shrink: 0;
+}
+
+.gnb-digitek-search-wrap:focus-within {
+  background-color: #fff;
+}
+
+/* 검색 필드 — Bootstrap form-control 대체 (간소화) */
+.gnb-digitek-search-field {
+  flex: 1 1 auto;
+  width: 1%;
+  min-width: 0;
+  padding: 0.375rem 0.75rem;
+  border: 0;
+  background-color: transparent;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.375px;
+  color: var(--digitek-text-primary);
+  box-shadow: none !important;
+  outline: none;
+}
+
+.gnb-digitek-search-field::placeholder {
+  color: var(--digitek-text-tertiary);
+  font-weight: 400;
+}
+
+/* 아이콘 버튼 — Bootstrap btn 유틸리티 흡수 (간소화) */
+.gnb-digitek-icon-btn {
+  display: inline-block;
+  padding: 0;
+  border: 0;
+  background: none;
+  position: relative;
+  color: var(--digitek-text-primary);
+  text-decoration: none !important;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.gnb-digitek-icon-btn:hover {
+  opacity: 0.8;
+  text-decoration: none !important;
+}
+
+.gnb-digitek-icon-btn:focus {
+  outline: none;
+}
+
+/* 투명 아이콘 버튼 — 검색 등 아이콘만 있는 투명 버튼 공통 (간소화) */
+.btn-digitek-icon-plain {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.btn-digitek-icon-plain:focus {
+  outline: none;
+}
+
+/* 사이드바 토글 버튼 — Bootstrap btn 유틸리티 흡수 (간소화) */
+.sidebar-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+.sidebar-toggle-btn:hover {
+  opacity: 0.8;
+  text-decoration: none !important;
+}
+
+.sidebar-toggle-btn:focus {
+  outline: none;
+}
+
+/* 알림 배지 — Bootstrap badge 유틸리티 흡수 (간소화) */
+.gnb-digitek-badge {
+  display: inline-block;
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 2px 4px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 10rem;
+  background-color: var(--digitek-error) !important;
+}
+
+/* 우측 영역 */
+.gnb-digitek-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 32px;
+}
+
+/* 아이콘 그룹 (알림 + 메일) */
+.gnb-digitek-icon-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* 프로필 영역 */
+.gnb-digitek-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* 프로필 아바타 — Bootstrap 유틸리티 흡수 (간소화) */
+.gnb-digitek-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* 다국어 선택기 */
+.gnb-digitek-locale-wrap {
+  position: relative;
+}
+
+.gnb-digitek-locale-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border: 1px solid var(--digitek-border);
+  border-radius: 6px;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--digitek-text-secondary);
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.gnb-digitek-locale-btn:hover {
+  border-color: var(--digitek-primary);
+}
+
+.gnb-digitek-locale-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--digitek-border);
+  border-radius: 8px;
+  box-shadow: var(--digitek-shadow-dropdown);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.gnb-digitek-locale-wrap.open .gnb-digitek-locale-dropdown {
+  display: block;
+}
+
+.gnb-digitek-locale-option {
+  display: block;
+  width: 100%;
+  padding: 4px 6px;
+  border: none;
+  background: none;
+  font-size: 13px;
+  color: var(--digitek-text-secondary);
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.gnb-digitek-locale-option:hover {
+  background-color: var(--digitek-bg-gray);
+}
+
+.gnb-digitek-locale-option.active {
+  color: var(--digitek-primary);
+  font-weight: 600;
+}
+
+/* 프로필 이름 */
+.gnb-digitek-profile-name {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.375px;
+  color: var(--digitek-text-secondary);
+}
+
+/* ================================================================== */
+/*  Sidebar (사이드바)                                                 */
+/* ================================================================== */
+
+.sidebar-digitek {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  background-color: var(--digitek-primary);
+  transition: width 0.25s ease;
+  overflow: hidden;
+}
+
+.sidebar-digitek-expanded {
+  width: 250px;
+}
+
+.sidebar-digitek-collapsed {
+  width: 96px;
+}
+
+/* Header */
+.sidebar-digitek-header {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 12px 24px;
+  height: 80px;
+}
+
+.sidebar-digitek-logo {
+  transition: opacity 0.15s ease;
+}
+
+.sidebar-digitek-logo svg {
+  display: block;
+}
+
+/* 사이드바가 접힐 때 로고 숨김 */
+.sidebar-digitek-collapsed .sidebar-digitek-logo {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Menu area */
+.sidebar-digitek-menu-area {
+  padding: 12px 24px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.sidebar-digitek-menu-area::-webkit-scrollbar {
+  display: none;
+}
+
+/* 메뉴 항목 */
+.sidebar-digitek-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 12px;
+  border-radius: 0.25rem;
+  color: #fff;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.sidebar-digitek-menu-item:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* 사이드바 아이콘 — 흰색 처리 */
+.sidebar-digitek i.dicon {
+  filter: brightness(0) invert(1);
+}
+
+/* 아이콘 + 라벨 묶음 */
+.sidebar-digitek-icon-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sidebar-digitek-menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 접힌 사이드바 메뉴 — 부모 기반 처리 (간소화: sidebar-digitek-menu-item-collapsed 불필요) */
+.sidebar-digitek-collapsed .sidebar-digitek-menu-item {
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+/* 활성 상태 */
+.sidebar-digitek-active {
+  background-color: #fff !important;
+  color: var(--digitek-primary) !important;
+}
+
+.sidebar-digitek-active:hover {
+  background-color: #f0f0f0 !important;
+  color: var(--digitek-primary) !important;
+}
+
+/* 펼쳐진 상태의 부모 메뉴 (자식이 활성화된 경우, subtle 표시) */
+.sidebar-digitek-parent-open {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: #fff !important;
+}
+
+.sidebar-digitek-parent-open:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #fff !important;
+}
+
+/* 메뉴 라벨 */
+.sidebar-digitek-menu-label {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 22px;
+  letter-spacing: -0.375px;
+  transition: opacity 0.15s ease;
+}
+
+/* 사이드바가 접힐 때 라벨 숨김 */
+.sidebar-digitek-collapsed .sidebar-digitek-menu-label {
+  display: none;
+}
+
+/* 화살표 — ml-auto 흡수 (간소화) */
+.sidebar-digitek-chevron {
+  width: 20px;
+  height: 20px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.15s ease;
+}
+
+.sidebar-digitek-chevron-open {
+  transform: rotate(180deg);
+}
+
+/* 사이드바가 접힐 때 화살표 숨김 */
+.sidebar-digitek-collapsed .sidebar-digitek-chevron {
+  display: none;
+}
+
+/* 사이드바가 접힐 때 서브메뉴 숨김 */
+.sidebar-digitek-collapsed .sidebar-digitek-submenu,
+.sidebar-digitek-collapsed .sidebar-digitek-sub-submenu {
+  display: none !important;
+}
+
+/* 사이드바가 접힐 때 nav-item 중앙 정렬 */
+.sidebar-digitek-collapsed .nav-item {
+  display: flex;
+  justify-content: center;
+}
+
+/* 하위 메뉴 */
+.sidebar-digitek-submenu {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+}
+
+.sidebar-digitek .sidebar-digitek-submenu-item {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 12px 0 44px;
+  gap: 16px;
+  color: #fff;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.sidebar-digitek-submenu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  text-decoration: none;
+}
+
+.sidebar-digitek-submenu-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* 3레벨 하위 메뉴 */
+.sidebar-digitek-sub-submenu {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+}
+
+.sidebar-digitek .sidebar-digitek-sub-submenu-item {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 12px 0 80px;
+  color: #fff;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.sidebar-digitek-sub-submenu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* 3레벨 활성 상태 */
+.sidebar-digitek-sub-active {
+  background-color: #fff !important;
+  color: var(--digitek-primary) !important;
+}
+
+.sidebar-digitek-sub-active:hover {
+  background-color: #f0f0f0 !important;
+  color: var(--digitek-primary) !important;
+}
+
+/* ================================================================== */
+/*  Layout (앱 레이아웃)                                               */
+/* ================================================================== */
+
+.layout-digitek {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.layout-digitek-main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.layout-digitek-content {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========================================================================== */
+/*  유틸리티 클래스 (Utility Classes)                                          */
+/*  Bootstrap 4 미지원 유틸리티를 보완합니다.                                    */
+/*  네이밍: .{속성}-digitek-{값}                                               */
+/* ========================================================================== */
+
+/* ── Gap ── */
+.gap-digitek-2 { gap: 2px; }
+.gap-digitek-4 { gap: 4px; }
+.gap-digitek-6 { gap: 6px; }
+.gap-digitek-8 { gap: 8px; }
+.gap-digitek-10 { gap: 10px; }
+.gap-digitek-12 { gap: 12px; }
+.gap-digitek-16 { gap: 16px; }
+.gap-digitek-20 { gap: 20px; }
+.gap-digitek-24 { gap: 24px; }
+.gap-digitek-32 { gap: 32px; }
+.gap-digitek-40 { gap: 40px; }
+.gap-digitek-48 { gap: 48px; }
+
+/* ── Width (px) ── */
+.w-digitek-16 { width: 16px !important; }
+.w-digitek-20 { width: 20px !important; }
+.w-digitek-24 { width: 24px !important; }
+.w-digitek-32 { width: 32px !important; }
+.w-digitek-40 { width: 40px !important; }
+.w-digitek-48 { width: 48px !important; }
+.w-digitek-60 { width: 60px !important; }
+.w-digitek-80 { width: 80px !important; }
+.w-digitek-96 { width: 96px !important; }
+.w-digitek-100 { width: 100px !important; }
+.w-digitek-120 { width: 120px !important; }
+.w-digitek-140 { width: 140px !important; }
+.w-digitek-160 { width: 160px !important; }
+.w-digitek-180 { width: 180px !important; }
+.w-digitek-200 { width: 200px !important; }
+.w-digitek-240 { width: 240px !important; }
+.w-digitek-250 { width: 250px !important; }
+.w-digitek-280 { width: 280px !important; }
+.w-digitek-300 { width: 300px !important; }
+.w-digitek-320 { width: 320px !important; }
+.w-digitek-360 { width: 360px !important; }
+.w-digitek-400 { width: 400px !important; }
+.w-digitek-480 { width: 480px !important; }
+.w-digitek-full { width: 100% !important; }
+.w-digitek-auto { width: auto !important; }
+
+/* ── Height (px) ── */
+.h-digitek-16 { height: 16px !important; }
+.h-digitek-20 { height: 20px !important; }
+.h-digitek-24 { height: 24px !important; }
+.h-digitek-28 { height: 28px !important; }
+.h-digitek-32 { height: 32px !important; }
+.h-digitek-36 { height: 36px !important; }
+.h-digitek-38 { height: 38px !important; }
+.h-digitek-40 { height: 40px !important; }
+.h-digitek-44 { height: 44px !important; }
+.h-digitek-48 { height: 48px !important; }
+.h-digitek-56 { height: 56px !important; }
+.h-digitek-64 { height: 64px !important; }
+.h-digitek-80 { height: 80px !important; }
+.h-digitek-100 { height: 100px !important; }
+.h-digitek-120 { height: 120px !important; }
+.h-digitek-160 { height: 160px !important; }
+.h-digitek-200 { height: 200px !important; }
+.h-digitek-240 { height: 240px !important; }
+.h-digitek-300 { height: 300px !important; }
+.h-digitek-400 { height: 400px !important; }
+.h-digitek-500 { height: 500px !important; }
+.h-digitek-full { height: 100% !important; }
+.h-digitek-screen { height: 100vh !important; }
+.h-digitek-auto { height: auto !important; }
+
+/* ── Min / Max Width ── */
+.min-w-digitek-0 { min-width: 0 !important; }
+.min-w-digitek-60 { min-width: 60px !important; }
+.min-w-digitek-80 { min-width: 80px !important; }
+.min-w-digitek-100 { min-width: 100px !important; }
+.min-w-digitek-120 { min-width: 120px !important; }
+.min-w-digitek-160 { min-width: 160px !important; }
+.min-w-digitek-200 { min-width: 200px !important; }
+.min-w-digitek-full { min-width: 100% !important; }
+
+.max-w-digitek-200 { max-width: 200px !important; }
+.max-w-digitek-300 { max-width: 300px !important; }
+.max-w-digitek-400 { max-width: 400px !important; }
+.max-w-digitek-480 { max-width: 480px !important; }
+.max-w-digitek-600 { max-width: 600px !important; }
+.max-w-digitek-800 { max-width: 800px !important; }
+.max-w-digitek-full { max-width: 100% !important; }
+.max-w-digitek-none { max-width: none !important; }
+
+/* ── Min / Max Height ── */
+.min-h-digitek-0 { min-height: 0 !important; }
+.min-h-digitek-100 { min-height: 100px !important; }
+.min-h-digitek-200 { min-height: 200px !important; }
+.min-h-digitek-300 { min-height: 300px !important; }
+.min-h-digitek-400 { min-height: 400px !important; }
+.min-h-digitek-full { min-height: 100% !important; }
+.min-h-digitek-screen { min-height: 100vh !important; }
+
+.max-h-digitek-200 { max-height: 200px !important; }
+.max-h-digitek-300 { max-height: 300px !important; }
+.max-h-digitek-320 { max-height: 320px !important; }
+.max-h-digitek-400 { max-height: 400px !important; }
+.max-h-digitek-500 { max-height: 500px !important; }
+.max-h-digitek-600 { max-height: 600px !important; }
+.max-h-digitek-full { max-height: 100% !important; }
+.max-h-digitek-screen { max-height: 100vh !important; }
+.max-h-digitek-none { max-height: none !important; }
+
+/* ── Icon 크기 (width + height 동시 지정) ── */
+.icon-digitek-11 { width: 11px !important; height: 11px !important; }
+.icon-digitek-13 { width: 13px !important; height: 13px !important; }
+.icon-digitek-14 { width: 14px !important; height: 14px !important; }
+.icon-digitek-16 { width: 16px !important; height: 16px !important; }
+.icon-digitek-20 { width: 20px !important; height: 20px !important; }
+.icon-digitek-24 { width: 24px !important; height: 24px !important; }
+.icon-digitek-30 { width: 30px !important; height: 30px !important; }
+.icon-digitek-32 { width: 32px !important; height: 32px !important; }
+.icon-digitek-37 { width: 37px !important; height: 37px !important; }
+.icon-digitek-48 { width: 48px !important; height: 48px !important; }
+
+/* ── Overflow ── */
+.overflow-digitek-hidden { overflow: hidden !important; }
+.overflow-digitek-auto { overflow: auto !important; }
+.overflow-digitek-scroll { overflow: scroll !important; }
+.overflow-digitek-visible { overflow: visible !important; }
+.overflow-x-digitek-auto { overflow-x: auto !important; }
+.overflow-x-digitek-hidden { overflow-x: hidden !important; }
+.overflow-y-digitek-auto { overflow-y: auto !important; }
+.overflow-y-digitek-hidden { overflow-y: hidden !important; }
+
+/* ── Text Overflow ── */
+.text-digitek-truncate {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.text-digitek-line-clamp-2 {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+.text-digitek-line-clamp-3 {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+/* ── Position ── */
+.pos-digitek-relative { position: relative !important; }
+.pos-digitek-absolute { position: absolute !important; }
+.pos-digitek-fixed { position: fixed !important; }
+.pos-digitek-sticky { position: sticky !important; }
+.pos-digitek-static { position: static !important; }
+
+.top-digitek-0 { top: 0 !important; }
+.right-digitek-0 { right: 0 !important; }
+.bottom-digitek-0 { bottom: 0 !important; }
+.left-digitek-0 { left: 0 !important; }
+.inset-digitek-0 { top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important; }
+
+/* ── Flex 보조 ── */
+.flex-digitek-1 { flex: 1 !important; }
+.flex-digitek-auto { flex: auto !important; }
+.flex-digitek-none { flex: none !important; }
+.flex-digitek-grow-0 { flex-grow: 0 !important; }
+.flex-digitek-grow-1 { flex-grow: 1 !important; }
+.flex-digitek-shrink-0 { flex-shrink: 0 !important; }
+.flex-digitek-shrink-1 { flex-shrink: 1 !important; }
+.flex-digitek-basis-0 { flex-basis: 0 !important; }
+.flex-digitek-basis-auto { flex-basis: auto !important; }
+
+/* ── Border ── */
+.border-digitek { border: 1px solid var(--digitek-border) !important; }
+.border-digitek-top { border-top: 1px solid var(--digitek-border) !important; }
+.border-digitek-bottom { border-bottom: 1px solid var(--digitek-border) !important; }
+.border-digitek-left { border-left: 1px solid var(--digitek-border) !important; }
+.border-digitek-right { border-right: 1px solid var(--digitek-border) !important; }
+.border-digitek-0 { border: 0 !important; }
+
+/* ── Border Radius ── */
+.rounded-digitek-0 { border-radius: 0 !important; }
+.rounded-digitek-2 { border-radius: 2px !important; }
+.rounded-digitek-4 { border-radius: 4px !important; }
+.rounded-digitek-6 { border-radius: 6px !important; }
+.rounded-digitek-8 { border-radius: 8px !important; }
+.rounded-digitek-12 { border-radius: 12px !important; }
+.rounded-digitek-full { border-radius: 9999px !important; }
+
+/* ── Cursor ── */
+.cursor-digitek-pointer { cursor: pointer !important; }
+.cursor-digitek-default { cursor: default !important; }
+.cursor-digitek-not-allowed { cursor: not-allowed !important; }
+
+/* ── 배경색 (디자인 토큰 기반) ── */
+.bg-digitek-white { background-color: var(--digitek-bg-white) !important; }
+.bg-digitek-gray { background-color: var(--digitek-bg-gray) !important; }
+.bg-digitek-primary { background-color: var(--digitek-primary) !important; }
+.bg-digitek-primary-light { background-color: var(--digitek-primary-bg) !important; }
+.bg-digitek-success { background-color: var(--digitek-success-bg) !important; }
+.bg-digitek-error { background-color: var(--digitek-error-bg) !important; }
+.bg-digitek-pending { background-color: var(--digitek-pending-bg) !important; }
+
+/* ── 텍스트 색상 (디자인 토큰 기반) ── */
+.text-digitek-primary { color: var(--digitek-text-primary) !important; }
+.text-digitek-secondary { color: var(--digitek-text-secondary) !important; }
+.text-digitek-tertiary { color: var(--digitek-text-tertiary) !important; }
+.text-digitek-placeholder { color: var(--digitek-text-placeholder) !important; }
+.text-digitek-disabled { color: var(--digitek-text-disabled) !important; }
+.text-digitek-white { color: var(--digitek-text-white) !important; }
+.text-digitek-blue { color: var(--digitek-primary) !important; }
+.text-digitek-success { color: var(--digitek-success) !important; }
+.text-digitek-error { color: var(--digitek-error) !important; }
+.text-digitek-warning { color: var(--digitek-warning) !important; }
+
+/* ── Font Size ── */
+.fs-digitek-11 { font-size: 11px !important; }
+.fs-digitek-12 { font-size: 12px !important; }
+.fs-digitek-13 { font-size: 13px !important; }
+.fs-digitek-14 { font-size: 14px !important; }
+.fs-digitek-15 { font-size: 15px !important; }
+.fs-digitek-16 { font-size: 16px !important; }
+.fs-digitek-18 { font-size: 18px !important; }
+.fs-digitek-20 { font-size: 20px !important; }
+.fs-digitek-24 { font-size: 24px !important; }
+
+/* ── Font Weight ── */
+.fw-digitek-400 { font-weight: 400 !important; }
+.fw-digitek-500 { font-weight: 500 !important; }
+.fw-digitek-600 { font-weight: 600 !important; }
+.fw-digitek-700 { font-weight: 700 !important; }
+
+/* ================================================================== */
+/*  CodeBlock (코드 블록)                                              */
+/* ================================================================== */
+
+.codeblock-digitek {
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--digitek-bg-gray);
+}
+
+.codeblock-digitek-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: var(--digitek-border);
+  border-bottom: 1px solid var(--digitek-border);
+}
+
+.codeblock-digitek-title {
+  font-family: var(--digitek-font-family);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--digitek-text-secondary);
+  text-transform: uppercase;
+}
+
+.codeblock-digitek-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  font-family: var(--digitek-font-family);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--digitek-primary);
+  background: var(--digitek-bg-white);
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.codeblock-digitek-copy-btn:hover {
+  background: var(--digitek-bg-gray);
+  border-color: var(--digitek-primary);
+}
+
+.codeblock-digitek-pre {
+  margin: 0;
+  padding: 12px 16px;
+  overflow-x: auto;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.codeblock-digitek-code {
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--digitek-text-primary);
+  white-space: pre;
+}
+
+/* ========================================================================== */
+/*  의뢰 등록 페이지 (Request Registration)                                       */
+/* ========================================================================== */
+
+.request-digitek-detail {
+  padding: 52px;
+  background: var(--digitek-bg-gray);
+  min-height: 100%;
+}
+
+/* ── 헤더 ── */
+.request-digitek-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.request-digitek-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.request-digitek-header-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--digitek-text-primary);
+  letter-spacing: -0.7px;
+  line-height: 40px;
+  margin: 0;
+}
+
+.request-digitek-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ── 섹션 간 간격 ── */
+.request-digitek-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── 폼 그리드 ── */
+.request-digitek-form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.request-digitek-form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.request-digitek-form-row > * {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── 폼 필드 ── */
+.request-digitek-form-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* wrapper div 전부 stretch → 비활성 인풋, 셀렉트가 100% 채움 */
+.request-digitek-form-field > div {
+  align-self: stretch;
+}
+
+.request-digitek-form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--digitek-primary);
+  line-height: 20px;
+  letter-spacing: -0.35px;
+}
+
+/* ── 비활성 인풋 → self-stretch (100%) ── */
+.request-digitek-form-field .input-digitek-disabled {
+  width: 100%;
+}
+
+/* ── 셀렉트 → self-stretch (100%) ── */
+.request-digitek-form-field .select-digitek {
+  width: 100%;
+}
+
+/* ── 에디터 래퍼 (TextEditor + 첨부파일 통합) ── */
+.request-digitek-editor-wrap {
+  border: 1px solid var(--digitek-border);
+  border-radius: 6px;
+  background: var(--digitek-bg-white);
+  overflow: clip;
+}
+
+.request-digitek-editor-wrap .text-editor-digitek {
+  border: none;
+  border-radius: 0;
+}
+
+.request-digitek-editor-bottom {
+  padding: 0 16px 16px;
+}
+
+/* ── 파일 카드 (Figma: w-80 p-4 bg-slate-50 rounded inline-flex flex-col gap-2.5) ── */
+.request-digitek-file-card {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  width: 320px;
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 4px;
+}
+
+/* 카피 래퍼 (Figma: self-stretch flex-col gap-0.5) */
+.request-digitek-file-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2px;
+  align-self: stretch;
+}
+
+.request-digitek-file-card-header {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+
+.request-digitek-file-card-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--digitek-text-primary);
+  line-height: 24px;
+}
+
+.request-digitek-file-card-size {
+  align-self: stretch;
+  font-size: 14px;
+  color: var(--digitek-text-tertiary);
+  line-height: 20px;
+}
+
+.request-digitek-file-card-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--digitek-text-primary);
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.request-digitek-file-card-remove:hover {
+  opacity: 0.6;
+}
+
+/* ── 섹션 내부 간격 ── */
+.request-digitek-section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.request-digitek-section-label {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--digitek-primary);
+  line-height: 24px;
+  letter-spacing: -0.4px;
+}
+
+.request-digitek-file-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* ── 테이블 스크롤 영역 ── */
+/* NOTE: 아래 request-digitek-table 스타일은 .table-digitek 범용 클래스와 동일합니다.
+   추후 리팩토링 시 .table-digitek 클래스로 마이그레이션을 권장합니다. */
+.request-digitek-table-scroll {
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+/* ── 데이터 테이블 ── */
+.request-digitek-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+}
+
+.request-digitek-table th {
+  background: #f8fafc;
+  font-weight: 400;
+  color: #a3a3a3;
+  text-align: left;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--digitek-border);
+  white-space: nowrap;
+}
+
+.request-digitek-table td {
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--digitek-border);
+  color: var(--digitek-text-primary);
+  vertical-align: middle;
+}
+
+.request-digitek-table-checkbox {
+  width: 64px;
+  text-align: center;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.request-digitek-table-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--digitek-primary);
+  cursor: pointer;
+}
+
+.request-digitek-table-input-row td {
+  background: #f8fafc;
+  color: #a3a3a3;
+}
+
+.request-digitek-table-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.request-digitek-table-date svg {
+  flex-shrink: 0;
+  color: var(--digitek-text-tertiary);
+}
+
+.request-digitek-table-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px;
+}
+
+/* ── 결재 정보 테이블 ── */
+.request-digitek-approval-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-left: 1px solid var(--digitek-border);
+  border-right: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+}
+
+.request-digitek-approval-table th {
+  background: var(--digitek-bg-gray);
+  font-weight: 400;
+  color: #999999;
+  text-align: left;
+  padding: 12px 24px;
+  border-top: 1px solid var(--digitek-border);
+  border-bottom: 1px solid var(--digitek-border);
+}
+
+.request-digitek-approval-table td {
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--digitek-border);
+  color: var(--digitek-text-primary);
+  vertical-align: middle;
+}
+
+.request-digitek-approval-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.request-digitek-action-links {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.request-digitek-action-link {
+  color: var(--digitek-primary);
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: -0.35px;
+}
+
+.request-digitek-action-link:hover {
+  color: var(--digitek-primary-hover);
+}
+
+.request-digitek-action-link-muted {
+  color: var(--digitek-text-tertiary);
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: -0.35px;
+}
+
+.request-digitek-action-link-muted:hover {
+  color: var(--digitek-text-secondary);
+}
+
+.request-digitek-role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border: 1px solid var(--digitek-primary);
+  border-radius: 9999px;
+  background: rgba(47, 102, 186, 0.04);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--digitek-primary);
+  line-height: 18px;
+  letter-spacing: -0.325px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.request-digitek-role-badge:hover {
+  background: rgba(47, 102, 186, 0.08);
+}
+
+.request-digitek-role-badge svg {
+  flex-shrink: 0;
+}
+
+.request-digitek-approval-input-row td {
+  background: var(--digitek-bg-gray);
+  color: #999999;
+}
+
+/* ========================================================================== */
+/*  PMS 프로젝트 상세 페이지 (Project Management System)                        */
+/* ========================================================================== */
+
+/* ── 페이지 컨테이너 ── */
+.pms-digitek-detail {
+  padding: 24px 32px;
+  background: var(--digitek-bg-white);
+  min-height: 100%;
+}
+
+/* ── 헤더 ── */
+.pms-digitek-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.pms-digitek-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pms-digitek-header-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--digitek-text-primary);
+  letter-spacing: -0.6px;
+  line-height: 38px;
+}
+
+.pms-digitek-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ── PhaseStepper ── */
+.pms-digitek-phase-stepper {
+  display: flex;
+  flex-direction: column;
+}
+
+.pms-digitek-phase-step {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 36px 24px;
+}
+
+.pms-digitek-phase-step-active {
+  background: rgba(41, 194, 59, 0.08);
+}
+
+.pms-digitek-phase-step-icon {
+  flex-shrink: 0;
+}
+
+/* PhaseStepper 내 아이콘 1.5배 확대 (38px → 56px) */
+.pms-digitek-phase-step-icon .badge-digitek-status-icon {
+  width: 56px;
+  height: 56px;
+}
+
+.pms-digitek-phase-step-icon .badge-digitek-status-icon-text {
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.pms-digitek-phase-step-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.pms-digitek-phase-step-label {
+  font-size: 16px;
+  color: var(--digitek-text-primary);
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: -0.4px;
+}
+
+.pms-digitek-phase-step-label-active {
+  color: var(--digitek-text-primary);
+  font-weight: 700;
+}
+
+.pms-digitek-phase-step-date {
+  font-size: 14px;
+  color: var(--digitek-text-tertiary);
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+}
+
+/* ── ProjectInfoGrid ── */
+.pms-digitek-info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.pms-digitek-info-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2F66BA;
+  line-height: 28px;
+  letter-spacing: -0.5px;
+}
+
+.pms-digitek-info-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.pms-digitek-info-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.pms-digitek-info-field-full {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+}
+
+.pms-digitek-info-label {
+  flex-shrink: 0;
+  width: 140px;
+}
+
+.pms-digitek-info-value {
+  font-size: 16px;
+  color: var(--digitek-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+  line-height: 24px;
+  letter-spacing: -0.4px;
+}
+
+.pms-digitek-info-divider {
+  width: 100%;
+  height: 0;
+  border-top: 1px solid var(--digitek-border);
+}
+
+/* ── ProjectInfoSection ── */
+.pms-digitek-info-section {
+  display: flex;
+}
+
+.pms-digitek-info-section-left {
+  flex-shrink: 0;
+  width: var(--digitek-pms-info-left-width);
+  min-width: var(--digitek-pms-info-left-min);
+  border-right: 1px solid var(--digitek-border);
+  align-self: stretch;
+  margin-top: -16px;
+  margin-bottom: -16px;
+  margin-left: -24px;
+}
+
+.pms-digitek-info-section-right {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 32px;
+  overflow: clip;
+}
+
+/* ── CustomerTimeline ── */
+.pms-digitek-customer-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pms-digitek-timeline-title {
+  align-self: stretch;
+  color: #2F66BA;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: -0.5px;
+}
+
+.pms-digitek-timeline-track {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  justify-content: center;
+}
+
+.pms-digitek-timeline-connector {
+  flex: 1;
+  height: 1.5px;
+  background: #2F66BA;
+  opacity: 0.5;
+  margin-top: 40px;
+  min-width: 20px;
+}
+
+.pms-digitek-milestone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.pms-digitek-milestone-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--digitek-bg-white);
+  border: 1.5px solid var(--digitek-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pms-digitek-milestone-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 85px;
+}
+
+.pms-digitek-milestone-label {
+  width: 85px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2F66BA;
+  text-align: center;
+  line-height: 24px;
+  letter-spacing: -0.4px;
+}
+
+.pms-digitek-milestone-date {
+  width: 85px;
+  font-size: 14px;
+  font-weight: 300;
+  color: #767676;
+  text-align: center;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+}
+
+/* ── Tab 영역 ── */
+.pms-digitek-tabs {
+  margin: 20px 0 16px;
+}
+
+/* ── ScheduleFilterBar ── */
+.pms-digitek-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+.pms-digitek-filter-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.pms-digitek-filter-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.pms-digitek-action-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 15px;
+  background: var(--digitek-bg-gray);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--digitek-font-family);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  letter-spacing: -0.325px;
+  color: #4d4d4d;
+  white-space: nowrap;
+}
+
+.pms-digitek-action-chip:hover {
+  background: #ededf3;
+}
+
+.pms-digitek-action-chip svg {
+  flex-shrink: 0;
+}
+
+/* ── ScheduleLegend ── */
+.pms-digitek-legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* ── GanttChart ── */
+.pms-digitek-gantt {
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.pms-digitek-gantt-container {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* 좌측 테이블 */
+.pms-digitek-gantt-table-wrap {
+  flex-shrink: 0;
+  width: var(--digitek-pms-gantt-table-width);
+  min-width: var(--digitek-pms-gantt-table-min);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* 구분선 리사이저 */
+.pms-digitek-gantt-resizer {
+  flex-shrink: 0;
+  width: 4px;
+  cursor: col-resize;
+  background: var(--digitek-border);
+  transition: background 0.15s;
+  position: relative;
+  z-index: 4;
+}
+
+.pms-digitek-gantt-resizer:hover,
+.pms-digitek-gantt-resizer:active {
+  background: var(--digitek-primary);
+}
+
+/* scrollbar 숨기기 (우측 타임라인과 동기화) */
+.pms-digitek-gantt-table-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+.pms-digitek-gantt-table-wrap {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.pms-digitek-gantt-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pms-digitek-gantt-table th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--digitek-bg-gray);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--digitek-text-secondary);
+  text-align: center;
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--digitek-border);
+  white-space: nowrap;
+}
+
+.pms-digitek-gantt-table td {
+  font-size: 12px;
+  color: var(--digitek-text-primary);
+  padding: 8px 8px;
+  border-bottom: 1px solid var(--digitek-border);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.pms-digitek-gantt-table tr:last-child td {
+  border-bottom: none;
+}
+
+.pms-digitek-gantt-row-project {
+  background: var(--digitek-bg-white);
+}
+
+.pms-digitek-gantt-row-project td {
+  padding-left: 24px;
+  font-weight: 600;
+  font-size: 13px;
+  border-bottom: 1px solid var(--digitek-border);
+}
+
+.pms-digitek-gantt-row-level-0 {
+  background: var(--digitek-bg-gray);
+  font-weight: 600;
+}
+
+.pms-digitek-gantt-row-level-1 {
+  background: var(--digitek-bg-white);
+  font-weight: 600;
+}
+
+.pms-digitek-gantt-row-level-2 {
+  background: var(--digitek-bg-white);
+}
+
+.pms-digitek-gantt-task-name {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pms-digitek-gantt-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--digitek-text-tertiary);
+  flex-shrink: 0;
+}
+
+.pms-digitek-gantt-toggle:hover {
+  color: var(--digitek-text-primary);
+}
+
+.pms-digitek-gantt-toggle-placeholder {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.pms-digitek-gantt-status-cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+/* 우측 타임라인 */
+.pms-digitek-gantt-timeline-wrap {
+  flex: 1;
+  min-width: var(--digitek-pms-gantt-timeline-min);
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.pms-digitek-gantt-timeline-wrap::-webkit-scrollbar {
+  height: 8px;
+}
+
+.pms-digitek-gantt-timeline-wrap::-webkit-scrollbar-track {
+  background: var(--digitek-bg-gray);
+}
+
+.pms-digitek-gantt-timeline-wrap::-webkit-scrollbar-thumb {
+  background: var(--digitek-border);
+  border-radius: 4px;
+}
+
+.pms-digitek-gantt-timeline {
+  position: relative;
+  min-height: 100%;
+}
+
+/* 헤더 */
+.pms-digitek-gantt-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--digitek-bg-gray);
+}
+
+.pms-digitek-gantt-header-months {
+  display: flex;
+  border-bottom: 1px solid var(--digitek-border);
+}
+
+.pms-digitek-gantt-header-month {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--digitek-text-secondary);
+  text-align: center;
+  padding: 6px 0;
+  border-right: 1px solid var(--digitek-border);
+}
+
+.pms-digitek-gantt-header-weeks {
+  display: flex;
+  border-bottom: 1px solid var(--digitek-border);
+}
+
+.pms-digitek-gantt-header-week {
+  font-size: 10px;
+  color: var(--digitek-text-tertiary);
+  text-align: center;
+  padding: 4px 0;
+  border-right: 1px solid var(--digitek-border);
+}
+
+/* 타임라인 행 */
+.pms-digitek-gantt-timeline-rows {
+  position: relative;
+}
+
+.pms-digitek-gantt-timeline-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--digitek-border);
+}
+
+.pms-digitek-gantt-timeline-row:last-child {
+  border-bottom: none;
+}
+
+.pms-digitek-gantt-timeline-cell {
+  border-right: 1px solid rgba(229, 229, 236, 0.5);
+  height: 100%;
+}
+
+/* ── Gantt Table Column Widths ── */
+.pms-digitek-gantt-col-task {
+  width: var(--digitek-gantt-col-task);
+  text-align: left;
+  padding-left: 16px;
+}
+
+.pms-digitek-gantt-col-priority {
+  width: var(--digitek-gantt-col-priority);
+}
+
+.pms-digitek-gantt-col-level {
+  width: var(--digitek-gantt-col-level);
+  text-align: left;
+  padding-left: 12px;
+}
+
+.pms-digitek-gantt-col-role {
+  width: var(--digitek-gantt-col-role);
+}
+
+.pms-digitek-gantt-col-date {
+  width: var(--digitek-gantt-col-date);
+}
+
+.pms-digitek-gantt-col-status {
+  width: var(--digitek-gantt-col-status);
+}
+
+/* ── Gantt Table Body Cell Styles ── */
+.pms-digitek-gantt-td-task {
+  padding-left: 16px;
+}
+
+.pms-digitek-gantt-td-task-l1 {
+  padding-left: 36px;
+}
+
+.pms-digitek-gantt-td-task-l2 {
+  padding-left: 56px;
+}
+
+.pms-digitek-gantt-td-priority {
+  text-align: center;
+}
+
+.pms-digitek-gantt-td-level {
+  text-align: left;
+  padding-left: 12px;
+  font-size: 12px;
+}
+
+.pms-digitek-gantt-td-role {
+  text-align: center;
+  font-size: 12px;
+}
+
+.pms-digitek-gantt-td-date {
+  text-align: center;
+  font-size: 11px;
+  color: #767676;
+}
+
+.pms-digitek-gantt-td-status {
+  text-align: center;
+}
+
+/* ── Gantt Timeline Cell Widths ── */
+.pms-digitek-gantt-week-cell {
+  width: var(--digitek-gantt-week-cell);
+  flex-shrink: 0;
+}
+
+/* Gantt Header Month Cells */
+.pms-digitek-gantt-month-5w {
+  width: calc(var(--digitek-gantt-week-cell) * 5);
+}
+
+.pms-digitek-gantt-month-4w {
+  width: calc(var(--digitek-gantt-week-cell) * 4);
+}
+
+/* Gantt 바 */
+.pms-digitek-gantt-bar {
+  position: absolute;
+  height: 22px;
+  border-radius: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px 0 3px;
+  font-size: 10px;
+  color: #fff;
+  font-weight: 500;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  z-index: 1;
+}
+
+.pms-digitek-gantt-bar-avatar {
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.pms-digitek-gantt-bar-blue {
+  background: var(--digitek-primary);
+}
+
+.pms-digitek-gantt-bar-green {
+  background: var(--digitek-success);
+}
+
+.pms-digitek-gantt-bar-orange {
+  background: var(--digitek-warning);
+}
+
+.pms-digitek-gantt-bar-red {
+  background: var(--digitek-error);
+}
+
+.pms-digitek-gantt-bar-gray {
+  background: #c9cfd1;
+}
+
+/* TodayMarker */
+.pms-digitek-gantt-today {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #FF8D28;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.pms-digitek-gantt-today-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #FF8D28;
+  color: #fff;
+  font-family: Pretendard, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: -0.275px;
+  padding: 3px 5px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* ── 그리드 열 배경 ── */
+.pms-digitek-gantt-grid-col {
+  border-right: 1px solid rgba(229, 229, 236, 0.3);
+}
+
+.pms-digitek-gantt-grid-col-weekend {
+  background: rgba(247, 247, 251, 0.5);
+}
+
+/* ========================================================================== */
+/*  검색 목록형 페이지 (Search List)                                              */
+/* ========================================================================== */
+
+/* ── 페이지 컨테이너 ── */
+.searchlist-digitek {
+  padding: 52px 52px 120px;
+  background: var(--digitek-bg-gray);
+  min-height: 100%;
+}
+
+.searchlist-digitek-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.searchlist-digitek-content > .searchlist-digitek-header {
+  margin-bottom: 32px;
+}
+
+.searchlist-digitek-content > .searchlist-digitek-search-panel {
+  margin-bottom: 32px;
+}
+
+/* ── 헤더 (브레드크럼 + 제목) ── */
+.searchlist-digitek-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.searchlist-digitek-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--digitek-text-primary);
+  letter-spacing: -0.7px;
+  line-height: 38px;
+  margin: 0;
+}
+
+/* ── 검색 패널 ── */
+.searchlist-digitek-search-panel {
+  background: var(--digitek-bg-white);
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.searchlist-digitek-search-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.searchlist-digitek-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.searchlist-digitek-field-fixed {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 210px;
+  flex-shrink: 0;
+}
+
+.searchlist-digitek-field-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--digitek-primary);
+  line-height: 20px;
+  letter-spacing: -0.35px;
+  margin-bottom: 0;
+}
+
+.searchlist-digitek-field-label-hidden {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+  color: transparent;
+  user-select: none;
+}
+
+/* ── 검색 인풋 (search 아이콘 포함) ── */
+.searchlist-digitek-search-input {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 16px;
+  background: var(--digitek-bg-white);
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+}
+
+.searchlist-digitek-search-input:focus-within {
+  border-color: var(--digitek-border-focus);
+}
+
+.searchlist-digitek-search-input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: var(--digitek-font-family);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+  color: var(--digitek-text-primary);
+  background: transparent;
+  padding: 0;
+  min-width: 0;
+}
+
+.searchlist-digitek-search-input input::placeholder {
+  color: var(--digitek-text-placeholder);
+}
+
+/* ── 필터 토글 ── */
+.searchlist-digitek-filter-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.searchlist-digitek-filter-toggle-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--digitek-text-secondary);
+  line-height: 20px;
+  letter-spacing: -0.35px;
+}
+
+.searchlist-digitek-filter-toggle .dicon {
+  transition: transform 0.2s ease;
+}
+
+.searchlist-digitek-filter-toggle[aria-expanded="true"] .dicon {
+  transform: rotate(180deg);
+}
+
+/* ── 필터 확장 영역 ── */
+.searchlist-digitek-filter-area {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.searchlist-digitek-filter-area.show {
+  display: flex;
+}
+
+.searchlist-digitek-filter-row {
+  display: flex;
+  gap: 16px;
+}
+
+.searchlist-digitek-filter-row > * {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── 셀렉트/인풋 full-width in filter fields ── */
+.searchlist-digitek-field .select-digitek,
+.searchlist-digitek-field .date-select-digitek {
+  width: 100%;
+}
+
+.searchlist-digitek-field .select-digitek-trigger,
+.searchlist-digitek-field .date-select-digitek-trigger {
+  width: 100%;
+}
+
+/* ── 결과 섹션 ── */
+.searchlist-digitek-results {
+  margin-top: 24px;
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  background: var(--digitek-bg-white);
+}
+
+.searchlist-digitek-results .table-digitek {
+  table-layout: fixed;
+}
+
+.searchlist-digitek-results .table-digitek th,
+.searchlist-digitek-results .table-digitek td {
+  height: 44px;
+  padding: 0 24px;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.searchlist-digitek-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--digitek-border);
+}
+
+.searchlist-digitek-results-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--digitek-text-primary);
+  line-height: 26px;
+  letter-spacing: -0.45px;
+  flex-shrink: 0;
+}
+
+.searchlist-digitek-results-count {
+  color: var(--digitek-primary);
+}
+
+/* ── 결과 헤더 중앙 아코디언 토글 ── */
+.searchlist-digitek-results-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.searchlist-digitek-results-toggle .dicon {
+  transition: transform 0.2s ease;
+}
+
+.searchlist-digitek-results-toggle[aria-expanded="false"] .dicon {
+  transform: rotate(180deg);
+}
+
+.searchlist-digitek-results-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.searchlist-digitek-view-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--digitek-text-tertiary);
+  line-height: 22px;
+  letter-spacing: -0.375px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.searchlist-digitek-view-option.active {
+  color: var(--digitek-primary);
+}
+
+/* ── 페이지네이션 래퍼 ── */
+.searchlist-digitek-pagination {
+  display: flex;
+  justify-content: center;
+  padding: 24px 16px;
+  border-top: 1px solid var(--digitek-border);
+}
+
+/* ==========================================================================
+   검색 분할형 (Search Split Page)
+   ========================================================================== */
+
+/* ── 전체 레이아웃 (3-panel) ── */
+.searchsplit-digitek-body {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--digitek-bg-gray);
+  position: relative;
+}
+
+/* ── 좌측 검색 패널 (고정 450px) ── */
+.searchsplit-digitek-search-panel {
+  width: var(--digitek-split-search-width);
+  min-width: var(--digitek-split-search-min);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px 25px;
+  overflow-y: auto;
+  background: var(--digitek-bg-white);
+  border-right: 1px solid var(--digitek-border);
+}
+
+.searchsplit-digitek-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.searchsplit-digitek-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--digitek-text-primary);
+  letter-spacing: -0.7px;
+  line-height: 38px;
+  margin: 0;
+}
+
+/* ── 검색 필드 (세로 배치) ── */
+.searchsplit-digitek-search-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.searchsplit-digitek-search-input {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--digitek-bg-white);
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+}
+
+.searchsplit-digitek-search-input:focus-within {
+  border-color: var(--digitek-border-focus);
+}
+
+.searchsplit-digitek-search-input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: var(--digitek-font-family);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+  color: var(--digitek-text-primary);
+  background: transparent;
+  padding: 0;
+  min-width: 0;
+}
+
+.searchsplit-digitek-search-input input::placeholder {
+  color: var(--digitek-text-placeholder);
+}
+
+/* ── 구분선 ── */
+.searchsplit-digitek-divider {
+  border: none;
+  border-top: 1px solid var(--digitek-border);
+  margin: 0;
+}
+
+/* ── 필터 토글 ── */
+.searchsplit-digitek-filter-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.searchsplit-digitek-filter-toggle-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--digitek-text-secondary);
+  line-height: 20px;
+  letter-spacing: -0.35px;
+}
+
+.searchsplit-digitek-filter-toggle .dicon {
+  transition: transform 0.2s ease;
+}
+
+.searchsplit-digitek-filter-toggle[aria-expanded="true"] .dicon {
+  transform: rotate(180deg);
+}
+
+/* ── 필터 영역 (2열 그리드) ── */
+.searchsplit-digitek-filter-area {
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.searchsplit-digitek-filter-area.show {
+  display: flex;
+}
+
+.searchsplit-digitek-filter-row {
+  display: flex;
+  gap: 12px;
+}
+
+.searchsplit-digitek-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.searchsplit-digitek-field-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--digitek-primary);
+  line-height: 20px;
+  letter-spacing: -0.35px;
+}
+
+.searchsplit-digitek-field .select-digitek,
+.searchsplit-digitek-field .date-select-digitek {
+  width: 100%;
+}
+
+.searchsplit-digitek-field .select-digitek-trigger,
+.searchsplit-digitek-field .date-select-digitek-trigger {
+  width: 100%;
+}
+
+/* ── 결과 영역 ── */
+.searchsplit-digitek-results {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: transparent;
+  overflow: hidden;
+}
+
+/* ── 뷰 탭 (나란히 보기 / 펼쳐서 보기) ── */
+.searchsplit-digitek-view-tabs {
+  display: flex;
+  gap: 0;
+  padding: 5px;
+  background: #e5e5ec;
+  border-radius: 6px;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.searchsplit-digitek-view-tab {
+  padding: 4px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  color: var(--digitek-text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.searchsplit-digitek-view-tab.active {
+  background: var(--digitek-bg-white);
+  border-color: var(--digitek-border);
+  color: var(--digitek-text-primary);
+  font-weight: 600;
+}
+
+/* ── 결과 카드 (흰색 카드) ── */
+.searchsplit-digitek-results-card {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--digitek-bg-white);
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* ── 결과 헤더 ── */
+.searchsplit-digitek-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--digitek-border);
+  flex-shrink: 0;
+}
+
+.searchsplit-digitek-results-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--digitek-text-primary);
+  line-height: 26px;
+  letter-spacing: -0.45px;
+  flex-shrink: 0;
+}
+
+.searchsplit-digitek-results-count {
+  color: var(--digitek-primary);
+  font-weight: 600;
+}
+
+/* ── 결과 헤더 중앙 아코디언 토글 ── */
+.searchsplit-digitek-results-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.searchsplit-digitek-results-toggle .dicon {
+  transition: transform 0.2s ease;
+}
+
+.searchsplit-digitek-results-toggle[aria-expanded="false"] .dicon {
+  transform: rotate(180deg);
+}
+
+.searchsplit-digitek-results-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* ── 테이블 래퍼 ── */
+.searchsplit-digitek-table-wrap {
+  flex: 1;
+  overflow: auto;
+}
+
+.searchsplit-digitek-results .table-digitek {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.searchsplit-digitek-results .table-digitek th,
+.searchsplit-digitek-results .table-digitek td {
+  height: 44px;
+  max-height: 44px;
+  padding: 0 24px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.searchsplit-digitek-table-row {
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+}
+
+.searchsplit-digitek-table-row:hover {
+  background-color: #f7f7fb;
+}
+
+.searchsplit-digitek-table-row.active {
+  background-color: #eef3fb;
+}
+
+/* ── 페이지네이션 ── */
+.searchsplit-digitek-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 16px;
+  border-top: 1px solid var(--digitek-border);
+  flex-shrink: 0;
+}
+
+/* ── 상세 패널 ── */
+.searchsplit-digitek-detail {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--digitek-bg-white);
+  border-left: 1px solid var(--digitek-border);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.25s ease;
+  opacity: 0;
+  z-index: 10;
+}
+
+/* 상세 패널 열림 상태 */
+.searchsplit-digitek-body-detail-open .searchsplit-digitek-detail {
+  width: var(--digitek-split-detail-width);
+  min-width: var(--digitek-split-detail-min);
+  opacity: 1;
+}
+
+/* 전체 보기 상태: 검색 패널 + 결과 영역 숨기고 상세 패널 전체 너비 */
+.searchsplit-digitek-body-fullview .searchsplit-digitek-search-panel {
+  display: none;
+}
+
+.searchsplit-digitek-body-fullview .searchsplit-digitek-results {
+  display: none;
+}
+
+.searchsplit-digitek-body-fullview .searchsplit-digitek-detail {
+  width: 100%;
+  left: 0;
+  min-width: 0;
+}
+
+/* ── 상세 패널 헤더 ── */
+.searchsplit-digitek-detail-header {
+  padding: 24px;
+  flex-shrink: 0;
+}
+
+.searchsplit-digitek-detail-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.searchsplit-digitek-detail-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--digitek-text-primary);
+  letter-spacing: -0.7px;
+  line-height: 38px;
+  margin: 0;
+}
+
+.searchsplit-digitek-detail-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.searchsplit-digitek-detail-btn {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  background: var(--digitek-bg-white);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.searchsplit-digitek-detail-btn:hover {
+  background-color: #f7f7fb;
+}
+
+.searchsplit-digitek-detail-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ── 상세 패널 본문 ── */
+.searchsplit-digitek-detail-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 24px 24px;
+}
+
+/* flex 스크롤: 자식이 shrink되지 않아야 overflow-y: auto가 동작 */
+.searchsplit-digitek-detail-body > * {
+  flex-shrink: 0;
+}
+
+/* ── 섹션 (일정, 세부사항, 담당자, 고객일정) ── */
+.searchsplit-digitek-detail-section {
+  /* 개별 섹션 타입이 padding/border 를 직접 정의 */
+}
+
+.searchsplit-digitek-detail-section:first-child {
+  background: #f7f7fb;
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+
+.searchsplit-digitek-section-divider {
+  border: none;
+  border-top: 1px solid var(--digitek-border);
+  margin: 14px 0;
+}
+
+/* ── 일정 섹션 ── */
+.searchsplit-digitek-schedule-header {
+  display: flex;
+  padding-bottom: 12px;
+}
+
+.searchsplit-digitek-schedule-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #a0aec0;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+}
+
+.searchsplit-digitek-schedule-label-date {
+  margin-left: 89px;
+}
+
+.searchsplit-digitek-schedule-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-top: 10px;
+}
+
+.searchsplit-digitek-schedule-row {
+  display: flex;
+  align-items: center;
+}
+
+.searchsplit-digitek-schedule-row .searchsplit-digitek-info-label {
+  width: 169px;
+  min-width: 169px;
+}
+
+/* ── 정보 그리드 (라벨 + 값) ── */
+.searchsplit-digitek-info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.searchsplit-digitek-info-row {
+  display: flex;
+  align-items: flex-start;
+}
+
+.searchsplit-digitek-info-label {
+  width: 107px;
+  min-width: 107px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--digitek-text-primary);
+  line-height: 20px;
+}
+
+.searchsplit-digitek-detail-section-contact .searchsplit-digitek-info-label {
+  width: 131px;
+  min-width: 131px;
+}
+
+.searchsplit-digitek-info-value {
+  font-size: 14px;
+  color: var(--digitek-text-primary);
+  line-height: 20px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── 상세 패널 배지 (헤더 아래 타입 라벨) ── */
+.searchsplit-digitek-detail-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7f7fb;
+  color: #2f66ba;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.375px;
+  padding: 8px 30px;
+  border-radius: 4px;
+}
+
+/* ════════════════════════════════════════════════
+   상세 확대 모달 (Search Split Detail Modal)
+   ════════════════════════════════════════════════ */
+
+.searchsplit-digitek-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchsplit-digitek-modal-overlay[hidden] {
+  display: none;
+}
+
+.searchsplit-digitek-modal {
+  display: flex;
+  width: min(1200px, 90vw);
+  height: 85vh;
+  padding: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  background: #FFF;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+}
+
+/* 모달 내부 헤더: 부모 패딩 사용하므로 자체 패딩 제거 */
+.searchsplit-digitek-modal .searchsplit-digitek-detail-header {
+  padding: 0;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* 모달 본문: 좌-일정 / 우-아코디언 2열 레이아웃 */
+.searchsplit-digitek-modal-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+  width: 100%;
+}
+
+.searchsplit-digitek-modal-schedule-col {
+  flex: 0 0 auto;
+  min-width: 200px;
+  background: #f7f7fb;
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+
+.searchsplit-digitek-modal-detail-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-left: 0;
+}
+

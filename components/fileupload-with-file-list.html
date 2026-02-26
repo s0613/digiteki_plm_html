@@ -1,0 +1,50 @@
+<!-- 파일 선택 완료 상태: 선택된 파일 목록이 업로드 영역 아래에 표시 -->
+<!-- [커스텀] 파일 목록 항목(.file-upload-digitek-file-item)은 JS로 동적 추가/제거 -->
+<!-- [커스텀] 파일명, 크기 텍스트를 실제 선택된 파일 정보로 교체 -->
+<!-- [커스텀] 삭제 버튼 클릭 시 해당 항목을 DOM에서 제거하고 FileList에서도 제외 -->
+<!-- [접근성] 키보드 접근성을 위한 keydown 이벤트 처리 필요 -->
+<!-- container.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') container.click(); }); -->
+<!-- JS 연동 예시:
+  const input = document.querySelector('.file-upload-digitek-input');
+  const list = document.querySelector('.file-upload-digitek-file-list');
+  input.addEventListener('change', (e) => {
+    list.innerHTML = '';
+    Array.from(e.target.files).forEach((file) => {
+      const item = document.createElement('div');
+      item.className = 'file-upload-digitek-file-item';
+      item.innerHTML = `
+        <i class="dicon dicon-file icon-digitek-16 text-digitek-secondary" aria-hidden="true"></i>
+        <span class="file-upload-digitek-file-name">${file.name}</span>
+        <span class="file-upload-digitek-file-size">(${(file.size / 1024).toFixed(1)} KB)</span>
+        <button type="button" class="file-upload-digitek-file-remove" aria-label="파일 삭제">
+          <i class="dicon dicon-close icon-digitek-16 text-digitek-secondary" aria-hidden="true"></i>
+        </button>
+      `;
+      list.appendChild(item);
+    });
+  });
+-->
+<div class="file-upload-digitek" role="button" tabindex="0" aria-label="파일 업로드">
+  <i class="dicon dicon-cloud-upload file-upload-digitek-icon h-digitek-24 text-digitek-blue" style="width: 37px;" aria-hidden="true"></i>
+  <p class="file-upload-digitek-label">이 곳에 눌러 파일을 선택하거나, Drag &amp; Drop 하기</p>
+  <input type="file" class="file-upload-digitek-input" multiple />
+</div>
+<!-- 선택된 파일 목록 -->
+<div class="file-upload-digitek-file-list">
+  <div class="file-upload-digitek-file-item">
+    <i class="dicon dicon-file icon-digitek-16 text-digitek-secondary" aria-hidden="true"></i>
+    <span class="file-upload-digitek-file-name">프로젝트_기획서.pdf</span>
+    <span class="file-upload-digitek-file-size">(1,240 KB)</span>
+    <button type="button" class="file-upload-digitek-file-remove" aria-label="파일 삭제">
+      <i class="dicon dicon-close icon-digitek-16 text-digitek-secondary" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="file-upload-digitek-file-item">
+    <i class="dicon dicon-file icon-digitek-16 text-digitek-secondary" aria-hidden="true"></i>
+    <span class="file-upload-digitek-file-name">요구사항_정의서.docx</span>
+    <span class="file-upload-digitek-file-size">(320 KB)</span>
+    <button type="button" class="file-upload-digitek-file-remove" aria-label="파일 삭제">
+      <i class="dicon dicon-close icon-digitek-16 text-digitek-secondary" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<!-- 중첩 아코디언: 페이지 아코디언 내부에 내부 아코디언을 배치 -->
+<!-- [커스텀] 페이지 아코디언(accordion-digitek-page) 안에 내부 아코디언(accordion-digitek-inner) 중첩 가능 -->
+<!-- [커스텀] aria-expanded로 각 아코디언의 열림/닫힘 상태를 독립적으로 관리 -->
+<div class="accordion-digitek-page">
+  <div class="accordion-digitek-page-header accordion-digitek-page-header-open" role="button" tabindex="0"
+       aria-expanded="true" aria-controls="accordion-nested-page-content">
+    <span class="accordion-digitek-page-title">메인 섹션</span>
+    <i class="dicon dicon-chevron-up accordion-digitek-chevron" aria-hidden="true"></i>
+  </div>
+  <div id="accordion-nested-page-content" class="accordion-digitek-page-content">
+    <div class="accordion-digitek-inner" style="margin-bottom: 16px;">
+      <div class="accordion-digitek-inner-header accordion-digitek-inner-header-open" role="button" tabindex="0"
+           aria-expanded="true" aria-controls="accordion-nested-inner-content-1">
+        <span class="accordion-digitek-inner-title">서브 섹션 1</span>
+        <i class="dicon dicon-chevron-up-sm accordion-digitek-chevron" aria-hidden="true"></i>
+      </div>
+      <div id="accordion-nested-inner-content-1" class="accordion-digitek-inner-content">
+        <p>서브 섹션 1 내용</p>
+      </div>
+    </div>
+    <div class="accordion-digitek-inner">
+      <div class="accordion-digitek-inner-header" role="button" tabindex="0"
+           aria-expanded="false" aria-controls="accordion-nested-inner-content-2">
+        <span class="accordion-digitek-inner-title">서브 섹션 2</span>
+        <i class="dicon dicon-chevron-up-sm accordion-digitek-chevron accordion-digitek-chevron-closed" aria-hidden="true"></i>
+      </div>
+      <div id="accordion-nested-inner-content-2" class="accordion-digitek-inner-content" hidden></div>
+    </div>
+  </div>
+</div>

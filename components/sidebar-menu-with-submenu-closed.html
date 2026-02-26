@@ -1,0 +1,42 @@
+<!-- 2레벨 서브메뉴 닫힘 상태 -->
+<!-- sidebar-digitek-chevron-open 클래스 제거 → 화살표 원위치, aria-expanded="false" -->
+<!-- [커스텀] JS 연동: 클릭 시 sidebar-digitek-submenu style="max-height: 0" 으로 변경 -->
+<li class="nav-item">
+  <!-- [커스텀] href="#"은 JavaScript에서 preventDefault()로 처리하세요 -->
+  <a class="sidebar-digitek-menu-item" href="#" aria-expanded="false">
+    <span class="sidebar-digitek-icon-label">
+      <i class="dicon dicon-layer icon-digitek-20"></i>
+      <span class="sidebar-digitek-menu-label">PMS</span>
+    </span>
+    <span class="sidebar-digitek-chevron">
+      <i class="dicon dicon-chevron-down icon-digitek-20"></i>
+    </span>
+  </a>
+  <!-- 닫힘 상태: max-height: 0 (CSS transition으로 애니메이션) -->
+  <ul class="nav flex-column sidebar-digitek-submenu" style="max-height: 0;" aria-label="PMS 하위 메뉴">
+    <li class="nav-item">
+      <a class="sidebar-digitek-submenu-item" href="#">
+        <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+        <span class="sidebar-digitek-menu-label">프로젝트 검색</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="sidebar-digitek-submenu-item" href="#">
+        <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+        <span class="sidebar-digitek-menu-label">프로젝트 등록</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="sidebar-digitek-submenu-item" href="#">
+        <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+        <span class="sidebar-digitek-menu-label">My Task</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="sidebar-digitek-submenu-item" href="#">
+        <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+        <span class="sidebar-digitek-menu-label">이슈 검색</span>
+      </a>
+    </li>
+  </ul>
+</li>

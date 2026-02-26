@@ -1,0 +1,17 @@
+<!-- 2depth 브레드크럼: 홈 → 현재 페이지 -->
+<!-- 중간 항목은 <a> + breadcrumb-digitek-clickable, 마지막 항목은 <span> 사용 -->
+<!-- [커스텀] 링크 경로 변경: th:href="@{/home}" -->
+<!-- [커스텀] 현재 페이지명 변경: th:text="${pageTitle}" -->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb breadcrumb-digitek">
+    <!-- 중간 항목: 클릭 가능 -->
+    <li class="breadcrumb-digitek-item">
+      <a href="#" class="breadcrumb-digitek-depth breadcrumb-digitek-clickable">홈</a>
+    </li>
+    <!-- 마지막 항목(현재 페이지): 클릭 불가, span 사용 -->
+    <li class="breadcrumb-digitek-item" aria-current="page">
+      <i class="dicon dicon-breadcrumb-separator" aria-hidden="true"></i>
+      <span class="breadcrumb-digitek-depth">현재 페이지</span>
+    </li>
+  </ol>
+</nav>

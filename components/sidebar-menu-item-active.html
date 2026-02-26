@@ -1,0 +1,12 @@
+<!-- 활성 메뉴 아이템: 'sidebar-digitek-active' 클래스 추가 + aria-current="page" -->
+<!-- [커스텀] Thymeleaf 현재 경로 기반 active 처리:
+     th:classappend="${#strings.startsWith(#httpServletRequest.requestURI, '/approval')} ? 'sidebar-digitek-active'"
+     th:attr="aria-current=${#strings.startsWith(#httpServletRequest.requestURI, '/approval')} ? 'page'" -->
+<li class="nav-item">
+  <a class="sidebar-digitek-menu-item sidebar-digitek-active" href="#" aria-current="page">
+    <span class="sidebar-digitek-icon-label">
+      <i class="dicon dicon-file-blank icon-digitek-20"></i>
+      <span class="sidebar-digitek-menu-label">결재 관리</span>
+    </span>
+  </a>
+</li>
