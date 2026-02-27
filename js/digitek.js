@@ -153,9 +153,15 @@
   /*  Sidebar                                                            */
   /* ================================================================== */
 
-  var sidebarItemH = parseFloat(
-    getComputedStyle(document.documentElement).getPropertyValue("--sidebar-item-height")
-  ) || 48;
+  var _sidebarItemH = null;
+  function getSidebarItemH() {
+    if (_sidebarItemH === null) {
+      _sidebarItemH = parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue("--sidebar-item-height")
+      ) || 48;
+    }
+    return _sidebarItemH;
+  }
 
   var Sidebar = {
     init: function () {
@@ -222,7 +228,7 @@
 
             // 열기
             var count = submenu.querySelectorAll(":scope > .nav-item").length;
-            submenu.style.maxHeight = (count * sidebarItemH) + "px";
+            submenu.style.maxHeight = (count * getSidebarItemH()) + "px";
             item.setAttribute("aria-expanded", "true");
             var chev = item.querySelector(".sidebar-digitek-chevron");
             if (chev) chev.classList.add("sidebar-digitek-chevron-open");
@@ -272,7 +278,7 @@
             }
 
             var count = subSubmenu.querySelectorAll(":scope > .nav-item").length;
-            subSubmenu.style.maxHeight = (count * sidebarItemH) + "px";
+            subSubmenu.style.maxHeight = (count * getSidebarItemH()) + "px";
             item.setAttribute("aria-expanded", "true");
             var chev = item.querySelector(".sidebar-digitek-chevron");
             if (chev) chev.classList.add("sidebar-digitek-chevron-open");
@@ -363,7 +369,7 @@
           count += ss.querySelectorAll(":scope > .nav-item").length;
         }
       });
-      submenu.style.maxHeight = (count * sidebarItemH) + "px";
+      submenu.style.maxHeight = (count * getSidebarItemH()) + "px";
     },
   };
 
@@ -1081,14 +1087,13 @@
           var btn = createEl("button", "text-editor-digitek-align-item" +
             (state.textAlign === a.value ? " text-editor-digitek-selected" : ""),
             { type: "button" });
-          // 정렬 아이콘 SVG
-          var svgMap = {
-            left: '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 3.75h8.75V5H7.5V3.75zm0 3.75h6.25v1.25H7.5V7.5zm0 3.75h8.75v1.25H7.5v-1.25zm0 3.75h6.25v1.25H7.5V15zM3.75 2.5H5v15H3.75v-15z" fill="#111"/></svg>',
-            center: '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2.5 3.75h15V5h-15V3.75zm2.5 3.75h10v1.25H5V7.5zm-2.5 3.75h15v1.25h-15v-1.25zm2.5 3.75h10v1.25H5V15z" fill="#111"/></svg>',
-            right: '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3.75 3.75h8.75V5H3.75V3.75zm2.5 3.75h6.25v1.25H6.25V7.5zm-2.5 3.75h8.75v1.25H3.75v-1.25zm2.5 3.75h6.25v1.25H6.25V15zM15 2.5h1.25v15H15v-15z" fill="#111"/></svg>',
-            justify: '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2.5 3.75h15V5h-15V3.75zm0 3.75h15v1.25h-15V7.5zm0 3.75h15v1.25h-15v-1.25zm0 3.75h15v1.25h-15V15z" fill="#111"/></svg>',
+          var iconMap = {
+            left: "dicon-align-left",
+            center: "dicon-align-center",
+            right: "dicon-align-right",
+            justify: "dicon-align-justify",
           };
-          btn.innerHTML = (svgMap[a.value] || "") + "<span>" + a.label + "</span>";
+          btn.innerHTML = '<i class="dicon ' + iconMap[a.value] + ' icon-digitek-20"></i><span>' + a.label + '</span>';
           btn.addEventListener("click", function (e) {
             e.stopPropagation();
             TextEditor._setState(editor, { textAlign: a.value });
@@ -1103,16 +1108,16 @@
         var colorList = createEl("div", "text-editor-digitek-color-list");
         colors.forEach(function (c) {
           var btn = createEl("button", "text-editor-digitek-color-swatch", { type: "button" });
-          var checkmark = state.textColor === c
-            ? '<path d="M6.5 10L8.834 12.5 13.5 7.5" stroke="white" strokeWidth="1.5" stroke-linecap="round" stroke-linejoin="round"/>'
-            : '';
-          btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="' + c + '"/>' + checkmark + '</svg>';
+          var dot = createEl("span", "text-editor-digitek-color-dot");
+          dot.style.backgroundColor = c;
+          if (state.textColor === c) dot.classList.add("active");
+          btn.appendChild(dot);
           btn.addEventListener("click", function (e) {
             e.stopPropagation();
             TextEditor._setState(editor, { textColor: c });
             // 색상 버튼 업데이트
-            var colorBtnSvg = editor.querySelector(".text-editor-digitek-color-btn svg circle");
-            if (colorBtnSvg) colorBtnSvg.setAttribute("fill", c);
+            var colorIndicator = editor.querySelector(".text-editor-digitek-color-btn .text-editor-digitek-color-swatch");
+            if (colorIndicator) colorIndicator.style.backgroundColor = c;
             TextEditor._closeDropdowns(editor);
             TextEditor._exec(editor, "foreColor", c);
           });
@@ -1338,10 +1343,10 @@
         var btn = wrap.querySelector(".gnb-digitek-locale-btn");
         if (btn) {
           var code = option.textContent.trim();
-          // SVG 쉐브론 보존
-          var svg = btn.querySelector("svg");
+          // 아이콘 쉐브론 보존
+          var chevron = btn.querySelector(".dicon");
           btn.textContent = code + " ";
-          if (svg) btn.appendChild(svg);
+          if (chevron) btn.appendChild(chevron);
           // 닫을 때 aria-expanded 갱신
           btn.setAttribute("aria-expanded", "false");
         }
@@ -1412,7 +1417,7 @@
     function initTable(tableBodyIdOrEl) {
       var tbody;
       if (typeof tableBodyIdOrEl === "string") {
-        tbody = document.getElementById(tableBodyIdOrEl || "draggableTableBody");
+        tbody = document.getElementById(tableBodyIdOrEl);
       } else {
         tbody = tableBodyIdOrEl;
       }
@@ -1499,6 +1504,14 @@
         })
         .then(function (html) {
           placeholder.outerHTML = html;
+          var prefix = resolvePath().replace(SIDEBAR_PATH, "");
+          var nav = document.querySelector(".sidebar-digitek");
+          if (nav) {
+            nav.querySelectorAll("img[data-src]").forEach(function (img) {
+              img.src = prefix + img.getAttribute("data-src");
+              img.removeAttribute("data-src");
+            });
+          }
           Sidebar.init();
         })
         .catch(function (err) {
@@ -1514,10 +1527,9 @@
   /* ================================================================== */
 
   function initAll() {
-    SidebarLoader.init();
+    SidebarLoader.init(); // Sidebar.init()은 SidebarLoader 로드 완료 후 호출됨
     Accordion.init();
     TabButton.init();
-    Sidebar.init();
     FileUpload.init();
     GNBSearch.init();
     Select.init();

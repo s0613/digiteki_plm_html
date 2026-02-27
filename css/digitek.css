@@ -2222,6 +2222,25 @@ body {
   background: var(--digitek-bg-gray);
 }
 
+.text-editor-digitek-color-dot {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.text-editor-digitek-color-dot.active::after {
+  content: "\2713";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
 /* 링크 팝오버 */
 .text-editor-digitek-popover {
   position: absolute;
