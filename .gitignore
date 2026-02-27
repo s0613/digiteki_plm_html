@@ -1,0 +1,13 @@
+# Worktrees
+.worktrees/
+
+# AI-generated plans, docs, and notes
+docs/
+*.plan.md
+*.spec.md
+*.notes.md
+CLAUDE.md
+.claude/
+
+# General markdown (uncomment if needed)
+# *.md
