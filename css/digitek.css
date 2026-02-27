@@ -1061,9 +1061,9 @@ body {
 
 /* 활성 탭 */
 .tab-digitek-active {
-  background-color: var(--digitek-bg-white) !important;
-  color: var(--digitek-text-primary) !important;
-  border: 1px solid var(--digitek-border) !important;
+  background-color: var(--digitek-bg-white);
+  color: var(--digitek-text-primary);
+  border: 1px solid var(--digitek-border);
 }
 
 /* 큰 탭 (16px) */

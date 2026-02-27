@@ -136,15 +136,11 @@
         var tabs = group.querySelectorAll(".tab-digitek");
         tabs.forEach(function (t) {
           t.classList.remove("tab-digitek-active");
-          t.classList.remove("btn-light");
-          t.classList.add("btn-link");
           t.setAttribute("aria-selected", "false");
         });
 
         // 클릭한 탭에 active 추가
         tab.classList.add("tab-digitek-active");
-        tab.classList.remove("btn-link");
-        tab.classList.add("btn-light");
         tab.setAttribute("aria-selected", "true");
 
         emit(tab, "digitek:tab-change", { tab: tab, label: tab.textContent.trim() });
