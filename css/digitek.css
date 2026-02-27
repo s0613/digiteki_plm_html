@@ -299,23 +299,6 @@ body {
   cursor: not-allowed;
 }
 
-/* 검색 인풋 래퍼 */
-.input-digitek-search {
-  display: flex;
-  width: 304px;
-  padding: 14px 16px;
-  align-items: center;
-  gap: 12px;
-  border-radius: 4px;
-  border: 1px solid var(--digitek-border);
-  background: var(--digitek-bg-white);
-  transition: border-color 0.15s ease-in-out;
-}
-
-.input-digitek-search:focus-within {
-  border-color: var(--digitek-border-focus);
-}
-
 /* GNB 검색 인풋 (pill) */
 .input-digitek-gnb {
   display: flex;
