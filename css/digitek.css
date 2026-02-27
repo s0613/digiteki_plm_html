@@ -2664,11 +2664,11 @@ body {
 
 /* 펼침 상태: full 로고 표시, collapsed 로고 숨김 */
 .sidebar-logo-full { display: block; }
-.sidebar-logo-collapsed { display: none !important; }
+.sidebar-digitek .sidebar-logo-collapsed { display: none; }
 
 /* 접힘 상태: full 로고 숨김, HL 로고 표시 */
-.sidebar-digitek-collapsed .sidebar-logo-full { display: none !important; }
-.sidebar-digitek-collapsed .sidebar-logo-collapsed { display: block !important; }
+.sidebar-digitek-collapsed .sidebar-logo-full { display: none; }
+.sidebar-digitek-collapsed .sidebar-logo-collapsed { display: block; }
 
 /* 접힘 상태 헤더: HL 로고 위 + 햄버거 아래 세로 배치 */
 .sidebar-digitek-collapsed .sidebar-digitek-header {
@@ -2735,30 +2735,30 @@ body {
   justify-content: center;
   width: 48px;
   height: 48px;
-  padding: 0 !important;
+  padding: 0;
   overflow: hidden;
 }
 
 /* 활성 상태 */
-.sidebar-digitek-active {
-  background-color: #fff !important;
-  color: var(--digitek-primary) !important;
+.sidebar-digitek .sidebar-digitek-active {
+  background-color: #fff;
+  color: var(--digitek-primary);
 }
 
-.sidebar-digitek-active:hover {
-  background-color: #f0f0f0 !important;
-  color: var(--digitek-primary) !important;
+.sidebar-digitek .sidebar-digitek-active:hover {
+  background-color: #f0f0f0;
+  color: var(--digitek-primary);
 }
 
 /* 펼쳐진 상태의 부모 메뉴 (자식이 활성화된 경우, subtle 표시) */
-.sidebar-digitek-parent-open {
-  background-color: rgba(255, 255, 255, 0.08) !important;
-  color: #fff !important;
+.sidebar-digitek .sidebar-digitek-parent-open {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #fff;
 }
 
-.sidebar-digitek-parent-open:hover {
-  background-color: rgba(255, 255, 255, 0.15) !important;
-  color: #fff !important;
+.sidebar-digitek .sidebar-digitek-parent-open:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
 }
 
 /* 메뉴 라벨 */
@@ -2865,14 +2865,14 @@ body {
 }
 
 /* 3레벨 활성 상태 */
-.sidebar-digitek-sub-active {
-  background-color: #fff !important;
-  color: var(--digitek-primary) !important;
+.sidebar-digitek .sidebar-digitek-sub-active {
+  background-color: #fff;
+  color: var(--digitek-primary);
 }
 
-.sidebar-digitek-sub-active:hover {
-  background-color: #f0f0f0 !important;
-  color: var(--digitek-primary) !important;
+.sidebar-digitek .sidebar-digitek-sub-active:hover {
+  background-color: #f0f0f0;
+  color: var(--digitek-primary);
 }
 
 /* ── Sidebar PNG 아이콘 지원 ── */
