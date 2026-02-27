@@ -1371,6 +1371,68 @@
   flex: 1;
 }
 
+/* ── 결재자 지정 컴포넌트 ── */
+.approval-designator {
+  border: 1px solid #e5e5ec;
+  border-radius: 8px;
+  padding: 16px;
+  background: #fff;
+}
+.approval-designator-header { margin-bottom: 12px; }
+.approval-designator-title { font-weight: 600; font-size: 14px; }
+.approval-designator-search { display: flex; align-items: center; }
+.approval-line-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.approval-line-item:last-child { border-bottom: none; }
+.approval-line-step {
+  width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--digitek-primary);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.approval-line-info { flex: 1; display: flex; flex-direction: column; }
+.approval-line-name { font-size: 14px; font-weight: 500; }
+.approval-line-dept { font-size: 12px; }
+.approval-line-remove { margin-left: auto; }
+
+/* ── 담당자 태그 선택 ── */
+.assignee-tags-input-row { display: flex; align-items: center; }
+.assignee-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.assignee-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: #e8f0fb;
+  color: var(--digitek-primary);
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.assignee-tag-remove {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  color: var(--digitek-primary);
+}
+.assignee-tag-remove:hover { color: #c00; }
+
 /* ========================================================================== */
 /*  Breadcrumb (브레드크럼)                                                      */
 /* ========================================================================== */
@@ -1743,6 +1805,12 @@
 .table-digitek-col-fixed {
   width: 300px;
 }
+
+/* ── 드래그앤드롭 행 순서 변경 ── */
+.draggable-row { cursor: default; }
+.draggable-row.drag-over { background-color: #e8f0fb; border-top: 2px solid var(--digitek-primary); }
+.drag-handle { cursor: grab; }
+.drag-handle:active { cursor: grabbing; }
 
 /* ========================================================================== */
 /*  TextEditor (텍스트 에디터)                                                   */
@@ -2849,6 +2917,14 @@
   color: var(--digitek-primary) !important;
 }
 
+/* ── Sidebar PNG 아이콘 지원 ── */
+.sidebar-digitek-icon-label img.sidebar-icon-png {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
 /* ================================================================== */
 /*  Layout (앱 레이아웃)                                               */
 /* ================================================================== */
@@ -2873,6 +2949,22 @@
   overflow: auto;
   display: flex;
   flex-direction: column;
+}
+
+/* ── 메인 페이지 6-div 레이아웃 ── */
+.main-page-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
+.main-page-area {
+  background: #fff;
+  border: 1px solid #e5e5ec;
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 200px;
+  /* [커스텀] height: Xpx 으로 영역별 높이 지정 */
 }
 
 /* ========================================================================== */
@@ -5133,103 +5225,10 @@
   padding-left: 0;
 }
 
-/* ========================================
-   HLKlemove 추가 컴포넌트 스타일
-   ======================================== */
+/* ========================================================================== */
+/*  그룹/사용자 관리 (Group & User Management)                                   */
+/* ========================================================================== */
 
-/* ── Task 4: Sidebar PNG 아이콘 지원 ── */
-.sidebar-digitek-icon-label img.sidebar-icon-png {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
-}
-
-/* ── Task 5: 메인 페이지 6-div 레이아웃 ── */
-.main-page-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 16px;
-  padding: 16px;
-}
-.main-page-area {
-  background: #fff;
-  border: 1px solid #e5e5ec;
-  border-radius: 8px;
-  overflow: hidden;
-  min-height: 200px;
-  /* [커스텀] height: Xpx 으로 영역별 높이 지정 */
-}
-
-/* ── Task 6: 결재자 지정 컴포넌트 ── */
-.approval-designator {
-  border: 1px solid #e5e5ec;
-  border-radius: 8px;
-  padding: 16px;
-  background: #fff;
-}
-.approval-designator-header { margin-bottom: 12px; }
-.approval-designator-title { font-weight: 600; font-size: 14px; }
-.approval-designator-search { display: flex; align-items: center; }
-.approval-line-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 0;
-  border-bottom: 1px solid #f0f0f0;
-}
-.approval-line-item:last-child { border-bottom: none; }
-.approval-line-step {
-  width: 24px; height: 24px;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--digitek-primary);
-  color: #fff;
-  border-radius: 50%;
-  font-size: 12px;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-.approval-line-info { flex: 1; display: flex; flex-direction: column; }
-.approval-line-name { font-size: 14px; font-weight: 500; }
-.approval-line-dept { font-size: 12px; }
-.approval-line-remove { margin-left: auto; }
-
-/* ── Task 7: 담당자 태그 선택 ── */
-.assignee-tags-input-row { display: flex; align-items: center; }
-.assignee-tags-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.assignee-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 10px;
-  background: #e8f0fb;
-  color: var(--digitek-primary);
-  border-radius: 14px;
-  font-size: 13px;
-  font-weight: 500;
-}
-.assignee-tag-remove {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  color: var(--digitek-primary);
-}
-.assignee-tag-remove:hover { color: #c00; }
-
-/* ── Task 8: 드래그앤드롭 행 순서 변경 ── */
-.draggable-row { cursor: default; }
-.draggable-row.drag-over { background-color: #e8f0fb; border-top: 2px solid var(--digitek-primary); }
-.drag-handle { cursor: grab; }
-.drag-handle:active { cursor: grabbing; }
-
-/* ── Task 9: 그룹/사용자 관리 화면 ── */
 .group-manage-layout {
   display: flex;
   flex-direction: column;
@@ -5333,7 +5332,10 @@
   /* [커스텀] Dhtmlx Grid가 이 div를 대체합니다 */
 }
 
-/* ── Task 10: 코드 추가/상세 화면 ── */
+/* ========================================================================== */
+/*  코드 관리 (Code Management)                                                 */
+/* ========================================================================== */
+
 .code-manage-layout {
   display: flex;
   flex-direction: column;
@@ -5669,7 +5671,11 @@
   margin-bottom: 12px;
 }
 
-/* ── Task 11: 사이즈 조절 Modal ── */
+/* ========================================================================== */
+/*  Modal (모달 확장)                                                           */
+/* ========================================================================== */
+
+/* ── 사이즈 조절 Modal ── */
 .modal-dialog-resizable {
   resize: both;
   overflow: auto;
