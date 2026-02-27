@@ -81,6 +81,13 @@
   --digitek-gantt-col-role: 80px;
   --digitek-gantt-col-date: 100px;
   --digitek-gantt-col-status: 80px;
+
+  /* 추가 색상 변수 */
+  --digitek-info-alt: #4896ec;      /* 상태 아이콘용 블루 */
+  --digitek-bg-avatar: #e8e8e8;     /* 아바타 기본 배경 */
+  --digitek-bg-tab-group: #F2F2F6;  /* 탭 그룹 배경 */
+  --digitek-bg-assignee: #e8f0fb;   /* 담당자 태그 배경 */
+  --sidebar-item-height: 48px;      /* 사이드바 메뉴 항목 높이 */
 }
 
 /* ========================================================================== */
@@ -714,7 +721,7 @@
 }
 
 .badge-digitek-status-icon-blue {
-  background-color: #4896ec;
+  background-color: var(--digitek-info-alt);
 }
 
 .badge-digitek-status-icon-green {
@@ -826,7 +833,7 @@
 }
 
 .badge-digitek-dot-completed {
-  background-color: #4896ec;
+  background-color: var(--digitek-info-alt);
 }
 
 .badge-digitek-dot-delayed {
@@ -897,7 +904,7 @@
 }
 
 .badge-digitek-priority-dot-filled {
-  background-color: #4896ec;
+  background-color: var(--digitek-info-alt);
 }
 
 .badge-digitek-priority-dot-empty {
@@ -951,7 +958,7 @@
   border-radius: 90px;
   flex-shrink: 0;
   overflow: hidden;
-  background-color: #e8e8e8;
+  background-color: var(--digitek-bg-avatar);
 }
 
 .badge-digitek-avatar img {
@@ -1053,7 +1060,7 @@
   padding: 8px;
   align-items: center;
   border-radius: 4px;
-  background: #F2F2F6;
+  background: var(--digitek-bg-tab-group);
 }
 
 /* 콘텐츠 너비에 맞추는 인라인 모드 */
@@ -1416,7 +1423,7 @@
   align-items: center;
   gap: 4px;
   padding: 4px 10px;
-  background: #e8f0fb;
+  background: var(--digitek-bg-assignee);
   color: var(--digitek-primary);
   border-radius: 14px;
   font-size: 13px;
@@ -1808,7 +1815,7 @@
 
 /* ── 드래그앤드롭 행 순서 변경 ── */
 .draggable-row { cursor: default; }
-.draggable-row.drag-over { background-color: #e8f0fb; border-top: 2px solid var(--digitek-primary); }
+.draggable-row.drag-over { background-color: var(--digitek-bg-assignee); border-top: 2px solid var(--digitek-primary); }
 .drag-handle { cursor: grab; }
 .drag-handle:active { cursor: grabbing; }
 
