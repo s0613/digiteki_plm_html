@@ -1548,7 +1548,7 @@
                     '<i class="dicon dicon-chevron-down icon-digitek-20"></i>' +
                   "</span>" +
                 "</a>" +
-                '<ul class="nav flex-column sidebar-digitek-submenu" style="max-height:192px;" aria-label="PMS 하위 메뉴">' +
+                '<ul class="nav flex-column sidebar-digitek-submenu" style="max-height: 192px;" aria-label="PMS 하위 메뉴">' +
                   '<li class="nav-item"><a class="sidebar-digitek-submenu-item" href="#"><span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span><span class="sidebar-digitek-menu-label">프로젝트 검색</span></a></li>' +
                   '<li class="nav-item"><a class="sidebar-digitek-submenu-item" href="#"><span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span><span class="sidebar-digitek-menu-label">프로젝트 등록</span></a></li>' +
                   '<li class="nav-item"><a class="sidebar-digitek-submenu-item" href="#"><span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span><span class="sidebar-digitek-menu-label">My Task</span></a></li>' +
@@ -1575,7 +1575,7 @@
                     '<i class="dicon dicon-chevron-down icon-digitek-20"></i>' +
                   "</span>" +
                 "</a>" +
-                '<ul class="nav flex-column sidebar-digitek-submenu" style="max-height:336px;" aria-label="시험/시작/해석 하위 메뉴">' +
+                '<ul class="nav flex-column sidebar-digitek-submenu" style="max-height: 336px;" aria-label="시험/시작/해석 하위 메뉴">' +
                   /* 시험 */
                   '<li class="nav-item">' +
                     '<a class="sidebar-digitek-submenu-item" href="#">' +
@@ -1596,7 +1596,7 @@
                         '<i class="dicon dicon-chevron-down icon-digitek-16"></i>' +
                       "</span>" +
                     "</a>" +
-                    '<ul class="nav flex-column sidebar-digitek-sub-submenu" style="max-height:240px;" aria-label="시작 하위 메뉴">' +
+                    '<ul class="nav flex-column sidebar-digitek-sub-submenu" style="max-height: 240px;" aria-label="시작 하위 메뉴">' +
                       '<li class="nav-item"><a class="sidebar-digitek-sub-submenu-item" href="#"><span class="sidebar-digitek-menu-label">시작 검색</span></a></li>' +
                       '<li class="nav-item"><a class="sidebar-digitek-sub-submenu-item sidebar-digitek-sub-active" href="#" aria-current="page"><span class="sidebar-digitek-menu-label">시작 의뢰 등록</span></a></li>' +
                       '<li class="nav-item"><a class="sidebar-digitek-sub-submenu-item" href="#"><span class="sidebar-digitek-menu-label">시작 결과 등록</span></a></li>' +
