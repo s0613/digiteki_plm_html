@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>의뢰 등록 (시작 의뢰 등록 페이지) - 전체 의뢰 등록 페이지</title>
-  <link rel="stylesheet" href="../css/bootstrap.min.css">
-  <link rel="stylesheet" href="../css/digitek.css">
-  <link rel="stylesheet" href="../css/icons.css">
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../css/digitek.css">
+  <link rel="stylesheet" href="../../css/icons.css">
   <style>body { margin: 0; background: #fff; }</style>
 </head>
 <body>
@@ -17,15 +17,16 @@
 <!-- [커스텀] Thymeleaf 현재 경로 기반 active 처리 예시:
      th:classappend="${#strings.startsWith(#httpServletRequest.requestURI, '/pms')} ? 'sidebar-digitek-active'" -->
 <nav class="sidebar-digitek sidebar-digitek-expanded" aria-label="메인 메뉴">
-  <!-- 헤더 -->
-  <div class="sidebar-digitek-header justify-content-between">
-    <div class="sidebar-digitek-logo">
-      <!-- [커스텀] 로고 이미지를 교체하려면 /images/icons/logo.png 파일을 교체하세요 -->
-      <img src="../images/icons/logo.png" width="54" height="26" alt="로고" aria-hidden="true">
+  <!-- 헤더 (로고만 표시, 햄버거 토글은 GNB 헤더에 위치) -->
+  <div class="sidebar-digitek-header">
+    <!-- 펼침 로고 -->
+    <div class="sidebar-digitek-logo sidebar-logo-full">
+      <img src="../../images/icons/logo.png" width="108" height="52" alt="HLKlemove 로고" aria-hidden="true">
     </div>
-    <button class="sidebar-toggle-btn" aria-label="메뉴 접기">
-      <i class="dicon dicon-bar-left icon-digitek-24"></i>
-    </button>
+    <!-- 접힘 로고 -->
+    <div class="sidebar-digitek-logo sidebar-logo-collapsed">
+      <img src="../../images/icons/logo-collapsed.png" width="32" height="32" alt="HL 로고" aria-hidden="true">
+    </div>
   </div>
 
   <!-- 메뉴 영역 -->
@@ -203,7 +204,10 @@
 </nav>
   <div class="layout-digitek-main-area">
     <header class="gnb-digitek">
-  <!-- 검색 인풋 -->
+  <button class="gnb-hamburger-btn sidebar-toggle-btn" aria-label="메뉴 토글">
+    <div class="sidebar-hamburger-icon"><span></span><span></span><span></span></div>
+  </button>
+  <!-- [커스텀] 검색 인풋: 필요 시 주석 해제하여 사용
   <div class="gnb-digitek-search-wrap">
     <input
       type="text"
@@ -215,6 +219,7 @@
       <i class="dicon dicon-search-lg icon-digitek-24 text-digitek-secondary"></i>
     </button>
   </div>
+  -->
 
   <!-- 우측 영역 -->
   <div class="gnb-digitek-right">
@@ -255,7 +260,7 @@
     <!-- [참고] div[role="button"] 키보드 이벤트(Enter/Space)는 digitek.js가 자동 처리합니다 -->
     <div class="gnb-digitek-profile" role="button" tabindex="0" aria-label="프로필 메뉴" aria-haspopup="menu" aria-expanded="false">
       <div class="gnb-digitek-avatar">
-        <img src="../images/icons/avatar.png" width="32" height="32" alt="" aria-hidden="true" style="border-radius: 50%;">
+        <img src="../../images/icons/avatar.png" width="32" height="32" alt="" aria-hidden="true" style="border-radius: 50%;">
       </div>
       <!-- [커스텀] 현재 로그인 사용자명 변경: th:text="${user.name}" -->
       <span class="gnb-digitek-profile-name">사용자 이름</span>
@@ -791,9 +796,9 @@
     </div>
   </div>
 </div>
-<script src="../js/jquery.slim.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
-<script src="../js/digitek.js"></script>
+<script src="../../js/jquery.slim.min.js"></script>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script src="../../js/digitek.js"></script>
 
 </body>
 </html>

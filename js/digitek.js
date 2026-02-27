@@ -159,9 +159,14 @@
 
   var Sidebar = {
     init: function () {
-      // 토글 버튼 (접기/펼치기)
+      // 토글 버튼 (접기/펼치기) — 사이드바 내부 또는 GNB 헤더에서 동작
       delegateEvent("click", ".sidebar-toggle-btn", function (e, btn) {
         var nav = btn.closest(".sidebar-digitek");
+        if (!nav) {
+          // GNB 헤더의 햄버거 버튼 → 레이아웃 내 사이드바 찾기
+          var layout = btn.closest(".layout-digitek");
+          nav = layout ? layout.querySelector(".sidebar-digitek") : null;
+        }
         if (!nav) return;
         Sidebar._toggleCollapse(nav);
       });
@@ -335,28 +340,13 @@
         nav.querySelectorAll(".sidebar-digitek-menu-item").forEach(function (item) {
           item.classList.add("sidebar-digitek-menu-item-collapsed");
         });
-        // 로고 숨기기
-        var logo = nav.querySelector(".sidebar-digitek-logo");
-        if (logo) logo.style.display = "none";
-        // 헤더 정렬
-        var header = nav.querySelector(".sidebar-digitek-header");
-        if (header) {
-          header.classList.remove("justify-content-between");
-          header.classList.add("justify-content-center");
-        }
+        // 로고 전환은 CSS가 처리 (.sidebar-logo-full / .sidebar-logo-collapsed)
       } else {
         nav.classList.remove("sidebar-digitek-collapsed");
         nav.classList.add("sidebar-digitek-expanded");
         nav.querySelectorAll(".sidebar-digitek-menu-item").forEach(function (item) {
           item.classList.remove("sidebar-digitek-menu-item-collapsed");
         });
-        var logo = nav.querySelector(".sidebar-digitek-logo");
-        if (logo) logo.style.display = "";
-        var header = nav.querySelector(".sidebar-digitek-header");
-        if (header) {
-          header.classList.add("justify-content-between");
-          header.classList.remove("justify-content-center");
-        }
       }
     },
 
@@ -1455,3 +1445,70 @@
   };
 
 })();
+
+/* ===========================
+   Draggable Table Rows
+   =========================== */
+function initDraggableTable(tableBodyIdOrEl) {
+  var tbody;
+  if (typeof tableBodyIdOrEl === 'string') {
+    tbody = document.getElementById(tableBodyIdOrEl || 'draggableTableBody');
+  } else {
+    tbody = tableBodyIdOrEl;
+  }
+  if (!tbody) return;
+
+  var dragSrc = null;
+
+  tbody.querySelectorAll('.draggable-row').forEach(function(row) {
+    row.addEventListener('dragstart', function(e) {
+      dragSrc = this;
+      e.dataTransfer.effectAllowed = 'move';
+      this.style.opacity = '0.5';
+    });
+    row.addEventListener('dragend', function() {
+      this.style.opacity = '';
+      tbody.querySelectorAll('.draggable-row').forEach(function(r) {
+        r.classList.remove('drag-over');
+      });
+      // 순서 번호 업데이트 (cells[1]이 숫자인 경우에만 갱신)
+      tbody.querySelectorAll('.draggable-row').forEach(function(r, i) {
+        r.setAttribute('data-order', i + 1);
+        var orderCell = r.cells[1];
+        if (orderCell && !isNaN(parseInt(orderCell.textContent.trim()))) {
+          orderCell.textContent = i + 1;
+        }
+      });
+    });
+    row.addEventListener('dragover', function(e) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      this.classList.add('drag-over');
+    });
+    row.addEventListener('dragleave', function() {
+      this.classList.remove('drag-over');
+    });
+    row.addEventListener('drop', function(e) {
+      e.preventDefault();
+      if (dragSrc !== this) {
+        var rows = Array.from(tbody.querySelectorAll('.draggable-row'));
+        var srcIdx = rows.indexOf(dragSrc);
+        var tgtIdx = rows.indexOf(this);
+        if (srcIdx < tgtIdx) {
+          // 위→아래: 타겟 다음에 삽입
+          tbody.insertBefore(dragSrc, this.nextSibling);
+        } else {
+          // 아래→위: 타겟 앞에 삽입
+          tbody.insertBefore(dragSrc, this);
+        }
+      }
+    });
+  });
+}
+
+// 자동 초기화 (data-draggable-table 속성이 있는 테이블) — ID 대신 element 직접 전달
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('[data-draggable-table]').forEach(function(el) {
+    initDraggableTable(el);
+  });
+});

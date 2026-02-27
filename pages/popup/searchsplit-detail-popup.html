@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>시작 의뢰 상세</title>
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../css/digitek.css">
+  <link rel="stylesheet" href="../../css/icons.css">
+  <style>
+    body { margin: 0; background: #fff; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+    .popup-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid #e5e5ec;
+      background: #fff;
+      flex-shrink: 0;
+    }
+    .popup-title-group { display: flex; align-items: center; gap: 8px; }
+    .popup-title { font-size: 15px; font-weight: 600; margin: 0; }
+    .popup-body {
+      flex: 1;
+      display: flex;
+      gap: 24px;
+      padding: 16px;
+      overflow-y: auto;
+      min-height: 0;
+    }
+    .popup-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 12px 16px;
+      border-top: 1px solid #e5e5ec;
+      flex-shrink: 0;
+    }
+    .popup-schedule-col {
+      flex: 0 0 200px;
+      background: #f7f7fb;
+      border-radius: 8px;
+      padding: 18px 20px;
+      align-self: flex-start;
+    }
+    .popup-detail-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="popup-header">
+  <div class="popup-title-group">
+    <!-- [커스텀] 팝업 제목: th:text="${item.title}" 으로 동적 바인딩 -->
+    <h6 class="popup-title">시제품 제작 6</h6>
+    <!-- [커스텀] 상태 배지: th:text="${item.statusLabel}" 으로 동적 바인딩 -->
+    <span class="searchsplit-digitek-detail-badge">시험 의뢰 승인</span>
+  </div>
+  <button type="button" class="searchsplit-digitek-detail-btn" onclick="window.close()" aria-label="닫기">
+    <i class="dicon dicon-close icon-digitek-16" style="color: #555;" aria-hidden="true"></i>
+  </button>
+</div>
+
+<div class="popup-body">
+  <!-- 좌: 일정 섹션 -->
+  <div class="popup-schedule-col">
+    <div class="searchsplit-digitek-schedule-header">
+      <span class="searchsplit-digitek-schedule-label">SCHEDULE</span>
+      <span class="searchsplit-digitek-schedule-label searchsplit-digitek-schedule-label-date">DATE</span>
+    </div>
+    <hr class="searchsplit-digitek-section-divider" />
+    <div class="searchsplit-digitek-schedule-rows">
+      <div class="searchsplit-digitek-schedule-row">
+        <span class="searchsplit-digitek-info-label">완료 요구일</span>
+        <!-- [커스텀] th:text="${#temporals.format(item.dueDate, 'yyyy.MM.dd')}" 으로 동적 바인딩 -->
+        <span class="searchsplit-digitek-info-value">2026.01.16</span>
+      </div>
+      <div class="searchsplit-digitek-schedule-row">
+        <span class="searchsplit-digitek-info-label">의뢰 완료일</span>
+        <!-- [커스텀] th:text="${#temporals.format(item.completedDate, 'yyyy.MM.dd')}" 으로 동적 바인딩 -->
+        <span class="searchsplit-digitek-info-value">2025.11.22</span>
+      </div>
+      <div class="searchsplit-digitek-schedule-row">
+        <span class="searchsplit-digitek-info-label">의뢰 완료일</span>
+        <span class="searchsplit-digitek-info-value">2025.12.05</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 우: 세부사항 + 담당자 + 고객 일정 아코디언 -->
+  <div class="popup-detail-col">
+    <!-- 세부사항 아코디언 (열림) -->
+    <div class="accordion-digitek-inner">
+      <div class="accordion-digitek-inner-header accordion-digitek-inner-header-open" role="button" tabindex="0"
+           aria-expanded="true" aria-controls="popup-info">
+        <span class="accordion-digitek-inner-title">세부사항</span>
+        <i class="dicon dicon-chevron-up-sm accordion-digitek-chevron" aria-hidden="true"></i>
+      </div>
+      <!-- [커스텀] 세부사항 패널: th:text="${item.XXX}" 으로 각 필드 동적 바인딩 -->
+      <div id="popup-info" class="accordion-digitek-inner-content">
+        <div class="searchsplit-digitek-info-grid">
+          <div class="searchsplit-digitek-info-row">
+            <span class="searchsplit-digitek-info-label">의뢰 제목</span>
+            <span class="searchsplit-digitek-info-value">시제품 제작 의뢰 6</span>
+          </div>
+          <div class="searchsplit-digitek-info-row">
+            <span class="searchsplit-digitek-info-label">의뢰 번호</span>
+            <span class="searchsplit-digitek-info-value">SMPL-2511010006</span>
+          </div>
+          <div class="searchsplit-digitek-info-row">
+            <span class="searchsplit-digitek-info-label">진행도</span>
+            <span class="searchsplit-digitek-info-value d-flex align-items-center gap-digitek-8">
+              <span class="progress-digitek-circular" role="progressbar" aria-valuenow="80"
+                    style="--percent: 80; --progress-size: 22px; --progress-width: 3px;"></span>
+              80%
+            </span>
+          </div>
+          <div class="searchsplit-digitek-info-row">
+            <span class="searchsplit-digitek-info-label">Test Spec</span>
+            <span class="searchsplit-digitek-info-value">PB.free test(ES90000-04 rev.5)</span>
+          </div>
+          <div class="searchsplit-digitek-info-row">
+            <span class="searchsplit-digitek-info-label">프로젝트</span>
+            <span class="searchsplit-digitek-info-value">TL</span>
+          </div>
+          <div class="searchsplit-digitek-info-row">
+            <span class="searchsplit-digitek-info-label">개발 단계</span>
+            <span class="searchsplit-digitek-info-value">CV</span>
+          </div>
+          <div class="searchsplit-digitek-info-row">
+            <span class="searchsplit-digitek-info-label">샘플 수</span>
+            <span class="searchsplit-digitek-info-value">10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 세부사항 (담당자 정보) 아코디언 (열림) -->
+    <div class="accordion-digitek-inner searchsplit-digitek-detail-section-contact">
+      <div class="accordion-digitek-inner-header accordion-digitek-inner-header-open" role="button" tabindex="0"
+           aria-expanded="true" aria-controls="popup-contact">
+        <span class="accordion-digitek-inner-title">세부사항</span>
+        <i class="dicon dicon-chevron-up-sm accordion-digitek-chevron" aria-hidden="true"></i>
+      </div>
+      <div id="popup-contact" class="accordion-digitek-inner-content">
+        <div class="searchsplit-digitek-info-grid">
+          <div class="searchsplit-digitek-info-row">
+            <span class="searchsplit-digitek-info-label">의뢰자</span>
+            <span class="searchsplit-digitek-info-value d-flex align-items-center gap-digitek-8">
+              <img src="../../images/icons/avatar.png" width="22" height="22" alt="" aria-hidden="true" style="border-radius: 50%;">
+              <!-- [커스텀] th:text="${item.requester.name}" 으로 동적 바인딩 -->
+              이래근
+            </span>
+          </div>
+          <div class="searchsplit-digitek-info-row">
+            <span class="searchsplit-digitek-info-label">품질경영 담당자</span>
+            <span class="searchsplit-digitek-info-value d-flex align-items-center gap-digitek-8">
+              <img src="../../images/icons/avatar.png" width="22" height="22" alt="" aria-hidden="true" style="border-radius: 50%;">
+              <!-- [커스텀] th:text="${item.qualityManager.name}" 으로 동적 바인딩 -->
+              홍길동
+            </span>
+          </div>
+          <div class="searchsplit-digitek-info-row">
+            <span class="searchsplit-digitek-info-label">책임자</span>
+            <span class="searchsplit-digitek-info-value d-flex align-items-center gap-digitek-8">
+              <img src="../../images/icons/avatar.png" width="22" height="22" alt="" aria-hidden="true" style="border-radius: 50%;">
+              <!-- [커스텀] th:text="${item.manager.name}" 으로 동적 바인딩 -->
+              권경영
+            </span>
+          </div>
+          <div class="searchsplit-digitek-info-row">
+            <span class="searchsplit-digitek-info-label">사업부/법인</span>
+            <!-- [커스텀] th:text="${item.division}" 으로 동적 바인딩 -->
+            <span class="searchsplit-digitek-info-value">KLK</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 고객 일정 아코디언 (닫힘) -->
+    <div class="accordion-digitek-inner">
+      <div class="accordion-digitek-inner-header" role="button" tabindex="0"
+           aria-expanded="false" aria-controls="popup-customer-schedule">
+        <span class="accordion-digitek-inner-title">고객 일정</span>
+        <i class="dicon dicon-chevron-up-sm accordion-digitek-chevron accordion-digitek-chevron-closed" aria-hidden="true"></i>
+      </div>
+      <div id="popup-customer-schedule" class="accordion-digitek-inner-content" hidden></div>
+    </div>
+  </div>
+</div>
+
+<div class="popup-footer">
+  <button type="button" class="btn btn-secondary btn-sm" onclick="window.close()">닫기</button>
+</div>
+
+<script src="../../js/jquery.slim.min.js"></script>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script src="../../js/digitek.js"></script>
+</body>
+</html>

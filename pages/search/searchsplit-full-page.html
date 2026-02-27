@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>검색 분할형 (Search Split Page) - 기본 상태 (검색 + 테이블)</title>
-  <link rel="stylesheet" href="../css/bootstrap.min.css">
-  <link rel="stylesheet" href="../css/digitek.css">
-  <link rel="stylesheet" href="../css/icons.css">
+  <title>검색 분할형 (Search Split Page)</title>
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../css/digitek.css">
+  <link rel="stylesheet" href="../../css/icons.css">
   <style>body { margin: 0; background: #fff; }</style>
 </head>
 <body>
-<!-- 검색 분할형: 기본 상태 (상세 패널 닫힘) -->
+<!-- 검색 분할형 페이지: Sidebar + GNB + Content 전체 레이아웃 -->
+<!-- [상태 변형] searchsplit-digitek-body의 class 조합으로 3가지 상태 표현:
+     기본 (상세 닫힘) : class="searchsplit-digitek-body"
+     나란히 보기      : class="searchsplit-digitek-body searchsplit-digitek-body-detail-open"
+     전체 보기        : class="searchsplit-digitek-body searchsplit-digitek-body-detail-open searchsplit-digitek-body-fullview"
+-->
 <div class="layout-digitek">
   <!-- 펼침: sidebar-digitek-expanded (250px) / 접힘: sidebar-digitek-collapsed (96px) -->
 <!-- 3레벨 메뉴 구조: 1레벨(메뉴) → 2레벨(서브메뉴) → 3레벨(서브-서브메뉴) -->
@@ -18,15 +23,16 @@
 <!-- [커스텀] Thymeleaf 현재 경로 기반 active 처리 예시:
      th:classappend="${#strings.startsWith(#httpServletRequest.requestURI, '/pms')} ? 'sidebar-digitek-active'" -->
 <nav class="sidebar-digitek sidebar-digitek-expanded" aria-label="메인 메뉴">
-  <!-- 헤더 -->
-  <div class="sidebar-digitek-header justify-content-between">
-    <div class="sidebar-digitek-logo">
-      <!-- [커스텀] 로고 이미지를 교체하려면 /images/icons/logo.png 파일을 교체하세요 -->
-      <img src="../images/icons/logo.png" width="54" height="26" alt="로고" aria-hidden="true">
+  <!-- 헤더 (로고만 표시, 햄버거 토글은 GNB 헤더에 위치) -->
+  <div class="sidebar-digitek-header">
+    <!-- 펼침 로고 -->
+    <div class="sidebar-digitek-logo sidebar-logo-full">
+      <img src="../../images/icons/logo.png" width="108" height="52" alt="HLKlemove 로고" aria-hidden="true">
     </div>
-    <button class="sidebar-toggle-btn" aria-label="메뉴 접기">
-      <i class="dicon dicon-bar-left icon-digitek-24"></i>
-    </button>
+    <!-- 접힘 로고 -->
+    <div class="sidebar-digitek-logo sidebar-logo-collapsed">
+      <img src="../../images/icons/logo-collapsed.png" width="32" height="32" alt="HL 로고" aria-hidden="true">
+    </div>
   </div>
 
   <!-- 메뉴 영역 -->
@@ -204,7 +210,10 @@
 </nav>
   <div class="layout-digitek-main-area">
     <header class="gnb-digitek">
-  <!-- 검색 인풋 -->
+  <button class="gnb-hamburger-btn sidebar-toggle-btn" aria-label="메뉴 토글">
+    <div class="sidebar-hamburger-icon"><span></span><span></span><span></span></div>
+  </button>
+  <!-- [커스텀] 검색 인풋: 필요 시 주석 해제하여 사용
   <div class="gnb-digitek-search-wrap">
     <input
       type="text"
@@ -216,6 +225,7 @@
       <i class="dicon dicon-search-lg icon-digitek-24 text-digitek-secondary"></i>
     </button>
   </div>
+  -->
 
   <!-- 우측 영역 -->
   <div class="gnb-digitek-right">
@@ -256,7 +266,7 @@
     <!-- [참고] div[role="button"] 키보드 이벤트(Enter/Space)는 digitek.js가 자동 처리합니다 -->
     <div class="gnb-digitek-profile" role="button" tabindex="0" aria-label="프로필 메뉴" aria-haspopup="menu" aria-expanded="false">
       <div class="gnb-digitek-avatar">
-        <img src="../images/icons/avatar.png" width="32" height="32" alt="" aria-hidden="true" style="border-radius: 50%;">
+        <img src="../../images/icons/avatar.png" width="32" height="32" alt="" aria-hidden="true" style="border-radius: 50%;">
       </div>
       <!-- [커스텀] 현재 로그인 사용자명 변경: th:text="${user.name}" -->
       <span class="gnb-digitek-profile-name">사용자 이름</span>
@@ -966,7 +976,7 @@
                 <div class="searchsplit-digitek-info-row">
                   <span class="searchsplit-digitek-info-label">의뢰자</span>
                   <span class="searchsplit-digitek-info-value d-flex align-items-center gap-digitek-8">
-                    <img src="../images/icons/avatar.png" width="22" height="22" alt="" aria-hidden="true" style="border-radius: 50%;">
+                    <img src="../../images/icons/avatar.png" width="22" height="22" alt="" aria-hidden="true" style="border-radius: 50%;">
                     <!-- [커스텀] th:text="${selectedItem.requester.name}" 으로 의뢰자 이름 동적 바인딩 -->
                     이래근
                   </span>
@@ -974,7 +984,7 @@
                 <div class="searchsplit-digitek-info-row">
                   <span class="searchsplit-digitek-info-label">품질경영 담당자</span>
                   <span class="searchsplit-digitek-info-value d-flex align-items-center gap-digitek-8">
-                    <img src="../images/icons/avatar.png" width="22" height="22" alt="" aria-hidden="true" style="border-radius: 50%;">
+                    <img src="../../images/icons/avatar.png" width="22" height="22" alt="" aria-hidden="true" style="border-radius: 50%;">
                     <!-- [커스텀] th:text="${selectedItem.qualityManager.name}" 으로 동적 바인딩 -->
                     홍길동
                   </span>
@@ -982,7 +992,7 @@
                 <div class="searchsplit-digitek-info-row">
                   <span class="searchsplit-digitek-info-label">책임자</span>
                   <span class="searchsplit-digitek-info-value d-flex align-items-center gap-digitek-8">
-                    <img src="../images/icons/avatar.png" width="22" height="22" alt="" aria-hidden="true" style="border-radius: 50%;">
+                    <img src="../../images/icons/avatar.png" width="22" height="22" alt="" aria-hidden="true" style="border-radius: 50%;">
                     <!-- [커스텀] th:text="${selectedItem.manager.name}" 으로 동적 바인딩 -->
                     권경영
                   </span>
@@ -1011,157 +1021,12 @@
       </div>
     </div>
 
-    <!-- 상세 확대 모달 (position: fixed, 레이아웃 위에 표시) -->
-    <!-- 상세 확대 모달 (확대 버튼 클릭 시 표시) -->
-<div class="searchsplit-digitek-modal-overlay" id="searchsplit-detail-modal" hidden aria-hidden="true">
-  <div class="searchsplit-digitek-modal" role="dialog" aria-modal="true" aria-labelledby="searchsplit-modal-title">
-    <!-- 모달 헤더 -->
-    <div class="searchsplit-digitek-detail-header">
-      <div class="searchsplit-digitek-detail-title-row">
-        <div class="searchsplit-digitek-detail-title-group">
-          <h3 id="searchsplit-modal-title" class="searchsplit-digitek-detail-title">시제품 제작 6</h3>
-          <span class="searchsplit-digitek-detail-badge">시험 의뢰 승인</span>
-        </div>
-        <div class="searchsplit-digitek-detail-actions">
-          <!-- 확대 버튼: 모달 닫기 (모달 열린 상태에서 확대 아이콘 표시) -->
-          <button type="button" class="searchsplit-digitek-detail-btn" aria-label="확대 보기 닫기" data-action="modal-close">
-            <i class="dicon dicon-expand-lg" style="color: #555;" aria-hidden="true"></i>
-          </button>
-          <button type="button" class="searchsplit-digitek-detail-btn" aria-label="닫기" data-action="modal-close">
-            <i class="dicon dicon-close icon-digitek-16" style="color: #555;" aria-hidden="true"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 모달 본문 (2열: 좌-일정 / 우-상세 아코디언) -->
-    <div class="searchsplit-digitek-modal-body">
-      <!-- 좌: 일정 섹션 -->
-      <div class="searchsplit-digitek-modal-schedule-col">
-        <div class="searchsplit-digitek-schedule-header">
-          <span class="searchsplit-digitek-schedule-label">SCHEDULE</span>
-          <span class="searchsplit-digitek-schedule-label searchsplit-digitek-schedule-label-date">DATE</span>
-        </div>
-        <hr class="searchsplit-digitek-section-divider" />
-        <div class="searchsplit-digitek-schedule-rows">
-          <div class="searchsplit-digitek-schedule-row">
-            <span class="searchsplit-digitek-info-label">완료 요구일</span>
-            <span class="searchsplit-digitek-info-value">2026.01.16</span>
-          </div>
-          <div class="searchsplit-digitek-schedule-row">
-            <span class="searchsplit-digitek-info-label">의뢰 완료일</span>
-            <span class="searchsplit-digitek-info-value">2025.11.22</span>
-          </div>
-          <div class="searchsplit-digitek-schedule-row">
-            <span class="searchsplit-digitek-info-label">의뢰 완료일</span>
-            <span class="searchsplit-digitek-info-value">2025.12.05</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 우: 세부사항 + 담당자 + 고객 일정 아코디언 -->
-      <div class="searchsplit-digitek-modal-detail-col">
-        <!-- 세부사항 아코디언 (열림) -->
-        <div class="accordion-digitek-inner">
-          <div class="accordion-digitek-inner-header accordion-digitek-inner-header-open" role="button" tabindex="0"
-               aria-expanded="true" aria-controls="searchsplit-modal-info">
-            <span class="accordion-digitek-inner-title">세부사항</span>
-            <i class="dicon dicon-chevron-up-sm accordion-digitek-chevron" aria-hidden="true"></i>
-          </div>
-          <div id="searchsplit-modal-info" class="accordion-digitek-inner-content">
-            <div class="searchsplit-digitek-info-grid">
-              <div class="searchsplit-digitek-info-row">
-                <span class="searchsplit-digitek-info-label">의뢰 제목</span>
-                <span class="searchsplit-digitek-info-value">시제품 제작 의뢰 6</span>
-              </div>
-              <div class="searchsplit-digitek-info-row">
-                <span class="searchsplit-digitek-info-label">의뢰 번호</span>
-                <span class="searchsplit-digitek-info-value">SMPL-2511010006</span>
-              </div>
-              <div class="searchsplit-digitek-info-row">
-                <span class="searchsplit-digitek-info-label">진행도</span>
-                <span class="searchsplit-digitek-info-value d-flex align-items-center gap-digitek-8">
-                  <span class="progress-digitek-circular" role="progressbar" aria-valuenow="80" style="--percent: 80; --progress-size: 22px; --progress-width: 3px;"></span>
-                  80%
-                </span>
-              </div>
-              <div class="searchsplit-digitek-info-row">
-                <span class="searchsplit-digitek-info-label">Test Spec</span>
-                <span class="searchsplit-digitek-info-value">PB.free test(ES90000-04 rev.5)</span>
-              </div>
-              <div class="searchsplit-digitek-info-row">
-                <span class="searchsplit-digitek-info-label">프로젝트</span>
-                <span class="searchsplit-digitek-info-value">TL</span>
-              </div>
-              <div class="searchsplit-digitek-info-row">
-                <span class="searchsplit-digitek-info-label">개발 단계</span>
-                <span class="searchsplit-digitek-info-value">CV</span>
-              </div>
-              <div class="searchsplit-digitek-info-row">
-                <span class="searchsplit-digitek-info-label">샘플 수</span>
-                <span class="searchsplit-digitek-info-value">10</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 세부사항 (담당자) 아코디언 (열림) -->
-        <div class="accordion-digitek-inner searchsplit-digitek-detail-section-contact">
-          <div class="accordion-digitek-inner-header accordion-digitek-inner-header-open" role="button" tabindex="0"
-               aria-expanded="true" aria-controls="searchsplit-modal-contact">
-            <span class="accordion-digitek-inner-title">세부사항</span>
-            <i class="dicon dicon-chevron-up-sm accordion-digitek-chevron" aria-hidden="true"></i>
-          </div>
-          <div id="searchsplit-modal-contact" class="accordion-digitek-inner-content">
-            <div class="searchsplit-digitek-info-grid">
-              <div class="searchsplit-digitek-info-row">
-                <span class="searchsplit-digitek-info-label">의뢰자</span>
-                <span class="searchsplit-digitek-info-value d-flex align-items-center gap-digitek-8">
-                  <img src="../images/icons/avatar.png" width="22" height="22" alt="" aria-hidden="true" style="border-radius: 50%;">
-                  이래근
-                </span>
-              </div>
-              <div class="searchsplit-digitek-info-row">
-                <span class="searchsplit-digitek-info-label">품질경영 담당자</span>
-                <span class="searchsplit-digitek-info-value d-flex align-items-center gap-digitek-8">
-                  <img src="../images/icons/avatar.png" width="22" height="22" alt="" aria-hidden="true" style="border-radius: 50%;">
-                  홍길동
-                </span>
-              </div>
-              <div class="searchsplit-digitek-info-row">
-                <span class="searchsplit-digitek-info-label">책임자</span>
-                <span class="searchsplit-digitek-info-value d-flex align-items-center gap-digitek-8">
-                  <img src="../images/icons/avatar.png" width="22" height="22" alt="" aria-hidden="true" style="border-radius: 50%;">
-                  권경영
-                </span>
-              </div>
-              <div class="searchsplit-digitek-info-row">
-                <span class="searchsplit-digitek-info-label">사업부/법인</span>
-                <span class="searchsplit-digitek-info-value">KLK</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 고객 일정 아코디언 (닫힘) -->
-        <div class="accordion-digitek-inner">
-          <div class="accordion-digitek-inner-header" role="button" tabindex="0"
-               aria-expanded="false" aria-controls="searchsplit-modal-customer-schedule">
-            <span class="accordion-digitek-inner-title">고객 일정</span>
-            <i class="dicon dicon-chevron-up-sm accordion-digitek-chevron accordion-digitek-chevron-closed" aria-hidden="true"></i>
-          </div>
-          <div id="searchsplit-modal-customer-schedule" class="accordion-digitek-inner-content" hidden></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
   </div>
 </div>
 
-<script src="../js/jquery.slim.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
-<script src="../js/digitek.js"></script>
+<script src="../../js/jquery.slim.min.js"></script>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script src="../../js/digitek.js"></script>
 <script>
 (function() {
   /* 필터 토글 */
@@ -1233,7 +1098,7 @@
     });
   });
 
-  /* 축소 버튼 → 전체 보기 해제 + 확대 버튼 복원 + 모달 열기 */
+  /* 축소 버튼 → 전체 보기 해제 + 확대 버튼 복원 + 팝업 열기 */
   document.querySelectorAll('[data-action="shrink"]').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var panel = this.closest('.searchsplit-digitek-detail');
@@ -1245,46 +1110,22 @@
         if (shrinkBtn) shrinkBtn.hidden = true;
         if (expandBtn) expandBtn.hidden = false;
       }
-      var modal = document.getElementById('searchsplit-detail-modal');
-      if (modal) {
-        modal.hidden = false;
-        modal.removeAttribute('aria-hidden');
-        var firstBtn = modal.querySelector('button');
-        if (firstBtn) firstBtn.focus();
-      }
+      /* [커스텀] URL에 선택된 항목 ID 파라미터 추가: '../popup/searchsplit-detail-popup.html?id=' + itemId */
+      openDetailPopup('../popup/searchsplit-detail-popup.html');
     });
   });
 
-  /* 모달 닫기 (모달 내 버튼 / 오버레이 클릭 / Escape) */
-  document.querySelectorAll('[data-action="modal-close"]').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var modal = document.getElementById('searchsplit-detail-modal');
-      if (modal) {
-        modal.hidden = true;
-        modal.setAttribute('aria-hidden', 'true');
-      }
-    });
-  });
-
-  var modalOverlay = document.getElementById('searchsplit-detail-modal');
-  if (modalOverlay) {
-    modalOverlay.addEventListener('click', function(e) {
-      if (e.target === this) {
-        this.hidden = true;
-        this.setAttribute('aria-hidden', 'true');
-      }
-    });
+  /* 상세 팝업 열기 (popup-base 패턴: window.open) */
+  function openDetailPopup(url, w, h) {
+    w = w || 1000;
+    h = h || 640;
+    var left = Math.round((screen.width / 2) - (w / 2));
+    var top  = Math.round((screen.height / 2) - (h / 2));
+    window.open(url, 'searchsplit-detail',
+      'width=' + w + ',height=' + h +
+      ',left=' + left + ',top=' + top +
+      ',scrollbars=yes,resizable=yes');
   }
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      var openModal = document.getElementById('searchsplit-detail-modal');
-      if (openModal && !openModal.hidden) {
-        openModal.hidden = true;
-        openModal.setAttribute('aria-hidden', 'true');
-      }
-    }
-  });
 
   /* 결과 헤더 아코디언 토글 */
   document.querySelectorAll('[data-toggle="searchsplit-results"]').forEach(function(btn) {

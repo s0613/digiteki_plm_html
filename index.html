@@ -18,11 +18,31 @@
     .section { margin-bottom: 32px; }
     .section h2 { font-size: 20px; font-weight: 700; margin: 0 0 16px; color: #1a1f36; border-bottom: 2px solid #1a1f36; padding-bottom: 8px; }
     .section h3 { font-size: 16px; font-weight: 600; margin: 0 0 12px; color: #333; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
-    .card { display: block; background: #fff; border: 1px solid #e5e5ec; border-radius: 8px; padding: 20px; text-decoration: none; color: inherit; transition: box-shadow 0.15s, border-color 0.15s; }
-    .card:hover { border-color: #2f66ba; box-shadow: 0 2px 12px rgba(47,102,186,0.12); }
-    .card-title { font-size: 15px; font-weight: 600; color: #1a1f36; margin-bottom: 4px; }
-    .card-sub { font-size: 12px; color: #888; }
+
+    /* 페이지 카테고리 그룹 */
+    .page-categories { display: flex; flex-direction: column; gap: 20px; }
+    .page-cat { background: #fff; border: 1px solid #e5e5ec; border-radius: 10px; overflow: hidden; }
+    .page-cat-header { padding: 12px 20px; background: #f8f9fc; border-bottom: 1px solid #e5e5ec; display: flex; align-items: center; gap: 8px; }
+    .page-cat-label { font-size: 12px; font-weight: 700; color: #2f66ba; text-transform: uppercase; letter-spacing: 0.05em; }
+    .page-cat-count { font-size: 11px; color: #999; background: #e8edf5; padding: 2px 7px; border-radius: 10px; }
+    .page-cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0; }
+    .page-card { display: flex; align-items: center; gap: 12px; padding: 14px 20px; text-decoration: none; color: inherit; border-right: 1px solid #f0f0f5; border-bottom: 1px solid #f0f0f5; transition: background 0.12s; }
+    .page-card:hover { background: #f0f5ff; }
+.page-card-info { flex: 1; min-width: 0; }
+    .page-card-title { font-size: 13px; font-weight: 600; color: #1a1f36; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .page-card-file { font-size: 11px; color: #aaa; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .page-card-arrow { color: #ccc; font-size: 12px; flex-shrink: 0; }
+    .page-card:hover .page-card-arrow { color: #2f66ba; }
+
+    /* 컴포넌트 스니펫 접이식 */
+    .snippet-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; background: #fff; border: 1px solid #e5e5ec; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: 600; color: #1a1f36; text-align: left; transition: background 0.12s; }
+    .snippet-toggle:hover { background: #f8f9fc; }
+    .snippet-toggle-right { display: flex; align-items: center; gap: 10px; font-size: 12px; color: #888; font-weight: 400; }
+    .snippet-toggle-arrow { font-size: 14px; transition: transform 0.2s; }
+    .snippet-toggle.open .snippet-toggle-arrow { transform: rotate(180deg); }
+    .snippet-body { display: none; margin-top: 8px; }
+    .snippet-body.open { display: block; }
+
     .divider { margin: 40px 0; border: none; border-top: 1px solid #e0e0e0; }
     .comp-group { margin-bottom: 24px; }
     .comp-group h4 { font-size: 14px; font-weight: 600; margin: 0 0 8px; color: #555; }
@@ -43,8 +63,9 @@
   <h1>Digiteki PLM HTML 템플릿</h1>
   <p>Bootstrap 4.6.2 + Digitek CSS 기반 프론트엔드 UI 템플릿 모음</p>
   <div class="stats">
-    <div class="stat"><strong>7</strong>전체 페이지</div>
-    <div class="stat"><strong>134</strong>컴포넌트 스니펫</div>
+    <div class="stat"><strong>12</strong>전체 페이지</div>
+    <div class="stat"><strong>142</strong>컴포넌트 스니펫</div>
+    <div class="stat"><strong>5</strong>카테고리</div>
   </div>
 </div>
 
@@ -52,46 +73,149 @@
 
   <div class="section">
     <h2>전체 페이지 (브라우저에서 열기)</h2>
-    <p style="font-size:13px;color:#666;margin:0 0 16px;">Sidebar + GNB + Content가 포함된 완전한 페이지입니다. 클릭하면 새 탭에서 열립니다.</p>
-    <div class="grid">
-      
-      <a href="pages/pms-full-page.html" class="card" target="_blank" title="전체 상세 페이지">
-        <div class="card-title">전체 상세 페이지</div>
-        <div class="card-sub">PMS (프로젝트 상세 페이지) &mdash; pages/pms-full-page.html</div>
-      </a>
-      <a href="pages/requestregister-full-page.html" class="card" target="_blank" title="전체 의뢰 등록 페이지">
-        <div class="card-title">전체 의뢰 등록 페이지</div>
-        <div class="card-sub">의뢰 등록 (시작 의뢰 등록 페이지) &mdash; pages/requestregister-full-page.html</div>
-      </a>
-      <a href="pages/searchlist-full-page.html" class="card" target="_blank" title="전체 페이지 (필터 접힌 상태)">
-        <div class="card-title">전체 페이지 (필터 접힌 상태)</div>
-        <div class="card-sub">검색 목록형 (Search List Page) &mdash; pages/searchlist-full-page.html</div>
-      </a>
-      <a href="pages/searchlist-full-page-filter-open.html" class="card" target="_blank" title="전체 페이지 (필터 펼친 상태)">
-        <div class="card-title">전체 페이지 (필터 펼친 상태)</div>
-        <div class="card-sub">검색 목록형 (Search List Page) &mdash; pages/searchlist-full-page-filter-open.html</div>
-      </a>
-      <a href="pages/searchsplit-split-base.html" class="card" target="_blank" title="기본 상태 (검색 + 테이블)">
-        <div class="card-title">기본 상태 (검색 + 테이블)</div>
-        <div class="card-sub">검색 분할형 (Search Split Page) &mdash; pages/searchsplit-split-base.html</div>
-      </a>
-      <a href="pages/searchsplit-split-side.html" class="card" target="_blank" title="나란히 보기 (검색 + 테이블 + 상세)">
-        <div class="card-title">나란히 보기 (검색 + 테이블 + 상세)</div>
-        <div class="card-sub">검색 분할형 (Search Split Page) &mdash; pages/searchsplit-split-side.html</div>
-      </a>
-      <a href="pages/searchsplit-split-full.html" class="card" target="_blank" title="전체 보기 (검색 + 전체 상세)">
-        <div class="card-title">전체 보기 (검색 + 전체 상세)</div>
-        <div class="card-sub">검색 분할형 (Search Split Page) &mdash; pages/searchsplit-split-full.html</div>
-      </a>
+    <p style="font-size:13px;color:#666;margin:0 0 20px;">Sidebar + GNB + Content가 포함된 완전한 페이지입니다. 클릭하면 새 탭에서 열립니다.</p>
+    <div class="page-categories">
+
+      <!-- 메인/관리 -->
+      <div class="page-cat">
+        <div class="page-cat-header">
+          <span class="page-cat-label">메인 / 관리</span>
+          <span class="page-cat-count">3</span>
+        </div>
+        <div class="page-cat-grid">
+          <a href="pages/manage/main-full-page.html" class="page-card" target="_blank">
+            <div class="page-card-info">
+              <div class="page-card-title">메인 페이지</div>
+              <div class="page-card-file">pages/manage/main-full-page.html</div>
+            </div>
+            <span class="page-card-arrow">›</span>
+          </a>
+          <a href="pages/manage/group-manage-full-page.html" class="page-card" target="_blank">
+            <div class="page-card-info">
+              <div class="page-card-title">그룹/사용자 관리</div>
+              <div class="page-card-file">pages/manage/group-manage-full-page.html</div>
+            </div>
+            <span class="page-card-arrow">›</span>
+          </a>
+          <a href="pages/manage/code-manage-full-page.html" class="page-card" target="_blank">
+            <div class="page-card-info">
+              <div class="page-card-title">코드 추가/상세</div>
+              <div class="page-card-file">pages/manage/code-manage-full-page.html</div>
+            </div>
+            <span class="page-card-arrow">›</span>
+          </a>
+          <a href="pages/manage/doc-classify-full-page.html" class="page-card" target="_blank">
+            <div class="page-card-info">
+              <div class="page-card-title">문서 분류 관리</div>
+              <div class="page-card-file">pages/manage/doc-classify-full-page.html</div>
+            </div>
+            <span class="page-card-arrow">›</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 검색 -->
+      <div class="page-cat">
+        <div class="page-cat-header">
+          <span class="page-cat-label">검색</span>
+          <span class="page-cat-count">2</span>
+        </div>
+        <div class="page-cat-grid">
+          <a href="pages/search/searchlist-full-page.html" class="page-card" target="_blank">
+            <div class="page-card-info">
+              <div class="page-card-title">검색 목록형</div>
+              <div class="page-card-file">pages/search/searchlist-full-page.html</div>
+            </div>
+            <span class="page-card-arrow">›</span>
+          </a>
+          <a href="pages/search/searchsplit-full-page.html" class="page-card" target="_blank">
+            <div class="page-card-info">
+              <div class="page-card-title">검색 분할형</div>
+              <div class="page-card-file">pages/search/searchsplit-full-page.html</div>
+            </div>
+            <span class="page-card-arrow">›</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 상세/등록 -->
+      <div class="page-cat">
+        <div class="page-cat-header">
+          <span class="page-cat-label">상세 / 등록</span>
+          <span class="page-cat-count">4</span>
+        </div>
+        <div class="page-cat-grid">
+          <a href="pages/detail/pms-full-page.html" class="page-card" target="_blank">
+            <div class="page-card-info">
+              <div class="page-card-title">PMS 프로젝트 상세</div>
+              <div class="page-card-file">pages/detail/pms-full-page.html</div>
+            </div>
+            <span class="page-card-arrow">›</span>
+          </a>
+          <a href="pages/detail/requestregister-full-page.html" class="page-card" target="_blank">
+            <div class="page-card-info">
+              <div class="page-card-title">의뢰 등록</div>
+              <div class="page-card-file">pages/detail/requestregister-full-page.html</div>
+            </div>
+            <span class="page-card-arrow">›</span>
+          </a>
+          <a href="pages/detail/doc-create-full-page.html" class="page-card" target="_blank">
+            <div class="page-card-info">
+              <div class="page-card-title">문서 등록 (Create Document)</div>
+              <div class="page-card-file">pages/detail/doc-create-full-page.html</div>
+            </div>
+            <span class="page-card-arrow">›</span>
+          </a>
+          <a href="pages/detail/ecr-review-full-page.html" class="page-card" target="_blank">
+            <div class="page-card-info">
+              <div class="page-card-title">ECR 검토</div>
+              <div class="page-card-file">pages/detail/ecr-review-full-page.html</div>
+            </div>
+            <span class="page-card-arrow">›</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 팝업 -->
+      <div class="page-cat">
+        <div class="page-cat-header">
+          <span class="page-cat-label">팝업 (window.open)</span>
+          <span class="page-cat-count">2</span>
+        </div>
+        <div class="page-cat-grid">
+          <a href="pages/popup/assignee-selector.html" class="page-card" target="_blank">
+            <div class="page-card-info">
+              <div class="page-card-title">담당자 선택</div>
+              <div class="page-card-file">pages/popup/assignee-selector.html</div>
+            </div>
+            <span class="page-card-arrow">›</span>
+          </a>
+          <a href="pages/popup/popup-base.html" class="page-card" target="_blank">
+            <div class="page-card-info">
+              <div class="page-card-title">팝업 기본 템플릿</div>
+              <div class="page-card-file">pages/popup/popup-base.html</div>
+            </div>
+            <span class="page-card-arrow">›</span>
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 
   <hr class="divider">
 
   <div class="section">
-    <h2>컴포넌트 스니펫 (복붙용)</h2>
-    <p style="font-size:13px;color:#666;margin:0 0 16px;">각 파일은 래핑 없는 순수 HTML 코드입니다. [복사] 버튼을 누르면 클립보드에 복사됩니다.</p>
-    
+    <button class="snippet-toggle" id="snippetToggle" onclick="toggleSnippets()">
+      <span>컴포넌트 스니펫 (복붙용)</span>
+      <span class="snippet-toggle-right">
+        <span>142개 스니펫 · 클릭하여 펼치기</span>
+        <span class="snippet-toggle-arrow">▼</span>
+      </span>
+    </button>
+    <div class="snippet-body" id="snippetBody">
+    <p style="font-size:13px;color:#666;margin:12px 0 16px;">각 파일은 래핑 없는 순수 HTML 코드입니다. [복사] 버튼을 누르면 클립보드에 복사됩니다.</p>
+
     <div class="comp-group">
       <h4>Layout (레이아웃)</h4>
       <div class="comp-list">
@@ -105,6 +229,66 @@
           <span class="comp-label">최소 레이아웃 (레이아웃 없음)</span>
           <span class="comp-file">components/layout-minimal.html</span>
           <button class="btn-copy" onclick="copySnippet('components/layout-minimal.html')">복사</button>
+        </div>
+      </div>
+    </div>
+    <div class="comp-group">
+      <h4>HLKlemove 신규 컴포넌트</h4>
+      <div class="comp-list">
+        <div class="comp-item">
+          <span class="comp-label">메인 페이지 (6영역 콘텐츠만)</span>
+          <span class="comp-file">components/main-content-only.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/main-content-only.html')">복사</button>
+        </div>
+        <div class="comp-item">
+          <span class="comp-label">결재자 지정</span>
+          <span class="comp-file">components/approval-designator.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/approval-designator.html')">복사</button>
+        </div>
+        <div class="comp-item">
+          <span class="comp-label">담당자 태그 선택</span>
+          <span class="comp-file">components/assignee-tags.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/assignee-tags.html')">복사</button>
+        </div>
+        <div class="comp-item">
+          <span class="comp-label">드래그앤드롭 행 순서 변경 테이블</span>
+          <span class="comp-file">components/table-draggable-rows.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/table-draggable-rows.html')">복사</button>
+        </div>
+        <div class="comp-item">
+          <span class="comp-label">그룹/사용자 관리 (콘텐츠만)</span>
+          <span class="comp-file">components/group-manage-content-only.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/group-manage-content-only.html')">복사</button>
+        </div>
+        <div class="comp-item">
+          <span class="comp-label">코드 추가/상세 (콘텐츠만)</span>
+          <span class="comp-file">components/code-manage-content-only.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/code-manage-content-only.html')">복사</button>
+        </div>
+        <div class="comp-item">
+          <span class="comp-label">ECR 검토 (콘텐츠만)</span>
+          <span class="comp-file">components/ecr-review-content-only.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/ecr-review-content-only.html')">복사</button>
+        </div>
+        <div class="comp-item">
+          <span class="comp-label">문서 분류 관리 (콘텐츠만)</span>
+          <span class="comp-file">components/doc-classify-content-only.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/doc-classify-content-only.html')">복사</button>
+        </div>
+        <div class="comp-item">
+          <span class="comp-label">사이즈 조절 Modal</span>
+          <span class="comp-file">components/modal-resizable.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/modal-resizable.html')">복사</button>
+        </div>
+        <div class="comp-item">
+          <span class="comp-label">Popup 호출 예시 (window.open)</span>
+          <span class="comp-file">components/popup-trigger-example.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/popup-trigger-example.html')">복사</button>
+        </div>
+        <div class="comp-item">
+          <span class="comp-label">사이드바 PNG 아이콘 메뉴 예시</span>
+          <span class="comp-file">components/sidebar-menu-with-png-icon.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/sidebar-menu-with-png-icon.html')">복사</button>
         </div>
       </div>
     </div>
@@ -217,6 +401,11 @@
           <span class="comp-label">액션 링크 (수정/삭제/등록)</span>
           <span class="comp-file">components/requestregister-action-links.html</span>
           <button class="btn-copy" onclick="copySnippet('components/requestregister-action-links.html')">복사</button>
+        </div>
+        <div class="comp-item">
+          <span class="comp-label">결재자 지정 (재사용 컴포넌트)</span>
+          <span class="comp-file">components/approval-line.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/approval-line.html')">복사</button>
         </div>
       </div>
     </div>
@@ -900,6 +1089,7 @@
         </div>
       </div>
     </div>
+    </div><!-- /snippet-body -->
   </div>
 
 </div>
@@ -907,6 +1097,15 @@
 <div class="toast" id="toast"></div>
 
 <script>
+function toggleSnippets() {
+  const btn = document.getElementById('snippetToggle');
+  const body = document.getElementById('snippetBody');
+  const isOpen = body.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+  btn.querySelector('.snippet-toggle-right span:first-child').textContent =
+    isOpen ? '142개 스니펫 · 클릭하여 접기' : '142개 스니펫 · 클릭하여 펼치기';
+}
+
 async function copySnippet(filePath) {
   try {
     const resp = await fetch(filePath);

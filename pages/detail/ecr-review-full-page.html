@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ECR 검토 (ECR Review)</title>
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../css/digitek.css">
+  <link rel="stylesheet" href="../../css/icons.css">
+  <style>body { margin: 0; background: #fff; }</style>
+</head>
+<body>
+<!-- ECR 검토 페이지: Sidebar + GNB + Content 전체 레이아웃 -->
+<div class="layout-digitek">
+  <!-- 펼침: sidebar-digitek-expanded (250px) / 접힘: sidebar-digitek-collapsed (96px) -->
+<!-- 3레벨 메뉴 구조: 1레벨(메뉴) → 2레벨(서브메뉴) → 3레벨(서브-서브메뉴) -->
+<!-- [커스텀] 현재 활성 메뉴 아이템에 'sidebar-digitek-active' 클래스 추가 -->
+<nav class="sidebar-digitek sidebar-digitek-expanded" aria-label="메인 메뉴">
+  <div class="sidebar-digitek-header">
+    <div class="sidebar-digitek-logo sidebar-logo-full">
+      <img src="../../images/icons/logo.png" width="108" height="52" alt="HLKlemove 로고" aria-hidden="true">
+    </div>
+    <div class="sidebar-digitek-logo sidebar-logo-collapsed">
+      <img src="../../images/icons/logo-collapsed.png" width="32" height="32" alt="HL 로고" aria-hidden="true">
+    </div>
+  </div>
+
+  <div class="flex-grow-1 overflow-auto sidebar-digitek-menu-area">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="sidebar-digitek-menu-item" href="#">
+          <span class="sidebar-digitek-icon-label">
+            <i class="dicon dicon-file-blank icon-digitek-20"></i>
+            <span class="sidebar-digitek-menu-label">결재 관리</span>
+          </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="sidebar-digitek-menu-item" href="#">
+          <span class="sidebar-digitek-icon-label">
+            <i class="dicon dicon-folder icon-digitek-20"></i>
+            <span class="sidebar-digitek-menu-label">문서 관리</span>
+          </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="sidebar-digitek-menu-item" href="#">
+          <span class="sidebar-digitek-icon-label">
+            <i class="dicon dicon-settings icon-digitek-20"></i>
+            <span class="sidebar-digitek-menu-label">부품 관리</span>
+          </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="sidebar-digitek-menu-item" href="#">
+          <span class="sidebar-digitek-icon-label">
+            <i class="dicon dicon-folder-edit icon-digitek-20"></i>
+            <span class="sidebar-digitek-menu-label">도면 관리</span>
+          </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="sidebar-digitek-menu-item sidebar-digitek-active" href="#" aria-current="page">
+          <span class="sidebar-digitek-icon-label">
+            <i class="dicon dicon-reload icon-digitek-20"></i>
+            <span class="sidebar-digitek-menu-label">설계 변경</span>
+          </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="sidebar-digitek-menu-item" href="#" aria-expanded="true">
+          <span class="sidebar-digitek-icon-label">
+            <i class="dicon dicon-layer icon-digitek-20"></i>
+            <span class="sidebar-digitek-menu-label">PMS</span>
+          </span>
+          <span class="sidebar-digitek-chevron sidebar-digitek-chevron-open">
+            <i class="dicon dicon-chevron-down icon-digitek-20"></i>
+          </span>
+        </a>
+        <ul class="nav flex-column sidebar-digitek-submenu" style="max-height: 192px;" aria-label="PMS 하위 메뉴">
+          <li class="nav-item">
+            <a class="sidebar-digitek-submenu-item" href="#">
+              <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+              <span class="sidebar-digitek-menu-label">프로젝트 검색</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="sidebar-digitek-submenu-item" href="#">
+              <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+              <span class="sidebar-digitek-menu-label">프로젝트 등록</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="sidebar-digitek-submenu-item" href="#">
+              <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+              <span class="sidebar-digitek-menu-label">My Task</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="sidebar-digitek-submenu-item" href="#">
+              <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+              <span class="sidebar-digitek-menu-label">이슈 검색</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="sidebar-digitek-menu-item" href="#">
+          <span class="sidebar-digitek-icon-label">
+            <i class="dicon dicon-chart-pie icon-digitek-20"></i>
+            <span class="sidebar-digitek-menu-label">대시보드</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+  <div class="layout-digitek-main-area">
+    <header class="gnb-digitek">
+  <button class="gnb-hamburger-btn sidebar-toggle-btn" aria-label="메뉴 토글">
+    <div class="sidebar-hamburger-icon"><span></span><span></span><span></span></div>
+  </button>
+  <div class="gnb-digitek-right">
+    <div class="gnb-digitek-icon-group">
+      <button class="gnb-digitek-icon-btn" aria-label="알림">
+        <i class="dicon dicon-bell icon-digitek-24 text-digitek-secondary"></i>
+        <span class="gnb-digitek-badge">5</span>
+      </button>
+      <button class="gnb-digitek-icon-btn" aria-label="메일">
+        <i class="dicon dicon-mail icon-digitek-24 text-digitek-secondary"></i>
+        <span class="gnb-digitek-badge">12</span>
+      </button>
+    </div>
+    <div class="gnb-digitek-locale-wrap">
+      <button class="gnb-digitek-locale-btn" aria-label="언어 선택" aria-haspopup="menu" aria-expanded="false">
+        KO
+        <i class="dicon dicon-chevron-down-sm" style="width: 12px; height: 12px;" aria-hidden="true"></i>
+      </button>
+      <div class="gnb-digitek-locale-dropdown" role="menu">
+        <button class="gnb-digitek-locale-option active" role="menuitem">KO</button>
+        <button class="gnb-digitek-locale-option" role="menuitem">EN</button>
+      </div>
+    </div>
+    <div class="gnb-digitek-profile" role="button" tabindex="0" aria-label="프로필 메뉴" aria-haspopup="menu" aria-expanded="false">
+      <div class="gnb-digitek-avatar">
+        <img src="../../images/icons/avatar.png" width="32" height="32" alt="" aria-hidden="true" style="border-radius: 50%;">
+      </div>
+      <span class="gnb-digitek-profile-name">사용자 이름</span>
+    </div>
+  </div>
+</header>
+
+    <!-- 콘텐츠 영역 -->
+    <div class="flex-grow-1 overflow-y-digitek-auto" style="background: var(--digitek-bg-gray);">
+
+      <!-- ECR 검토 콘텐츠 영역 -->
+      <!-- 설계변경 작성 중 각 부서에 업무를 할당하는 리스트 -->
+      <div class="ecr-review-layout">
+        <fieldset class="ecr-review-fieldset">
+          <legend class="ecr-review-legend">ECR 검토</legend>
+
+          <!-- 상단 우측 버튼 -->
+          <div class="ecr-header-actions">
+            <!-- [커스텀] 추가 클릭 시 새 부서 그룹 행 동적 추가 -->
+            <button type="button" class="btn btn-sm btn-digitek-outline">추가</button>
+            <!-- [커스텀] 삭제 클릭 시 체크된 부서 그룹 행 삭제 -->
+            <button type="button" class="btn btn-sm btn-digitek-outline">삭제</button>
+          </div>
+
+          <!-- 헤더 테이블 (컬럼 제목 행) -->
+          <table class="ecr-header-table">
+            <colgroup>
+              <col style="width: 34px">
+              <col style="width: 110px">
+              <col>
+            </colgroup>
+            <thead>
+              <tr>
+                <th><input type="checkbox" aria-label="전체 선택"></th>
+                <th>부서</th>
+                <th>검토 의견</th>
+              </tr>
+            </thead>
+          </table>
+
+          <!-- 부서 그룹 목록 (각 그룹이 독립된 박스로 분리) -->
+          <div class="ecr-groups-container">
+            <!-- [구조 참고] 각 그룹은 ecr-group-table로 독립된 테이블 -->
+            <table class="ecr-group-table">
+              <colgroup>
+                <col style="width: 34px">
+                <col style="width: 110px">
+                <col>
+              </colgroup>
+              <tbody>
+                <tr class="ecr-dept-row">
+                  <td class="ecr-checkbox-cell"><input type="checkbox" aria-label="행 선택"></td>
+                  <td class="ecr-dept-name">R&amp;D</td>
+                  <td>변경 요청에 따른 설계 자체 부품의 변경은 설계상 큰 문제가 없을 것으로 판단됨.</td>
+                </tr>
+                <tr class="ecr-task-row">
+                  <td colspan="2" class="ecr-task-label-cell">
+                    변경 대상 업무
+                    <button type="button" class="ecr-add-task-btn" aria-label="업무 추가">+</button>
+                  </td>
+                  <td class="ecr-task-content-cell">
+                    <table class="ecr-task-table">
+                      <thead>
+                        <tr>
+                          <th>수행 업무</th>
+                          <th style="width:70px">부서</th>
+                          <th style="width:110px">담당자</th>
+                          <th style="width:150px">완료예정일</th>
+                          <th style="width:42px">삭제</th>
+                        </tr>
+                      </thead>
+                      <tbody data-draggable-table>
+                        <tr draggable="true" class="draggable-row">
+                          <td><button type="button" class="ecr-task-link">기구도면</button></td>
+                          <td>R&amp;D</td>
+                          <td>김연구</td>
+                          <td>
+                            <div class="ecr-date-wrap">
+                              <input type="date" class="ecr-date-input" value="2026-01-01" aria-label="완료예정일">
+                              <button type="button" class="ecr-cal-btn" aria-label="날짜 선택">
+                                <i class="dicon dicon-calendar icon-digitek-16 text-digitek-secondary"></i>
+                              </button>
+                            </div>
+                          </td>
+                          <td class="ecr-del-cell"><button type="button" class="ecr-del-btn" aria-label="삭제">×</button></td>
+                        </tr>
+                        <tr draggable="true" class="draggable-row">
+                          <td><button type="button" class="ecr-task-link">BOM</button></td>
+                          <td></td>
+                          <td><button type="button" class="ecr-user-search">사용자 검색</button></td>
+                          <td>
+                            <div class="ecr-date-wrap">
+                              <input type="date" class="ecr-date-input" aria-label="완료예정일">
+                              <button type="button" class="ecr-cal-btn" aria-label="날짜 선택">
+                                <i class="dicon dicon-calendar icon-digitek-16 text-digitek-secondary"></i>
+                              </button>
+                            </div>
+                          </td>
+                          <td class="ecr-del-cell"><button type="button" class="ecr-del-btn" aria-label="삭제">×</button></td>
+                        </tr>
+                        <tr draggable="true" class="draggable-row">
+                          <td><button type="button" class="ecr-task-link">DFMEA</button></td>
+                          <td></td>
+                          <td><button type="button" class="ecr-user-search">사용자 검색</button></td>
+                          <td>
+                            <div class="ecr-date-wrap">
+                              <input type="date" class="ecr-date-input" aria-label="완료예정일">
+                              <button type="button" class="ecr-cal-btn" aria-label="날짜 선택">
+                                <i class="dicon dicon-calendar icon-digitek-16 text-digitek-secondary"></i>
+                              </button>
+                            </div>
+                          </td>
+                          <td class="ecr-del-cell"><button type="button" class="ecr-del-btn" aria-label="삭제">×</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- ── 그룹 2: 구매 ── -->
+            <table class="ecr-group-table">
+              <colgroup>
+                <col style="width: 34px">
+                <col style="width: 110px">
+                <col>
+              </colgroup>
+              <tbody>
+                <tr class="ecr-dept-row">
+                  <td class="ecr-checkbox-cell"><input type="checkbox" aria-label="행 선택"></td>
+                  <td class="ecr-dept-name">구매</td>
+                  <td>업체 확인 결과 부품 수배에는 큰 영향 없음</td>
+                </tr>
+                <tr class="ecr-task-row">
+                  <td colspan="2" class="ecr-task-label-cell">
+                    변경 대상 업무
+                    <button type="button" class="ecr-add-task-btn" aria-label="업무 추가">+</button>
+                  </td>
+                  <td class="ecr-task-content-cell">
+                    <!-- [커스텀] data-draggable-table 속성으로 행 드래그 순서 변경 활성화 -->
+                    <table class="ecr-task-table">
+                      <thead>
+                        <tr>
+                          <th>수행 업무</th>
+                          <th style="width:70px">부서</th>
+                          <th style="width:110px">담당자</th>
+                          <th style="width:150px">완료예정일</th>
+                          <th style="width:42px">삭제</th>
+                        </tr>
+                      </thead>
+                      <tbody data-draggable-table>
+                        <tr draggable="true" class="draggable-row">
+                          <td><button type="button" class="ecr-task-link">업체 검사협정서</button></td>
+                          <td>구매</td>
+                          <td>황구매</td>
+                          <td>
+                            <div class="ecr-date-wrap">
+                              <input type="date" class="ecr-date-input" value="2026-01-01" aria-label="완료예정일">
+                              <button type="button" class="ecr-cal-btn" aria-label="날짜 선택">
+                                <i class="dicon dicon-calendar icon-digitek-16 text-digitek-secondary"></i>
+                              </button>
+                            </div>
+                          </td>
+                          <td class="ecr-del-cell"><button type="button" class="ecr-del-btn" aria-label="삭제">×</button></td>
+                        </tr>
+                        <tr draggable="true" class="draggable-row">
+                          <td><button type="button" class="ecr-task-link">업체 검사기준서</button></td>
+                          <td>구매</td>
+                          <td>황구매</td>
+                          <td>
+                            <div class="ecr-date-wrap">
+                              <input type="date" class="ecr-date-input" value="2026-01-01" aria-label="완료예정일">
+                              <button type="button" class="ecr-cal-btn" aria-label="날짜 선택">
+                                <i class="dicon dicon-calendar icon-digitek-16 text-digitek-secondary"></i>
+                              </button>
+                            </div>
+                          </td>
+                          <td class="ecr-del-cell"><button type="button" class="ecr-del-btn" aria-label="삭제">×</button></td>
+                        </tr>
+                        <tr draggable="true" class="draggable-row">
+                          <td><button type="button" class="ecr-task-link">업체 품질협양서</button></td>
+                          <td>구매</td>
+                          <td>황구매</td>
+                          <td>
+                            <div class="ecr-date-wrap">
+                              <input type="date" class="ecr-date-input" value="2026-01-01" aria-label="완료예정일">
+                              <button type="button" class="ecr-cal-btn" aria-label="날짜 선택">
+                                <i class="dicon dicon-calendar icon-digitek-16 text-digitek-secondary"></i>
+                              </button>
+                            </div>
+                          </td>
+                          <td class="ecr-del-cell"><button type="button" class="ecr-del-btn" aria-label="삭제">×</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- ── 그룹 3: 품질 ── -->
+            <table class="ecr-group-table">
+              <colgroup>
+                <col style="width: 34px">
+                <col style="width: 110px">
+                <col>
+              </colgroup>
+              <tbody>
+                <tr class="ecr-dept-row">
+                  <td class="ecr-checkbox-cell"><input type="checkbox" aria-label="행 선택"></td>
+                  <td class="ecr-dept-name">품질</td>
+                  <td>변경 적용 시 품질 개선이 기대됨. 품질적인 리스크 위협은 없을 것으로 판단됨.</td>
+                </tr>
+                <tr class="ecr-task-row">
+                  <td colspan="2" class="ecr-task-label-cell">
+                    변경 대상 업무
+                    <button type="button" class="ecr-add-task-btn" aria-label="업무 추가">+</button>
+                  </td>
+                  <td class="ecr-task-content-cell">
+                    <table class="ecr-task-table">
+                      <thead>
+                        <tr>
+                          <th>수행 업무</th>
+                          <th style="width:70px">부서</th>
+                          <th style="width:110px">담당자</th>
+                          <th style="width:150px">완료예정일</th>
+                          <th style="width:42px">삭제</th>
+                        </tr>
+                      </thead>
+                      <tbody data-draggable-table>
+                        <tr draggable="true" class="draggable-row">
+                          <td><button type="button" class="ecr-task-link">품질관리계획서</button></td>
+                          <td>품질</td>
+                          <td>박품질</td>
+                          <td>
+                            <div class="ecr-date-wrap">
+                              <input type="date" class="ecr-date-input" value="2026-01-01" aria-label="완료예정일">
+                              <button type="button" class="ecr-cal-btn" aria-label="날짜 선택">
+                                <i class="dicon dicon-calendar icon-digitek-16 text-digitek-secondary"></i>
+                              </button>
+                            </div>
+                          </td>
+                          <td class="ecr-del-cell"><button type="button" class="ecr-del-btn" aria-label="삭제">×</button></td>
+                        </tr>
+                        <tr draggable="true" class="draggable-row">
+                          <td><button type="button" class="ecr-task-link">QPR_8D보고서</button></td>
+                          <td>품질</td>
+                          <td>박품질</td>
+                          <td>
+                            <div class="ecr-date-wrap">
+                              <input type="date" class="ecr-date-input" value="2026-01-01" aria-label="완료예정일">
+                              <button type="button" class="ecr-cal-btn" aria-label="날짜 선택">
+                                <i class="dicon dicon-calendar icon-digitek-16 text-digitek-secondary"></i>
+                              </button>
+                            </div>
+                          </td>
+                          <td class="ecr-del-cell"><button type="button" class="ecr-del-btn" aria-label="삭제">×</button></td>
+                        </tr>
+                        <tr draggable="true" class="draggable-row">
+                          <td><button type="button" class="ecr-task-link">신뢰성 시험 결과서</button></td>
+                          <td>품질</td>
+                          <td>박품질</td>
+                          <td>
+                            <div class="ecr-date-wrap">
+                              <input type="date" class="ecr-date-input" value="2026-01-01" aria-label="완료예정일">
+                              <button type="button" class="ecr-cal-btn" aria-label="날짜 선택">
+                                <i class="dicon dicon-calendar icon-digitek-16 text-digitek-secondary"></i>
+                              </button>
+                            </div>
+                          </td>
+                          <td class="ecr-del-cell"><button type="button" class="ecr-del-btn" aria-label="삭제">×</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- ── 그룹 4: 신규 입력 행 ── -->
+            <!-- [커스텀] 추가 버튼 클릭 시 이 구조로 동적 행 삽입 -->
+            <table class="ecr-group-table">
+              <colgroup>
+                <col style="width: 34px">
+                <col style="width: 110px">
+                <col>
+              </colgroup>
+              <tbody>
+                <tr class="ecr-dept-row">
+                  <td class="ecr-checkbox-cell"><input type="checkbox" aria-label="행 선택"></td>
+                  <td>
+                    <select class="form-select form-select-sm" aria-label="부서 선택">
+                      <option>영업</option>
+                      <option>R&amp;D</option>
+                      <option>구매</option>
+                      <option>품질</option>
+                    </select>
+                  </td>
+                  <td><input type="text" class="form-control form-control-sm" placeholder="검토 의견을 입력하세요"></td>
+                </tr>
+                <tr class="ecr-task-row">
+                  <td colspan="2" class="ecr-task-label-cell">
+                    변경 대상 업무
+                    <button type="button" class="ecr-add-task-btn" aria-label="업무 추가">+</button>
+                  </td>
+                  <td class="ecr-task-content-cell ecr-task-content-empty">
+                    <!-- [커스텀] + 버튼 클릭 시 ecr-task-table 동적 생성 -->
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div><!-- /ecr-groups-container -->
+        </fieldset>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="../../js/jquery.slim.min.js"></script>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script src="../../js/digitek.js"></script>
+</body>
+</html>

@@ -1,4 +1,18 @@
-<!-- 펼침: sidebar-digitek-expanded (250px) / 접힘: sidebar-digitek-collapsed (96px) -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>코드 추가/상세 (Code Management)</title>
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../css/digitek.css">
+  <link rel="stylesheet" href="../../css/icons.css">
+  <style>body { margin: 0; background: #fff; }</style>
+</head>
+<body>
+<!-- 코드 추가/상세 페이지: Sidebar + GNB + Content 전체 레이아웃 -->
+<div class="layout-digitek">
+  <!-- 펼침: sidebar-digitek-expanded (250px) / 접힘: sidebar-digitek-collapsed (96px) -->
 <!-- 3레벨 메뉴 구조: 1레벨(메뉴) → 2레벨(서브메뉴) → 3레벨(서브-서브메뉴) -->
 <!-- [커스텀] 현재 활성 메뉴 아이템에 'sidebar-digitek-active' 클래스 추가 -->
 <!-- [커스텀] Thymeleaf 현재 경로 기반 active 처리 예시:
@@ -8,11 +22,11 @@
   <div class="sidebar-digitek-header">
     <!-- 펼침 로고 -->
     <div class="sidebar-digitek-logo sidebar-logo-full">
-      <img src="/images/icons/logo.png" width="108" height="52" alt="HLKlemove 로고" aria-hidden="true">
+      <img src="../../images/icons/logo.png" width="108" height="52" alt="HLKlemove 로고" aria-hidden="true">
     </div>
-    <!-- 접힘 로고 (기본 hidden, collapsed 상태에서 표시) -->
+    <!-- 접힘 로고 -->
     <div class="sidebar-digitek-logo sidebar-logo-collapsed">
-      <img src="/images/icons/logo-collapsed.png" width="32" height="32" alt="HL 로고" aria-hidden="true">
+      <img src="../../images/icons/logo-collapsed.png" width="32" height="32" alt="HL 로고" aria-hidden="true">
     </div>
   </div>
 
@@ -189,3 +203,152 @@
     </ul>
   </div>
 </nav>
+  <div class="layout-digitek-main-area">
+    <header class="gnb-digitek">
+  <button class="gnb-hamburger-btn sidebar-toggle-btn" aria-label="메뉴 토글">
+    <div class="sidebar-hamburger-icon"><span></span><span></span><span></span></div>
+  </button>
+  <!-- [커스텀] 검색 인풋: 필요 시 주석 해제하여 사용
+  <div class="gnb-digitek-search-wrap">
+    <input
+      type="text"
+      class="gnb-digitek-search-field"
+      placeholder="검색어를 입력해 주세요"
+      aria-label="검색어 입력"
+    />
+    <button class="btn-digitek-icon-plain" aria-label="검색">
+      <i class="dicon dicon-search-lg icon-digitek-24 text-digitek-secondary"></i>
+    </button>
+  </div>
+  -->
+
+  <!-- 우측 영역 -->
+  <div class="gnb-digitek-right">
+    <!-- 알림/메일 아이콘 -->
+    <div class="gnb-digitek-icon-group">
+      <button class="gnb-digitek-icon-btn" aria-label="알림">
+        <i class="dicon dicon-bell icon-digitek-24 text-digitek-secondary"></i>
+        <!-- [커스텀] 알림 뱃지 숫자 변경: th:text="${notificationCount}" -->
+        <!-- [커스텀] 알림 없을 경우 뱃지 숨김: th:if="${notificationCount > 0}" -->
+        <span class="gnb-digitek-badge">5</span>
+      </button>
+
+      <button class="gnb-digitek-icon-btn" aria-label="메일">
+        <i class="dicon dicon-mail icon-digitek-24 text-digitek-secondary"></i>
+        <!-- [커스텀] 메일 뱃지 숫자 변경: th:text="${mailCount}" -->
+        <!-- [커스텀] 메일 없을 경우 뱃지 숨김: th:if="${mailCount > 0}" -->
+        <span class="gnb-digitek-badge">12</span>
+      </button>
+    </div>
+
+    <!-- 다국어 선택 -->
+    <!-- [커스텀] JS 연동: 버튼 클릭 시 gnb-digitek-locale-wrap에 'open' 클래스 토글 -->
+    <!-- [커스텀] 선택된 언어 표시: th:text="${session.locale == 'ko' ? 'KO' : 'EN'}" -->
+    <div class="gnb-digitek-locale-wrap">
+      <button class="gnb-digitek-locale-btn" aria-label="언어 선택" aria-haspopup="menu" aria-expanded="false">
+        KO
+        <i class="dicon dicon-chevron-down-sm" style="width: 12px; height: 12px;" aria-hidden="true"></i>
+      </button>
+      <div class="gnb-digitek-locale-dropdown" role="menu">
+        <!-- [커스텀] 현재 선택 언어 옵션에 'active' 클래스 추가 -->
+        <button class="gnb-digitek-locale-option active" role="menuitem">KO</button>
+        <button class="gnb-digitek-locale-option" role="menuitem">EN</button>
+      </div>
+    </div>
+
+    <!-- 프로필 -->
+    <!-- [커스텀] JS 연동: 클릭 시 프로필 드롭다운 표시 (필요에 따라 구현) -->
+    <!-- [참고] div[role="button"] 키보드 이벤트(Enter/Space)는 digitek.js가 자동 처리합니다 -->
+    <div class="gnb-digitek-profile" role="button" tabindex="0" aria-label="프로필 메뉴" aria-haspopup="menu" aria-expanded="false">
+      <div class="gnb-digitek-avatar">
+        <img src="../../images/icons/avatar.png" width="32" height="32" alt="" aria-hidden="true" style="border-radius: 50%;">
+      </div>
+      <!-- [커스텀] 현재 로그인 사용자명 변경: th:text="${user.name}" -->
+      <span class="gnb-digitek-profile-name">사용자 이름</span>
+    </div>
+  </div>
+</header>
+    <!-- 콘텐츠 영역 -->
+    <div class="flex-grow-1 overflow-y-digitek-auto" style="background: var(--digitek-bg-gray);">
+      <!-- 코드 관리 콘텐츠 영역 -->
+<div class="code-manage-layout">
+
+  <!-- 상단: 페이지 헤더 -->
+  <div class="code-manage-header">
+    <h6 class="code-manage-header-title">공통코드 관리</h6>
+    <div class="code-manage-header-actions">
+      <!-- [커스텀] 수정/등록 버튼: th:onclick 또는 JS 바인딩 -->
+      <button type="button" class="btn btn-sm btn-outline-warning">수정</button>
+      <button type="button" class="btn btn-sm btn-primary">등록</button>
+    </div>
+  </div>
+
+  <!-- 검색 바 -->
+  <div class="code-manage-search-bar">
+    <label for="codeSearchColumn">컬럼 선택:</label>
+    <!-- [커스텀] select 옵션: th:each로 동적 바인딩 -->
+    <select id="codeSearchColumn">
+      <option value="codeValue">코드값</option>
+      <option value="code">code</option>
+    </select>
+    <label for="codeSearchInput">검색:</label>
+    <input type="text" id="codeSearchInput" placeholder="검색어 입력">
+  </div>
+
+  <!-- 좌우 분할 영역 -->
+  <div class="code-manage-body">
+    <!-- 좌: 코드 목록 -->
+    <div class="code-manage-list">
+      <h6 class="code-manage-section-title">코드 목록</h6>
+      <!-- [커스텀] Grid 영역: 코드 목록 테이블 -->
+      <table class="table table-bordered table-sm mb-0">
+        <thead>
+          <tr>
+            <th>코드값</th>
+            <th>code</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- [커스텀] th:each="item : ${codeList}" 으로 동적 바인딩 -->
+          <tr>
+            <td>DIGI</td>
+            <td>DG001</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 우: 공통코드 상세 정보 -->
+    <div class="code-manage-detail">
+      <h6 class="code-manage-section-title">공통코드 상세 정보</h6>
+      <!-- [커스텀] Grid 영역: 상세 정보 테이블 -->
+      <table class="table table-bordered table-sm mb-0">
+        <tbody>
+          <!-- [커스텀] th:text="${item.XXX}" 으로 각 필드 동적 바인딩 -->
+          <tr><th>Code</th><td>DG001</td></tr>
+          <tr><th>코드값</th><td>DIGI</td></tr>
+          <tr><th>코드 타입</th><td>DGCODE</td></tr>
+          <tr><th>DD Code</th><td>DG001</td></tr>
+          <tr><th>부모 코드</th><td></td></tr>
+          <tr><th>부모 타입</th><td></td></tr>
+          <tr><th>etc1</th><td></td></tr>
+          <tr><th>etc2</th><td></td></tr>
+          <tr><th>etc3</th><td></td></tr>
+          <tr><th>etc4</th><td></td></tr>
+          <tr><th>etc5</th><td></td></tr>
+          <tr><th>Description</th><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+    </div>
+  </div>
+</div>
+
+<script src="../../js/jquery.slim.min.js"></script>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script src="../../js/digitek.js"></script>
+</body>
+</html>

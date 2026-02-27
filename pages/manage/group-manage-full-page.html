@@ -2,13 +2,15 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>Digiteki PLM</title>
-  <!-- CSS 의존성 -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/digitek.css">
-  <link rel="stylesheet" href="css/icons.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>그룹/사용자 관리 (Group/User Management)</title>
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../css/digitek.css">
+  <link rel="stylesheet" href="../../css/icons.css">
+  <style>body { margin: 0; background: #fff; }</style>
 </head>
 <body>
+<!-- 그룹/사용자 관리 페이지: Sidebar + GNB + Content 전체 레이아웃 -->
 <div class="layout-digitek">
   <!-- 펼침: sidebar-digitek-expanded (250px) / 접힘: sidebar-digitek-collapsed (96px) -->
 <!-- 3레벨 메뉴 구조: 1레벨(메뉴) → 2레벨(서브메뉴) → 3레벨(서브-서브메뉴) -->
@@ -20,11 +22,11 @@
   <div class="sidebar-digitek-header">
     <!-- 펼침 로고 -->
     <div class="sidebar-digitek-logo sidebar-logo-full">
-      <img src="/images/icons/logo.png" width="108" height="52" alt="HLKlemove 로고" aria-hidden="true">
+      <img src="../../images/icons/logo.png" width="108" height="52" alt="HLKlemove 로고" aria-hidden="true">
     </div>
-    <!-- 접힘 로고 (기본 hidden, collapsed 상태에서 표시) -->
+    <!-- 접힘 로고 -->
     <div class="sidebar-digitek-logo sidebar-logo-collapsed">
-      <img src="/images/icons/logo-collapsed.png" width="32" height="32" alt="HL 로고" aria-hidden="true">
+      <img src="../../images/icons/logo-collapsed.png" width="32" height="32" alt="HL 로고" aria-hidden="true">
     </div>
   </div>
 
@@ -203,11 +205,9 @@
 </nav>
   <div class="layout-digitek-main-area">
     <header class="gnb-digitek">
-  <!-- 햄버거 사이드바 토글 (항상 표시) -->
   <button class="gnb-hamburger-btn sidebar-toggle-btn" aria-label="메뉴 토글">
     <div class="sidebar-hamburger-icon"><span></span><span></span><span></span></div>
   </button>
-
   <!-- [커스텀] 검색 인풋: 필요 시 주석 해제하여 사용
   <div class="gnb-digitek-search-wrap">
     <input
@@ -261,20 +261,137 @@
     <!-- [참고] div[role="button"] 키보드 이벤트(Enter/Space)는 digitek.js가 자동 처리합니다 -->
     <div class="gnb-digitek-profile" role="button" tabindex="0" aria-label="프로필 메뉴" aria-haspopup="menu" aria-expanded="false">
       <div class="gnb-digitek-avatar">
-        <img src="/images/icons/avatar.png" width="32" height="32" alt="" aria-hidden="true" style="border-radius: 50%;">
+        <img src="../../images/icons/avatar.png" width="32" height="32" alt="" aria-hidden="true" style="border-radius: 50%;">
       </div>
       <!-- [커스텀] 현재 로그인 사용자명 변경: th:text="${user.name}" -->
       <span class="gnb-digitek-profile-name">사용자 이름</span>
     </div>
   </div>
 </header>
-    <main class="p-4">컨텐츠 영역</main>
+    <!-- 콘텐츠 영역 -->
+    <div class="flex-grow-1 d-flex flex-column overflow-hidden">
+      <div class="group-manage-layout">
+
+        <!-- 페이지 헤더 -->
+        <div class="group-manage-header">
+          <!-- [커스텀] th:text="${group.name} + ' 그룹 멤버 관리'" 으로 동적 바인딩 -->
+          <span class="group-manage-header-title">HKL 그룹 멤버 관리</span>
+          <div class="group-manage-header-center">
+            <button type="button" class="btn btn-sm btn-primary">그룹 생성</button>
+          </div>
+          <div class="group-manage-header-right">
+            <button type="button" class="btn btn-sm btn-success">저장</button>
+          </div>
+        </div>
+
+        <!-- 3열 본문 -->
+        <div class="group-manage-body">
+
+          <!-- 좌: 그룹 목록 -->
+          <div class="group-manage-col">
+            <div class="group-manage-col-title">그룹 목록</div>
+            <div class="group-manage-table-wrap">
+              <!-- [커스텀] th:each="group : ${groups}" 으로 동적 바인딩 -->
+              <table>
+                <thead>
+                  <tr><th>그룹명</th></tr>
+                </thead>
+                <tbody>
+                  <tr class="active">
+                    <td>HKL_DIGI</td>
+                  </tr>
+                  <tr>
+                    <td>HKL_QA</td>
+                  </tr>
+                  <tr>
+                    <td>PLM_ADMIN</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 중: 그룹 멤버 -->
+          <div class="group-manage-col">
+            <div class="group-manage-col-title">그룹 멤버</div>
+            <div class="group-manage-search-row">
+              <span class="group-manage-search-label">검색:</span>
+              <!-- [커스텀] 검색 기준 select -->
+              <select class="form-select form-select-sm" style="width: auto;">
+                <option>사용자명</option>
+                <option>부서</option>
+              </select>
+              <input type="text" class="form-control form-control-sm" placeholder="검색어 입력" style="max-width: 160px;">
+            </div>
+            <div class="group-manage-table-wrap">
+              <!-- [커스텀] th:each="member : ${groupMembers}" 으로 동적 바인딩 -->
+              <table>
+                <thead>
+                  <tr>
+                    <th>그룹 멤버</th>
+                    <th>부서</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Ahn, Dae Ryong</td><td>AD Lab Test</td></tr>
+                  <tr><td>Alagu Karuppiah.K</td><td>Sales and Marketing</td></tr>
+                  <tr><td>An, Sang-Hun</td><td>SQA</td></tr>
+                  <tr><td>Anto Leo Thomson</td><td>Quality Control</td></tr>
+                  <tr><td>Bae-YoonBum</td><td>Global Quality Control</td></tr>
+                  <tr><td>PLM-Admin</td><td>IT</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 우: 전체 사용자 -->
+          <div class="group-manage-col">
+            <div class="group-manage-col-title">전체 사용자</div>
+            <div class="group-manage-search-row">
+              <span class="group-manage-search-label">검색:</span>
+              <!-- [커스텀] 검색 기준 select -->
+              <select class="form-select form-select-sm" style="width: auto;">
+                <option>사용자명</option>
+                <option>부서</option>
+              </select>
+              <input type="text" class="form-control form-control-sm" placeholder="검색어 입력" style="max-width: 160px;">
+            </div>
+            <div class="group-manage-table-wrap">
+              <!-- [커스텀] th:each="user : ${allUsers}" 으로 동적 바인딩 -->
+              <table>
+                <thead>
+                  <tr>
+                    <th>전체 사용자</th>
+                    <th>부서</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>An, Hyun-Woo</td><td>Electronic Purchasing</td></tr>
+                  <tr><td>Back-DongHyuk</td><td>AE Lab Test</td></tr>
+                  <tr><td>Bae, Min Su</td><td>AD Sensor MD</td></tr>
+                  <tr><td>Bae-JinSeok</td><td>Chassis Electronics 2</td></tr>
+                  <tr><td>Bae-SeongHyeon</td><td>Global Production Control</td></tr>
+                  <tr><td>Baek, Doo-Hyun</td><td>Supplier Development</td></tr>
+                  <tr><td>Baek, Seung Mi</td><td>SQA</td></tr>
+                  <tr><td>Bae-YoungSool</td><td>Global Quality 2</td></tr>
+                  <tr><td>Bharath V S</td><td>RnD(Test lab.)</td></tr>
+                  <tr><td>Brenda Argelia Molina Ruiz</td><td>QA Team</td></tr>
+                  <tr><td>Chang, Dong-Hyun</td><td>Engineering</td></tr>
+                  <tr><td>Choi, Jun-Ho</td><td>AD Lab Test</td></tr>
+                  <tr><td>Chung, Min-Soo</td><td>Global Quality Control</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div><!-- /group-manage-body -->
+      </div><!-- /group-manage-layout -->
+    </div>
   </div>
 </div>
 
-<!-- JS 의존성 -->
-<script src="js/jquery.slim.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/digitek.js"></script>
+<script src="../../js/jquery.slim.min.js"></script>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script src="../../js/digitek.js"></script>
 </body>
 </html>

@@ -1,0 +1,36 @@
+<!-- 사이즈 조절 가능한 Modal -->
+<!-- [커스텀] JS: CSS resize 속성으로 사이즈 조절 가능 -->
+<!-- [커스텀] 트리거: data-toggle="modal" data-target="#resizableModal" -->
+
+<!-- 트리거 버튼 예시 -->
+<button class="btn btn-primary" data-toggle="modal" data-target="#resizableModal">
+  Modal 열기 (사이즈 조절 가능)
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="resizableModal" tabindex="-1"
+     role="dialog" aria-labelledby="resizableModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-resizable" role="document" id="resizableModalDialog"
+       style="width: 600px; min-width: 300px; min-height: 200px;">
+    <div class="modal-content h-100">
+      <div class="modal-header">
+        <h5 class="modal-title" id="resizableModalLabel">Modal 제목</h5>
+        <!-- 사이즈 조절 안내 -->
+        <small class="text-muted ml-2" style="font-size: 11px;">(우측 하단 드래그로 크기 조절)</small>
+        <button type="button" class="close" data-dismiss="modal" aria-label="닫기">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="overflow-y: auto;">
+        <!-- [커스텀] Modal 콘텐츠 -->
+        <p>Modal 내용 영역</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-primary">확인</button>
+      </div>
+      <!-- 리사이즈 핸들 -->
+      <div class="modal-resize-handle" title="드래그하여 크기 조절"></div>
+    </div>
+  </div>
+</div>

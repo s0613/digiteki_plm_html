@@ -2330,6 +2330,28 @@
   border-bottom: 1px solid var(--digitek-border);
 }
 
+/* GNB 햄버거 토글 버튼 — 항상 표시, 사이드바 토글 역할 */
+.gnb-hamburger-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+.gnb-hamburger-btn:hover {
+  background-color: rgba(0,0,0,0.06);
+  border-radius: 4px;
+}
+/* GNB 내 햄버거 아이콘: 다크 색상 (흰색 배경 위) */
+.gnb-hamburger-btn .sidebar-hamburger-icon span {
+  background: var(--digitek-text-secondary, #6c757d);
+}
+
 /* 검색 인풋 — pill 형태, 배경 전환 */
 .gnb-digitek-search-wrap {
   display: flex;
@@ -2578,9 +2600,14 @@
 .sidebar-digitek-header {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  padding: 12px 24px;
+  padding: 16px 24px;
   height: 80px;
+}
+.sidebar-digitek-header .sidebar-logo-full img {
+  max-width: 100%;
+  height: auto;
 }
 
 .sidebar-digitek-logo {
@@ -2591,10 +2618,40 @@
   display: block;
 }
 
-/* 사이드바가 접힐 때 로고 숨김 */
-.sidebar-digitek-collapsed .sidebar-digitek-logo {
-  opacity: 0;
-  pointer-events: none;
+/* 사이드바 햄버거 토글 아이콘 */
+.sidebar-hamburger-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+.sidebar-hamburger-icon span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #fff;
+  border-radius: 1px;
+}
+
+/* 펼침 상태: full 로고 표시, collapsed 로고 숨김 */
+.sidebar-logo-full { display: block; }
+.sidebar-logo-collapsed { display: none !important; }
+
+/* 접힘 상태: full 로고 숨김, HL 로고 표시 */
+.sidebar-digitek-collapsed .sidebar-logo-full { display: none !important; }
+.sidebar-digitek-collapsed .sidebar-logo-collapsed { display: block !important; }
+
+/* 접힘 상태 헤더: HL 로고 위 + 햄버거 아래 세로 배치 */
+.sidebar-digitek-collapsed .sidebar-digitek-header {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 10px;
+  height: auto;
 }
 
 /* Menu area */
@@ -2615,7 +2672,7 @@
   padding: 14px 12px;
   border-radius: 0.25rem;
   color: #fff;
-  white-space: nowrap;
+  white-space: normal; /* 줄바꿈 허용 */
   text-decoration: none;
   transition: background-color 0.15s ease;
 }
@@ -2623,6 +2680,12 @@
 .sidebar-digitek-menu-item:hover {
   color: #fff;
   text-decoration: none;
+}
+
+/* 사이드바 메뉴 라벨 — 줄바꿈 지원 */
+.sidebar-digitek-menu-label {
+  word-break: keep-all;     /* 한국어 단어 단위 줄바꿈 */
+  overflow-wrap: break-word;
 }
 
 /* 사이드바 아이콘 — 흰색 처리 */
@@ -5068,5 +5131,797 @@
   flex-direction: column;
   gap: 20px;
   padding-left: 0;
+}
+
+/* ========================================
+   HLKlemove 추가 컴포넌트 스타일
+   ======================================== */
+
+/* ── Task 4: Sidebar PNG 아이콘 지원 ── */
+.sidebar-digitek-icon-label img.sidebar-icon-png {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+/* ── Task 5: 메인 페이지 6-div 레이아웃 ── */
+.main-page-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
+.main-page-area {
+  background: #fff;
+  border: 1px solid #e5e5ec;
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 200px;
+  /* [커스텀] height: Xpx 으로 영역별 높이 지정 */
+}
+
+/* ── Task 6: 결재자 지정 컴포넌트 ── */
+.approval-designator {
+  border: 1px solid #e5e5ec;
+  border-radius: 8px;
+  padding: 16px;
+  background: #fff;
+}
+.approval-designator-header { margin-bottom: 12px; }
+.approval-designator-title { font-weight: 600; font-size: 14px; }
+.approval-designator-search { display: flex; align-items: center; }
+.approval-line-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.approval-line-item:last-child { border-bottom: none; }
+.approval-line-step {
+  width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--digitek-primary);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.approval-line-info { flex: 1; display: flex; flex-direction: column; }
+.approval-line-name { font-size: 14px; font-weight: 500; }
+.approval-line-dept { font-size: 12px; }
+.approval-line-remove { margin-left: auto; }
+
+/* ── Task 7: 담당자 태그 선택 ── */
+.assignee-tags-input-row { display: flex; align-items: center; }
+.assignee-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.assignee-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: #e8f0fb;
+  color: var(--digitek-primary);
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.assignee-tag-remove {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  color: var(--digitek-primary);
+}
+.assignee-tag-remove:hover { color: #c00; }
+
+/* ── Task 8: 드래그앤드롭 행 순서 변경 ── */
+.draggable-row { cursor: default; }
+.draggable-row.drag-over { background-color: #e8f0fb; border-top: 2px solid var(--digitek-primary); }
+.drag-handle { cursor: grab; }
+.drag-handle:active { cursor: grabbing; }
+
+/* ── Task 9: 그룹/사용자 관리 화면 ── */
+.group-manage-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.group-manage-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid #e5e5ec;
+  background: #fff;
+  flex-shrink: 0;
+}
+.group-manage-header-title {
+  font-size: 14px;
+  font-weight: 600;
+  flex: 1;
+}
+.group-manage-header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.group-manage-header-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+.group-manage-body {
+  display: grid;
+  grid-template-columns: 280px 1fr 1fr;
+  gap: 16px;
+  flex: 1;
+  overflow: hidden;
+  padding: 16px;
+  min-height: 0;
+}
+.group-manage-col {
+  background: #fff;
+  border: 1px solid #e5e5ec;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+.group-manage-col-title {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-bottom: 1px solid #e5e5ec;
+  flex-shrink: 0;
+}
+.group-manage-search-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-bottom: 1px solid #e5e5ec;
+  flex-shrink: 0;
+}
+.group-manage-search-label {
+  font-size: 13px;
+  color: #333;
+  white-space: nowrap;
+}
+.group-manage-table-wrap {
+  flex: 1;
+  overflow-y: auto;
+}
+.group-manage-table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.group-manage-table-wrap thead th {
+  background: #f7f7fb;
+  padding: 7px 12px;
+  border-bottom: 1px solid #e5e5ec;
+  font-weight: 500;
+  color: #555;
+  position: sticky;
+  top: 0;
+}
+.group-manage-table-wrap tbody td {
+  padding: 7px 12px;
+  border-bottom: 1px solid #f0f0f6;
+  color: #222;
+}
+.group-manage-table-wrap tbody tr:hover td {
+  background: #f5f5fc;
+  cursor: pointer;
+}
+.group-manage-table-wrap tbody tr.active td {
+  background: #eef1fb;
+}
+.dhtmlx-grid-area {
+  flex: 1;
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+  background: #fafafa;
+  /* [커스텀] Dhtmlx Grid가 이 div를 대체합니다 */
+}
+
+/* ── Task 10: 코드 추가/상세 화면 ── */
+.code-manage-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+.code-manage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.code-manage-header-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--digitek-primary);
+  margin: 0;
+}
+.code-manage-header-actions {
+  display: flex;
+  gap: 8px;
+}
+.code-manage-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.code-manage-search-bar label {
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  margin: 0;
+}
+.code-manage-search-bar select,
+.code-manage-search-bar input {
+  height: 32px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 8px;
+}
+.code-manage-body {
+  display: flex;
+  gap: 16px;
+  flex: 1;
+  min-height: 0;
+}
+.code-manage-list {
+  flex: 0 0 35%;
+  border: 1px solid #e5e5ec;
+  border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+}
+.code-manage-detail {
+  flex: 1;
+  border: 1px solid #e5e5ec;
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+}
+.code-manage-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--digitek-primary);
+  margin: 0 0 12px 0;
+}
+.code-manage-detail .table th {
+  text-align: center;
+  background: #f7f7fb;
+  width: 160px;
+  font-weight: 500;
+}
+
+/* ── ECR 검토 화면 ── */
+.ecr-review-layout {
+  padding: 16px;
+}
+.ecr-review-fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.ecr-review-legend {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--digitek-text-primary);
+  padding: 0 6px;
+  margin-left: 10px;
+  width: auto;
+}
+.ecr-header-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 8px 10px 6px;
+}
+/* 헤더 테이블 (컬럼 제목 행) */
+.ecr-header-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.ecr-header-table th {
+  border: 1px solid #ccc;
+  padding: 6px 8px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #f0f0f0;
+  text-align: center;
+}
+/* 부서 그룹 컨테이너 (각 그룹 사이 마진) */
+.ecr-groups-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+/* 각 부서 그룹 테이블 (독립된 박스) */
+.ecr-group-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.ecr-group-table td {
+  border: 1px solid #ccc;
+  padding: 6px 8px;
+  font-size: 13px;
+  vertical-align: middle;
+}
+.ecr-checkbox-cell {
+  text-align: center;
+}
+.ecr-dept-name {
+  text-align: center;
+  font-weight: 600;
+}
+.ecr-task-label-cell {
+  text-align: center;
+  vertical-align: middle;
+  background: #fafafa;
+  font-size: 12px;
+  color: var(--digitek-text-secondary);
+  white-space: nowrap;
+}
+.ecr-add-task-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #999;
+  background: #fff;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.ecr-add-task-btn:hover {
+  background: var(--digitek-primary-bg);
+  border-color: var(--digitek-primary);
+  color: var(--digitek-primary);
+}
+.ecr-task-content-cell {
+  padding: 0;
+}
+.ecr-task-content-empty {
+  min-height: 40px;
+}
+.ecr-task-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.ecr-task-table th,
+.ecr-task-table td {
+  border: 1px solid #ddd;
+  padding: 5px 8px;
+  font-size: 12px;
+  vertical-align: middle;
+}
+.ecr-task-table thead th {
+  background: #f5f5f5;
+  text-align: center;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.ecr-task-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 12px;
+  color: var(--digitek-text-primary);
+  text-decoration: underline;
+  cursor: pointer;
+  text-align: left;
+}
+.ecr-task-link:hover {
+  color: var(--digitek-primary);
+}
+.ecr-user-search {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 12px;
+  color: var(--digitek-text-secondary);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.ecr-user-search:hover {
+  color: var(--digitek-primary);
+  text-decoration: underline;
+}
+.ecr-date-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.ecr-date-input {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 2px 4px;
+  font-size: 12px;
+  width: 100px;
+}
+.ecr-cal-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+.ecr-del-cell {
+  text-align: center;
+}
+.ecr-del-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #777;
+  padding: 0;
+  line-height: 1;
+}
+.ecr-del-btn:hover {
+  background: #fee;
+  border-color: #f88;
+  color: #c00;
+}
+
+/* ── 문서 분류 관리 화면 ── */
+.doc-classify-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+.doc-classify-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.doc-classify-top-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+.doc-classify-panel {
+  background: #fff;
+  border: 1px solid var(--digitek-border);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.doc-classify-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.doc-classify-panel-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--digitek-primary);
+}
+.doc-classify-search {
+  width: 130px;
+}
+.doc-classify-select {
+  width: 100%;
+  flex: 1;
+  min-height: 180px;
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  font-size: 13px;
+  padding: 4px 0;
+  outline: none;
+}
+.doc-classify-select:focus {
+  border-color: var(--digitek-border-focus);
+}
+.doc-classify-select option {
+  padding: 4px 10px;
+  cursor: pointer;
+}
+.doc-classify-select option:checked {
+  background: var(--digitek-primary-bg);
+  color: var(--digitek-primary);
+}
+.doc-classify-bottom-card {
+  background: #fff;
+  border: 1px solid var(--digitek-border);
+  border-radius: 8px;
+  padding: 16px;
+}
+.doc-classify-bottom-header {
+  margin-bottom: 12px;
+}
+
+/* ── Task 11: 사이즈 조절 Modal ── */
+.modal-dialog-resizable {
+  resize: both;
+  overflow: auto;
+  max-width: none !important;
+  margin: 40px auto;
+}
+.modal-resize-handle {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 16px;
+  height: 16px;
+  cursor: se-resize;
+  background: linear-gradient(135deg, transparent 50%, #ccc 50%);
+}
+
+/* ========================================================================== */
+/*  문서 등록 페이지 (Create Document)                                          */
+/* ========================================================================== */
+
+/* ── 페이지 컨테이너 ── */
+.doc-create-digitek {
+  padding: 24px 32px 80px;
+  background: var(--digitek-bg-white);
+  min-height: 100%;
+}
+
+/* ── 헤더 ── */
+.doc-create-digitek-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.doc-create-digitek-header-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--digitek-text-primary);
+  letter-spacing: -0.5px;
+  line-height: 28px;
+  margin: 0;
+}
+
+.doc-create-digitek-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ── 섹션 카드 ── */
+.doc-create-digitek-section {
+  margin-bottom: 16px;
+  border: 1px solid var(--digitek-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--digitek-bg-white);
+}
+
+.doc-create-digitek-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: var(--digitek-bg-gray);
+  border-bottom: 1px solid var(--digitek-border);
+}
+
+.doc-create-digitek-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--digitek-primary);
+  line-height: 20px;
+}
+
+.doc-create-digitek-section-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.doc-create-digitek-section-body {
+  padding: 20px;
+}
+
+.doc-create-digitek-section-empty {
+  min-height: 40px;
+}
+
+/* ── 폼 테이블 (문서 분류, 문서 속성 등) ── */
+.doc-create-digitek-form-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.doc-create-digitek-form-table td {
+  padding: 8px 16px;
+  vertical-align: middle;
+}
+
+.doc-create-digitek-form-table td + td {
+  border-left: 1px solid var(--digitek-border);
+}
+
+.doc-create-digitek-form-table tr + tr td {
+  border-top: 1px solid var(--digitek-border);
+}
+
+.doc-create-digitek-form-label-cell {
+  background: var(--digitek-bg-gray);
+  font-weight: 600;
+  color: var(--digitek-text-primary);
+  white-space: nowrap;
+}
+
+.doc-create-digitek-form-value-cell {
+  background: var(--digitek-bg-white);
+}
+
+.doc-create-digitek-form-table select,
+.doc-create-digitek-form-table input[type="text"] {
+  width: 100%;
+  height: 30px;
+  border: 1px solid var(--digitek-border);
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 13px;
+  color: var(--digitek-text-primary);
+  background: var(--digitek-bg-white);
+}
+
+.doc-create-digitek-form-table input[type="text"]::placeholder {
+  color: var(--digitek-text-tertiary);
+}
+
+/* ========================================================================== */
+/*  결재자 지정 컴포넌트 (Approval Line — 재사용 가능)                            */
+/* ========================================================================== */
+
+/* [커스텀] Thymeleaf 재사용 예시:
+   <div th:replace="thymeleaf/page/worklist/includeHKLApprovalForm :: HKLApprovalForm(TYPE1)"></div>
+   Parameter로 결재 유형(TYPE1, TYPE2 등)을 전달하여 다른 페이지에서 재사용 */
+
+.approval-line-digitek {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+}
+
+.approval-line-digitek th {
+  background: var(--digitek-bg-gray);
+  font-weight: 600;
+  color: var(--digitek-text-primary);
+  text-align: left;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--digitek-border);
+}
+
+.approval-line-digitek td {
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--digitek-border);
+  color: var(--digitek-text-primary);
+  vertical-align: middle;
+}
+
+.approval-line-digitek tr:last-child td {
+  border-bottom: none;
+}
+
+.approval-line-digitek-step {
+  width: 200px;
+  font-weight: 600;
+}
+
+/* 결재자지정 입력 행 */
+.approval-line-digitek-input-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.approval-line-digitek-input-row select {
+  width: 180px;
+  height: 30px;
+  border: 1px solid var(--digitek-border);
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.approval-line-digitek-input-row .form-control {
+  flex: 1;
+}
+
+.approval-line-digitek-input-actions {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.approval-line-digitek-input-actions .request-digitek-action-link {
+  white-space: nowrap;
+}
+
+/* 결재자 이름 + X 삭제 태그 */
+.approval-line-digitek-assignee-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.approval-line-digitek-assignee-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: var(--digitek-bg-gray);
+  border: 1px solid var(--digitek-border);
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--digitek-text-primary);
+  line-height: 18px;
+}
+
+.approval-line-digitek-assignee-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--digitek-text-tertiary);
+}
+
+.approval-line-digitek-assignee-remove:hover {
+  color: var(--digitek-error);
+}
+
+/* 필수 표시 (승인자 *) */
+.approval-line-digitek-required::after {
+  content: ' *';
+  color: var(--digitek-error);
 }
 

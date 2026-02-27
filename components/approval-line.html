@@ -1,0 +1,95 @@
+<!-- ================================================================== -->
+<!-- 결재자 지정 컴포넌트 (Approval Line) — 재사용 가능                    -->
+<!-- ================================================================== -->
+<!-- [재사용] Thymeleaf에서 다른 페이지에 포함하여 재사용 가능:
+     <div id="approvalLine"
+          th:replace="thymeleaf/page/worklist/includeHKLApprovalForm :: HKLApprovalForm(TYPE1)">
+     </div>
+     Parameter로 결재 유형(TYPE1, TYPE2 등)을 전달하여 동적 구성 -->
+<!-- [커스텀] 결재단계 행(tr)은 서버에서 th:each로 동적 생성 가능:
+     th:each="step : ${approvalSteps}" -->
+<!-- [커스텀] 결재자 이름 태그(.approval-line-digitek-assignee-tag)는
+     JS로 동적 추가/제거 처리 -->
+
+<div class="doc-create-digitek-section">
+  <div class="doc-create-digitek-section-header">
+    <span class="doc-create-digitek-section-title">결재자 지정</span>
+  </div>
+
+  <table class="approval-line-digitek" aria-label="결재자 지정">
+    <thead>
+      <tr>
+        <th class="approval-line-digitek-step" scope="col">결재단계</th>
+        <th scope="col">결재자지정</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 입력 행: 결재단계 native select + 결재자 input + 추가/결재선검색 -->
+      <tr>
+        <td class="approval-line-digitek-step">
+          <!-- [커스텀] 결재단계 옵션은 서버 데이터로 동적 생성:
+               th:each="step : ${approvalStepOptions}" -->
+          <select name="approvalStep" id="label-approval-step">
+            <option value="reviewer1" selected>Reviewer_1</option>
+            <option value="reviewer2">Reviewer_2</option>
+            <option value="approver">승인자</option>
+            <option value="distribution">DistributionList</option>
+          </select>
+        </td>
+        <td>
+          <div class="approval-line-digitek-input-row">
+            <!-- [커스텀] 결재자 검색 input: autocomplete 또는 팝업 연동 -->
+            <input type="text" class="form-control input-digitek" placeholder="결재자를 입력해 주세요"
+                   aria-label="결재자 입력">
+            <div class="approval-line-digitek-input-actions">
+              <button type="button" class="request-digitek-action-link">추가</button>
+              <button type="button" class="request-digitek-action-link">결재선검색</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- Reviewer_1: 결재자 배정 완료 (이름 태그 + X 삭제) -->
+      <tr>
+        <td class="approval-line-digitek-step">Reviewer_1</td>
+        <td>
+          <div class="approval-line-digitek-assignee-list">
+            <!-- [커스텀] th:each="assignee : ${step.assignees}" 으로 동적 생성 -->
+            <span class="approval-line-digitek-assignee-tag">
+              이종찬
+              <button type="button" class="approval-line-digitek-assignee-remove" aria-label="이종찬 삭제">
+                <i class="dicon dicon-close icon-digitek-16" aria-hidden="true"></i>
+              </button>
+            </span>
+            <span class="approval-line-digitek-assignee-tag">
+              이준한
+              <button type="button" class="approval-line-digitek-assignee-remove" aria-label="이준한 삭제">
+                <i class="dicon dicon-close icon-digitek-16" aria-hidden="true"></i>
+              </button>
+            </span>
+          </div>
+        </td>
+      </tr>
+
+      <!-- Reviewer_2: 비어 있음 -->
+      <tr>
+        <td class="approval-line-digitek-step">Reviewer_2</td>
+        <td></td>
+      </tr>
+
+      <!-- 승인자 (필수) -->
+      <tr>
+        <td class="approval-line-digitek-step">
+          <span class="approval-line-digitek-required">승인자</span>
+        </td>
+        <td></td>
+      </tr>
+
+      <!-- DistributionList -->
+      <tr>
+        <td class="approval-line-digitek-step">DistributionList</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

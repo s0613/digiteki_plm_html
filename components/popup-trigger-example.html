@@ -1,0 +1,17 @@
+<!-- window.open Popup 호출 예시 -->
+<!-- [커스텀] URL, width, height 수정 -->
+<button class="btn btn-outline-primary btn-sm" onclick="openPopup()">팝업 열기</button>
+
+<script>
+function openPopup(url, w, h) {
+  url = url || '../pages/popup/popup-base.html';
+  w = w || 600;
+  h = h || 500;
+  var left = (screen.width / 2) - (w / 2);
+  var top = (screen.height / 2) - (h / 2);
+  window.open(url, 'popup',
+    'width=' + w + ',height=' + h +
+    ',left=' + left + ',top=' + top +
+    ',scrollbars=yes,resizable=yes');
+}
+</script>

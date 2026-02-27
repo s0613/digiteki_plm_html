@@ -1,0 +1,47 @@
+<!-- 결재자 지정 컴포넌트 -->
+<!-- [커스텀] 결재자 데이터는 JS/백엔드에서 주입 -->
+<div class="approval-designator">
+
+  <div class="approval-designator-header">
+    <span class="approval-designator-title">결재자 지정</span>
+  </div>
+
+  <!-- 결재자 검색 인풋 -->
+  <div class="approval-designator-search">
+    <input type="text" class="form-control form-control-sm"
+           placeholder="결재자 이름 검색"
+           aria-label="결재자 검색">
+    <button class="btn btn-sm btn-outline-secondary ml-1">검색</button>
+  </div>
+
+  <!-- 결재 라인 목록 -->
+  <div class="approval-line-list mt-2">
+
+    <!-- 결재자 항목 -->
+    <!-- [커스텀] th:each로 반복 처리 가능 -->
+    <div class="approval-line-item">
+      <span class="approval-line-step">1</span>
+      <div class="approval-line-info">
+        <span class="approval-line-name">홍길동</span>
+        <span class="approval-line-dept text-muted">개발팀</span>
+      </div>
+      <span class="badge badge-secondary approval-line-status">대기</span>
+      <button class="btn btn-sm btn-outline-danger approval-line-remove" aria-label="결재자 제거">
+        <i class="dicon dicon-close icon-digitek-16"></i>
+      </button>
+    </div>
+
+    <div class="approval-line-item">
+      <span class="approval-line-step">2</span>
+      <div class="approval-line-info">
+        <span class="approval-line-name">김철수</span>
+        <span class="approval-line-dept text-muted">관리팀</span>
+      </div>
+      <span class="badge badge-secondary approval-line-status">대기</span>
+      <button class="btn btn-sm btn-outline-danger approval-line-remove" aria-label="결재자 제거">
+        <i class="dicon dicon-close icon-digitek-16"></i>
+      </button>
+    </div>
+
+  </div>
+</div>

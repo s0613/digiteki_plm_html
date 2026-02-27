@@ -2,13 +2,15 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>Digiteki PLM</title>
-  <!-- CSS 의존성 -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/digitek.css">
-  <link rel="stylesheet" href="css/icons.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>문서 분류 관리 (Document Classification)</title>
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../css/digitek.css">
+  <link rel="stylesheet" href="../../css/icons.css">
+  <style>body { margin: 0; background: #fff; }</style>
 </head>
 <body>
+<!-- 문서 분류 관리 페이지: Sidebar + GNB + Content 전체 레이아웃 -->
 <div class="layout-digitek">
   <!-- 펼침: sidebar-digitek-expanded (250px) / 접힘: sidebar-digitek-collapsed (96px) -->
 <!-- 3레벨 메뉴 구조: 1레벨(메뉴) → 2레벨(서브메뉴) → 3레벨(서브-서브메뉴) -->
@@ -20,11 +22,11 @@
   <div class="sidebar-digitek-header">
     <!-- 펼침 로고 -->
     <div class="sidebar-digitek-logo sidebar-logo-full">
-      <img src="/images/icons/logo.png" width="108" height="52" alt="HLKlemove 로고" aria-hidden="true">
+      <img src="../../images/icons/logo.png" width="108" height="52" alt="HLKlemove 로고" aria-hidden="true">
     </div>
-    <!-- 접힘 로고 (기본 hidden, collapsed 상태에서 표시) -->
+    <!-- 접힘 로고 -->
     <div class="sidebar-digitek-logo sidebar-logo-collapsed">
-      <img src="/images/icons/logo-collapsed.png" width="32" height="32" alt="HL 로고" aria-hidden="true">
+      <img src="../../images/icons/logo-collapsed.png" width="32" height="32" alt="HL 로고" aria-hidden="true">
     </div>
   </div>
 
@@ -165,7 +167,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="sidebar-digitek-sub-submenu-item sidebar-digitek-sub-active" href="#" aria-current="page">
+                <a class="sidebar-digitek-sub-submenu-item" href="#">
                   <span class="sidebar-digitek-menu-label">시작 의뢰 등록</span>
                 </a>
               </li>
@@ -203,11 +205,9 @@
 </nav>
   <div class="layout-digitek-main-area">
     <header class="gnb-digitek">
-  <!-- 햄버거 사이드바 토글 (항상 표시) -->
   <button class="gnb-hamburger-btn sidebar-toggle-btn" aria-label="메뉴 토글">
     <div class="sidebar-hamburger-icon"><span></span><span></span><span></span></div>
   </button>
-
   <!-- [커스텀] 검색 인풋: 필요 시 주석 해제하여 사용
   <div class="gnb-digitek-search-wrap">
     <input
@@ -261,20 +261,145 @@
     <!-- [참고] div[role="button"] 키보드 이벤트(Enter/Space)는 digitek.js가 자동 처리합니다 -->
     <div class="gnb-digitek-profile" role="button" tabindex="0" aria-label="프로필 메뉴" aria-haspopup="menu" aria-expanded="false">
       <div class="gnb-digitek-avatar">
-        <img src="/images/icons/avatar.png" width="32" height="32" alt="" aria-hidden="true" style="border-radius: 50%;">
+        <img src="../../images/icons/avatar.png" width="32" height="32" alt="" aria-hidden="true" style="border-radius: 50%;">
       </div>
       <!-- [커스텀] 현재 로그인 사용자명 변경: th:text="${user.name}" -->
       <span class="gnb-digitek-profile-name">사용자 이름</span>
     </div>
   </div>
 </header>
-    <main class="p-4">컨텐츠 영역</main>
+    <!-- 콘텐츠 영역 -->
+    <div class="flex-grow-1 overflow-y-digitek-auto" style="background: var(--digitek-bg-gray);">
+      <!-- 문서 분류 관리 콘텐츠 영역 -->
+<div class="doc-classify-layout">
+
+  <!-- 페이지 헤더 -->
+  <div class="doc-classify-page-header">
+    <h5 class="mb-0">문서 분류 관리</h5>
+    <button class="btn btn-sm btn-primary">등록</button>
+  </div>
+
+  <!-- 상단: 대분류 / 중분류 / 소분류 패널 -->
+  <div class="doc-classify-top-grid">
+
+    <!-- 대분류 -->
+    <div class="doc-classify-panel">
+      <div class="doc-classify-panel-header">
+        <span class="doc-classify-panel-title">대분류</span>
+        <!-- [커스텀] 검색어 입력 시 목록 필터링 처리 -->
+        <input type="text" class="form-control form-control-sm doc-classify-search" placeholder="대분류 검색">
+      </div>
+      <!-- [커스텀] 대분류 목록: select option 태그 (단일 선택) -->
+      <!-- [커스텀] 선택 시 중분류 목록 동적 로드: onchange="loadMiddleCategory(this.value)" -->
+      <select class="doc-classify-select" size="8">
+        <option>major1</option>
+        <option>major2</option>
+        <option>major3</option>
+        <option>major4</option>
+        <option>R&amp;D</option>
+        <option>영업</option>
+      </select>
+    </div>
+
+    <!-- 중분류 -->
+    <div class="doc-classify-panel">
+      <div class="doc-classify-panel-header">
+        <span class="doc-classify-panel-title">중분류</span>
+        <!-- [커스텀] 검색어 입력 시 목록 필터링 처리 -->
+        <input type="text" class="form-control form-control-sm doc-classify-search" placeholder="중분류 검색">
+      </div>
+      <!-- [커스텀] 중분류 목록: select option 태그 (단일 선택) -->
+      <!-- [커스텀] 선택 시 소분류 목록 동적 로드: onchange="loadSubCategory(this.value)" -->
+      <select class="doc-classify-select" size="8">
+        <!-- [커스텀] 대분류 선택 시 동적으로 option 생성 -->
+      </select>
+    </div>
+
+    <!-- 소분류 -->
+    <div class="doc-classify-panel">
+      <div class="doc-classify-panel-header">
+        <span class="doc-classify-panel-title">소분류</span>
+        <!-- [커스텀] 검색어 입력 시 목록 필터링 처리 -->
+        <input type="text" class="form-control form-control-sm doc-classify-search" placeholder="소분류 검색">
+      </div>
+      <!-- [커스텀] 소분류 목록: select option 태그 (단일 선택) -->
+      <!-- [커스텀] 선택 시 하단 문서 유형 그리드 필터링 처리 -->
+      <select class="doc-classify-select" size="8">
+        <option>계획보고서</option>
+        <option>마스터점검체크시트</option>
+      </select>
+    </div>
+
+  </div>
+
+  <!-- 하단: 문서 유형 -->
+  <div class="doc-classify-bottom-card">
+    <div class="doc-classify-bottom-header">
+      <span class="doc-classify-panel-title">문서 유형</span>
+    </div>
+    <!-- [커스텀] Thymeleaf 반복 예시: <tr th:each="item : ${docTypeList}"> -->
+    <div class="table-digitek-scroll">
+      <table class="table-digitek" aria-label="문서 유형 목록">
+        <thead>
+          <tr>
+            <th scope="col">no</th>
+            <th scope="col">대분류</th>
+            <th scope="col">중분류</th>
+            <th scope="col">소분류</th>
+            <th scope="col">템플릿다운</th>
+            <th scope="col">사용</th>
+            <th scope="col">첨부파일명</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>영업</td>
+            <td>공정설계,개발</td>
+            <td>계획보고서</td>
+            <td><select class="form-select form-select-sm" name="templateDown"><option value="yes" selected>Yes</option><option value="no">No</option></select></td>
+            <td><select class="form-select form-select-sm" name="useYn"><option value="yes" selected>Yes</option><option value="no">No</option></select></td>
+            <td>계획보고서.pptx</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>영업</td>
+            <td>제품설계,개발</td>
+            <td>마스터점검체크시트</td>
+            <td><select class="form-select form-select-sm" name="templateDown"><option value="yes" selected>Yes</option><option value="no">No</option></select></td>
+            <td><select class="form-select form-select-sm" name="useYn"><option value="yes" selected>Yes</option><option value="no">No</option></select></td>
+            <td>마스터점검체크시트.xlsx</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>영업</td>
+            <td>양산준비</td>
+            <td>계획보고서</td>
+            <td><select class="form-select form-select-sm" name="templateDown"><option value="yes" selected>Yes</option><option value="no">No</option></select></td>
+            <td><select class="form-select form-select-sm" name="useYn"><option value="yes" selected>Yes</option><option value="no">No</option></select></td>
+            <td>계획보고서.pptx</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>영업</td>
+            <td>유효성평가</td>
+            <td>계획보고서</td>
+            <td><select class="form-select form-select-sm" name="templateDown"><option value="yes" selected>Yes</option><option value="no">No</option></select></td>
+            <td><select class="form-select form-select-sm" name="useYn"><option value="yes" selected>Yes</option><option value="no">No</option></select></td>
+            <td>계획보고서.pptx</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+    </div>
   </div>
 </div>
 
-<!-- JS 의존성 -->
-<script src="js/jquery.slim.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/digitek.js"></script>
+<script src="../../js/jquery.slim.min.js"></script>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script src="../../js/digitek.js"></script>
 </body>
 </html>

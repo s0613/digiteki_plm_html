@@ -1,0 +1,49 @@
+<!-- 드래그앤드롭 행 순서 변경 테이블 -->
+<!-- [커스텀] 행 순서가 변경될 때마다 data-order 값을 서버로 전송 -->
+<!-- JS: digitek.js 하단의 initDraggableTable() 함수 호출 필요 -->
+<div class="table-digitek-wrap">
+  <table class="table-digitek table-draggable" id="draggableTable">
+    <thead>
+      <tr>
+        <th style="width: 40px;"></th>
+        <th>순서</th>
+        <th>부서</th>
+        <th>업무 내용</th>
+        <th>담당자</th>
+        <th>상태</th>
+      </tr>
+    </thead>
+    <tbody id="draggableTableBody" data-draggable-table>
+      <tr draggable="true" data-order="1" class="draggable-row">
+        <td class="drag-handle" title="드래그하여 순서 변경">
+          <i class="dicon dicon-menu icon-digitek-16 text-digitek-secondary"></i>
+        </td>
+        <td>1</td>
+        <td>개발팀</td>
+        <td>설계 검토</td>
+        <td>홍길동</td>
+        <td><span class="badge badge-primary">진행중</span></td>
+      </tr>
+      <tr draggable="true" data-order="2" class="draggable-row">
+        <td class="drag-handle" title="드래그하여 순서 변경">
+          <i class="dicon dicon-menu icon-digitek-16 text-digitek-secondary"></i>
+        </td>
+        <td>2</td>
+        <td>품질팀</td>
+        <td>품질 검증</td>
+        <td>김철수</td>
+        <td><span class="badge badge-secondary">대기</span></td>
+      </tr>
+      <tr draggable="true" data-order="3" class="draggable-row">
+        <td class="drag-handle" title="드래그하여 순서 변경">
+          <i class="dicon dicon-menu icon-digitek-16 text-digitek-secondary"></i>
+        </td>
+        <td>3</td>
+        <td>제조팀</td>
+        <td>생산 준비</td>
+        <td>이영희</td>
+        <td><span class="badge badge-secondary">대기</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
