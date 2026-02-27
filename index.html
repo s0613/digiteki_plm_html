@@ -63,9 +63,9 @@
   <h1>Digiteki PLM HTML 템플릿</h1>
   <p>Bootstrap 4.6.2 + Digitek CSS 기반 프론트엔드 UI 템플릿 모음</p>
   <div class="stats">
-    <div class="stat"><strong>12</strong>전체 페이지</div>
-    <div class="stat"><strong>142</strong>컴포넌트 스니펫</div>
-    <div class="stat"><strong>5</strong>카테고리</div>
+    <div class="stat"><strong id="stat-pages">—</strong>전체 페이지</div>
+    <div class="stat"><strong id="stat-components">—</strong>컴포넌트 스니펫</div>
+    <div class="stat"><strong id="stat-categories">—</strong>카테고리</div>
   </div>
 </div>
 
@@ -222,13 +222,13 @@
         
         <div class="comp-item">
           <span class="comp-label">독립형 전체 HTML (Spring Boot 없이 브라우저에서 바로 열기)</span>
-          <span class="comp-file">components/layout-default.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/layout-default.html')">복사</button>
+          <span class="comp-file">components/content/layout-default.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/content/layout-default.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">최소 레이아웃 (레이아웃 없음)</span>
-          <span class="comp-file">components/layout-minimal.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/layout-minimal.html')">복사</button>
+          <span class="comp-file">components/content/layout-minimal.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/content/layout-minimal.html')">복사</button>
         </div>
       </div>
     </div>
@@ -242,18 +242,18 @@
         </div>
         <div class="comp-item">
           <span class="comp-label">결재자 지정</span>
-          <span class="comp-file">components/approval-designator.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/approval-designator.html')">복사</button>
+          <span class="comp-file">components/forms/approval-designator.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/approval-designator.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">담당자 태그 선택</span>
-          <span class="comp-file">components/assignee-tags.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/assignee-tags.html')">복사</button>
+          <span class="comp-file">components/forms/assignee-tags.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/assignee-tags.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">드래그앤드롭 행 순서 변경 테이블</span>
-          <span class="comp-file">components/table-draggable-rows.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/table-draggable-rows.html')">복사</button>
+          <span class="comp-file">components/content/table-draggable-rows.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/content/table-draggable-rows.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">그룹/사용자 관리 (콘텐츠만)</span>
@@ -277,18 +277,18 @@
         </div>
         <div class="comp-item">
           <span class="comp-label">사이즈 조절 Modal</span>
-          <span class="comp-file">components/modal-resizable.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/modal-resizable.html')">복사</button>
+          <span class="comp-file">components/content/modal-resizable.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/content/modal-resizable.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">Popup 호출 예시 (window.open)</span>
-          <span class="comp-file">components/popup-trigger-example.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/popup-trigger-example.html')">복사</button>
+          <span class="comp-file">components/content/popup-trigger-example.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/content/popup-trigger-example.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">사이드바 PNG 아이콘 메뉴 예시</span>
-          <span class="comp-file">components/sidebar-menu-with-png-icon.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/sidebar-menu-with-png-icon.html')">복사</button>
+          <span class="comp-file">components/navigation/sidebar-menu-with-png-icon.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/sidebar-menu-with-png-icon.html')">복사</button>
         </div>
       </div>
     </div>
@@ -404,8 +404,8 @@
         </div>
         <div class="comp-item">
           <span class="comp-label">결재자 지정 (재사용 컴포넌트)</span>
-          <span class="comp-file">components/approval-line.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/approval-line.html')">복사</button>
+          <span class="comp-file">components/forms/approval-line.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/approval-line.html')">복사</button>
         </div>
       </div>
     </div>
@@ -442,58 +442,58 @@
         
         <div class="comp-item">
           <span class="comp-label">Status Badge (상태 뱃지)</span>
-          <span class="comp-file">components/badge-status.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/badge-status.html')">복사</button>
+          <span class="comp-file">components/atoms/badge-status.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/badge-status.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">Notification Badge</span>
-          <span class="comp-file">components/badge-notification.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/badge-notification.html')">복사</button>
+          <span class="comp-file">components/atoms/badge-notification.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/badge-notification.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">Status Icon Badge</span>
-          <span class="comp-file">components/badge-status-icon.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/badge-status-icon.html')">복사</button>
+          <span class="comp-file">components/atoms/badge-status-icon.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/badge-status-icon.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">Permission Badge</span>
-          <span class="comp-file">components/badge-permission.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/badge-permission.html')">복사</button>
+          <span class="comp-file">components/atoms/badge-permission.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/badge-permission.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">Progress Badge</span>
-          <span class="comp-file">components/badge-progress.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/badge-progress.html')">복사</button>
+          <span class="comp-file">components/atoms/badge-progress.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/badge-progress.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">Category Badge</span>
-          <span class="comp-file">components/badge-category.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/badge-category.html')">복사</button>
+          <span class="comp-file">components/atoms/badge-category.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/badge-category.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">Assignee Badge</span>
-          <span class="comp-file">components/badge-assignee.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/badge-assignee.html')">복사</button>
+          <span class="comp-file">components/atoms/badge-assignee.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/badge-assignee.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">Priority Badge</span>
-          <span class="comp-file">components/badge-priority.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/badge-priority.html')">복사</button>
+          <span class="comp-file">components/atoms/badge-priority.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/badge-priority.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">Timeline Badge</span>
-          <span class="comp-file">components/badge-timeline.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/badge-timeline.html')">복사</button>
+          <span class="comp-file">components/atoms/badge-timeline.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/badge-timeline.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">Avatar</span>
-          <span class="comp-file">components/badge-avatar.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/badge-avatar.html')">복사</button>
+          <span class="comp-file">components/atoms/badge-avatar.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/badge-avatar.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">Level Badge</span>
-          <span class="comp-file">components/badge-level.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/badge-level.html')">복사</button>
+          <span class="comp-file">components/atoms/badge-level.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/badge-level.html')">복사</button>
         </div>
       </div>
     </div>
@@ -503,28 +503,28 @@
         
         <div class="comp-item">
           <span class="comp-label">Primary Button</span>
-          <span class="comp-file">components/button-primary.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/button-primary.html')">복사</button>
+          <span class="comp-file">components/atoms/button-primary.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/button-primary.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">Secondary Button</span>
-          <span class="comp-file">components/button-secondary.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/button-secondary.html')">복사</button>
+          <span class="comp-file">components/atoms/button-secondary.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/button-secondary.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">Outline Button</span>
-          <span class="comp-file">components/button-outline.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/button-outline.html')">복사</button>
+          <span class="comp-file">components/atoms/button-outline.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/button-outline.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">아이콘 + 버튼</span>
-          <span class="comp-file">components/button-with-icon.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/button-with-icon.html')">복사</button>
+          <span class="comp-file">components/atoms/button-with-icon.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/button-with-icon.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">아이콘 전용 버튼</span>
-          <span class="comp-file">components/button-icon-only.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/button-icon-only.html')">복사</button>
+          <span class="comp-file">components/atoms/button-icon-only.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/button-icon-only.html')">복사</button>
         </div>
       </div>
     </div>
@@ -534,43 +534,43 @@
         
         <div class="comp-item">
           <span class="comp-label">기본 인풋</span>
-          <span class="comp-file">components/input-basic.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/input-basic.html')">복사</button>
+          <span class="comp-file">components/forms/input-basic.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/input-basic.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">라벨 포함</span>
-          <span class="comp-file">components/input-with-label.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/input-with-label.html')">복사</button>
+          <span class="comp-file">components/forms/input-with-label.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/input-with-label.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">필수 라벨</span>
-          <span class="comp-file">components/input-with-label-required.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/input-with-label-required.html')">복사</button>
+          <span class="comp-file">components/forms/input-with-label-required.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/input-with-label-required.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">비활성화</span>
-          <span class="comp-file">components/input-disabled.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/input-disabled.html')">복사</button>
+          <span class="comp-file">components/forms/input-disabled.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/input-disabled.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">읽기 전용</span>
-          <span class="comp-file">components/input-readonly.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/input-readonly.html')">복사</button>
+          <span class="comp-file">components/forms/input-readonly.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/input-readonly.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">에러 상태 (프리뷰)</span>
-          <span class="comp-file">components/input-error-preview.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/input-error-preview.html')">복사</button>
+          <span class="comp-file">components/forms/input-error-preview.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/input-error-preview.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">성공 상태 (프리뷰)</span>
-          <span class="comp-file">components/input-success-preview.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/input-success-preview.html')">복사</button>
+          <span class="comp-file">components/forms/input-success-preview.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/input-success-preview.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">검색 인풋</span>
-          <span class="comp-file">components/input-search.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/input-search.html')">복사</button>
+          <span class="comp-file">components/forms/input-search.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/input-search.html')">복사</button>
         </div>
       </div>
     </div>
@@ -580,13 +580,13 @@
         
         <div class="comp-item">
           <span class="comp-label">Tab Large</span>
-          <span class="comp-file">components/tabbutton-tab-lg.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/tabbutton-tab-lg.html')">복사</button>
+          <span class="comp-file">components/navigation/tabbutton-tab-lg.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/tabbutton-tab-lg.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">Tab Small</span>
-          <span class="comp-file">components/tabbutton-tab-sm.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/tabbutton-tab-sm.html')">복사</button>
+          <span class="comp-file">components/navigation/tabbutton-tab-sm.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/tabbutton-tab-sm.html')">복사</button>
         </div>
       </div>
     </div>
@@ -596,23 +596,23 @@
         
         <div class="comp-item">
           <span class="comp-label">기본 셀렉트</span>
-          <span class="comp-file">components/select-default.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/select-default.html')">복사</button>
+          <span class="comp-file">components/forms/select-default.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/select-default.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">선택된 상태</span>
-          <span class="comp-file">components/select-selected.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/select-selected.html')">복사</button>
+          <span class="comp-file">components/forms/select-selected.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/select-selected.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">비활성화</span>
-          <span class="comp-file">components/select-disabled.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/select-disabled.html')">복사</button>
+          <span class="comp-file">components/forms/select-disabled.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/select-disabled.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">열린 상태 (드롭다운)</span>
-          <span class="comp-file">components/select-open.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/select-open.html')">복사</button>
+          <span class="comp-file">components/forms/select-open.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/select-open.html')">복사</button>
         </div>
       </div>
     </div>
@@ -622,23 +622,23 @@
         
         <div class="comp-item">
           <span class="comp-label">기본 날짜 선택</span>
-          <span class="comp-file">components/dateselect-default.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/dateselect-default.html')">복사</button>
+          <span class="comp-file">components/forms/dateselect-default.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/dateselect-default.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">날짜 선택됨</span>
-          <span class="comp-file">components/dateselect-selected.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/dateselect-selected.html')">복사</button>
+          <span class="comp-file">components/forms/dateselect-selected.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/dateselect-selected.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">비활성화</span>
-          <span class="comp-file">components/dateselect-disabled.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/dateselect-disabled.html')">복사</button>
+          <span class="comp-file">components/forms/dateselect-disabled.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/dateselect-disabled.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">캘린더 열림 상태</span>
-          <span class="comp-file">components/dateselect-open.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/dateselect-open.html')">복사</button>
+          <span class="comp-file">components/forms/dateselect-open.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/dateselect-open.html')">복사</button>
         </div>
       </div>
     </div>
@@ -648,28 +648,28 @@
         
         <div class="comp-item">
           <span class="comp-label">페이지 아코디언 (닫힘)</span>
-          <span class="comp-file">components/accordion-page-closed.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/accordion-page-closed.html')">복사</button>
+          <span class="comp-file">components/forms/accordion-page-closed.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/accordion-page-closed.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">페이지 아코디언 (열림)</span>
-          <span class="comp-file">components/accordion-page-open.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/accordion-page-open.html')">복사</button>
+          <span class="comp-file">components/forms/accordion-page-open.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/accordion-page-open.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">내부 아코디언 (닫힘)</span>
-          <span class="comp-file">components/accordion-inner-closed.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/accordion-inner-closed.html')">복사</button>
+          <span class="comp-file">components/forms/accordion-inner-closed.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/accordion-inner-closed.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">내부 아코디언 (열림)</span>
-          <span class="comp-file">components/accordion-inner-open.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/accordion-inner-open.html')">복사</button>
+          <span class="comp-file">components/forms/accordion-inner-open.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/accordion-inner-open.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">중첩 아코디언</span>
-          <span class="comp-file">components/accordion-nested.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/accordion-nested.html')">복사</button>
+          <span class="comp-file">components/forms/accordion-nested.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/accordion-nested.html')">복사</button>
         </div>
       </div>
     </div>
@@ -679,38 +679,38 @@
         
         <div class="comp-item">
           <span class="comp-label">기본 필드셋</span>
-          <span class="comp-file">components/fieldset-basic.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/fieldset-basic.html')">복사</button>
+          <span class="comp-file">components/forms/fieldset-basic.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/fieldset-basic.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">범례 없는 필드셋</span>
-          <span class="comp-file">components/fieldset-no-legend.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/fieldset-no-legend.html')">복사</button>
+          <span class="comp-file">components/forms/fieldset-no-legend.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/fieldset-no-legend.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">Compact 필드셋</span>
-          <span class="comp-file">components/fieldset-compact.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/fieldset-compact.html')">복사</button>
+          <span class="comp-file">components/forms/fieldset-compact.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/fieldset-compact.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">Gray 배경 필드셋</span>
-          <span class="comp-file">components/fieldset-gray.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/fieldset-gray.html')">복사</button>
+          <span class="comp-file">components/forms/fieldset-gray.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/fieldset-gray.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">아코디언 내부 필드셋</span>
-          <span class="comp-file">components/fieldset-nested-in-accordion.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/fieldset-nested-in-accordion.html')">복사</button>
+          <span class="comp-file">components/forms/fieldset-nested-in-accordion.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/fieldset-nested-in-accordion.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">폼 필드 단독 사용</span>
-          <span class="comp-file">components/fieldset-form-field.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/fieldset-form-field.html')">복사</button>
+          <span class="comp-file">components/forms/fieldset-form-field.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/fieldset-form-field.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">2열/3열 그리드 레이아웃</span>
-          <span class="comp-file">components/fieldset-form-row-grid.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/fieldset-form-row-grid.html')">복사</button>
+          <span class="comp-file">components/forms/fieldset-form-row-grid.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/fieldset-form-row-grid.html')">복사</button>
         </div>
       </div>
     </div>
@@ -720,23 +720,23 @@
         
         <div class="comp-item">
           <span class="comp-label">기본 브레드크럼</span>
-          <span class="comp-file">components/breadcrumb-default.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/breadcrumb-default.html')">복사</button>
+          <span class="comp-file">components/navigation/breadcrumb-default.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/breadcrumb-default.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">뒤로가기 버튼 포함</span>
-          <span class="comp-file">components/breadcrumb-with-back.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/breadcrumb-with-back.html')">복사</button>
+          <span class="comp-file">components/navigation/breadcrumb-with-back.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/breadcrumb-with-back.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">간단한 브레드크럼 (2depth)</span>
-          <span class="comp-file">components/breadcrumb-simple.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/breadcrumb-simple.html')">복사</button>
+          <span class="comp-file">components/navigation/breadcrumb-simple.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/breadcrumb-simple.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">깊은 브레드크럼 (4depth)</span>
-          <span class="comp-file">components/breadcrumb-deep.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/breadcrumb-deep.html')">복사</button>
+          <span class="comp-file">components/navigation/breadcrumb-deep.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/breadcrumb-deep.html')">복사</button>
         </div>
       </div>
     </div>
@@ -746,23 +746,23 @@
         
         <div class="comp-item">
           <span class="comp-label">기본 파일 업로드</span>
-          <span class="comp-file">components/fileupload-default.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/fileupload-default.html')">복사</button>
+          <span class="comp-file">components/forms/fileupload-default.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/fileupload-default.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">다중 파일 업로드</span>
-          <span class="comp-file">components/fileupload-multiple.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/fileupload-multiple.html')">복사</button>
+          <span class="comp-file">components/forms/fileupload-multiple.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/fileupload-multiple.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">이미지만 허용</span>
-          <span class="comp-file">components/fileupload-image-only.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/fileupload-image-only.html')">복사</button>
+          <span class="comp-file">components/forms/fileupload-image-only.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/fileupload-image-only.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">파일 선택 후 목록 표시 상태</span>
-          <span class="comp-file">components/fileupload-with-file-list.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/fileupload-with-file-list.html')">복사</button>
+          <span class="comp-file">components/forms/fileupload-with-file-list.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/forms/fileupload-with-file-list.html')">복사</button>
         </div>
       </div>
     </div>
@@ -772,33 +772,33 @@
         
         <div class="comp-item">
           <span class="comp-label">원형 진행률 (25%)</span>
-          <span class="comp-file">components/progress-circular-25.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/progress-circular-25.html')">복사</button>
+          <span class="comp-file">components/atoms/progress-circular-25.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/progress-circular-25.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">원형 진행률 (50%)</span>
-          <span class="comp-file">components/progress-circular-50.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/progress-circular-50.html')">복사</button>
+          <span class="comp-file">components/atoms/progress-circular-50.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/progress-circular-50.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">원형 진행률 (75%)</span>
-          <span class="comp-file">components/progress-circular-75.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/progress-circular-75.html')">복사</button>
+          <span class="comp-file">components/atoms/progress-circular-75.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/progress-circular-75.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">원형 진행률 (100%)</span>
-          <span class="comp-file">components/progress-circular-100.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/progress-circular-100.html')">복사</button>
+          <span class="comp-file">components/atoms/progress-circular-100.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/progress-circular-100.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">원형 진행률 (커스텀 색상)</span>
-          <span class="comp-file">components/progress-circular-small.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/progress-circular-small.html')">복사</button>
+          <span class="comp-file">components/atoms/progress-circular-small.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/progress-circular-small.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">원형 진행률 색상 변형</span>
-          <span class="comp-file">components/progress-circular-color-variants.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/progress-circular-color-variants.html')">복사</button>
+          <span class="comp-file">components/atoms/progress-circular-color-variants.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/atoms/progress-circular-color-variants.html')">복사</button>
         </div>
       </div>
     </div>
@@ -808,48 +808,48 @@
         
         <div class="comp-item">
           <span class="comp-label">검정색</span>
-          <span class="comp-file">components/colorasset-black.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/colorasset-black.html')">복사</button>
+          <span class="comp-file">components/reference/colorasset-black.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/reference/colorasset-black.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">빨간색</span>
-          <span class="comp-file">components/colorasset-red.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/colorasset-red.html')">복사</button>
+          <span class="comp-file">components/reference/colorasset-red.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/reference/colorasset-red.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">파란색</span>
-          <span class="comp-file">components/colorasset-blue.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/colorasset-blue.html')">복사</button>
+          <span class="comp-file">components/reference/colorasset-blue.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/reference/colorasset-blue.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">주황색</span>
-          <span class="comp-file">components/colorasset-orange.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/colorasset-orange.html')">복사</button>
+          <span class="comp-file">components/reference/colorasset-orange.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/reference/colorasset-orange.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">녹색</span>
-          <span class="comp-file">components/colorasset-green.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/colorasset-green.html')">복사</button>
+          <span class="comp-file">components/reference/colorasset-green.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/reference/colorasset-green.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">회색</span>
-          <span class="comp-file">components/colorasset-gray.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/colorasset-gray.html')">복사</button>
+          <span class="comp-file">components/reference/colorasset-gray.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/reference/colorasset-gray.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">선택된 색상</span>
-          <span class="comp-file">components/colorasset-selected.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/colorasset-selected.html')">복사</button>
+          <span class="comp-file">components/reference/colorasset-selected.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/reference/colorasset-selected.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">색상 그룹</span>
-          <span class="comp-file">components/colorasset-group.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/colorasset-group.html')">복사</button>
+          <span class="comp-file">components/reference/colorasset-group.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/reference/colorasset-group.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">사용법 및 색상 코드 참조</span>
-          <span class="comp-file">components/colorasset-usage.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/colorasset-usage.html')">복사</button>
+          <span class="comp-file">components/reference/colorasset-usage.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/reference/colorasset-usage.html')">복사</button>
         </div>
       </div>
     </div>
@@ -859,18 +859,18 @@
         
         <div class="comp-item">
           <span class="comp-label">기본 텍스트 에디터</span>
-          <span class="comp-file">components/texteditor-default.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/texteditor-default.html')">복사</button>
+          <span class="comp-file">components/content/texteditor-default.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/content/texteditor-default.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">내용이 있는 에디터</span>
-          <span class="comp-file">components/texteditor-with-content.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/texteditor-with-content.html')">복사</button>
+          <span class="comp-file">components/content/texteditor-with-content.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/content/texteditor-with-content.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">읽기 전용</span>
-          <span class="comp-file">components/texteditor-readonly.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/texteditor-readonly.html')">복사</button>
+          <span class="comp-file">components/content/texteditor-readonly.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/content/texteditor-readonly.html')">복사</button>
         </div>
       </div>
     </div>
@@ -880,28 +880,28 @@
         
         <div class="comp-item">
           <span class="comp-label">기본 페이지네이션 (첫 페이지)</span>
-          <span class="comp-file">components/pagination-default.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/pagination-default.html')">복사</button>
+          <span class="comp-file">components/navigation/pagination-default.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/pagination-default.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">중간 페이지</span>
-          <span class="comp-file">components/pagination-middle.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/pagination-middle.html')">복사</button>
+          <span class="comp-file">components/navigation/pagination-middle.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/pagination-middle.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">마지막 페이지</span>
-          <span class="comp-file">components/pagination-last.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/pagination-last.html')">복사</button>
+          <span class="comp-file">components/navigation/pagination-last.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/pagination-last.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">간단한 페이지네이션 (중간 페이지)</span>
-          <span class="comp-file">components/pagination-simple.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/pagination-simple.html')">복사</button>
+          <span class="comp-file">components/navigation/pagination-simple.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/pagination-simple.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">Thymeleaf 동적 페이지네이션</span>
-          <span class="comp-file">components/pagination-thymeleaf-dynamic.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/pagination-thymeleaf-dynamic.html')">복사</button>
+          <span class="comp-file">components/navigation/pagination-thymeleaf-dynamic.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/pagination-thymeleaf-dynamic.html')">복사</button>
         </div>
       </div>
     </div>
@@ -911,43 +911,43 @@
         
         <div class="comp-item">
           <span class="comp-label">데이터 테이블</span>
-          <span class="comp-file">components/table-data-table.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/table-data-table.html')">복사</button>
+          <span class="comp-file">components/content/table-data-table.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/content/table-data-table.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">기본 테이블 (체크박스 없음)</span>
-          <span class="comp-file">components/table-simple-table.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/table-simple-table.html')">복사</button>
+          <span class="comp-file">components/content/table-simple-table.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/content/table-simple-table.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">보더 테이블 (역할/담당자)</span>
-          <span class="comp-file">components/table-bordered-table.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/table-bordered-table.html')">복사</button>
+          <span class="comp-file">components/content/table-bordered-table.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/content/table-bordered-table.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">테이블 액션 버튼</span>
-          <span class="comp-file">components/table-table-actions.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/table-table-actions.html')">복사</button>
+          <span class="comp-file">components/content/table-table-actions.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/content/table-table-actions.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">테이블 셀 액션 링크</span>
-          <span class="comp-file">components/table-action-links.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/table-action-links.html')">복사</button>
+          <span class="comp-file">components/content/table-action-links.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/content/table-action-links.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">빈 데이터 상태 (No Data)</span>
-          <span class="comp-file">components/table-empty-state.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/table-empty-state.html')">복사</button>
+          <span class="comp-file">components/content/table-empty-state.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/content/table-empty-state.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">체크박스 선택 행 스타일</span>
-          <span class="comp-file">components/table-selected-row.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/table-selected-row.html')">복사</button>
+          <span class="comp-file">components/content/table-selected-row.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/content/table-selected-row.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">열 정렬 표시 (Sort)</span>
-          <span class="comp-file">components/table-sortable-header.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/table-sortable-header.html')">복사</button>
+          <span class="comp-file">components/content/table-sortable-header.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/content/table-sortable-header.html')">복사</button>
         </div>
       </div>
     </div>
@@ -957,43 +957,43 @@
         
         <div class="comp-item">
           <span class="comp-label">전체 사이드바</span>
-          <span class="comp-file">components/sidebar-full.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/sidebar-full.html')">복사</button>
+          <span class="comp-file">components/navigation/sidebar-full.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/sidebar-full.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">접힌 사이드바 (96px)</span>
-          <span class="comp-file">components/sidebar-collapsed.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/sidebar-collapsed.html')">복사</button>
+          <span class="comp-file">components/navigation/sidebar-collapsed.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/sidebar-collapsed.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">메뉴 아이템 (기본)</span>
-          <span class="comp-file">components/sidebar-menu-item.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/sidebar-menu-item.html')">복사</button>
+          <span class="comp-file">components/navigation/sidebar-menu-item.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/sidebar-menu-item.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">메뉴 아이템 (활성화)</span>
-          <span class="comp-file">components/sidebar-menu-item-active.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/sidebar-menu-item-active.html')">복사</button>
+          <span class="comp-file">components/navigation/sidebar-menu-item-active.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/sidebar-menu-item-active.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">메뉴 + 서브메뉴 (2레벨, 펼침)</span>
-          <span class="comp-file">components/sidebar-menu-with-submenu-open.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/sidebar-menu-with-submenu-open.html')">복사</button>
+          <span class="comp-file">components/navigation/sidebar-menu-with-submenu-open.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/sidebar-menu-with-submenu-open.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">메뉴 + 서브메뉴 (2레벨, 닫힘)</span>
-          <span class="comp-file">components/sidebar-menu-with-submenu-closed.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/sidebar-menu-with-submenu-closed.html')">복사</button>
+          <span class="comp-file">components/navigation/sidebar-menu-with-submenu-closed.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/sidebar-menu-with-submenu-closed.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">메뉴 + 서브메뉴 (2레벨)</span>
-          <span class="comp-file">components/sidebar-menu-with-submenu.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/sidebar-menu-with-submenu.html')">복사</button>
+          <span class="comp-file">components/navigation/sidebar-menu-with-submenu.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/sidebar-menu-with-submenu.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">메뉴 + 서브메뉴 + 서브-서브메뉴 (3레벨)</span>
-          <span class="comp-file">components/sidebar-menu-with-sub-submenu.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/sidebar-menu-with-sub-submenu.html')">복사</button>
+          <span class="comp-file">components/navigation/sidebar-menu-with-sub-submenu.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/sidebar-menu-with-sub-submenu.html')">복사</button>
         </div>
       </div>
     </div>
@@ -1003,38 +1003,38 @@
         
         <div class="comp-item">
           <span class="comp-label">전체 GNB</span>
-          <span class="comp-file">components/gnb-full.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/gnb-full.html')">복사</button>
+          <span class="comp-file">components/navigation/gnb-full.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/gnb-full.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">전체 GNB (배지 없음)</span>
-          <span class="comp-file">components/gnb-full-no-badge.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/gnb-full-no-badge.html')">복사</button>
+          <span class="comp-file">components/navigation/gnb-full-no-badge.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/gnb-full-no-badge.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">검색 박스</span>
-          <span class="comp-file">components/gnb-search-box.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/gnb-search-box.html')">복사</button>
+          <span class="comp-file">components/navigation/gnb-search-box.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/gnb-search-box.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">언어 선택 (닫힘)</span>
-          <span class="comp-file">components/gnb-locale-selector.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/gnb-locale-selector.html')">복사</button>
+          <span class="comp-file">components/navigation/gnb-locale-selector.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/gnb-locale-selector.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">언어 선택 (열림)</span>
-          <span class="comp-file">components/gnb-locale-selector-open.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/gnb-locale-selector-open.html')">복사</button>
+          <span class="comp-file">components/navigation/gnb-locale-selector-open.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/gnb-locale-selector-open.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">알림 아이콘 (배지 있음)</span>
-          <span class="comp-file">components/gnb-notification-icon.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/gnb-notification-icon.html')">복사</button>
+          <span class="comp-file">components/navigation/gnb-notification-icon.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/gnb-notification-icon.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">프로필 영역</span>
-          <span class="comp-file">components/gnb-profile.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/gnb-profile.html')">복사</button>
+          <span class="comp-file">components/navigation/gnb-profile.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/navigation/gnb-profile.html')">복사</button>
         </div>
       </div>
     </div>
@@ -1044,48 +1044,48 @@
         
         <div class="comp-item">
           <span class="comp-label">내비게이션 (Navigation)</span>
-          <span class="comp-file">components/icons-navigation.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/icons-navigation.html')">복사</button>
+          <span class="comp-file">components/reference/icons-navigation.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/reference/icons-navigation.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">액션 (Action)</span>
-          <span class="comp-file">components/icons-action.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/icons-action.html')">복사</button>
+          <span class="comp-file">components/reference/icons-action.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/reference/icons-action.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">파일 (File)</span>
-          <span class="comp-file">components/icons-file.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/icons-file.html')">복사</button>
+          <span class="comp-file">components/reference/icons-file.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/reference/icons-file.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">커뮤니케이션 (Communication)</span>
-          <span class="comp-file">components/icons-communication.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/icons-communication.html')">복사</button>
+          <span class="comp-file">components/reference/icons-communication.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/reference/icons-communication.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">차트 (Chart)</span>
-          <span class="comp-file">components/icons-chart.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/icons-chart.html')">복사</button>
+          <span class="comp-file">components/reference/icons-chart.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/reference/icons-chart.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">에디터 (Editor)</span>
-          <span class="comp-file">components/icons-editor.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/icons-editor.html')">복사</button>
+          <span class="comp-file">components/reference/icons-editor.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/reference/icons-editor.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">상태 (Status)</span>
-          <span class="comp-file">components/icons-status.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/icons-status.html')">복사</button>
+          <span class="comp-file">components/reference/icons-status.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/reference/icons-status.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">레이아웃 (Layout)</span>
-          <span class="comp-file">components/icons-layout.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/icons-layout.html')">복사</button>
+          <span class="comp-file">components/reference/icons-layout.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/reference/icons-layout.html')">복사</button>
         </div>
         <div class="comp-item">
           <span class="comp-label">사용법 (Usage)</span>
-          <span class="comp-file">components/icons-usage.html</span>
-          <button class="btn-copy" onclick="copySnippet('components/icons-usage.html')">복사</button>
+          <span class="comp-file">components/reference/icons-usage.html</span>
+          <button class="btn-copy" onclick="copySnippet('components/reference/icons-usage.html')">복사</button>
         </div>
       </div>
     </div>
@@ -1128,6 +1128,19 @@ function showToast(msg) {
   el.classList.add('show');
   setTimeout(() => el.classList.remove('show'), 2500);
 }
+
+// 통계 자동 계산
+document.addEventListener('DOMContentLoaded', function() {
+  var pageCount = document.querySelectorAll('.page-card').length;
+  var compCount = document.querySelectorAll('.comp-item').length;
+  var catCount = document.querySelectorAll('.comp-cat').length;
+  var elPages = document.getElementById('stat-pages');
+  var elComps = document.getElementById('stat-components');
+  var elCats = document.getElementById('stat-categories');
+  if (elPages) elPages.textContent = pageCount;
+  if (elComps) elComps.textContent = compCount;
+  if (elCats) elCats.textContent = catCount;
+});
 </script>
 
 </body>
