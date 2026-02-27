@@ -1399,6 +1399,74 @@
 
 
   /* ================================================================== */
+  /*  DraggableTable — 드래그앤드롭 행 순서 변경                            */
+  /* ================================================================== */
+
+  var DraggableTable = (function () {
+    function initTable(tableBodyIdOrEl) {
+      var tbody;
+      if (typeof tableBodyIdOrEl === "string") {
+        tbody = document.getElementById(tableBodyIdOrEl || "draggableTableBody");
+      } else {
+        tbody = tableBodyIdOrEl;
+      }
+      if (!tbody) return;
+
+      var dragSrc = null;
+
+      tbody.querySelectorAll(".draggable-row").forEach(function (row) {
+        row.addEventListener("dragstart", function (e) {
+          dragSrc = this;
+          e.dataTransfer.effectAllowed = "move";
+          this.style.opacity = "0.5";
+        });
+        row.addEventListener("dragend", function () {
+          this.style.opacity = "";
+          tbody.querySelectorAll(".draggable-row").forEach(function (r) {
+            r.classList.remove("drag-over");
+          });
+          tbody.querySelectorAll(".draggable-row").forEach(function (r, i) {
+            r.setAttribute("data-order", i + 1);
+            var orderCell = r.cells[1];
+            if (orderCell && !isNaN(parseInt(orderCell.textContent.trim()))) {
+              orderCell.textContent = i + 1;
+            }
+          });
+        });
+        row.addEventListener("dragover", function (e) {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = "move";
+          this.classList.add("drag-over");
+        });
+        row.addEventListener("dragleave", function () {
+          this.classList.remove("drag-over");
+        });
+        row.addEventListener("drop", function (e) {
+          e.preventDefault();
+          if (dragSrc !== this) {
+            var rows = Array.from(tbody.querySelectorAll(".draggable-row"));
+            var srcIdx = rows.indexOf(dragSrc);
+            var tgtIdx = rows.indexOf(this);
+            if (srcIdx < tgtIdx) {
+              tbody.insertBefore(dragSrc, this.nextSibling);
+            } else {
+              tbody.insertBefore(dragSrc, this);
+            }
+          }
+        });
+      });
+    }
+
+    function init() {
+      document.querySelectorAll("[data-draggable-table]").forEach(function (el) {
+        initTable(el);
+      });
+    }
+
+    return { init: init, initTable: initTable };
+  })();
+
+  /* ================================================================== */
   /*  초기화 & 공개 API                                                   */
   /* ================================================================== */
 
@@ -1412,6 +1480,7 @@
     TextEditor.init();
     Locale.init();
     GanttResizer.init();
+    DraggableTable.init();
   }
 
   // DOMContentLoaded 자동 초기화
@@ -1438,73 +1507,7 @@
     TextEditor: TextEditor,
     Locale: Locale,
     GanttResizer: GanttResizer,
+    DraggableTable: DraggableTable,
   };
 
 })();
-
-/* ===========================
-   Draggable Table Rows
-   =========================== */
-function initDraggableTable(tableBodyIdOrEl) {
-  var tbody;
-  if (typeof tableBodyIdOrEl === 'string') {
-    tbody = document.getElementById(tableBodyIdOrEl || 'draggableTableBody');
-  } else {
-    tbody = tableBodyIdOrEl;
-  }
-  if (!tbody) return;
-
-  var dragSrc = null;
-
-  tbody.querySelectorAll('.draggable-row').forEach(function(row) {
-    row.addEventListener('dragstart', function(e) {
-      dragSrc = this;
-      e.dataTransfer.effectAllowed = 'move';
-      this.style.opacity = '0.5';
-    });
-    row.addEventListener('dragend', function() {
-      this.style.opacity = '';
-      tbody.querySelectorAll('.draggable-row').forEach(function(r) {
-        r.classList.remove('drag-over');
-      });
-      // 순서 번호 업데이트 (cells[1]이 숫자인 경우에만 갱신)
-      tbody.querySelectorAll('.draggable-row').forEach(function(r, i) {
-        r.setAttribute('data-order', i + 1);
-        var orderCell = r.cells[1];
-        if (orderCell && !isNaN(parseInt(orderCell.textContent.trim()))) {
-          orderCell.textContent = i + 1;
-        }
-      });
-    });
-    row.addEventListener('dragover', function(e) {
-      e.preventDefault();
-      e.dataTransfer.dropEffect = 'move';
-      this.classList.add('drag-over');
-    });
-    row.addEventListener('dragleave', function() {
-      this.classList.remove('drag-over');
-    });
-    row.addEventListener('drop', function(e) {
-      e.preventDefault();
-      if (dragSrc !== this) {
-        var rows = Array.from(tbody.querySelectorAll('.draggable-row'));
-        var srcIdx = rows.indexOf(dragSrc);
-        var tgtIdx = rows.indexOf(this);
-        if (srcIdx < tgtIdx) {
-          // 위→아래: 타겟 다음에 삽입
-          tbody.insertBefore(dragSrc, this.nextSibling);
-        } else {
-          // 아래→위: 타겟 앞에 삽입
-          tbody.insertBefore(dragSrc, this);
-        }
-      }
-    });
-  });
-}
-
-// 자동 초기화 (data-draggable-table 속성이 있는 테이블) — ID 대신 element 직접 전달
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('[data-draggable-table]').forEach(function(el) {
-    initDraggableTable(el);
-  });
-});
