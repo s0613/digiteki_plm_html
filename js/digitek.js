@@ -1247,19 +1247,21 @@
     _showImageResize: function (editor, img) {
       TextEditor._hideImageResize(editor);
 
+      var primaryColor = getComputedStyle(document.documentElement)
+        .getPropertyValue("--digitek-primary").trim();
       var contentEl = editor.querySelector(".text-editor-digitek-contents");
       var contentRect = contentEl.getBoundingClientRect();
       var imgRect = img.getBoundingClientRect();
 
       var overlay = createEl("div", "text-editor-digitek-image-resize-overlay");
-      overlay.style.cssText = "position:absolute;border:2px solid #2f66ba;pointer-events:none;" +
+      overlay.style.cssText = "position:absolute;border:2px solid " + primaryColor + ";pointer-events:none;" +
         "left:" + (imgRect.left - contentRect.left + contentEl.scrollLeft) + "px;" +
         "top:" + (imgRect.top - contentRect.top + contentEl.scrollTop) + "px;" +
         "width:" + imgRect.width + "px;height:" + imgRect.height + "px;";
 
       var handle = createEl("div", "text-editor-digitek-resize-handle");
       handle.style.cssText = "position:absolute;right:-4px;bottom:-4px;width:10px;height:10px;" +
-        "background:#2f66ba;border-radius:2px;cursor:se-resize;pointer-events:all;";
+        "background:" + primaryColor + ";border-radius:2px;cursor:se-resize;pointer-events:all;";
 
       var startX, startW, startH;
       handle.addEventListener("mousedown", function (e) {
