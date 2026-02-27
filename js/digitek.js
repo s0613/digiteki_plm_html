@@ -1482,41 +1482,158 @@
   /* ================================================================== */
 
   var SidebarLoader = (function () {
-    var SIDEBAR_PATH = "components/navigation/sidebar-full.html";
-
-    function resolvePath() {
+    function resolvePrefix() {
       var parts = window.location.pathname.split("/").filter(Boolean);
-      var prefix = "";
-      if (parts.indexOf("pages") !== -1) {
-        prefix = "../../";
-      }
-      return prefix + SIDEBAR_PATH;
+      return parts.indexOf("pages") !== -1 ? "../../" : "";
+    }
+
+    /* sidebar-full.html과 동일 — file:// 프로토콜 호환을 위해 JS 템플릿 사용 */
+    function getTemplate() {
+      return (
+        '<nav class="sidebar-digitek sidebar-digitek-expanded" aria-label="메인 메뉴">' +
+          '<div class="sidebar-digitek-header">' +
+            '<div class="sidebar-digitek-logo sidebar-logo-full">' +
+              '<img data-src="images/icons/logo.png" width="108" height="52" alt="HLKlemove 로고" aria-hidden="true">' +
+            "</div>" +
+            '<div class="sidebar-digitek-logo sidebar-logo-collapsed">' +
+              '<img data-src="images/icons/logo-collapsed.png" width="32" height="32" alt="HL 로고" aria-hidden="true">' +
+            "</div>" +
+          "</div>" +
+          '<div class="flex-grow-1 overflow-auto sidebar-digitek-menu-area">' +
+            '<ul class="nav flex-column">' +
+              /* 결재 관리 */
+              '<li class="nav-item">' +
+                '<a class="sidebar-digitek-menu-item" href="#">' +
+                  '<span class="sidebar-digitek-icon-label">' +
+                    '<i class="dicon dicon-file-blank icon-digitek-20"></i>' +
+                    '<span class="sidebar-digitek-menu-label">결재 관리</span>' +
+                  "</span>" +
+                "</a>" +
+              "</li>" +
+              /* 문서 관리 */
+              '<li class="nav-item">' +
+                '<a class="sidebar-digitek-menu-item" href="#">' +
+                  '<span class="sidebar-digitek-icon-label">' +
+                    '<i class="dicon dicon-folder icon-digitek-20"></i>' +
+                    '<span class="sidebar-digitek-menu-label">문서 관리</span>' +
+                  "</span>" +
+                "</a>" +
+              "</li>" +
+              /* 부품 관리 */
+              '<li class="nav-item">' +
+                '<a class="sidebar-digitek-menu-item" href="#">' +
+                  '<span class="sidebar-digitek-icon-label">' +
+                    '<i class="dicon dicon-settings icon-digitek-20"></i>' +
+                    '<span class="sidebar-digitek-menu-label">부품 관리</span>' +
+                  "</span>" +
+                "</a>" +
+              "</li>" +
+              /* 도면 관리 */
+              '<li class="nav-item">' +
+                '<a class="sidebar-digitek-menu-item" href="#">' +
+                  '<span class="sidebar-digitek-icon-label">' +
+                    '<i class="dicon dicon-folder-edit icon-digitek-20"></i>' +
+                    '<span class="sidebar-digitek-menu-label">도면 관리</span>' +
+                  "</span>" +
+                "</a>" +
+              "</li>" +
+              /* PMS (2레벨 서브메뉴) */
+              '<li class="nav-item">' +
+                '<a class="sidebar-digitek-menu-item" href="#" aria-expanded="true">' +
+                  '<span class="sidebar-digitek-icon-label">' +
+                    '<i class="dicon dicon-layer icon-digitek-20"></i>' +
+                    '<span class="sidebar-digitek-menu-label">PMS</span>' +
+                  "</span>" +
+                  '<span class="sidebar-digitek-chevron sidebar-digitek-chevron-open">' +
+                    '<i class="dicon dicon-chevron-down icon-digitek-20"></i>' +
+                  "</span>" +
+                "</a>" +
+                '<ul class="nav flex-column sidebar-digitek-submenu" style="max-height:192px;" aria-label="PMS 하위 메뉴">' +
+                  '<li class="nav-item"><a class="sidebar-digitek-submenu-item" href="#"><span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span><span class="sidebar-digitek-menu-label">프로젝트 검색</span></a></li>' +
+                  '<li class="nav-item"><a class="sidebar-digitek-submenu-item" href="#"><span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span><span class="sidebar-digitek-menu-label">프로젝트 등록</span></a></li>' +
+                  '<li class="nav-item"><a class="sidebar-digitek-submenu-item" href="#"><span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span><span class="sidebar-digitek-menu-label">My Task</span></a></li>' +
+                  '<li class="nav-item"><a class="sidebar-digitek-submenu-item" href="#"><span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span><span class="sidebar-digitek-menu-label">이슈 검색</span></a></li>' +
+                "</ul>" +
+              "</li>" +
+              /* 설계 변경 */
+              '<li class="nav-item">' +
+                '<a class="sidebar-digitek-menu-item" href="#">' +
+                  '<span class="sidebar-digitek-icon-label">' +
+                    '<i class="dicon dicon-reload icon-digitek-20"></i>' +
+                    '<span class="sidebar-digitek-menu-label">설계 변경</span>' +
+                  "</span>" +
+                "</a>" +
+              "</li>" +
+              /* 시험/시작/해석 (3레벨 메뉴) */
+              '<li class="nav-item">' +
+                '<a class="sidebar-digitek-menu-item sidebar-digitek-parent-open" href="#" aria-expanded="true">' +
+                  '<span class="sidebar-digitek-icon-label">' +
+                    '<i class="dicon dicon-chart-bar icon-digitek-20"></i>' +
+                    '<span class="sidebar-digitek-menu-label">시험/시작/해석</span>' +
+                  "</span>" +
+                  '<span class="sidebar-digitek-chevron sidebar-digitek-chevron-open">' +
+                    '<i class="dicon dicon-chevron-down icon-digitek-20"></i>' +
+                  "</span>" +
+                "</a>" +
+                '<ul class="nav flex-column sidebar-digitek-submenu" style="max-height:336px;" aria-label="시험/시작/해석 하위 메뉴">' +
+                  /* 시험 */
+                  '<li class="nav-item">' +
+                    '<a class="sidebar-digitek-submenu-item" href="#">' +
+                      '<span class="sidebar-digitek-icon-label">' +
+                        '<i class="dicon dicon-flask icon-digitek-20"></i>' +
+                        '<span class="sidebar-digitek-menu-label">시험</span>' +
+                      "</span>" +
+                    "</a>" +
+                  "</li>" +
+                  /* 시작 (3레벨) */
+                  '<li class="nav-item">' +
+                    '<a class="sidebar-digitek-submenu-item" href="#" aria-expanded="true">' +
+                      '<span class="sidebar-digitek-icon-label">' +
+                        '<i class="dicon dicon-start-arrow icon-digitek-20"></i>' +
+                        '<span class="sidebar-digitek-menu-label">시작</span>' +
+                      "</span>" +
+                      '<span class="sidebar-digitek-chevron sidebar-digitek-chevron-open">' +
+                        '<i class="dicon dicon-chevron-down icon-digitek-16"></i>' +
+                      "</span>" +
+                    "</a>" +
+                    '<ul class="nav flex-column sidebar-digitek-sub-submenu" style="max-height:240px;" aria-label="시작 하위 메뉴">' +
+                      '<li class="nav-item"><a class="sidebar-digitek-sub-submenu-item" href="#"><span class="sidebar-digitek-menu-label">시작 검색</span></a></li>' +
+                      '<li class="nav-item"><a class="sidebar-digitek-sub-submenu-item sidebar-digitek-sub-active" href="#" aria-current="page"><span class="sidebar-digitek-menu-label">시작 의뢰 등록</span></a></li>' +
+                      '<li class="nav-item"><a class="sidebar-digitek-sub-submenu-item" href="#"><span class="sidebar-digitek-menu-label">시작 결과 등록</span></a></li>' +
+                      '<li class="nav-item"><a class="sidebar-digitek-sub-submenu-item" href="#"><span class="sidebar-digitek-menu-label">MPR 검색</span></a></li>' +
+                      '<li class="nav-item"><a class="sidebar-digitek-sub-submenu-item" href="#"><span class="sidebar-digitek-menu-label">MPR 등록</span></a></li>' +
+                    "</ul>" +
+                  "</li>" +
+                "</ul>" +
+              "</li>" +
+              /* 대시보드 */
+              '<li class="nav-item">' +
+                '<a class="sidebar-digitek-menu-item" href="#">' +
+                  '<span class="sidebar-digitek-icon-label">' +
+                    '<i class="dicon dicon-chart-pie icon-digitek-20"></i>' +
+                    '<span class="sidebar-digitek-menu-label">대시보드</span>' +
+                  "</span>" +
+                "</a>" +
+              "</li>" +
+            "</ul>" +
+          "</div>" +
+        "</nav>"
+      );
     }
 
     function init() {
       var placeholder = document.querySelector("[data-sidebar]");
       if (!placeholder) return;
-      var path = resolvePath();
-      fetch(path)
-        .then(function (resp) {
-          if (!resp.ok) throw new Error("sidebar load failed");
-          return resp.text();
-        })
-        .then(function (html) {
-          placeholder.outerHTML = html;
-          var prefix = resolvePath().replace(SIDEBAR_PATH, "");
-          var nav = document.querySelector(".sidebar-digitek");
-          if (nav) {
-            nav.querySelectorAll("img[data-src]").forEach(function (img) {
-              img.src = prefix + img.getAttribute("data-src");
-              img.removeAttribute("data-src");
-            });
-          }
-          Sidebar.init();
-        })
-        .catch(function (err) {
-          console.warn("SidebarLoader:", err.message);
+      placeholder.outerHTML = getTemplate();
+      var prefix = resolvePrefix();
+      var nav = document.querySelector(".sidebar-digitek");
+      if (nav) {
+        nav.querySelectorAll("img[data-src]").forEach(function (img) {
+          img.src = prefix + img.getAttribute("data-src");
+          img.removeAttribute("data-src");
         });
+      }
+      Sidebar.init();
     }
 
     return { init: init };
