@@ -1473,10 +1473,48 @@
   })();
 
   /* ================================================================== */
+  /*  SidebarLoader — 사이드바 동적 로드                                   */
+  /* ================================================================== */
+
+  var SidebarLoader = (function () {
+    var SIDEBAR_PATH = "components/navigation/sidebar-full.html";
+
+    function resolvePath() {
+      var parts = window.location.pathname.split("/").filter(Boolean);
+      var prefix = "";
+      if (parts.indexOf("pages") !== -1) {
+        prefix = "../../";
+      }
+      return prefix + SIDEBAR_PATH;
+    }
+
+    function init() {
+      var placeholder = document.querySelector("[data-sidebar]");
+      if (!placeholder) return;
+      var path = resolvePath();
+      fetch(path)
+        .then(function (resp) {
+          if (!resp.ok) throw new Error("sidebar load failed");
+          return resp.text();
+        })
+        .then(function (html) {
+          placeholder.outerHTML = html;
+          Sidebar.init();
+        })
+        .catch(function (err) {
+          console.warn("SidebarLoader:", err.message);
+        });
+    }
+
+    return { init: init };
+  })();
+
+  /* ================================================================== */
   /*  초기화 & 공개 API                                                   */
   /* ================================================================== */
 
   function initAll() {
+    SidebarLoader.init();
     Accordion.init();
     TabButton.init();
     Sidebar.init();
@@ -1514,6 +1552,7 @@
     Locale: Locale,
     GanttResizer: GanttResizer,
     DraggableTable: DraggableTable,
+    SidebarLoader: SidebarLoader,
   };
 
 })();
