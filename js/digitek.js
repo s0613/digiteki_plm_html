@@ -153,6 +153,10 @@
   /*  Sidebar                                                            */
   /* ================================================================== */
 
+  var sidebarItemH = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue("--sidebar-item-height")
+  ) || 48;
+
   var Sidebar = {
     init: function () {
       // 토글 버튼 (접기/펼치기) — 사이드바 내부 또는 GNB 헤더에서 동작
@@ -218,7 +222,7 @@
 
             // 열기
             var count = submenu.querySelectorAll(":scope > .nav-item").length;
-            submenu.style.maxHeight = (count * 48) + "px";
+            submenu.style.maxHeight = (count * sidebarItemH) + "px";
             item.setAttribute("aria-expanded", "true");
             var chev = item.querySelector(".sidebar-digitek-chevron");
             if (chev) chev.classList.add("sidebar-digitek-chevron-open");
@@ -268,7 +272,7 @@
             }
 
             var count = subSubmenu.querySelectorAll(":scope > .nav-item").length;
-            subSubmenu.style.maxHeight = (count * 48) + "px";
+            subSubmenu.style.maxHeight = (count * sidebarItemH) + "px";
             item.setAttribute("aria-expanded", "true");
             var chev = item.querySelector(".sidebar-digitek-chevron");
             if (chev) chev.classList.add("sidebar-digitek-chevron-open");
@@ -359,7 +363,7 @@
           count += ss.querySelectorAll(":scope > .nav-item").length;
         }
       });
-      submenu.style.maxHeight = (count * 48) + "px";
+      submenu.style.maxHeight = (count * sidebarItemH) + "px";
     },
   };
 
