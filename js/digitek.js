@@ -1478,6 +1478,80 @@
   })();
 
   /* ================================================================== */
+  /*  GnbLoader — GNB 동적 로드                                          */
+  /* ================================================================== */
+
+  var GnbLoader = (function () {
+    function resolvePrefix() {
+      var parts = window.location.pathname.split("/").filter(Boolean);
+      return parts.indexOf("pages") !== -1 ? "../../" : "";
+    }
+
+    /* gnb-full.html과 동일 — file:// 프로토콜 호환을 위해 JS 템플릿 사용 */
+    function getTemplate() {
+      return (
+        '<header class="gnb-digitek">' +
+          '<button class="gnb-hamburger-btn sidebar-toggle-btn" aria-label="메뉴 토글">' +
+            '<div class="sidebar-hamburger-icon"><span></span><span></span><span></span></div>' +
+          '</button>' +
+          '<!-- [커스텀] 검색 인풋: 필요 시 주석 해제하여 사용' +
+          '<div class="gnb-digitek-search-wrap">' +
+            '<input type="text" class="gnb-digitek-search-field" placeholder="검색어를 입력해 주세요" aria-label="검색어 입력" />' +
+            '<button class="btn-digitek-icon-plain" aria-label="검색">' +
+              '<i class="dicon dicon-search-lg icon-digitek-24 text-digitek-secondary"></i>' +
+            '</button>' +
+          '</div>' +
+          '-->' +
+          '<div class="gnb-digitek-right">' +
+            '<div class="gnb-digitek-icon-group">' +
+              '<button class="gnb-digitek-icon-btn" aria-label="알림">' +
+                '<i class="dicon dicon-bell icon-digitek-24 text-digitek-secondary"></i>' +
+                '<span class="gnb-digitek-badge">5</span>' +
+              '</button>' +
+              '<button class="gnb-digitek-icon-btn" aria-label="메일">' +
+                '<i class="dicon dicon-mail icon-digitek-24 text-digitek-secondary"></i>' +
+                '<span class="gnb-digitek-badge">12</span>' +
+              '</button>' +
+            '</div>' +
+            '<div class="gnb-digitek-locale-wrap">' +
+              '<button class="gnb-digitek-locale-btn" aria-label="언어 선택" aria-haspopup="menu" aria-expanded="false">' +
+                'KO' +
+                '<i class="dicon dicon-chevron-down-sm" style="width: 12px; height: 12px;" aria-hidden="true"></i>' +
+              '</button>' +
+              '<div class="gnb-digitek-locale-dropdown" role="menu">' +
+                '<button class="gnb-digitek-locale-option active" role="menuitem">KO</button>' +
+                '<button class="gnb-digitek-locale-option" role="menuitem">EN</button>' +
+              '</div>' +
+            '</div>' +
+            '<div class="gnb-digitek-profile" role="button" tabindex="0" aria-label="프로필 메뉴" aria-haspopup="menu" aria-expanded="false">' +
+              '<div class="gnb-digitek-avatar">' +
+                '<img data-src="images/icons/avatar.png" width="32" height="32" alt="" aria-hidden="true" style="border-radius: 50%;">' +
+              '</div>' +
+              '<span class="gnb-digitek-profile-name">사용자 이름</span>' +
+            '</div>' +
+          '</div>' +
+        '</header>'
+      );
+    }
+
+    function init() {
+      var placeholder = document.querySelector("[data-gnb]");
+      if (!placeholder) return;
+      placeholder.outerHTML = getTemplate();
+      var prefix = resolvePrefix();
+      var header = document.querySelector(".gnb-digitek");
+      if (header) {
+        header.querySelectorAll("img[data-src]").forEach(function (img) {
+          img.src = prefix + img.getAttribute("data-src");
+          img.removeAttribute("data-src");
+        });
+      }
+    }
+
+    return { init: init };
+  })();
+
+  /* ================================================================== */
   /*  SidebarLoader — 사이드바 동적 로드                                   */
   /* ================================================================== */
 
@@ -1644,6 +1718,7 @@
   /* ================================================================== */
 
   function initAll() {
+    GnbLoader.init();     // GNB 주입 — GNBSearch.init() 전에 실행
     SidebarLoader.init(); // Sidebar.init()은 SidebarLoader 로드 완료 후 호출됨
     Accordion.init();
     TabButton.init();
@@ -1682,6 +1757,7 @@
     GanttResizer: GanttResizer,
     DraggableTable: DraggableTable,
     SidebarLoader: SidebarLoader,
+    GnbLoader: GnbLoader,
   };
 
 })();
