@@ -4663,6 +4663,10 @@ body {
   letter-spacing: -0.7px;
   line-height: 38px;
   margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* ── 검색 필드 (세로 배치) ── */
