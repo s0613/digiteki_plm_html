@@ -947,21 +947,20 @@ function toggleSnippets() {
     isOpen ? '142개 스니펫 · 클릭하여 접기' : '142개 스니펫 · 클릭하여 펼치기';
 }
 
-async function copySnippet(filePath) {
-  try {
-    const resp = await fetch(filePath);
-    const text = await resp.text();
-    await navigator.clipboard.writeText(text);
-    showToast('클립보드에 복사되었습니다!');
-    event.target.textContent = '완료';
-    event.target.classList.add('copied');
-    setTimeout(() => {
-      event.target.textContent = '복사';
-      event.target.classList.remove('copied');
-    }, 2000);
-  } catch (e) {
-    showToast('복사 실패 — 파일을 직접 열어주세요: ' + filePath);
+function copySnippet(filePath) {
+  var btn = event.target;
+  // file:// 프로토콜에서는 fetch()가 차단되므로 파일 경로를 복사하고 새 탭에서 파일을 엽니다.
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(filePath).catch(function() {});
   }
+  window.open(filePath, '_blank');
+  showToast('새 탭에서 파일이 열렸습니다. Ctrl+U / Cmd+U로 소스를 확인하세요.');
+  btn.textContent = '완료';
+  btn.classList.add('copied');
+  setTimeout(function() {
+    btn.textContent = '복사';
+    btn.classList.remove('copied');
+  }, 2000);
 }
 function showToast(msg) {
   const el = document.getElementById('toast');

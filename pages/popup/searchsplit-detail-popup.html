@@ -7,34 +7,13 @@
   <link rel="stylesheet" href="../../css/digitek.css">
   <link rel="stylesheet" href="../../css/icons.css">
   <style>
-    body { margin: 0; background: #fff; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
-    .popup-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px;
-      border-bottom: 1px solid #e5e5ec;
-      background: #fff;
-      flex-shrink: 0;
-    }
+    body { margin: 0; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+    /* digitek.css의 .popup-header / .popup-body / .popup-footer 기반 스타일을 사용합니다.
+       아래는 이 팝업 전용 추가 속성입니다. */
+    .popup-header { flex-shrink: 0; }
     .popup-title-group { display: flex; align-items: center; gap: 8px; }
-    .popup-title { font-size: 15px; font-weight: 600; margin: 0; }
-    .popup-body {
-      flex: 1;
-      display: flex;
-      gap: 24px;
-      padding: 16px;
-      overflow-y: auto;
-      min-height: 0;
-    }
-    .popup-footer {
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-      padding: 12px 16px;
-      border-top: 1px solid #e5e5ec;
-      flex-shrink: 0;
-    }
+    .popup-body { flex: 1; display: flex; gap: 24px; overflow-y: auto; min-height: 0; }
+    .popup-footer { flex-shrink: 0; }
     .popup-schedule-col {
       flex: 0 0 200px;
       background: #f7f7fb;
@@ -193,7 +172,7 @@
 </div>
 
 <div class="popup-footer">
-  <button type="button" class="btn btn-secondary btn-sm" onclick="window.close()">닫기</button>
+  <button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-36" onclick="window.close()">닫기</button>
 </div>
 
 <script src="../../js/jquery.slim.min.js"></script>

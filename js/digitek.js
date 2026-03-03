@@ -1478,15 +1478,24 @@
   })();
 
   /* ================================================================== */
+  /*  공유 유틸리티                                                        */
+  /* ================================================================== */
+
+  /**
+   * 현재 페이지 위치를 기준으로 컴포넌트 루트 경로 접두사를 반환합니다.
+   * pages/ 하위 페이지: "../../"  /  루트 페이지: ""
+   * GnbLoader, SidebarLoader 공용으로 사용합니다.
+   */
+  function resolveComponentPrefix() {
+    var parts = window.location.pathname.split("/").filter(Boolean);
+    return parts.indexOf("pages") !== -1 ? "../../" : "";
+  }
+
+  /* ================================================================== */
   /*  GnbLoader — GNB 동적 로드                                          */
   /* ================================================================== */
 
   var GnbLoader = (function () {
-    function resolvePrefix() {
-      var parts = window.location.pathname.split("/").filter(Boolean);
-      return parts.indexOf("pages") !== -1 ? "../../" : "";
-    }
-
     /* gnb-full.html과 동일 — file:// 프로토콜 호환을 위해 JS 템플릿 사용 */
     function getTemplate() {
       return (
@@ -1538,7 +1547,7 @@
       var placeholder = document.querySelector("[data-gnb]");
       if (!placeholder) return;
       placeholder.outerHTML = getTemplate();
-      var prefix = resolvePrefix();
+      var prefix = resolveComponentPrefix();
       var header = document.querySelector(".gnb-digitek");
       if (header) {
         header.querySelectorAll("img[data-src]").forEach(function (img) {
@@ -1556,12 +1565,19 @@
   /* ================================================================== */
 
   var SidebarLoader = (function () {
-    function resolvePrefix() {
-      var parts = window.location.pathname.split("/").filter(Boolean);
-      return parts.indexOf("pages") !== -1 ? "../../" : "";
-    }
-
-    /* sidebar-full.html과 동일 — file:// 프로토콜 호환을 위해 JS 템플릿 사용 */
+    /*
+     * sidebar-full.html과 동일 — file:// 프로토콜 호환을 위해 JS 템플릿 사용
+     *
+     * [Thymeleaf 구현 시 active 처리 방법]
+     * 현재 활성 메뉴 아이템에 'sidebar-digitek-active' 클래스를,
+     * 3레벨 서브메뉴 활성 아이템에 'sidebar-digitek-sub-active' 클래스를 추가하세요.
+     * Thymeleaf 예시:
+     *   th:classappend="${#strings.startsWith(#httpServletRequest.requestURI, '/pms')} ? 'sidebar-digitek-active'"
+     *   th:attr="aria-current=${active ? 'page' : null}"
+     *
+     * [주의] 아래 템플릿에서 'sidebar-digitek-sub-active'가 하드코딩된 항목은
+     * 데모 표시용입니다. 백엔드 구현 시 제거하고 서버 측 조건 처리로 대체하세요.
+     */
     function getTemplate() {
       return (
         '<nav class="sidebar-digitek sidebar-digitek-expanded" aria-label="메인 메뉴">' +
@@ -1699,7 +1715,7 @@
       var placeholder = document.querySelector("[data-sidebar]");
       if (!placeholder) return;
       placeholder.outerHTML = getTemplate();
-      var prefix = resolvePrefix();
+      var prefix = resolveComponentPrefix();
       var nav = document.querySelector(".sidebar-digitek");
       if (nav) {
         nav.querySelectorAll("img[data-src]").forEach(function (img) {
