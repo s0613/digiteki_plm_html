@@ -882,11 +882,6 @@
       var expanded = this.getAttribute('aria-expanded') === 'true';
       var nowExpanded = !expanded;
       this.setAttribute('aria-expanded', String(nowExpanded));
-      var icon = this.querySelector('.dicon');
-      if (icon) {
-        icon.classList.toggle('dicon-chevron-down', !nowExpanded);
-        icon.classList.toggle('dicon-chevron-up', nowExpanded);
-      }
       var card = this.closest('.searchsplit-digitek-results-card');
       if (card) {
         card.querySelectorAll('.searchsplit-digitek-table-wrap, .searchsplit-digitek-pagination').forEach(function(el) {
