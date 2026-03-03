@@ -3261,7 +3261,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 }
 
 .request-digitek-header-left {
@@ -3636,7 +3636,7 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .pms-digitek-header-left {
@@ -4361,7 +4361,7 @@ body {
 }
 
 .searchlist-digitek-content > .searchlist-digitek-header {
-  margin-bottom: 32px;
+  margin-bottom: 16px;
 }
 
 .searchlist-digitek-content > .searchlist-digitek-search-panel {
