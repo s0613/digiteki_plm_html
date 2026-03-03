@@ -2633,6 +2633,7 @@ body {
 
 .sidebar-collapse-handle:hover {
   background: #f0f0f0;
+  opacity: 1;
 }
 
 .sidebar-collapse-handle .dicon-chevron-left {
