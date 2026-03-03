@@ -3259,15 +3259,16 @@ body {
 /* ── 헤더 ── */
 .request-digitek-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   margin-bottom: 24px;
 }
 
 .request-digitek-header-left {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
 }
 
 .request-digitek-header-title {
@@ -3640,8 +3641,9 @@ body {
 
 .pms-digitek-header-left {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
 }
 
 .pms-digitek-header-title {
@@ -4369,8 +4371,9 @@ body {
 /* ── 헤더 (브레드크럼 + 제목) ── */
 .searchlist-digitek-header {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .searchlist-digitek-title {
@@ -4648,8 +4651,9 @@ body {
 
 .searchsplit-digitek-header {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .searchsplit-digitek-title {
