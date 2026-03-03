@@ -4864,10 +4864,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: none;
+  background: #fff;
   border: none;
   padding: 4px;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 .searchsplit-digitek-results-toggle .dicon {
