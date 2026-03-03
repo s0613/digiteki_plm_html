@@ -5007,6 +5007,9 @@ body {
 
 /* transition을 기본 상태에 선언하여 양방향 애니메이션 */
 .searchsplit-digitek-body > form {
+  width: var(--digitek-split-search-width);
+  min-width: var(--digitek-split-search-min);
+  flex-shrink: 0;
   overflow: hidden;
   transition: width 0.25s ease, min-width 0.25s ease;
 }
