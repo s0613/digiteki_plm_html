@@ -894,6 +894,19 @@
       }
     });
   });
+
+  /* 검색 패널 접기/펼치기 핸들 */
+  document.querySelectorAll('[data-toggle="searchsplit-search-panel"]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var expanded = this.getAttribute('aria-expanded') === 'true';
+      var nowExpanded = !expanded;
+      this.setAttribute('aria-expanded', String(nowExpanded));
+      var body = this.closest('.searchsplit-digitek-body');
+      if (body) {
+        body.classList.toggle('searchsplit-search-collapsed', !nowExpanded);
+      }
+    });
+  });
 })();
 </script>
 </body>
