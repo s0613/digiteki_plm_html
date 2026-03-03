@@ -1586,6 +1586,9 @@
             '<div class="sidebar-digitek-logo sidebar-logo-collapsed">' +
               '<img data-src="images/icons/logo-collapsed.png" width="54" height="26" alt="HL 로고" aria-hidden="true">' +
             "</div>" +
+            '<button class="sidebar-collapse-handle sidebar-toggle-btn" aria-label="사이드바 접기/펼치기">' +
+              '<i class="dicon dicon-chevron-left icon-digitek-20" aria-hidden="true"></i>' +
+            '</button>' +
           "</div>" +
           '<div class="flex-grow-1 overflow-auto sidebar-digitek-menu-area">' +
             '<ul class="nav flex-column">' +
@@ -1706,9 +1709,6 @@
             "</ul>" +
           "</div>" +
         "</nav>" +
-        '<button class="sidebar-collapse-handle sidebar-toggle-btn" aria-label="사이드바 접기/펼치기">' +
-          '<i class="dicon dicon-chevron-left icon-digitek-16" aria-hidden="true"></i>' +
-        '</button>' +
         '</div>'
       );
     }
