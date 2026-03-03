@@ -2393,6 +2393,7 @@ body {
   border-radius: 4px;
 }
 /* GNB 접기 버튼: 펼침 상태에서 ← , 접힘 상태에서 → */
+/* chevron-left.png 은 다크 컬러(기본값) — 흰색 GNB 배경에 적합 */
 .gnb-hamburger-btn .dicon-chevron-left {
   transition: transform 0.2s ease;
 }
