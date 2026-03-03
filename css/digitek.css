@@ -2753,8 +2753,8 @@ body {
 /* 접힌 사이드바 메뉴 — 부모 기반 처리 (간소화: sidebar-digitek-menu-item-collapsed 불필요) */
 .sidebar-digitek-collapsed .sidebar-digitek-menu-item {
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: var(--sidebar-item-height);
+  height: var(--sidebar-item-height);
   padding: 0;
   overflow: hidden;
 }
@@ -2839,7 +2839,7 @@ body {
 .sidebar-digitek .sidebar-digitek-submenu-item {
   display: flex;
   align-items: center;
-  height: 36px;
+  height: var(--sidebar-item-height);
   padding: 0 12px 0 44px;
   gap: 16px;
   color: #fff;
@@ -2871,7 +2871,7 @@ body {
 .sidebar-digitek .sidebar-digitek-sub-submenu-item {
   display: flex;
   align-items: center;
-  height: 36px;
+  height: var(--sidebar-item-height);
   padding: 0 12px 0 80px;
   color: #fff;
   white-space: nowrap;
