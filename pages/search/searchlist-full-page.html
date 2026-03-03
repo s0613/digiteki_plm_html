@@ -79,7 +79,7 @@
                 <input type="checkbox" id="include-legacy" name="includeLegacy" value="true">
                 구 객체 포함
               </label>
-              <p class="searchlist-digitek-legacy-warning" id="include-legacy-warning" role="alert" style="display:none;">
+              <p class="searchlist-digitek-legacy-warning" id="include-legacy-warning" role="alert" style="visibility:hidden;">
                 ※ 구 객체 포함 시 검색이 느려질 수 있습니다.
               </p>
             </div>
@@ -560,7 +560,7 @@
   var legacyWarning = document.getElementById('include-legacy-warning');
   if (legacyCheckbox && legacyWarning) {
     legacyCheckbox.addEventListener('change', function() {
-      legacyWarning.style.display = this.checked ? '' : 'none';
+      legacyWarning.style.visibility = this.checked ? 'visible' : 'hidden';
     });
   }
 })();
