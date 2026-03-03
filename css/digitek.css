@@ -3251,7 +3251,7 @@ body {
 /* ========================================================================== */
 
 .request-digitek-detail {
-  padding: 52px;
+  padding: 32px;
   background: var(--digitek-bg-gray);
   min-height: 100%;
 }
@@ -4350,7 +4350,7 @@ body {
 
 /* ── 페이지 컨테이너 ── */
 .searchlist-digitek {
-  padding: 52px 52px 120px;
+  padding: 32px 32px 80px;
   background: var(--digitek-bg-gray);
   min-height: 100%;
 }
@@ -4643,7 +4643,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 40px 25px;
+  padding: 24px 20px;
   overflow-y: auto;
   background: var(--digitek-bg-white);
   border-right: 1px solid var(--digitek-border);
