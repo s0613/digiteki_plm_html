@@ -1500,8 +1500,8 @@
     function getTemplate() {
       return (
         '<header class="gnb-digitek">' +
-          '<button class="gnb-hamburger-btn sidebar-toggle-btn" aria-label="메뉴 토글">' +
-            '<div class="sidebar-hamburger-icon"><span></span><span></span><span></span></div>' +
+          '<button class="gnb-hamburger-btn sidebar-toggle-btn" aria-label="사이드바 접기/펼치기">' +
+            '<i class="dicon dicon-chevron-left icon-digitek-24" aria-hidden="true"></i>' +
           '</button>' +
           '<!-- [커스텀] 검색 인풋: 필요 시 주석 해제하여 사용' +
           '<div class="gnb-digitek-search-wrap">' +

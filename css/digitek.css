@@ -2392,9 +2392,12 @@ body {
   background-color: rgba(0,0,0,0.06);
   border-radius: 4px;
 }
-/* GNB 내 햄버거 아이콘: 다크 색상 (흰색 배경 위) */
-.gnb-hamburger-btn .sidebar-hamburger-icon span {
-  background: var(--digitek-text-secondary, #6c757d);
+/* GNB 접기 버튼: 펼침 상태에서 ← , 접힘 상태에서 → */
+.gnb-hamburger-btn .dicon-chevron-left {
+  transition: transform 0.2s ease;
+}
+.layout-digitek:has(.sidebar-digitek-collapsed) .gnb-hamburger-btn .dicon-chevron-left {
+  transform: rotate(180deg);
 }
 
 /* 검색 인풋 — pill 형태, 배경 전환 */
@@ -2665,24 +2668,6 @@ body {
 
 .sidebar-digitek-logo svg {
   display: block;
-}
-
-/* 사이드바 햄버거 토글 아이콘 */
-.sidebar-hamburger-icon {
-  width: 24px;
-  height: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-}
-.sidebar-hamburger-icon span {
-  display: block;
-  width: 18px;
-  height: 2px;
-  background: #fff;
-  border-radius: 1px;
 }
 
 /* 펼침 상태: full 로고 표시, collapsed 로고 숨김 */
