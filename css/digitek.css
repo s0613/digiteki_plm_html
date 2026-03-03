@@ -4997,7 +4997,7 @@ body {
 }
 
 /* 접힘 상태: chevron-left → 180deg = chevron-right */
-.searchsplit-search-collapsed .searchsplit-digitek-search-collapse-handle .dicon {
+.searchsplit-digitek-body.searchsplit-search-collapsed .searchsplit-digitek-search-collapse-handle .dicon {
   transform: rotate(180deg);
 }
 
@@ -5007,13 +5007,13 @@ body {
 }
 
 /* 검색 패널 접힘 상태 */
-.searchsplit-search-collapsed .searchsplit-digitek-body > form {
+.searchsplit-digitek-body.searchsplit-search-collapsed > form {
   width: 0;
   min-width: 0;
   overflow: hidden;
 }
 
-.searchsplit-search-collapsed .searchsplit-digitek-search-collapse-handle {
+.searchsplit-digitek-body.searchsplit-search-collapsed .searchsplit-digitek-search-collapse-handle {
   border-radius: 4px;
 }
 
