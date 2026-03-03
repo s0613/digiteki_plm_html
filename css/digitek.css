@@ -5001,12 +5001,16 @@ body {
   transform: rotate(180deg);
 }
 
+/* transition을 기본 상태에 선언하여 양방향 애니메이션 */
+.searchsplit-digitek-body > form {
+  transition: width 0.25s ease, min-width 0.25s ease;
+}
+
 /* 검색 패널 접힘 상태 */
 .searchsplit-search-collapsed .searchsplit-digitek-body > form {
-  width: 0 !important;
-  min-width: 0 !important;
+  width: 0;
+  min-width: 0;
   overflow: hidden;
-  transition: width 0.25s ease, min-width 0.25s ease;
 }
 
 .searchsplit-search-collapsed .searchsplit-digitek-search-collapse-handle {
