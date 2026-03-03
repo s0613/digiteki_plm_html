@@ -4962,6 +4962,10 @@ body {
   display: none;
 }
 
+.searchsplit-digitek-body-fullview .searchsplit-digitek-search-collapse-handle {
+  display: none;
+}
+
 .searchsplit-digitek-body-fullview .searchsplit-digitek-detail {
   width: 100%;
   left: 0;
@@ -5003,6 +5007,7 @@ body {
 
 /* transition을 기본 상태에 선언하여 양방향 애니메이션 */
 .searchsplit-digitek-body > form {
+  overflow: hidden;
   transition: width 0.25s ease, min-width 0.25s ease;
 }
 

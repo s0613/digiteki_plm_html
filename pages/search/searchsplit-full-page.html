@@ -11,10 +11,11 @@
 </head>
 <body>
 <!-- 검색 분할형 페이지: Sidebar + GNB + Content 전체 레이아웃 -->
-<!-- [상태 변형] searchsplit-digitek-body의 class 조합으로 3가지 상태 표현:
-     기본 (상세 닫힘) : class="searchsplit-digitek-body"
-     나란히 보기      : class="searchsplit-digitek-body searchsplit-digitek-body-detail-open"
-     전체 보기        : class="searchsplit-digitek-body searchsplit-digitek-body-detail-open searchsplit-digitek-body-fullview"
+<!-- [상태 변형] searchsplit-digitek-body의 class 조합으로 상태 표현:
+     기본 (상세 닫힘)      : class="searchsplit-digitek-body"
+     나란히 보기           : class="searchsplit-digitek-body searchsplit-digitek-body-detail-open"
+     전체 보기             : class="searchsplit-digitek-body searchsplit-digitek-body-detail-open searchsplit-digitek-body-fullview"
+     검색 패널 접힘 (수정자): searchsplit-search-collapsed 추가 (단독 또는 조합 가능)
 -->
 <div class="layout-digitek">
   <!-- 사이드바 (SidebarLoader) -->
@@ -261,7 +262,7 @@
           aria-controls="searchsplit-search-form"
           aria-label="검색 패널 접기/펼치기"
           data-toggle="searchsplit-search-panel">
-          <i class="dicon dicon-chevron-left icon-digitek-20" aria-hidden="true"></i>
+          <i class="dicon dicon-chevron-left" aria-hidden="true"></i>
         </button>
 
         <!-- 우측 결과 영역 -->
