@@ -2375,31 +2375,6 @@ body {
   border-bottom: 1px solid var(--digitek-border);
 }
 
-/* GNB 햄버거 토글 버튼 — 항상 표시, 사이드바 토글 역할 */
-.gnb-hamburger-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  margin-right: 8px;
-  flex-shrink: 0;
-}
-.gnb-hamburger-btn:hover {
-  background-color: rgba(0,0,0,0.06);
-  border-radius: 4px;
-}
-/* GNB 접기 버튼: 펼침 상태에서 ← , 접힘 상태에서 → */
-/* chevron-left.png 은 다크 컬러(기본값) — 흰색 GNB 배경에 적합 */
-.gnb-hamburger-btn .dicon-chevron-left {
-  transition: transform 0.2s ease;
-}
-.layout-digitek:has(.sidebar-digitek-collapsed) .gnb-hamburger-btn .dicon-chevron-left {
-  transform: rotate(180deg);
-}
 
 /* 검색 인풋 — pill 형태, 배경 전환 */
 .gnb-digitek-search-wrap {
@@ -2627,6 +2602,46 @@ body {
 /* ================================================================== */
 /*  Sidebar (사이드바)                                                 */
 /* ================================================================== */
+
+/* 사이드바 컨테이너: overflow visible 로 핸들 버튼이 돌출되도록 */
+.sidebar-digitek-container {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+}
+
+/* 사이드바 패널 핸들 버튼 */
+.sidebar-collapse-handle {
+  position: absolute;
+  top: 50%;
+  right: -14px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 36px;
+  background: #fff;
+  border: none;
+  border-radius: 0 6px 6px 0;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  z-index: 100;
+}
+
+.sidebar-collapse-handle:hover {
+  background: #f0f0f0;
+}
+
+.sidebar-collapse-handle .dicon-chevron-left {
+  transition: transform 0.2s ease;
+}
+
+/* 접힘 상태: chevron-left → rotate 180deg = chevron-right */
+.sidebar-digitek-collapsed + .sidebar-collapse-handle .dicon-chevron-left {
+  transform: rotate(180deg);
+}
 
 .sidebar-digitek {
   display: flex;

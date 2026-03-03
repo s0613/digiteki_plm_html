@@ -1500,9 +1500,6 @@
     function getTemplate() {
       return (
         '<header class="gnb-digitek">' +
-          '<button class="gnb-hamburger-btn sidebar-toggle-btn" aria-label="사이드바 접기/펼치기">' +
-            '<i class="dicon dicon-chevron-left icon-digitek-24" aria-hidden="true"></i>' +
-          '</button>' +
           '<!-- [커스텀] 검색 인풋: 필요 시 주석 해제하여 사용' +
           '<div class="gnb-digitek-search-wrap">' +
             '<input type="text" class="gnb-digitek-search-field" placeholder="검색어를 입력해 주세요" aria-label="검색어 입력" />' +
@@ -1580,6 +1577,7 @@
      */
     function getTemplate() {
       return (
+        '<div class="sidebar-digitek-container">' +
         '<nav class="sidebar-digitek sidebar-digitek-expanded" aria-label="메인 메뉴">' +
           '<div class="sidebar-digitek-header">' +
             '<div class="sidebar-digitek-logo sidebar-logo-full">' +
@@ -1707,7 +1705,11 @@
               "</li>" +
             "</ul>" +
           "</div>" +
-        "</nav>"
+        "</nav>" +
+        '<button class="sidebar-collapse-handle sidebar-toggle-btn" aria-label="사이드바 접기/펼치기">' +
+          '<i class="dicon dicon-chevron-left icon-digitek-16" aria-hidden="true"></i>' +
+        '</button>' +
+        '</div>'
       );
     }
 
