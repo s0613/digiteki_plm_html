@@ -2654,6 +2654,10 @@ body {
   max-width: 100%;
   height: auto;
 }
+.sidebar-digitek-header .sidebar-logo-collapsed img {
+  max-width: 100%;
+  height: auto;
+}
 
 .sidebar-digitek-logo {
   transition: opacity 0.15s ease;

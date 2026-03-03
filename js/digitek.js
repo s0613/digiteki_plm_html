@@ -1586,7 +1586,7 @@
               '<img data-src="images/icons/logo.png" width="108" height="52" alt="HLKlemove 로고" aria-hidden="true">' +
             "</div>" +
             '<div class="sidebar-digitek-logo sidebar-logo-collapsed">' +
-              '<img data-src="images/icons/logo-collapsed.png" width="32" height="32" alt="HL 로고" aria-hidden="true">' +
+              '<img data-src="images/icons/logo-collapsed.png" width="54" height="26" alt="HL 로고" aria-hidden="true">' +
             "</div>" +
           "</div>" +
           '<div class="flex-grow-1 overflow-auto sidebar-digitek-menu-area">' +
