@@ -28,7 +28,7 @@
 
         <!-- 좌측 검색 패널 -->
         <!-- [Thymeleaf] th:action="@{/search}" th:method="get" 으로 서버 URL 바인딩 -->
-<form method="get" action="/search">
+<form id="searchsplit-search-form" method="get" action="/search">
 <div class="searchsplit-digitek-search-panel">
         <!-- 브레드크럼 + 제목 -->
         <div class="searchsplit-digitek-header">
@@ -258,6 +258,7 @@
         <button type="button"
           class="searchsplit-digitek-search-collapse-handle"
           aria-expanded="true"
+          aria-controls="searchsplit-search-form"
           aria-label="검색 패널 접기/펼치기"
           data-toggle="searchsplit-search-panel">
           <i class="dicon dicon-chevron-left icon-digitek-20" aria-hidden="true"></i>
