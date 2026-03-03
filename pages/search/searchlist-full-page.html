@@ -554,6 +554,15 @@
       }
     });
   });
+
+  // 구 객체 포함 체크박스 경고 토글
+  var legacyCheckbox = document.getElementById('include-legacy');
+  var legacyWarning = document.getElementById('include-legacy-warning');
+  if (legacyCheckbox && legacyWarning) {
+    legacyCheckbox.addEventListener('change', function() {
+      legacyWarning.style.display = this.checked ? '' : 'none';
+    });
+  }
 })();
 </script>
 </body>
