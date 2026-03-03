@@ -4396,6 +4396,11 @@ body {
   gap: 16px;
 }
 
+.searchlist-digitek-search-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .searchlist-digitek-search-row {
   display: flex;
   gap: 16px;

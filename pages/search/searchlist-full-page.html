@@ -51,6 +51,9 @@
       <!-- [Thymeleaf] th:action="@{/search}" th:method="get" 으로 서버 URL 바인딩 -->
       <form method="get" action="/search">
       <div class="searchlist-digitek-search-panel">
+        <div class="searchlist-digitek-search-actions">
+          <button type="submit" class="btn btn-digitek btn-digitek-primary btn-digitek-48">검색</button>
+        </div>
         <!-- 기본 검색 필드 -->
         <!-- [주의] 아래 id 속성들은 한 페이지에 이 컴포넌트가 한 번만 사용될 때만 유효합니다.
              동일 페이지에 두 번 이상 포함 시 id 충돌이 발생합니다. Thymeleaf fragment로 동적 id를 사용하세요. -->
@@ -68,10 +71,6 @@
               <input type="text" id="searchlist-request-no" name="requestNo" placeholder="검색어를 입력해 주세요" />
               <i class="dicon dicon-search-lg icon-digitek-24" style="color: #767676; flex-shrink: 0;" aria-hidden="true"></i>
             </div>
-          </div>
-          <div class="searchlist-digitek-field-fixed">
-            <span class="searchlist-digitek-field-label-hidden" aria-hidden="true">.</span>
-            <button type="submit" class="btn btn-digitek btn-digitek-primary btn-digitek-48 w-100">검색</button>
           </div>
         </div>
         <!-- 필터 토글 -->
