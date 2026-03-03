@@ -87,7 +87,7 @@
   --digitek-bg-avatar: #e8e8e8;     /* 아바타 기본 배경 */
   --digitek-bg-tab-group: #F2F2F6;  /* 탭 그룹 배경 */
   --digitek-bg-assignee: #e8f0fb;   /* 담당자 태그 배경 */
-  --sidebar-item-height: 48px;      /* 사이드바 메뉴 항목 높이 */
+  --sidebar-item-height: 36px;      /* 사이드바 메뉴 항목 높이 */
 }
 
 body {
@@ -2715,7 +2715,7 @@ body {
 .sidebar-digitek-menu-item {
   display: flex;
   align-items: center;
-  padding: 14px 12px;
+  padding: 8px 12px;
   border-radius: 0.25rem;
   color: #fff;
   white-space: normal; /* 줄바꿈 허용 */
@@ -2753,8 +2753,8 @@ body {
 /* 접힌 사이드바 메뉴 — 부모 기반 처리 (간소화: sidebar-digitek-menu-item-collapsed 불필요) */
 .sidebar-digitek-collapsed .sidebar-digitek-menu-item {
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   padding: 0;
   overflow: hidden;
 }
@@ -2839,7 +2839,7 @@ body {
 .sidebar-digitek .sidebar-digitek-submenu-item {
   display: flex;
   align-items: center;
-  height: 48px;
+  height: 36px;
   padding: 0 12px 0 44px;
   gap: 16px;
   color: #fff;
@@ -2871,7 +2871,7 @@ body {
 .sidebar-digitek .sidebar-digitek-sub-submenu-item {
   display: flex;
   align-items: center;
-  height: 48px;
+  height: 36px;
   padding: 0 12px 0 80px;
   color: #fff;
   white-space: nowrap;
