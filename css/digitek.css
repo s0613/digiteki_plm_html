@@ -2500,6 +2500,7 @@ body {
   align-items: center;
   flex-shrink: 0;
   gap: 32px;
+  margin-left: auto;
 }
 
 /* 아이콘 그룹 (알림 + 메일) */

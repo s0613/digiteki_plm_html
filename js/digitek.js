@@ -169,7 +169,7 @@
       delegateEvent("click", ".sidebar-toggle-btn", function (e, btn) {
         var nav = btn.closest(".sidebar-digitek");
         if (!nav) {
-          // GNB 헤더의 햄버거 버튼 → 레이아웃 내 사이드바 찾기
+          // 사이드바 외부 버튼(핸들 등) → 레이아웃 내 사이드바 찾기
           var layout = btn.closest(".layout-digitek");
           nav = layout ? layout.querySelector(".sidebar-digitek") : null;
         }
