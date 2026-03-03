@@ -4871,6 +4871,7 @@ body {
 }
 
 .searchsplit-digitek-results-toggle .dicon {
+  filter: brightness(0) opacity(0.55);
   transition: transform 0.2s ease;
 }
 
