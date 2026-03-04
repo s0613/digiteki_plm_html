@@ -152,6 +152,12 @@ i.dicon {
   height: 24px;
   background-image: url("../images/icons/search-lg.png");
 }
+/* 프로필/작성자 | 24×24px | mode: stroke */
+.dicon-profile {
+  width: 24px;
+  height: 24px;
+  background-image: url("../images/icons/profile.png");
+}
 /* 캘린더 | 20×20px | mode: stroke */
 .dicon-calendar {
   width: 20px;

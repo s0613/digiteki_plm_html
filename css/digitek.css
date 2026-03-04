@@ -4672,11 +4672,22 @@ body {
   position: relative;
 }
 
-/* ── 좌측 검색 패널 (고정 450px) ── */
-.searchsplit-digitek-search-panel {
+/* ── 패널 래퍼 (flex 크기 + 접기 애니메이션 담당) ── */
+.searchsplit-digitek-panel-wrapper {
+  position: relative;
+  flex-shrink: 0;
   width: var(--digitek-split-search-width);
   min-width: var(--digitek-split-search-min);
-  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  transition: width 0.25s ease, min-width 0.25s ease;
+}
+
+/* ── 좌측 검색 패널 ── */
+.searchsplit-digitek-search-panel {
+  flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -4999,7 +5010,7 @@ body {
 }
 
 /* 전체 보기 상태: 검색 패널 + 결과 영역 숨기고 상세 패널 전체 너비 */
-.searchsplit-digitek-body-fullview .searchsplit-digitek-search-panel {
+.searchsplit-digitek-body-fullview .searchsplit-digitek-panel-wrapper {
   display: none;
 }
 
@@ -5019,8 +5030,10 @@ body {
 
 /* ── 검색 패널 접기 핸들 ── */
 .searchsplit-digitek-search-collapse-handle {
-  flex-shrink: 0;
-  align-self: center;
+  position: absolute;
+  right: -16px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 16px;
   height: 48px;
   display: flex;
@@ -5050,20 +5063,19 @@ body {
   transform: rotate(180deg);
 }
 
-/* transition을 기본 상태에 선언하여 양방향 애니메이션 */
-.searchsplit-digitek-body > form {
-  width: var(--digitek-split-search-width);
-  min-width: var(--digitek-split-search-min);
-  flex-shrink: 0;
+/* form: wrapper 안에서 콘텐츠 클리핑 담당 */
+.searchsplit-digitek-panel-wrapper > form {
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
-  transition: width 0.25s ease, min-width 0.25s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 /* 검색 패널 접힘 상태 */
-.searchsplit-digitek-body.searchsplit-search-collapsed > form {
+.searchsplit-digitek-body.searchsplit-search-collapsed .searchsplit-digitek-panel-wrapper {
   width: 0;
   min-width: 0;
-  overflow: hidden;
 }
 
 .searchsplit-digitek-body.searchsplit-search-collapsed .searchsplit-digitek-search-collapse-handle {
@@ -5333,6 +5345,7 @@ body {
   flex: 1;
   display: flex;
   justify-content: flex-end;
+  gap: 8px;
 }
 .group-manage-body {
   display: grid;
@@ -5464,6 +5477,7 @@ body {
   border: 1px solid #e5e5ec;
   border-radius: 4px;
   padding: 16px;
+  background: #fff;
   display: flex;
   flex-direction: column;
   min-height: 400px;
@@ -5473,6 +5487,7 @@ body {
   border: 1px solid #e5e5ec;
   border-radius: 4px;
   padding: 16px;
+  background: #fff;
   box-shadow: 0 1px 4px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;

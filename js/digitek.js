@@ -1630,16 +1630,16 @@
               "</li>" +
               /* PMS (2레벨 서브메뉴) */
               '<li class="nav-item">' +
-                '<a class="sidebar-digitek-menu-item" href="#" aria-expanded="true">' +
+                '<a class="sidebar-digitek-menu-item" href="#" aria-expanded="false">' +
                   '<span class="sidebar-digitek-icon-label">' +
                     '<i class="dicon dicon-layer icon-digitek-20"></i>' +
                     '<span class="sidebar-digitek-menu-label">PMS</span>' +
                   "</span>" +
-                  '<span class="sidebar-digitek-chevron sidebar-digitek-chevron-open">' +
+                  '<span class="sidebar-digitek-chevron">' +
                     '<i class="dicon dicon-chevron-down icon-digitek-20"></i>' +
                   "</span>" +
                 "</a>" +
-                '<ul class="nav flex-column sidebar-digitek-submenu" style="max-height: 192px;" aria-label="PMS 하위 메뉴">' +
+                '<ul class="nav flex-column sidebar-digitek-submenu" style="max-height: 0px;" aria-label="PMS 하위 메뉴">' +
                   '<li class="nav-item"><a class="sidebar-digitek-submenu-item" href="#"><span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span><span class="sidebar-digitek-menu-label">프로젝트 검색</span></a></li>' +
                   '<li class="nav-item"><a class="sidebar-digitek-submenu-item" href="#"><span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span><span class="sidebar-digitek-menu-label">프로젝트 등록</span></a></li>' +
                   '<li class="nav-item"><a class="sidebar-digitek-submenu-item" href="#"><span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span><span class="sidebar-digitek-menu-label">My Task</span></a></li>' +
@@ -1657,16 +1657,16 @@
               "</li>" +
               /* 시험/시작/해석 (3레벨 메뉴) */
               '<li class="nav-item">' +
-                '<a class="sidebar-digitek-menu-item sidebar-digitek-parent-open" href="#" aria-expanded="true">' +
+                '<a class="sidebar-digitek-menu-item" href="#" aria-expanded="false">' +
                   '<span class="sidebar-digitek-icon-label">' +
                     '<i class="dicon dicon-chart-bar icon-digitek-20"></i>' +
                     '<span class="sidebar-digitek-menu-label">시험/시작/해석</span>' +
                   "</span>" +
-                  '<span class="sidebar-digitek-chevron sidebar-digitek-chevron-open">' +
+                  '<span class="sidebar-digitek-chevron">' +
                     '<i class="dicon dicon-chevron-down icon-digitek-20"></i>' +
                   "</span>" +
                 "</a>" +
-                '<ul class="nav flex-column sidebar-digitek-submenu" style="max-height: 336px;" aria-label="시험/시작/해석 하위 메뉴">' +
+                '<ul class="nav flex-column sidebar-digitek-submenu" style="max-height: 0px;" aria-label="시험/시작/해석 하위 메뉴">' +
                   /* 시험 */
                   '<li class="nav-item">' +
                     '<a class="sidebar-digitek-submenu-item" href="#">' +
@@ -1678,18 +1678,18 @@
                   "</li>" +
                   /* 시작 (3레벨) */
                   '<li class="nav-item">' +
-                    '<a class="sidebar-digitek-submenu-item" href="#" aria-expanded="true">' +
+                    '<a class="sidebar-digitek-submenu-item" href="#" aria-expanded="false">' +
                       '<span class="sidebar-digitek-icon-label">' +
                         '<i class="dicon dicon-start-arrow icon-digitek-20"></i>' +
                         '<span class="sidebar-digitek-menu-label">시작</span>' +
                       "</span>" +
-                      '<span class="sidebar-digitek-chevron sidebar-digitek-chevron-open">' +
+                      '<span class="sidebar-digitek-chevron">' +
                         '<i class="dicon dicon-chevron-down icon-digitek-16"></i>' +
                       "</span>" +
                     "</a>" +
-                    '<ul class="nav flex-column sidebar-digitek-sub-submenu" style="max-height: 240px;" aria-label="시작 하위 메뉴">' +
+                    '<ul class="nav flex-column sidebar-digitek-sub-submenu" style="max-height: 0px;" aria-label="시작 하위 메뉴">' +
                       '<li class="nav-item"><a class="sidebar-digitek-sub-submenu-item" href="#"><span class="sidebar-digitek-menu-label">시작 검색</span></a></li>' +
-                      '<li class="nav-item"><a class="sidebar-digitek-sub-submenu-item sidebar-digitek-sub-active" href="#" aria-current="page"><span class="sidebar-digitek-menu-label">시작 의뢰 등록</span></a></li>' +
+                      '<li class="nav-item"><a class="sidebar-digitek-sub-submenu-item" href="#"><span class="sidebar-digitek-menu-label">시작 의뢰 등록</span></a></li>' +
                       '<li class="nav-item"><a class="sidebar-digitek-sub-submenu-item" href="#"><span class="sidebar-digitek-menu-label">시작 결과 등록</span></a></li>' +
                       '<li class="nav-item"><a class="sidebar-digitek-sub-submenu-item" href="#"><span class="sidebar-digitek-menu-label">MPR 검색</span></a></li>' +
                       '<li class="nav-item"><a class="sidebar-digitek-sub-submenu-item" href="#"><span class="sidebar-digitek-menu-label">MPR 등록</span></a></li>' +
