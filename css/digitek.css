@@ -5336,11 +5336,6 @@ body {
   font-weight: 600;
   flex: 1;
 }
-.group-manage-header-center {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
 .group-manage-header-right {
   flex: 1;
   display: flex;
