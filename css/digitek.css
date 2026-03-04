@@ -4399,6 +4399,7 @@ body {
 .searchlist-digitek-search-actions {
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 12px;
 }
 
 .searchlist-digitek-legacy-checkbox-wrap {
