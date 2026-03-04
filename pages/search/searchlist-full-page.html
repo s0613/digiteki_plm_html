@@ -537,34 +537,5 @@
 <script src="../../js/jquery.slim.min.js"></script>
 <script src="../../js/bootstrap.bundle.min.js"></script>
 <script src="../../js/digitek.js"></script>
-<script>
-(function() {
-  document.querySelectorAll('[data-toggle="searchlist-filter"]').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var expanded = this.getAttribute('aria-expanded') === 'true';
-      var nowExpanded = !expanded;
-      this.setAttribute('aria-expanded', String(nowExpanded));
-      var icon = this.querySelector('.dicon');
-      if (icon) {
-        icon.classList.toggle('dicon-chevron-down', !nowExpanded);
-        icon.classList.toggle('dicon-chevron-up', nowExpanded);
-      }
-      var area = this.closest('.searchlist-digitek-search-panel').querySelector('.searchlist-digitek-filter-area');
-      if (area) {
-        area.classList.toggle('show');
-      }
-    });
-  });
-
-  // 구 객체 포함 체크박스 경고 토글
-  var legacyCheckbox = document.getElementById('include-legacy');
-  var legacyWarning = document.getElementById('include-legacy-warning');
-  if (legacyCheckbox && legacyWarning) {
-    legacyCheckbox.addEventListener('change', function() {
-      legacyWarning.style.visibility = this.checked ? 'visible' : 'hidden';
-    });
-  }
-})();
-</script>
 </body>
 </html>

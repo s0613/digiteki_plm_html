@@ -158,7 +158,7 @@
     if (_sidebarItemH === null) {
       _sidebarItemH = parseFloat(
         getComputedStyle(document.documentElement).getPropertyValue("--sidebar-item-height")
-      ) || 48;
+      ) || 36;
     }
     return _sidebarItemH;
   }
@@ -1193,6 +1193,9 @@
     },
 
     _insertLink: function (editor, url) {
+      var safeUrl = /^(https?:|mailto:)/i.test(url) ? url : null;
+      if (!safeUrl) return;
+
       var contentEl = editor.querySelector(".text-editor-digitek-contents");
       var state = TextEditor._getState(editor);
 
@@ -1201,16 +1204,19 @@
         var sel = window.getSelection();
         sel.removeAllRanges();
         sel.addRange(state.savedSelection);
-        document.execCommand("createLink", false, url);
+        document.execCommand("createLink", false, safeUrl);
         TextEditor._setState(editor, { savedSelection: null, savedSelectionText: "" });
         return;
       }
 
       if (state.savedSelectionText) {
         var text = state.savedSelectionText;
-        var html = contentEl.innerHTML;
-        var linkHtml = '<a href="' + url + '">' + text + '</a>';
-        contentEl.innerHTML = html.replace(text, linkHtml);
+        var a = document.createElement("a");
+        a.href = safeUrl;
+        a.textContent = text;
+        var tmp = document.createElement("div");
+        tmp.appendChild(a);
+        contentEl.innerHTML = contentEl.innerHTML.replace(text, tmp.innerHTML);
         TextEditor._setState(editor, { savedSelection: null, savedSelectionText: "" });
       }
     },
@@ -1732,6 +1738,148 @@
   })();
 
   /* ================================================================== */
+  /*  SearchList 페이지 초기화                                           */
+  /* ================================================================== */
+
+  var SearchList = {
+    init: function () {
+      /* 필터 토글 */
+      delegateEvent('click', '[data-toggle="searchlist-filter"]', function (e, btn) {
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        var nowExpanded = !expanded;
+        btn.setAttribute('aria-expanded', String(nowExpanded));
+        var icon = btn.querySelector('.dicon');
+        if (icon) {
+          icon.classList.toggle('dicon-chevron-down', !nowExpanded);
+          icon.classList.toggle('dicon-chevron-up', nowExpanded);
+        }
+        var area = btn.closest('.searchlist-digitek-search-panel').querySelector('.searchlist-digitek-filter-area');
+        if (area) area.classList.toggle('show');
+      });
+
+      /* 구 객체 포함 체크박스 경고 토글 */
+      delegateEvent('change', '#include-legacy', function (e, checkbox) {
+        var warning = document.getElementById('include-legacy-warning');
+        if (warning) warning.style.visibility = checkbox.checked ? 'visible' : 'hidden';
+      });
+    }
+  };
+
+  /* ================================================================== */
+  /*  SearchSplit 페이지 초기화                                          */
+  /* ================================================================== */
+
+  var SearchSplit = {
+    init: function () {
+      /* 필터 토글 */
+      delegateEvent('click', '[data-toggle="searchsplit-filter"]', function (e, btn) {
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        var nowExpanded = !expanded;
+        btn.setAttribute('aria-expanded', String(nowExpanded));
+        var icon = btn.querySelector('.dicon');
+        if (icon) {
+          icon.classList.toggle('dicon-chevron-down', !nowExpanded);
+          icon.classList.toggle('dicon-chevron-up', nowExpanded);
+        }
+        var area = btn.closest('.searchsplit-digitek-search-panel').querySelector('.searchsplit-digitek-filter-area');
+        if (area) area.classList.toggle('show');
+      });
+
+      /* 뷰 탭 토글 */
+      delegateEvent('click', '.searchsplit-digitek-view-tab', function (e, tab) {
+        tab.closest('.searchsplit-digitek-view-tabs').querySelectorAll('.searchsplit-digitek-view-tab').forEach(function (t) {
+          t.classList.remove('active');
+          t.setAttribute('aria-pressed', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-pressed', 'true');
+        var container = tab.closest('.searchsplit-digitek-body');
+        if (!container) return;
+        var isFullView = tab.textContent.trim() === '펼쳐서 보기';
+        container.classList.toggle('searchsplit-digitek-body-fullview', isFullView);
+      });
+
+      /* 행 클릭 → 상세 패널 열기 */
+      delegateEvent('click', '[data-detail-trigger]', function (e, row) {
+        var body = row.closest('.searchsplit-digitek-body');
+        if (!body) return;
+        body.classList.add('searchsplit-digitek-body-detail-open');
+        document.querySelectorAll('.searchsplit-digitek-table-row').forEach(function (r) { r.classList.remove('active'); });
+        row.classList.add('active');
+      });
+
+      /* 상세 패널 닫기 */
+      delegateEvent('click', '[data-action="close"]', function (e, btn) {
+        var body = btn.closest('.searchsplit-digitek-body');
+        if (body) {
+          body.classList.remove('searchsplit-digitek-body-detail-open');
+          body.classList.remove('searchsplit-digitek-body-fullview');
+        }
+      });
+
+      /* 확대 버튼 → 전체 보기 */
+      delegateEvent('click', '[data-action="expand"]', function (e, btn) {
+        var panel = btn.closest('.searchsplit-digitek-detail');
+        var body = btn.closest('.searchsplit-digitek-body');
+        if (body) body.classList.add('searchsplit-digitek-body-fullview');
+        if (panel) {
+          var expandBtn = panel.querySelector('[data-action="expand"]');
+          var shrinkBtn = panel.querySelector('[data-action="shrink"]');
+          if (expandBtn) expandBtn.hidden = true;
+          if (shrinkBtn) { shrinkBtn.hidden = false; shrinkBtn.focus(); }
+        }
+      });
+
+      /* 축소 버튼 → 전체 보기 해제 + 팝업 */
+      delegateEvent('click', '[data-action="shrink"]', function (e, btn) {
+        var panel = btn.closest('.searchsplit-digitek-detail');
+        var body = btn.closest('.searchsplit-digitek-body');
+        if (body) body.classList.remove('searchsplit-digitek-body-fullview');
+        if (panel) {
+          var expandBtn = panel.querySelector('[data-action="expand"]');
+          var shrinkBtn = panel.querySelector('[data-action="shrink"]');
+          if (shrinkBtn) shrinkBtn.hidden = true;
+          if (expandBtn) expandBtn.hidden = false;
+        }
+        SearchSplit._openDetailPopup('../popup/searchsplit-detail-popup.html');
+      });
+
+      /* 결과 헤더 아코디언 토글 */
+      delegateEvent('click', '[data-toggle="searchsplit-results"]', function (e, btn) {
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        var nowExpanded = !expanded;
+        btn.setAttribute('aria-expanded', String(nowExpanded));
+        var card = btn.closest('.searchsplit-digitek-results-card');
+        if (card) {
+          card.querySelectorAll('.searchsplit-digitek-table-wrap, .searchsplit-digitek-pagination').forEach(function (el) {
+            el.style.display = nowExpanded ? '' : 'none';
+          });
+        }
+      });
+
+      /* 검색 패널 접기/펼치기 핸들 */
+      delegateEvent('click', '[data-toggle="searchsplit-search-panel"]', function (e, btn) {
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        var nowExpanded = !expanded;
+        btn.setAttribute('aria-expanded', String(nowExpanded));
+        var body = btn.closest('.searchsplit-digitek-body');
+        if (body) body.classList.toggle('searchsplit-search-collapsed', !nowExpanded);
+      });
+    },
+
+    _openDetailPopup: function (url, w, h) {
+      w = w || 1000;
+      h = h || 640;
+      var left = Math.round((screen.width / 2) - (w / 2));
+      var top  = Math.round((screen.height / 2) - (h / 2));
+      window.open(url, 'searchsplit-detail',
+        'width=' + w + ',height=' + h +
+        ',left=' + left + ',top=' + top +
+        ',scrollbars=yes,resizable=yes');
+    }
+  };
+
+  /* ================================================================== */
   /*  초기화 & 공개 API                                                   */
   /* ================================================================== */
 
@@ -1747,6 +1895,8 @@
     Locale.init();
     GanttResizer.init();
     DraggableTable.init();
+    SearchList.init();
+    SearchSplit.init();
   }
 
   // DOMContentLoaded 자동 초기화
@@ -1776,6 +1926,8 @@
     DraggableTable: DraggableTable,
     SidebarLoader: SidebarLoader,
     GnbLoader: GnbLoader,
+    SearchList: SearchList,
+    SearchSplit: SearchSplit,
   };
 
 })();
