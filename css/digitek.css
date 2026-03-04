@@ -3736,7 +3736,7 @@ body {
 .pms-digitek-info-title {
   font-size: 20px;
   font-weight: 600;
-  color: #2F66BA;
+  color: var(--digitek-primary);
   line-height: 28px;
   letter-spacing: -0.5px;
 }
@@ -3821,7 +3821,7 @@ body {
 
 .pms-digitek-timeline-title {
   align-self: stretch;
-  color: #2F66BA;
+  color: var(--digitek-primary);
   font-family: Pretendard;
   font-size: 20px;
   font-style: normal;
@@ -3840,7 +3840,7 @@ body {
 .pms-digitek-timeline-connector {
   flex: 1;
   height: 1.5px;
-  background: #2F66BA;
+  background: var(--digitek-primary);
   opacity: 0.5;
   margin-top: 40px;
   min-width: 20px;
@@ -3875,7 +3875,7 @@ body {
   width: 85px;
   font-size: 16px;
   font-weight: 600;
-  color: #2F66BA;
+  color: var(--digitek-primary);
   text-align: center;
   line-height: 24px;
   letter-spacing: -0.4px;
@@ -5240,7 +5240,7 @@ body {
   align-items: center;
   justify-content: center;
   background: #f7f7fb;
-  color: #2f66ba;
+  color: var(--digitek-primary);
   font-size: 15px;
   font-weight: 600;
   line-height: 22px;
