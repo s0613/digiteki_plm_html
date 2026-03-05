@@ -1631,7 +1631,7 @@
   /* ================================================================== */
 
   function initAll() {
-    Sidebar.init();
+    Sidebar.init();     // GNB/사이드바가 인라인 HTML로 이미 DOM에 있으므로 즉시 바인딩
     Accordion.init();
     TabButton.init();
     FileUpload.init();
