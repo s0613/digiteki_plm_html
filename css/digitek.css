@@ -2771,6 +2771,13 @@ body {
   color: var(--digitek-primary);
 }
 
+/* 활성 상태 아이콘 — filter 해제하여 color 속성(primary)으로 표시 */
+.sidebar-digitek .sidebar-digitek-active i.dicon,
+.sidebar-digitek .sidebar-digitek-submenu-item.sidebar-digitek-active i.dicon,
+.sidebar-digitek .sidebar-digitek-sub-active i.dicon {
+  filter: none;
+}
+
 /* 펼쳐진 상태의 부모 메뉴 (자식이 활성화된 경우, subtle 표시) */
 .sidebar-digitek .sidebar-digitek-parent-open {
   background-color: rgba(255, 255, 255, 0.08);
@@ -2852,6 +2859,17 @@ body {
   background-color: rgba(255, 255, 255, 0.1);
   color: #fff;
   text-decoration: none;
+}
+
+/* 2레벨 활성 상태 — submenu-item의 color:#fff 보다 명시도 높게 선언 */
+.sidebar-digitek .sidebar-digitek-submenu-item.sidebar-digitek-active {
+  background-color: #fff;
+  color: var(--digitek-primary);
+}
+
+.sidebar-digitek .sidebar-digitek-submenu-item.sidebar-digitek-active:hover {
+  background-color: #f0f0f0;
+  color: var(--digitek-primary);
 }
 
 .sidebar-digitek-submenu-icon {
