@@ -2789,6 +2789,21 @@ body {
   color: #fff;
 }
 
+/* active는 parent-open보다 우선 — 두 클래스가 같이 있을 때 active 스타일 적용 */
+.sidebar-digitek .sidebar-digitek-active.sidebar-digitek-parent-open {
+  background-color: #fff;
+  color: var(--digitek-primary);
+}
+
+.sidebar-digitek .sidebar-digitek-active.sidebar-digitek-parent-open:hover {
+  background-color: #f0f0f0;
+  color: var(--digitek-primary);
+}
+
+.sidebar-digitek .sidebar-digitek-active.sidebar-digitek-parent-open i.dicon {
+  filter: none;
+}
+
 /* 메뉴 라벨 */
 .sidebar-digitek-menu-label {
   font-weight: 600;

@@ -201,6 +201,7 @@
             var chev = item.querySelector(".sidebar-digitek-chevron");
             if (chev) chev.classList.remove("sidebar-digitek-chevron-open");
             item.classList.remove("sidebar-digitek-active");
+            item.classList.remove("sidebar-digitek-parent-open");
             // 하위 쉐브론도 닫기
             submenu.querySelectorAll(".sidebar-digitek-chevron").forEach(function (c) {
               c.classList.remove("sidebar-digitek-chevron-open");
@@ -213,6 +214,7 @@
                 var parentItem = sm.closest(".nav-item").querySelector(".sidebar-digitek-menu-item");
                 if (parentItem) {
                   parentItem.classList.remove("sidebar-digitek-active");
+                  parentItem.classList.remove("sidebar-digitek-parent-open");
                   parentItem.setAttribute("aria-expanded", "false");
                 }
                 var pChev = parentItem ? parentItem.querySelector(".sidebar-digitek-chevron") : null;
@@ -233,6 +235,7 @@
             var chev = item.querySelector(".sidebar-digitek-chevron");
             if (chev) chev.classList.add("sidebar-digitek-chevron-open");
             item.classList.add("sidebar-digitek-active");
+            item.classList.add("sidebar-digitek-parent-open");
           }
         } else if (!submenu || isCollapsed) {
           // 서브메뉴 없거나 축소 상태 → 활성 표시만
@@ -342,17 +345,14 @@
         nav.querySelectorAll(".sidebar-digitek-submenu-item[aria-expanded]").forEach(function (item) {
           item.setAttribute("aria-expanded", "false");
         });
-        // 메뉴 아이템 축소 클래스
-        nav.querySelectorAll(".sidebar-digitek-menu-item").forEach(function (item) {
-          item.classList.add("sidebar-digitek-menu-item-collapsed");
+        // parent-open 제거 (접힌 상태에서는 서브메뉴 닫힘)
+        nav.querySelectorAll(".sidebar-digitek-parent-open").forEach(function (item) {
+          item.classList.remove("sidebar-digitek-parent-open");
         });
         // 로고 전환은 CSS가 처리 (.sidebar-logo-full / .sidebar-logo-collapsed)
       } else {
         nav.classList.remove("sidebar-digitek-collapsed");
         nav.classList.add("sidebar-digitek-expanded");
-        nav.querySelectorAll(".sidebar-digitek-menu-item").forEach(function (item) {
-          item.classList.remove("sidebar-digitek-menu-item-collapsed");
-        });
       }
     },
 
