@@ -9,27 +9,27 @@
 <body>
   <th:block layout:fragment="content">
       <!-- 문서 분류 관리 콘텐츠 영역 -->
-<div class="doc-classify-layout">
+<div class="content-page-digitek" style="padding:16px; display:flex; flex-direction:column; gap:16px">
 
   <!-- 페이지 헤더 -->
-  <div class="doc-classify-page-header">
+  <div class="page-header-digitek" style="margin-bottom:0">
     <h5 class="mb-0">문서 분류 관리</h5>
     <button class="btn btn-digitek btn-digitek-primary btn-digitek-36">등록</button>
   </div>
 
   <!-- 상단: 대분류 / 중분류 / 소분류 패널 -->
-  <div class="doc-classify-top-grid">
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px">
 
     <!-- 대분류 -->
-    <div class="doc-classify-panel">
-      <div class="doc-classify-panel-header">
-        <span class="doc-classify-panel-title">대분류</span>
+    <div class="content-panel-digitek">
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="content-section-title-digitek">대분류</span>
         <!-- [커스텀] 검색어 입력 시 목록 필터링 처리 -->
-        <input type="text" class="form-control form-control-sm doc-classify-search" placeholder="대분류 검색">
+        <input type="text" class="form-control form-control-sm input-digitek" style="width:130px" placeholder="대분류 검색">
       </div>
       <!-- [커스텀] 대분류 목록: select option 태그 (단일 선택) -->
       <!-- [커스텀] 선택 시 중분류 목록 동적 로드: onchange="loadMiddleCategory(this.value)" -->
-      <select class="doc-classify-select" size="8">
+      <select style="width:100%; flex:1; min-height:180px; border:1px solid var(--digitek-border); border-radius:4px; font-size:13px; padding:4px 0; outline:none;" size="8">
         <option>major1</option>
         <option>major2</option>
         <option>major3</option>
@@ -40,29 +40,29 @@
     </div>
 
     <!-- 중분류 -->
-    <div class="doc-classify-panel">
-      <div class="doc-classify-panel-header">
-        <span class="doc-classify-panel-title">중분류</span>
+    <div class="content-panel-digitek">
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="content-section-title-digitek">중분류</span>
         <!-- [커스텀] 검색어 입력 시 목록 필터링 처리 -->
-        <input type="text" class="form-control form-control-sm doc-classify-search" placeholder="중분류 검색">
+        <input type="text" class="form-control form-control-sm input-digitek" style="width:130px" placeholder="중분류 검색">
       </div>
       <!-- [커스텀] 중분류 목록: select option 태그 (단일 선택) -->
       <!-- [커스텀] 선택 시 소분류 목록 동적 로드: onchange="loadSubCategory(this.value)" -->
-      <select class="doc-classify-select" size="8">
+      <select style="width:100%; flex:1; min-height:180px; border:1px solid var(--digitek-border); border-radius:4px; font-size:13px; padding:4px 0; outline:none;" size="8">
         <!-- [커스텀] 대분류 선택 시 동적으로 option 생성 -->
       </select>
     </div>
 
     <!-- 소분류 -->
-    <div class="doc-classify-panel">
-      <div class="doc-classify-panel-header">
-        <span class="doc-classify-panel-title">소분류</span>
+    <div class="content-panel-digitek">
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="content-section-title-digitek">소분류</span>
         <!-- [커스텀] 검색어 입력 시 목록 필터링 처리 -->
-        <input type="text" class="form-control form-control-sm doc-classify-search" placeholder="소분류 검색">
+        <input type="text" class="form-control form-control-sm input-digitek" style="width:130px" placeholder="소분류 검색">
       </div>
       <!-- [커스텀] 소분류 목록: select option 태그 (단일 선택) -->
       <!-- [커스텀] 선택 시 하단 문서 유형 그리드 필터링 처리 -->
-      <select class="doc-classify-select" size="8">
+      <select style="width:100%; flex:1; min-height:180px; border:1px solid var(--digitek-border); border-radius:4px; font-size:13px; padding:4px 0; outline:none;" size="8">
         <option>계획보고서</option>
         <option>마스터점검체크시트</option>
       </select>
@@ -71,9 +71,9 @@
   </div>
 
   <!-- 하단: 문서 유형 -->
-  <div class="doc-classify-bottom-card">
-    <div class="doc-classify-bottom-header">
-      <span class="doc-classify-panel-title">문서 유형</span>
+  <div class="content-panel-digitek" style="gap:0">
+    <div class="mb-digitek-12">
+      <span class="content-section-title-digitek">문서 유형</span>
     </div>
     <!-- [커스텀] Thymeleaf 반복 예시: <tr th:each="item : ${docTypeList}"> -->
     <div class="table-digitek-scroll">
