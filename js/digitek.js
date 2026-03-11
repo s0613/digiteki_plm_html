@@ -357,6 +357,12 @@
           }
         }
       });
+
+      // 페이지 로드 시 접힘 상태 복원
+      var nav = document.querySelector(".sidebar-digitek");
+      if (nav && localStorage.getItem("sidebar-collapsed") === "true") {
+        Sidebar._toggleCollapse(nav);
+      }
     },
 
     _toggleCollapse: function (nav) {
@@ -386,9 +392,11 @@
           item.classList.remove("sidebar-digitek-parent-open");
         });
         // 로고 전환은 CSS가 처리 (.sidebar-logo-full / .sidebar-logo-collapsed)
+        localStorage.setItem("sidebar-collapsed", "true");
       } else {
         nav.classList.remove("sidebar-digitek-collapsed");
         nav.classList.add("sidebar-digitek-expanded");
+        localStorage.setItem("sidebar-collapsed", "false");
       }
     },
 
@@ -562,11 +570,14 @@
       });
 
       // 외부 클릭 닫기
-      document.addEventListener("mousedown", function (e) {
-        if (Select._openSelect && !Select._openSelect.contains(e.target)) {
-          Select._closeAll();
-        }
-      });
+      if (!Select._mousedownBound) {
+        Select._mousedownBound = true;
+        document.addEventListener("mousedown", function (e) {
+          if (Select._openSelect && !Select._openSelect.contains(e.target)) {
+            Select._closeAll();
+          }
+        });
+      }
     },
 
     _open: function (container, trigger) {
@@ -1908,8 +1919,82 @@
   /*  초기화 & 공개 API                                                   */
   /* ================================================================== */
 
+  // Turbo Frame 이동 후 사이드바 active 상태를 현재 URL 기반으로 업데이트
+  function updateSidebarActive() {
+    var path = window.location.pathname;
+
+    // 기존 active 클래스 전부 제거
+    document.querySelectorAll(
+      ".sidebar-digitek-menu-item, .sidebar-digitek-submenu-item, .sidebar-digitek-sub-submenu-item"
+    ).forEach(function (link) {
+      link.classList.remove("sidebar-digitek-active", "sidebar-digitek-sub-active");
+    });
+
+    // 현재 경로와 일치하는 링크 찾기 (href="#" 인 부모 메뉴는 매칭 안 됨)
+    var matched = document.querySelector('.sidebar-digitek a[href="' + path + '"]');
+    if (!matched) return;
+
+    if (matched.classList.contains("sidebar-digitek-menu-item")) {
+      // 1레벨 메뉴
+      matched.classList.add("sidebar-digitek-active");
+
+    } else if (matched.classList.contains("sidebar-digitek-submenu-item")) {
+      // 2레벨 서브메뉴 — active 클래스 + 부모 submenu maxHeight 열기
+      matched.classList.add("sidebar-digitek-active");
+      var submenu = matched.closest(".sidebar-digitek-submenu");
+      if (submenu) {
+        var count = submenu.querySelectorAll(":scope > .nav-item").length;
+        submenu.style.maxHeight = (count * getSidebarItemH()) + "px";
+        var parentItem = submenu.previousElementSibling;
+        if (parentItem) {
+          parentItem.setAttribute("aria-expanded", "true");
+          parentItem.classList.add("sidebar-digitek-parent-open");
+          var chev = parentItem.querySelector(".sidebar-digitek-chevron");
+          if (chev) chev.classList.add("sidebar-digitek-chevron-open");
+        }
+      }
+
+    } else if (matched.classList.contains("sidebar-digitek-sub-submenu-item")) {
+      // 3레벨 서브-서브메뉴 — sidebar-digitek-sub-active 사용 (클릭 핸들러와 동일)
+      matched.classList.add("sidebar-digitek-sub-active");
+      var subSubmenu = matched.closest(".sidebar-digitek-sub-submenu");
+      if (subSubmenu) {
+        var count3 = subSubmenu.querySelectorAll(":scope > .nav-item").length;
+        subSubmenu.style.maxHeight = (count3 * getSidebarItemH()) + "px";
+        var parentSubmenuItem = subSubmenu.previousElementSibling;
+        if (parentSubmenuItem) {
+          parentSubmenuItem.setAttribute("aria-expanded", "true");
+          var chev2 = parentSubmenuItem.querySelector(".sidebar-digitek-chevron");
+          if (chev2) chev2.classList.add("sidebar-digitek-chevron-open");
+        }
+        // 부모 submenu도 열기
+        var parentSubmenu = subSubmenu.closest(".sidebar-digitek-submenu");
+        if (parentSubmenu) {
+          Sidebar._recalcParentHeight(null, parentSubmenu);
+          var grandParentItem = parentSubmenu.previousElementSibling;
+          if (grandParentItem) {
+            grandParentItem.setAttribute("aria-expanded", "true");
+            grandParentItem.classList.add("sidebar-digitek-parent-open");
+            var chev3 = grandParentItem.querySelector(".sidebar-digitek-chevron");
+            if (chev3) chev3.classList.add("sidebar-digitek-chevron-open");
+          }
+        }
+      }
+    }
+  }
+
+  // 컨텐츠 영역 컴포넌트만 재초기화 (turbo-frame 교체 후 호출)
+  // delegateEvent 기반 컴포넌트(Accordion, TabButton, FileUpload 등)는 재초기화 불필요
+  function initContent() {
+    Select.init();
+    DateSelect.init();
+    TextEditor.init();
+    GanttResizer.init();
+    DraggableTable.init();
+  }
+
   function initAll() {
-    Sidebar.init();     // GNB/사이드바가 인라인 HTML로 이미 DOM에 있으므로 즉시 바인딩
+    Sidebar.init();     // 레이아웃 전용 — DOMContentLoaded 시만 실행
     Accordion.init();
     TabButton.init();
     FileUpload.init();
@@ -1924,7 +2009,14 @@
     SearchSplit.init();
   }
 
-  // DOMContentLoaded 자동 초기화
+  // Turbo Frame 교체 후: main-content 프레임에만 반응
+  document.addEventListener("turbo:frame-load", function (e) {
+    if (e.target.id !== "main-content") return;
+    initContent();
+    updateSidebarActive();
+  });
+
+  // DOMContentLoaded 자동 초기화 (전체)
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initAll);
   } else {
@@ -1947,6 +2039,8 @@
     DraggableTable: DraggableTable,
     SearchList: SearchList,
     SearchSplit: SearchSplit,
+    initContent: initContent,
+    updateSidebarActive: updateSidebarActive,
   };
 
 })();
