@@ -117,6 +117,7 @@
 | `.input-digitek-success-msg` | 성공 메시지 텍스트 |
 | `.input-digitek-gnb` | GNB 검색 인풋 (pill 형태) |
 | `.input-digitek-gnb-field` | GNB 검색 input 요소 |
+| `.input-digitek-sm` | 테이블 인라인 인풋 (축소) |
 
 ---
 
@@ -379,6 +380,7 @@
 | `.file-upload-digitek-icon` | 업로드 아이콘 |
 | `.file-upload-digitek-label` | 안내 텍스트 |
 | `.file-upload-digitek-input` | 숨김 input[type=file] |
+| `.file-upload-digitek-file-list` | 파일 목록 컨테이너 |
 
 ---
 
@@ -737,145 +739,145 @@ Bootstrap 4 미지원 유틸리티를 보완합니다. 네이밍: `.{속성}-dig
 
 ## 23. 페이지별 레이아웃 클래스
 
-### 의뢰등록 (Request Registration) — `request-digitek-*`
+### 의뢰등록 (Request Registration) — `digitek-*`
 
 | 클래스 | 설명 |
 |--------|------|
-| `.request-digitek-detail` | 페이지 컨테이너 (회색 배경, padding 32px) |
-| `.request-digitek-header` | 헤더 (제목 + 액션) |
-| `.request-digitek-header-title` | 페이지 제목 (28px) |
-| `.request-digitek-header-actions` | 액션 버튼 그룹 |
-| `.request-digitek-sections` | 섹션 컨테이너 (gap 24px) |
-| `.request-digitek-form-grid` | 폼 그리드 (세로, gap 16px) |
-| `.request-digitek-form-row` | 폼 행 (가로) |
-| `.request-digitek-form-field` | 폼 필드 래퍼 |
-| `.request-digitek-form-label` | 폼 라벨 (파랑) |
-| `.request-digitek-form-label-required` | 필수 라벨 (* 추가) |
-| `.request-digitek-editor-wrap` | 에디터 래퍼 (TextEditor 포함) |
-| `.request-digitek-file-card` | 파일 카드 (320px) |
-| `.request-digitek-table` | 데이터 테이블 |
-| `.request-digitek-approval-table` | 결재 정보 테이블 |
-| `.request-digitek-role-badge` | 역할 배지 (pill) |
-| `.request-digitek-action-link` | 액션 링크 (파랑 밑줄) |
+| `.digitek-form-page` | 페이지 컨테이너 (회색 배경, padding 32px) |
+| `.digitek-page-header` | 헤더 (제목 + 액션) |
+| `.digitek-page-title` | 페이지 제목 (28px) |
+| `.digitek-page-header-actions` | 액션 버튼 그룹 |
+| `.digitek-sections` | 섹션 컨테이너 (gap 24px) |
+| `.digitek-form-grid` | 폼 그리드 (세로, gap 16px) |
+| `.digitek-form-row` | 폼 행 (가로) |
+| `.digitek-form-field` | 폼 필드 래퍼 |
+| `.digitek-form-label` | 폼 라벨 (파랑) |
+| `.digitek-form-label-required` | 필수 라벨 (* 추가) |
+| `.digitek-editor-wrap` | 에디터 래퍼 (TextEditor 포함) |
+| `.digitek-file-card` | 파일 카드 (320px) |
+| `.table-digitek` | 데이터 테이블 |
+| `.digitek-approval-table` | 결재 정보 테이블 |
+| `.digitek-role-badge` | 역할 배지 (pill) |
+| `.digitek-action-link` | 액션 링크 (파랑 밑줄) |
 
-### PMS (Project Management System) — `pms-digitek-*`
-
-| 클래스 | 설명 |
-|--------|------|
-| `.pms-digitek-detail` | 페이지 컨테이너 (흰 배경) |
-| `.pms-digitek-header` | 헤더 |
-| `.pms-digitek-header-title` | 제목 (24px) |
-| `.pms-digitek-phase-stepper` | 단계 표시기 |
-| `.pms-digitek-phase-step` | 단계 항목 |
-| `.pms-digitek-phase-step-active` | 활성 단계 (초록 배경) |
-| `.pms-digitek-info-grid` | 정보 그리드 |
-| `.pms-digitek-info-section` | 정보 섹션 (좌-우 분할) |
-| `.pms-digitek-customer-timeline` | 고객 타임라인 |
-| `.pms-digitek-milestone` | 마일스톤 |
-| `.pms-digitek-tabs` | 탭 영역 |
-| `.pms-digitek-filter-bar` | 필터 바 |
-| `.pms-digitek-action-chip` | 액션 칩 |
-| `.pms-digitek-legend` | 범례 |
-
-### PMS 간트차트 — `pms-digitek-gantt-*`
+### PMS (Project Management System) — `digitek-*`
 
 | 클래스 | 설명 |
 |--------|------|
-| `.pms-digitek-gantt` | 간트 컨테이너 |
-| `.pms-digitek-gantt-container` | 간트 내부 flex |
-| `.pms-digitek-gantt-table-wrap` | 좌측 테이블 래퍼 |
-| `.pms-digitek-gantt-resizer` | 리사이저 (4px) |
-| `.pms-digitek-gantt-table` | 테이블 |
-| `.pms-digitek-gantt-row-{project,level-0,level-1,level-2}` | 행 레벨 |
-| `.pms-digitek-gantt-task-name` | 태스크 이름 |
-| `.pms-digitek-gantt-toggle` | 펼침/접힘 토글 |
-| `.pms-digitek-gantt-timeline-wrap` | 우측 타임라인 래퍼 |
-| `.pms-digitek-gantt-timeline` | 타임라인 |
-| `.pms-digitek-gantt-header` | 타임라인 헤더 (sticky) |
-| `.pms-digitek-gantt-bar` | 간트 바 (absolute, pill) |
-| `.pms-digitek-gantt-bar-{blue,green,orange,red,gray}` | 바 색상 |
-| `.pms-digitek-gantt-today` | 오늘 마커 (주황 선) |
-| `.pms-digitek-gantt-col-{task,priority,level,role,date,status}` | 열 너비 |
+| `.digitek-dashboard-page` | 페이지 컨테이너 (흰 배경) |
+| `.digitek-page-header` | 헤더 |
+| `.digitek-page-title-sm` | 제목 (24px) |
+| `.digitek-phase-stepper` | 단계 표시기 |
+| `.digitek-phase-step` | 단계 항목 |
+| `.digitek-phase-step-active` | 활성 단계 (초록 배경) |
+| `.digitek-info-grid` | 정보 그리드 |
+| `.digitek-info-section` | 정보 섹션 (좌-우 분할) |
+| `.digitek-customer-timeline` | 고객 타임라인 |
+| `.digitek-milestone` | 마일스톤 |
+| `.digitek-dashboard-tabs` | 탭 영역 |
+| `.digitek-filter-bar` | 필터 바 |
+| `.digitek-action-chip` | 액션 칩 |
+| `.digitek-legend` | 범례 |
 
-### 검색 목록형 (Search List) — `searchlist-digitek-*`
-
-| 클래스 | 설명 |
-|--------|------|
-| `.searchlist-digitek` | 페이지 컨테이너 (회색 배경) |
-| `.searchlist-digitek-content` | 콘텐츠 래퍼 |
-| `.searchlist-digitek-header` | 헤더 (제목 + 브레드크럼) |
-| `.searchlist-digitek-title` | 페이지 제목 (28px) |
-| `.searchlist-digitek-search-panel` | 검색 패널 (흰 카드) |
-| `.searchlist-digitek-search-row` | 검색 행 |
-| `.searchlist-digitek-field` | 필드 래퍼 (flex-1) |
-| `.searchlist-digitek-field-fixed` | 고정 너비 필드 (210px) |
-| `.searchlist-digitek-field-label` | 필드 라벨 (파랑) |
-| `.searchlist-digitek-search-input` | 검색 인풋 (아이콘 포함) |
-| `.searchlist-digitek-search-actions` | 검색 액션 영역 |
-| `.searchlist-digitek-filter-toggle` | 필터 토글 버튼 |
-| `.searchlist-digitek-filter-area` | 필터 영역 (숨김/표시) |
-| `.searchlist-digitek-filter-area.show` | 필터 표시 상태 |
-| `.searchlist-digitek-filter-row` | 필터 행 |
-| `.searchlist-digitek-legacy-checkbox-wrap` | 구객체 체크박스 래퍼 |
-| `.searchlist-digitek-legacy-label` | 구객체 라벨 |
-| `.searchlist-digitek-legacy-warning` | 구객체 경고 (빨강) |
-| `.searchlist-digitek-results` | 결과 영역 (흰 카드) |
-| `.searchlist-digitek-results-header` | 결과 헤더 |
-| `.searchlist-digitek-results-title` | 결과 제목 |
-| `.searchlist-digitek-results-count` | 건수 (파랑) |
-| `.searchlist-digitek-results-toggle` | 아코디언 토글 |
-| `.searchlist-digitek-results-actions` | 결과 액션 |
-| `.searchlist-digitek-view-option` | 보기 옵션 |
-| `.searchlist-digitek-pagination` | 페이지네이션 래퍼 |
-
-### 검색 분할형 (Search Split) — `searchsplit-digitek-*`
+### PMS 간트차트 — `digitek-gantt-*`
 
 | 클래스 | 설명 |
 |--------|------|
-| `.searchsplit-digitek-body` | 3패널 레이아웃 (flex) |
-| `.searchsplit-digitek-body-detail-open` | 상세 패널 열림 |
-| `.searchsplit-digitek-body-fullview` | 전체 보기 (상세만 표시) |
-| `.searchsplit-search-collapsed` | 검색 패널 접힘 |
-| `.searchsplit-digitek-panel-wrapper` | 검색 패널 래퍼 (28%) |
-| `.searchsplit-digitek-search-panel` | 검색 패널 |
-| `.searchsplit-digitek-header` | 검색 헤더 |
-| `.searchsplit-digitek-title` | 페이지 제목 (28px) |
-| `.searchsplit-digitek-search-fields` | 검색 필드 그룹 |
-| `.searchsplit-digitek-search-input` | 검색 인풋 |
-| `.searchsplit-digitek-divider` | 구분선 |
-| `.searchsplit-digitek-filter-toggle` | 필터 토글 |
-| `.searchsplit-digitek-filter-area` | 필터 영역 |
-| `.searchsplit-digitek-filter-row` | 필터 행 (2열) |
-| `.searchsplit-digitek-field` | 필드 래퍼 |
-| `.searchsplit-digitek-field-label` | 필드 라벨 (파랑) |
-| `.searchsplit-digitek-search-collapse-handle` | 검색 패널 접기 핸들 |
-| `.searchsplit-digitek-results` | 결과 영역 |
-| `.searchsplit-digitek-view-tabs` | 뷰 탭 (나란히/펼쳐서) |
-| `.searchsplit-digitek-view-tab` | 뷰 탭 버튼 |
-| `.searchsplit-digitek-results-card` | 결과 카드 |
-| `.searchsplit-digitek-results-header` | 결과 헤더 |
-| `.searchsplit-digitek-results-title` | 결과 제목 |
-| `.searchsplit-digitek-results-count` | 건수 (파랑) |
-| `.searchsplit-digitek-results-toggle` | 아코디언 토글 |
-| `.searchsplit-digitek-table-wrap` | 테이블 래퍼 |
-| `.searchsplit-digitek-table-row` | 테이블 행 (클릭 가능) |
-| `.searchsplit-digitek-table-row.active` | 선택 행 |
-| `.searchsplit-digitek-pagination` | 페이지네이션 |
-| `.searchsplit-digitek-detail` | 상세 패널 (absolute, right) |
-| `.searchsplit-digitek-detail-header` | 상세 헤더 |
-| `.searchsplit-digitek-detail-title` | 상세 제목 (28px) |
-| `.searchsplit-digitek-detail-body` | 상세 본문 (스크롤) |
-| `.searchsplit-digitek-detail-section` | 상세 섹션 |
-| `.searchsplit-digitek-section-divider` | 섹션 구분선 |
-| `.searchsplit-digitek-info-grid` | 정보 그리드 |
-| `.searchsplit-digitek-info-row` | 정보 행 |
-| `.searchsplit-digitek-info-label` | 정보 라벨 (107px) |
-| `.searchsplit-digitek-info-value` | 정보 값 |
-| `.searchsplit-digitek-detail-badge` | 상세 배지 |
-| `.searchsplit-digitek-detail-btn` | 상세 액션 버튼 (42x42) |
-| `.searchsplit-digitek-modal-overlay` | 모달 오버레이 |
-| `.searchsplit-digitek-modal` | 모달 (1200px, 85vh) |
-| `.searchsplit-digitek-modal-body` | 모달 본문 (2열) |
+| `.digitek-gantt` | 간트 컨테이너 |
+| `.digitek-gantt-container` | 간트 내부 flex |
+| `.digitek-gantt-table-wrap` | 좌측 테이블 래퍼 |
+| `.digitek-gantt-resizer` | 리사이저 (4px) |
+| `.digitek-gantt-table` | 테이블 |
+| `.digitek-gantt-row-{project,level-0,level-1,level-2}` | 행 레벨 |
+| `.digitek-gantt-task-name` | 태스크 이름 |
+| `.digitek-gantt-toggle` | 펼침/접힘 토글 |
+| `.digitek-gantt-timeline-wrap` | 우측 타임라인 래퍼 |
+| `.digitek-gantt-timeline` | 타임라인 |
+| `.digitek-gantt-header` | 타임라인 헤더 (sticky) |
+| `.digitek-gantt-bar` | 간트 바 (absolute, pill) |
+| `.digitek-gantt-bar-{blue,green,orange,red,gray}` | 바 색상 |
+| `.digitek-gantt-today` | 오늘 마커 (주황 선) |
+| `.digitek-gantt-col-{task,priority,level,role,date,status}` | 열 너비 |
+
+### 검색 목록형 (Search List) — `digitek-search-*`
+
+| 클래스 | 설명 |
+|--------|------|
+| `.digitek-search-page` | 페이지 컨테이너 (회색 배경) |
+| `.digitek-search-content` | 콘텐츠 래퍼 |
+| `.digitek-search-header` | 헤더 (제목 + 브레드크럼) |
+| `.digitek-search-title` | 페이지 제목 (28px) |
+| `.digitek-search-panel` | 검색 패널 (흰 카드) |
+| `.digitek-search-row` | 검색 행 |
+| `.digitek-field` | 필드 래퍼 (flex-1) |
+| `.digitek-field-fixed` | 고정 너비 필드 (210px) |
+| `.digitek-field-label` | 필드 라벨 (파랑) |
+| `.digitek-search-input` | 검색 인풋 (아이콘 포함) |
+| `.digitek-search-actions` | 검색 액션 영역 |
+| `.digitek-filter-toggle` | 필터 토글 버튼 |
+| `.digitek-search-filter-area` | 필터 영역 (숨김/표시) |
+| `.digitek-search-filter-area.show` | 필터 표시 상태 |
+| `.digitek-search-filter-row` | 필터 행 |
+| `.digitek-search-legacy-checkbox-wrap` | 구객체 체크박스 래퍼 |
+| `.digitek-search-legacy-label` | 구객체 라벨 |
+| `.digitek-search-legacy-warning` | 구객체 경고 (빨강) |
+| `.digitek-search-results` | 결과 영역 (흰 카드) |
+| `.digitek-results-header` | 결과 헤더 |
+| `.digitek-results-title` | 결과 제목 |
+| `.digitek-search-results-count` | 건수 (파랑) |
+| `.digitek-search-results-toggle` | 아코디언 토글 |
+| `.digitek-results-actions` | 결과 액션 |
+| `.digitek-search-view-option` | 보기 옵션 |
+| `.digitek-search-pagination` | 페이지네이션 래퍼 |
+
+### 검색 분할형 (Search Split) — `digitek-split-*`
+
+| 클래스 | 설명 |
+|--------|------|
+| `.digitek-split-body` | 3패널 레이아웃 (flex) |
+| `.digitek-split-body-detail-open` | 상세 패널 열림 |
+| `.digitek-split-body-fullview` | 전체 보기 (상세만 표시) |
+| `.digitek-split-search-collapsed` | 검색 패널 접힘 |
+| `.digitek-split-panel-wrapper` | 검색 패널 래퍼 (28%) |
+| `.digitek-split-search-panel` | 검색 패널 |
+| `.digitek-split-header` | 검색 헤더 |
+| `.digitek-split-title` | 페이지 제목 (28px) |
+| `.digitek-split-search-fields` | 검색 필드 그룹 |
+| `.digitek-split-search-input` | 검색 인풋 |
+| `.digitek-split-divider` | 구분선 |
+| `.digitek-filter-toggle` | 필터 토글 |
+| `.digitek-split-filter-area` | 필터 영역 |
+| `.digitek-split-filter-row` | 필터 행 (2열) |
+| `.digitek-field` | 필드 래퍼 |
+| `.digitek-field-label` | 필드 라벨 (파랑) |
+| `.digitek-split-search-collapse-handle` | 검색 패널 접기 핸들 |
+| `.digitek-split-results` | 결과 영역 |
+| `.digitek-split-view-tabs` | 뷰 탭 (나란히/펼쳐서) |
+| `.digitek-split-view-tab` | 뷰 탭 버튼 |
+| `.digitek-split-results-card` | 결과 카드 |
+| `.digitek-results-header` | 결과 헤더 |
+| `.digitek-results-title` | 결과 제목 |
+| `.digitek-split-results-count` | 건수 (파랑) |
+| `.digitek-split-results-toggle` | 아코디언 토글 |
+| `.digitek-split-table-wrap` | 테이블 래퍼 |
+| `.digitek-split-table-row` | 테이블 행 (클릭 가능) |
+| `.digitek-split-table-row.active` | 선택 행 |
+| `.digitek-split-pagination` | 페이지네이션 |
+| `.digitek-split-detail` | 상세 패널 (absolute, right) |
+| `.digitek-split-detail-header` | 상세 헤더 |
+| `.digitek-split-detail-title` | 상세 제목 (28px) |
+| `.digitek-split-detail-body` | 상세 본문 (스크롤) |
+| `.digitek-split-detail-section` | 상세 섹션 |
+| `.digitek-split-section-divider` | 섹션 구분선 |
+| `.digitek-split-info-grid` | 정보 그리드 |
+| `.digitek-split-info-row` | 정보 행 |
+| `.digitek-split-info-label` | 정보 라벨 (107px) |
+| `.digitek-split-info-value` | 정보 값 |
+| `.digitek-split-detail-badge` | 상세 배지 |
+| `.digitek-split-detail-btn` | 상세 액션 버튼 (42x42) |
+| `.digitek-split-modal-overlay` | 모달 오버레이 |
+| `.digitek-split-modal` | 모달 (1200px, 85vh) |
+| `.digitek-split-modal-body` | 모달 본문 (2열) |
 
 ### 그룹/사용자 관리 — `group-manage-*`
 
@@ -1001,8 +1003,8 @@ CSS 클래스와 연동되는 JavaScript 모듈:
 | `TextEditor` | `text-editor-digitek-icon-btn-active`, `text-editor-digitek-selected`, `active` (color dot) |
 | `GNBSearch` | GNB 검색 창 열기/닫기 |
 | `FileUpload` | `file-upload-digitek-dragging` |
-| `SearchList` | `searchlist-digitek-filter-area.show` |
-| `SearchSplit` | `searchsplit-digitek-body-detail-open`, `searchsplit-digitek-body-fullview`, `searchsplit-search-collapsed` |
+| `SearchList` | `digitek-search-filter-area.show` |
+| `SearchSplit` | `digitek-split-body-detail-open`, `digitek-split-body-fullview`, `digitek-split-search-collapsed` |
 | `Locale` | `gnb-digitek-locale-wrap.open` |
 | `GanttResizer` | 간트 테이블/타임라인 너비 조절 |
 | `DraggableTable` | `draggable-row`, `drag-over` |

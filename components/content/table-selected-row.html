@@ -5,7 +5,7 @@
   <table class="table-digitek" aria-label="부품 목록">
     <thead>
       <tr>
-        <th class="table-digitek-checkbox" scope="col"><input type="checkbox" aria-label="전체 선택"></th>
+        <th class="table-digitek-checkbox" scope="col"><label class="checkbox-digitek"><input type="checkbox" aria-label="전체 선택"></label></th>
         <th scope="col">부품번호</th>
         <th scope="col">부품명</th>
         <th scope="col">담당자</th>
@@ -14,8 +14,8 @@
     </thead>
     <tbody>
       <!-- 선택된 행: background 색상으로 강조 -->
-      <tr style="background: #EEF4FF;">
-        <td class="table-digitek-checkbox"><input type="checkbox" checked aria-label="행 선택"></td>
+      <tr class="table-digitek-row-selected">
+        <td class="table-digitek-checkbox"><label class="checkbox-digitek"><input type="checkbox" checked aria-label="행 선택"></label></td>
         <td>H00.015-56</td>
         <td>FET_N-Channel_BSS138P</td>
         <td>김수민</td>
@@ -23,7 +23,7 @@
       </tr>
       <!-- 미선택 행 -->
       <tr>
-        <td class="table-digitek-checkbox"><input type="checkbox" aria-label="행 선택"></td>
+        <td class="table-digitek-checkbox"><label class="checkbox-digitek"><input type="checkbox" aria-label="행 선택"></label></td>
         <td>H00.015-57</td>
         <td>FET_P-Channel_BSS84P</td>
         <td>이태길</td>
@@ -31,7 +31,7 @@
       </tr>
       <!-- 미선택 행 -->
       <tr>
-        <td class="table-digitek-checkbox"><input type="checkbox" aria-label="행 선택"></td>
+        <td class="table-digitek-checkbox"><label class="checkbox-digitek"><input type="checkbox" aria-label="행 선택"></label></td>
         <td>H00.015-58</td>
         <td>Resistor_0402</td>
         <td>홍길동</td>

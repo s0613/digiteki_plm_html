@@ -260,6 +260,11 @@ body {
   border-color: var(--digitek-border-focus);
 }
 
+.input-digitek-sm {
+  width: 100%;
+  padding: 8px 12px;
+}
+
 .input-digitek-disabled {
   background: linear-gradient(90deg, var(--digitek-bg-gray) 0%, var(--digitek-bg-gray) 100%), var(--digitek-bg-white);
   cursor: not-allowed;
@@ -434,7 +439,8 @@ body {
   border: 1px solid var(--digitek-border);
   border-top: none;
   border-radius: 0 0 4px 4px;
-  overflow: hidden;
+  max-height: calc(8 * 49px);
+  overflow-y: auto;
 }
 
 /* 옵션 */
@@ -649,6 +655,174 @@ body {
 
 .date-select-digitek-day-selected:hover {
   background-color: var(--digitek-primary);
+}
+
+/* ========================================================================== */
+/*  Checkbox (체크박스)                                                          */
+/* ========================================================================== */
+
+.checkbox-digitek {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+  color: var(--digitek-text-primary);
+  user-select: none;
+}
+
+.checkbox-digitek input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border: 1.5px solid var(--digitek-border);
+  border-radius: 3px;
+  background: var(--digitek-bg-white);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+  position: relative;
+}
+
+.checkbox-digitek input[type="checkbox"]:hover {
+  border-color: var(--digitek-primary);
+}
+
+.checkbox-digitek input[type="checkbox"]:checked {
+  background-color: var(--digitek-primary);
+  border-color: var(--digitek-primary);
+}
+
+.checkbox-digitek input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -62%) rotate(-45deg);
+  width: 9px;
+  height: 5px;
+  border-left: 1.5px solid #fff;
+  border-bottom: 1.5px solid #fff;
+}
+
+.checkbox-digitek input[type="checkbox"]:indeterminate {
+  background-color: var(--digitek-primary);
+  border-color: var(--digitek-primary);
+}
+
+.checkbox-digitek input[type="checkbox"]:indeterminate::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 1.5px;
+  background: #fff;
+}
+
+.checkbox-digitek input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--digitek-border-focus);
+  outline-offset: 2px;
+}
+
+.checkbox-digitek input[type="checkbox"]:disabled {
+  background: var(--digitek-bg-gray);
+  border-color: var(--digitek-border);
+  cursor: not-allowed;
+}
+
+.checkbox-digitek input[type="checkbox"]:disabled:hover {
+  border-color: var(--digitek-border);
+}
+
+.checkbox-digitek input[type="checkbox"]:disabled:checked {
+  background: var(--digitek-text-disabled);
+  border-color: var(--digitek-text-disabled);
+}
+
+.checkbox-digitek-disabled {
+  color: var(--digitek-text-disabled);
+  cursor: not-allowed;
+}
+
+/* ========================================================================== */
+/*  Radio (라디오 버튼)                                                          */
+/* ========================================================================== */
+
+.radio-digitek {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+  color: var(--digitek-text-primary);
+  user-select: none;
+}
+
+.radio-digitek input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border: 1.5px solid var(--digitek-border);
+  border-radius: 50%;
+  background: var(--digitek-bg-white);
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+  position: relative;
+}
+
+.radio-digitek input[type="radio"]:hover {
+  border-color: var(--digitek-primary);
+}
+
+.radio-digitek input[type="radio"]:checked {
+  border-color: var(--digitek-primary);
+}
+
+.radio-digitek input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--digitek-primary);
+}
+
+.radio-digitek input[type="radio"]:focus-visible {
+  outline: 2px solid var(--digitek-border-focus);
+  outline-offset: 2px;
+}
+
+.radio-digitek input[type="radio"]:disabled {
+  background: var(--digitek-bg-gray);
+  border-color: var(--digitek-border);
+  cursor: not-allowed;
+}
+
+.radio-digitek input[type="radio"]:disabled:hover {
+  border-color: var(--digitek-border);
+}
+
+.radio-digitek input[type="radio"]:disabled:checked::after {
+  background: var(--digitek-text-disabled);
+}
+
+.radio-digitek-disabled {
+  color: var(--digitek-text-disabled);
+  cursor: not-allowed;
 }
 
 /* ========================================================================== */
@@ -1314,7 +1488,7 @@ body {
 }
 
 .formfield-digitek-label-required::after,
-.request-digitek-form-label-required::after {
+.digitek-form-label-required::after {
   content: ' *';
   color: var(--digitek-error);
 }
@@ -1508,6 +1682,12 @@ body {
   display: none;
 }
 
+.file-upload-digitek-file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 /* ========================================================================== */
 /*  Progress (진행률 - 원형)                                                     */
 /* ========================================================================== */
@@ -1650,18 +1830,23 @@ body {
   vertical-align: middle;
 }
 
-.table-digitek-checkbox {
-  width: 64px;
-  text-align: center;
-  padding-left: 16px;
-  padding-right: 16px;
+.table-digitek tbody tr:not(.table-digitek-input-row):hover {
+  background-color: var(--digitek-bg-gray);
 }
 
-.table-digitek-checkbox input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  accent-color: var(--digitek-primary);
-  cursor: pointer;
+.table-digitek-row-selected {
+  background-color: #EEF4FF;
+}
+
+.table-digitek-checkbox {
+  width: 52px;
+  text-align: center;
+  padding-left: 16px;
+  padding-right: 0;
+}
+
+.table-digitek-checkbox .checkbox-digitek {
+  justify-content: center;
 }
 
 .table-digitek-input-row td {
@@ -1676,7 +1861,8 @@ body {
   white-space: nowrap;
 }
 
-.table-digitek-date .dicon {
+.table-digitek-date .dicon,
+.table-digitek-date svg {
   flex-shrink: 0;
   width: 18px;
   height: 18px;
@@ -1719,6 +1905,10 @@ body {
   border-bottom: 1px solid var(--digitek-border);
   color: var(--digitek-text-primary);
   vertical-align: middle;
+}
+
+.table-digitek-bordered tbody tr:not(.table-digitek-input-row):hover {
+  background-color: var(--digitek-bg-gray);
 }
 
 .table-digitek-bordered .table-digitek-input-row td {
@@ -3281,31 +3471,31 @@ body {
 }
 
 /* ========================================================================== */
-/*  의뢰 등록 페이지 (Request Registration)                                       */
+/*  폼 페이지 공통 (Form Page)                                                    */
 /* ========================================================================== */
 
-.request-digitek-detail {
+.digitek-form-page {
   padding: 32px;
   background: var(--digitek-bg-gray);
   min-height: 100%;
 }
 
 /* ── 헤더 ── */
-.request-digitek-header {
+.digitek-page-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 12px;
 }
 
-.request-digitek-header-left {
+.digitek-page-header-left {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 12px;
 }
 
-.request-digitek-header-title {
+.digitek-page-title {
   font-size: 28px;
   font-weight: 600;
   color: var(--digitek-text-primary);
@@ -3314,7 +3504,7 @@ body {
   margin: 0;
 }
 
-.request-digitek-header-actions {
+.digitek-page-header-actions {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -3322,31 +3512,31 @@ body {
 }
 
 /* ── 섹션 간 간격 ── */
-.request-digitek-sections {
+.digitek-sections {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
 /* ── 폼 그리드 ── */
-.request-digitek-form-grid {
+.digitek-form-grid {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.request-digitek-form-row {
+.digitek-form-row {
   display: flex;
   gap: 16px;
 }
 
-.request-digitek-form-row > * {
+.digitek-form-row > * {
   flex: 1;
   min-width: 0;
 }
 
 /* ── 폼 필드 ── */
-.request-digitek-form-field {
+.digitek-form-field {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -3354,11 +3544,11 @@ body {
 }
 
 /* wrapper div 전부 stretch → 비활성 인풋, 셀렉트가 100% 채움 */
-.request-digitek-form-field > div {
+.digitek-form-field > div {
   align-self: stretch;
 }
 
-.request-digitek-form-label {
+.digitek-form-label {
   font-size: 14px;
   font-weight: 600;
   color: var(--digitek-primary);
@@ -3367,34 +3557,34 @@ body {
 }
 
 /* ── 비활성 인풋 → self-stretch (100%) ── */
-.request-digitek-form-field .input-digitek-disabled {
+.digitek-form-field .input-digitek-disabled {
   width: 100%;
 }
 
 /* ── 셀렉트 → self-stretch (100%) ── */
-.request-digitek-form-field .select-digitek {
+.digitek-form-field .select-digitek {
   width: 100%;
 }
 
 /* ── 에디터 래퍼 (TextEditor + 첨부파일 통합) ── */
-.request-digitek-editor-wrap {
+.digitek-editor-wrap {
   border: 1px solid var(--digitek-border);
   border-radius: 6px;
   background: var(--digitek-bg-white);
   overflow: clip;
 }
 
-.request-digitek-editor-wrap .text-editor-digitek {
+.digitek-editor-wrap .text-editor-digitek {
   border: none;
   border-radius: 0;
 }
 
-.request-digitek-editor-bottom {
+.digitek-editor-bottom {
   padding: 0 16px 16px;
 }
 
 /* ── 파일 카드 (Figma: w-80 p-4 bg-slate-50 rounded inline-flex flex-col gap-2.5) ── */
-.request-digitek-file-card {
+.digitek-file-card {
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
@@ -3407,7 +3597,7 @@ body {
 }
 
 /* 카피 래퍼 (Figma: self-stretch flex-col gap-0.5) */
-.request-digitek-file-card-content {
+.digitek-file-card-content {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -3416,28 +3606,28 @@ body {
   align-self: stretch;
 }
 
-.request-digitek-file-card-header {
+.digitek-file-card-header {
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
 }
 
-.request-digitek-file-card-name {
+.digitek-file-card-name {
   font-size: 16px;
   font-weight: 600;
   color: var(--digitek-text-primary);
   line-height: 24px;
 }
 
-.request-digitek-file-card-size {
+.digitek-file-card-size {
   align-self: stretch;
   font-size: 14px;
   color: var(--digitek-text-tertiary);
   line-height: 20px;
 }
 
-.request-digitek-file-card-remove {
+.digitek-file-card-remove {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3449,18 +3639,18 @@ body {
   flex-shrink: 0;
 }
 
-.request-digitek-file-card-remove:hover {
+.digitek-file-card-remove:hover {
   opacity: 0.6;
 }
 
 /* ── 섹션 내부 간격 ── */
-.request-digitek-section-content {
+.digitek-section-content {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.request-digitek-section-label {
+.digitek-section-label {
   margin: 0;
   font-size: 16px;
   font-weight: 600;
@@ -3469,87 +3659,15 @@ body {
   letter-spacing: -0.4px;
 }
 
-.request-digitek-file-section {
+.digitek-file-section {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
 }
 
-/* ── 테이블 스크롤 영역 ── */
-/* NOTE: 아래 request-digitek-table 스타일은 .table-digitek 범용 클래스와 동일합니다.
-   추후 리팩토링 시 .table-digitek 클래스로 마이그레이션을 권장합니다. */
-.request-digitek-table-scroll {
-  max-height: 320px;
-  overflow-y: auto;
-}
-
-/* ── 데이터 테이블 ── */
-.request-digitek-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: -0.35px;
-}
-
-.request-digitek-table th {
-  background: #f8fafc;
-  font-weight: 400;
-  color: #a3a3a3;
-  text-align: left;
-  padding: 12px 24px;
-  border-bottom: 1px solid var(--digitek-border);
-  white-space: nowrap;
-}
-
-.request-digitek-table td {
-  padding: 12px 24px;
-  border-bottom: 1px solid var(--digitek-border);
-  color: var(--digitek-text-primary);
-  vertical-align: middle;
-}
-
-.request-digitek-table-checkbox {
-  width: 64px;
-  text-align: center;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-.request-digitek-table-checkbox input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  accent-color: var(--digitek-primary);
-  cursor: pointer;
-}
-
-.request-digitek-table-input-row td {
-  background: #f8fafc;
-  color: #a3a3a3;
-}
-
-.request-digitek-table-date {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-}
-
-.request-digitek-table-date svg {
-  flex-shrink: 0;
-  color: var(--digitek-text-tertiary);
-}
-
-.request-digitek-table-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  padding: 16px;
-}
-
 /* ── 결재 정보 테이블 ── */
-.request-digitek-approval-table {
+.digitek-approval-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
@@ -3562,7 +3680,7 @@ body {
   letter-spacing: -0.35px;
 }
 
-.request-digitek-approval-table th {
+.digitek-approval-table th {
   background: var(--digitek-bg-gray);
   font-weight: 400;
   color: #999999;
@@ -3572,27 +3690,27 @@ body {
   border-bottom: 1px solid var(--digitek-border);
 }
 
-.request-digitek-approval-table td {
+.digitek-approval-table td {
   padding: 12px 24px;
   border-bottom: 1px solid var(--digitek-border);
   color: var(--digitek-text-primary);
   vertical-align: middle;
 }
 
-.request-digitek-approval-cell {
+.digitek-approval-cell {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.request-digitek-action-links {
+.digitek-action-links {
   display: flex;
   gap: 12px;
   font-size: 14px;
   font-weight: 600;
 }
 
-.request-digitek-action-link {
+.digitek-action-link {
   color: var(--digitek-primary);
   text-decoration: underline;
   cursor: pointer;
@@ -3604,11 +3722,11 @@ body {
   letter-spacing: -0.35px;
 }
 
-.request-digitek-action-link:hover {
+.digitek-action-link:hover {
   color: var(--digitek-primary-hover);
 }
 
-.request-digitek-action-link-muted {
+.digitek-action-link-muted {
   color: var(--digitek-text-tertiary);
   text-decoration: underline;
   cursor: pointer;
@@ -3620,11 +3738,11 @@ body {
   letter-spacing: -0.35px;
 }
 
-.request-digitek-action-link-muted:hover {
+.digitek-action-link-muted:hover {
   color: var(--digitek-text-secondary);
 }
 
-.request-digitek-role-badge {
+.digitek-role-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -3641,46 +3759,31 @@ body {
   white-space: nowrap;
 }
 
-.request-digitek-role-badge:hover {
+.digitek-role-badge:hover {
   background: rgba(47, 102, 186, 0.08);
 }
 
-.request-digitek-role-badge svg {
+.digitek-role-badge svg {
   flex-shrink: 0;
 }
 
-.request-digitek-approval-input-row td {
+.digitek-approval-input-row td {
   background: var(--digitek-bg-gray);
   color: #999999;
 }
 
 /* ========================================================================== */
-/*  PMS 프로젝트 상세 페이지 (Project Management System)                        */
+/*  대시보드 페이지 공통 (Dashboard Page)                                        */
 /* ========================================================================== */
 
 /* ── 페이지 컨테이너 ── */
-.pms-digitek-detail {
+.digitek-dashboard-page {
   padding: 24px 32px;
   background: var(--digitek-bg-white);
   min-height: 100%;
 }
 
-/* ── 헤더 ── */
-.pms-digitek-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-
-.pms-digitek-header-left {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 12px;
-}
-
-.pms-digitek-header-title {
+.digitek-page-title-sm {
   font-size: 24px;
   font-weight: 600;
   color: var(--digitek-text-primary);
@@ -3688,20 +3791,13 @@ body {
   line-height: 38px;
 }
 
-.pms-digitek-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
 /* ── PhaseStepper ── */
-.pms-digitek-phase-stepper {
+.digitek-phase-stepper {
   display: flex;
   flex-direction: column;
 }
 
-.pms-digitek-phase-step {
+.digitek-phase-step {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -3709,26 +3805,26 @@ body {
   padding: 36px 24px;
 }
 
-.pms-digitek-phase-step-active {
+.digitek-phase-step-active {
   background: rgba(41, 194, 59, 0.08);
 }
 
-.pms-digitek-phase-step-icon {
+.digitek-phase-step-icon {
   flex-shrink: 0;
 }
 
 /* PhaseStepper 내 아이콘 1.5배 확대 (38px → 56px) */
-.pms-digitek-phase-step-icon .badge-digitek-status-icon {
+.digitek-phase-step-icon .badge-digitek-status-icon {
   width: 56px;
   height: 56px;
 }
 
-.pms-digitek-phase-step-icon .badge-digitek-status-icon-text {
+.digitek-phase-step-icon .badge-digitek-status-icon-text {
   font-size: 16px;
   line-height: 22px;
 }
 
-.pms-digitek-phase-step-text {
+.digitek-phase-step-text {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -3736,7 +3832,7 @@ body {
   flex: 1;
 }
 
-.pms-digitek-phase-step-label {
+.digitek-phase-step-label {
   font-size: 16px;
   color: var(--digitek-text-primary);
   font-weight: 600;
@@ -3744,12 +3840,12 @@ body {
   letter-spacing: -0.4px;
 }
 
-.pms-digitek-phase-step-label-active {
+.digitek-phase-step-label-active {
   color: var(--digitek-text-primary);
   font-weight: 700;
 }
 
-.pms-digitek-phase-step-date {
+.digitek-phase-step-date {
   font-size: 14px;
   color: var(--digitek-text-tertiary);
   font-weight: 400;
@@ -3758,7 +3854,7 @@ body {
 }
 
 /* ── ProjectInfoGrid ── */
-.pms-digitek-info-grid {
+.digitek-info-grid {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -3766,7 +3862,7 @@ body {
   min-width: 0;
 }
 
-.pms-digitek-info-title {
+.digitek-info-title {
   font-size: 20px;
   font-weight: 600;
   color: var(--digitek-primary);
@@ -3774,13 +3870,13 @@ body {
   letter-spacing: -0.5px;
 }
 
-.pms-digitek-info-row {
+.digitek-info-row {
   display: flex;
   align-items: center;
   gap: 24px;
 }
 
-.pms-digitek-info-field {
+.digitek-info-field {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -3788,7 +3884,7 @@ body {
   min-width: 0;
 }
 
-.pms-digitek-info-field-full {
+.digitek-info-field-full {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -3796,12 +3892,12 @@ body {
   min-width: 0;
 }
 
-.pms-digitek-info-label {
+.digitek-info-label {
   flex-shrink: 0;
   width: 140px;
 }
 
-.pms-digitek-info-value {
+.digitek-info-value {
   font-size: 16px;
   color: var(--digitek-text-primary);
   display: flex;
@@ -3813,18 +3909,18 @@ body {
   letter-spacing: -0.4px;
 }
 
-.pms-digitek-info-divider {
+.digitek-info-divider {
   width: 100%;
   height: 0;
   border-top: 1px solid var(--digitek-border);
 }
 
 /* ── ProjectInfoSection ── */
-.pms-digitek-info-section {
+.digitek-info-section {
   display: flex;
 }
 
-.pms-digitek-info-section-left {
+.digitek-info-section-left {
   flex-shrink: 0;
   width: var(--digitek-pms-info-left-width);
   min-width: var(--digitek-pms-info-left-min);
@@ -3835,7 +3931,7 @@ body {
   margin-left: -24px;
 }
 
-.pms-digitek-info-section-right {
+.digitek-info-section-right {
   flex: 1;
   min-width: 0;
   display: flex;
@@ -3846,13 +3942,13 @@ body {
 }
 
 /* ── CustomerTimeline ── */
-.pms-digitek-customer-timeline {
+.digitek-customer-timeline {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.pms-digitek-timeline-title {
+.digitek-timeline-title {
   align-self: stretch;
   color: var(--digitek-primary);
   font-family: Pretendard;
@@ -3863,14 +3959,14 @@ body {
   letter-spacing: -0.5px;
 }
 
-.pms-digitek-timeline-track {
+.digitek-timeline-track {
   display: flex;
   align-items: flex-start;
   width: 100%;
   justify-content: center;
 }
 
-.pms-digitek-timeline-connector {
+.digitek-timeline-connector {
   flex: 1;
   height: 1.5px;
   background: var(--digitek-primary);
@@ -3879,14 +3975,14 @@ body {
   min-width: 20px;
 }
 
-.pms-digitek-milestone {
+.digitek-milestone {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
 }
 
-.pms-digitek-milestone-circle {
+.digitek-milestone-circle {
   width: 38px;
   height: 38px;
   border-radius: 50%;
@@ -3897,14 +3993,14 @@ body {
   justify-content: center;
 }
 
-.pms-digitek-milestone-info {
+.digitek-milestone-info {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 85px;
 }
 
-.pms-digitek-milestone-label {
+.digitek-milestone-label {
   width: 85px;
   font-size: 16px;
   font-weight: 600;
@@ -3914,7 +4010,7 @@ body {
   letter-spacing: -0.4px;
 }
 
-.pms-digitek-milestone-date {
+.digitek-milestone-date {
   width: 85px;
   font-size: 14px;
   font-weight: 300;
@@ -3925,12 +4021,12 @@ body {
 }
 
 /* ── Tab 영역 ── */
-.pms-digitek-tabs {
+.digitek-dashboard-tabs {
   margin: 20px 0 16px;
 }
 
 /* ── ScheduleFilterBar ── */
-.pms-digitek-filter-bar {
+.digitek-filter-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -3940,7 +4036,7 @@ body {
   margin-bottom: 12px;
 }
 
-.pms-digitek-filter-bar-left {
+.digitek-filter-bar-left {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -3948,14 +4044,14 @@ body {
   min-width: 0;
 }
 
-.pms-digitek-filter-bar-right {
+.digitek-filter-bar-right {
   display: flex;
   align-items: center;
   gap: 5px;
   flex-wrap: wrap;
 }
 
-.pms-digitek-action-chip {
+.digitek-action-chip {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -3974,16 +4070,16 @@ body {
   white-space: nowrap;
 }
 
-.pms-digitek-action-chip:hover {
+.digitek-action-chip:hover {
   background: #ededf3;
 }
 
-.pms-digitek-action-chip svg {
+.digitek-action-chip svg {
   flex-shrink: 0;
 }
 
 /* ── ScheduleLegend ── */
-.pms-digitek-legend {
+.digitek-legend {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -3991,13 +4087,13 @@ body {
 }
 
 /* ── GanttChart ── */
-.pms-digitek-gantt {
+.digitek-gantt {
   border: 1px solid var(--digitek-border);
   border-radius: 4px;
   overflow: hidden;
 }
 
-.pms-digitek-gantt-container {
+.digitek-gantt-container {
   display: flex;
   width: 100%;
   overflow-x: auto;
@@ -4005,7 +4101,7 @@ body {
 }
 
 /* 좌측 테이블 */
-.pms-digitek-gantt-table-wrap {
+.digitek-gantt-table-wrap {
   flex-shrink: 0;
   width: var(--digitek-pms-gantt-table-width);
   min-width: var(--digitek-pms-gantt-table-min);
@@ -4014,7 +4110,7 @@ body {
 }
 
 /* 구분선 리사이저 */
-.pms-digitek-gantt-resizer {
+.digitek-gantt-resizer {
   flex-shrink: 0;
   width: 4px;
   cursor: col-resize;
@@ -4024,27 +4120,27 @@ body {
   z-index: 4;
 }
 
-.pms-digitek-gantt-resizer:hover,
-.pms-digitek-gantt-resizer:active {
+.digitek-gantt-resizer:hover,
+.digitek-gantt-resizer:active {
   background: var(--digitek-primary);
 }
 
 /* scrollbar 숨기기 (우측 타임라인과 동기화) */
-.pms-digitek-gantt-table-wrap::-webkit-scrollbar {
+.digitek-gantt-table-wrap::-webkit-scrollbar {
   display: none;
 }
 
-.pms-digitek-gantt-table-wrap {
+.digitek-gantt-table-wrap {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-.pms-digitek-gantt-table {
+.digitek-gantt-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.pms-digitek-gantt-table th {
+.digitek-gantt-table th {
   position: sticky;
   top: 0;
   z-index: 2;
@@ -4058,7 +4154,7 @@ body {
   white-space: nowrap;
 }
 
-.pms-digitek-gantt-table td {
+.digitek-gantt-table td {
   font-size: 12px;
   color: var(--digitek-text-primary);
   padding: 8px 8px;
@@ -4067,42 +4163,42 @@ body {
   vertical-align: middle;
 }
 
-.pms-digitek-gantt-table tr:last-child td {
+.digitek-gantt-table tr:last-child td {
   border-bottom: none;
 }
 
-.pms-digitek-gantt-row-project {
+.digitek-gantt-row-project {
   background: var(--digitek-bg-white);
 }
 
-.pms-digitek-gantt-row-project td {
+.digitek-gantt-row-project td {
   padding-left: 24px;
   font-weight: 600;
   font-size: 13px;
   border-bottom: 1px solid var(--digitek-border);
 }
 
-.pms-digitek-gantt-row-level-0 {
+.digitek-gantt-row-level-0 {
   background: var(--digitek-bg-gray);
   font-weight: 600;
 }
 
-.pms-digitek-gantt-row-level-1 {
+.digitek-gantt-row-level-1 {
   background: var(--digitek-bg-white);
   font-weight: 600;
 }
 
-.pms-digitek-gantt-row-level-2 {
+.digitek-gantt-row-level-2 {
   background: var(--digitek-bg-white);
 }
 
-.pms-digitek-gantt-task-name {
+.digitek-gantt-task-name {
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.pms-digitek-gantt-toggle {
+.digitek-gantt-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -4116,17 +4212,17 @@ body {
   flex-shrink: 0;
 }
 
-.pms-digitek-gantt-toggle:hover {
+.digitek-gantt-toggle:hover {
   color: var(--digitek-text-primary);
 }
 
-.pms-digitek-gantt-toggle-placeholder {
+.digitek-gantt-toggle-placeholder {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
 }
 
-.pms-digitek-gantt-status-cell {
+.digitek-gantt-status-cell {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -4134,45 +4230,45 @@ body {
 }
 
 /* 우측 타임라인 */
-.pms-digitek-gantt-timeline-wrap {
+.digitek-gantt-timeline-wrap {
   flex: 1;
   min-width: var(--digitek-pms-gantt-timeline-min);
   overflow-x: auto;
   overflow-y: auto;
 }
 
-.pms-digitek-gantt-timeline-wrap::-webkit-scrollbar {
+.digitek-gantt-timeline-wrap::-webkit-scrollbar {
   height: 8px;
 }
 
-.pms-digitek-gantt-timeline-wrap::-webkit-scrollbar-track {
+.digitek-gantt-timeline-wrap::-webkit-scrollbar-track {
   background: var(--digitek-bg-gray);
 }
 
-.pms-digitek-gantt-timeline-wrap::-webkit-scrollbar-thumb {
+.digitek-gantt-timeline-wrap::-webkit-scrollbar-thumb {
   background: var(--digitek-border);
   border-radius: 4px;
 }
 
-.pms-digitek-gantt-timeline {
+.digitek-gantt-timeline {
   position: relative;
   min-height: 100%;
 }
 
 /* 헤더 */
-.pms-digitek-gantt-header {
+.digitek-gantt-header {
   position: sticky;
   top: 0;
   z-index: 2;
   background: var(--digitek-bg-gray);
 }
 
-.pms-digitek-gantt-header-months {
+.digitek-gantt-header-months {
   display: flex;
   border-bottom: 1px solid var(--digitek-border);
 }
 
-.pms-digitek-gantt-header-month {
+.digitek-gantt-header-month {
   font-size: 12px;
   font-weight: 600;
   color: var(--digitek-text-secondary);
@@ -4181,12 +4277,12 @@ body {
   border-right: 1px solid var(--digitek-border);
 }
 
-.pms-digitek-gantt-header-weeks {
+.digitek-gantt-header-weeks {
   display: flex;
   border-bottom: 1px solid var(--digitek-border);
 }
 
-.pms-digitek-gantt-header-week {
+.digitek-gantt-header-week {
   font-size: 10px;
   color: var(--digitek-text-tertiary);
   text-align: center;
@@ -4195,110 +4291,110 @@ body {
 }
 
 /* 타임라인 행 */
-.pms-digitek-gantt-timeline-rows {
+.digitek-gantt-timeline-rows {
   position: relative;
 }
 
-.pms-digitek-gantt-timeline-row {
+.digitek-gantt-timeline-row {
   position: relative;
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--digitek-border);
 }
 
-.pms-digitek-gantt-timeline-row:last-child {
+.digitek-gantt-timeline-row:last-child {
   border-bottom: none;
 }
 
-.pms-digitek-gantt-timeline-cell {
+.digitek-gantt-timeline-cell {
   border-right: 1px solid rgba(229, 229, 236, 0.5);
   height: 100%;
 }
 
 /* ── Gantt Table Column Widths ── */
-.pms-digitek-gantt-col-task {
+.digitek-gantt-col-task {
   width: var(--digitek-gantt-col-task);
   text-align: left;
   padding-left: 16px;
 }
 
-.pms-digitek-gantt-col-priority {
+.digitek-gantt-col-priority {
   width: var(--digitek-gantt-col-priority);
 }
 
-.pms-digitek-gantt-col-level {
+.digitek-gantt-col-level {
   width: var(--digitek-gantt-col-level);
   text-align: left;
   padding-left: 12px;
 }
 
-.pms-digitek-gantt-col-role {
+.digitek-gantt-col-role {
   width: var(--digitek-gantt-col-role);
 }
 
-.pms-digitek-gantt-col-date {
+.digitek-gantt-col-date {
   width: var(--digitek-gantt-col-date);
 }
 
-.pms-digitek-gantt-col-status {
+.digitek-gantt-col-status {
   width: var(--digitek-gantt-col-status);
 }
 
 /* ── Gantt Table Body Cell Styles ── */
-.pms-digitek-gantt-td-task {
+.digitek-gantt-td-task {
   padding-left: 16px;
 }
 
-.pms-digitek-gantt-td-task-l1 {
+.digitek-gantt-td-task-l1 {
   padding-left: 36px;
 }
 
-.pms-digitek-gantt-td-task-l2 {
+.digitek-gantt-td-task-l2 {
   padding-left: 56px;
 }
 
-.pms-digitek-gantt-td-priority {
+.digitek-gantt-td-priority {
   text-align: center;
 }
 
-.pms-digitek-gantt-td-level {
+.digitek-gantt-td-level {
   text-align: left;
   padding-left: 12px;
   font-size: 12px;
 }
 
-.pms-digitek-gantt-td-role {
+.digitek-gantt-td-role {
   text-align: center;
   font-size: 12px;
 }
 
-.pms-digitek-gantt-td-date {
+.digitek-gantt-td-date {
   text-align: center;
   font-size: 11px;
   color: #767676;
 }
 
-.pms-digitek-gantt-td-status {
+.digitek-gantt-td-status {
   text-align: center;
 }
 
 /* ── Gantt Timeline Cell Widths ── */
-.pms-digitek-gantt-week-cell {
+.digitek-gantt-week-cell {
   width: var(--digitek-gantt-week-cell);
   flex-shrink: 0;
 }
 
 /* Gantt Header Month Cells */
-.pms-digitek-gantt-month-5w {
+.digitek-gantt-month-5w {
   width: calc(var(--digitek-gantt-week-cell) * 5);
 }
 
-.pms-digitek-gantt-month-4w {
+.digitek-gantt-month-4w {
   width: calc(var(--digitek-gantt-week-cell) * 4);
 }
 
 /* Gantt 바 */
-.pms-digitek-gantt-bar {
+.digitek-gantt-bar {
   position: absolute;
   height: 22px;
   border-radius: 11px;
@@ -4317,33 +4413,33 @@ body {
   z-index: 1;
 }
 
-.pms-digitek-gantt-bar-avatar {
+.digitek-gantt-bar-avatar {
   flex-shrink: 0;
   border-radius: 50%;
 }
 
-.pms-digitek-gantt-bar-blue {
+.digitek-gantt-bar-blue {
   background: var(--digitek-primary);
 }
 
-.pms-digitek-gantt-bar-green {
+.digitek-gantt-bar-green {
   background: var(--digitek-success);
 }
 
-.pms-digitek-gantt-bar-orange {
+.digitek-gantt-bar-orange {
   background: var(--digitek-warning);
 }
 
-.pms-digitek-gantt-bar-red {
+.digitek-gantt-bar-red {
   background: var(--digitek-error);
 }
 
-.pms-digitek-gantt-bar-gray {
+.digitek-gantt-bar-gray {
   background: #c9cfd1;
 }
 
 /* TodayMarker */
-.pms-digitek-gantt-today {
+.digitek-gantt-today {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -4353,7 +4449,7 @@ body {
   pointer-events: none;
 }
 
-.pms-digitek-gantt-today-label {
+.digitek-gantt-today-label {
   position: absolute;
   top: 0;
   left: 0;
@@ -4370,47 +4466,47 @@ body {
 }
 
 /* ── 그리드 열 배경 ── */
-.pms-digitek-gantt-grid-col {
+.digitek-gantt-grid-col {
   border-right: 1px solid rgba(229, 229, 236, 0.3);
 }
 
-.pms-digitek-gantt-grid-col-weekend {
+.digitek-gantt-grid-col-weekend {
   background: rgba(247, 247, 251, 0.5);
 }
 
 /* ========================================================================== */
-/*  검색 목록형 페이지 (Search List)                                              */
+/*  검색 목록형 공통 (Search List)                                                */
 /* ========================================================================== */
 
 /* ── 페이지 컨테이너 ── */
-.searchlist-digitek {
+.digitek-search-page {
   padding: 32px 32px 80px;
   background: var(--digitek-bg-gray);
   min-height: 100%;
 }
 
-.searchlist-digitek-content {
+.digitek-search-content {
   display: flex;
   flex-direction: column;
 }
 
-.searchlist-digitek-content > .searchlist-digitek-header {
+.digitek-search-content > .digitek-search-header {
   margin-bottom: 16px;
 }
 
-.searchlist-digitek-content > .searchlist-digitek-search-panel {
+.digitek-search-content > .digitek-search-panel {
   margin-bottom: 32px;
 }
 
 /* ── 헤더 (브레드크럼 + 제목) ── */
-.searchlist-digitek-header {
+.digitek-search-header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
 
-.searchlist-digitek-title {
+.digitek-search-title {
   font-size: 28px;
   font-weight: 600;
   color: var(--digitek-text-primary);
@@ -4420,7 +4516,7 @@ body {
 }
 
 /* ── 검색 패널 ── */
-.searchlist-digitek-search-panel {
+.digitek-search-panel {
   background: var(--digitek-bg-white);
   border: 1px solid var(--digitek-border);
   border-radius: 4px;
@@ -4430,19 +4526,19 @@ body {
   gap: 16px;
 }
 
-.searchlist-digitek-search-actions {
+.digitek-search-actions {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 12px;
 }
 
-.searchlist-digitek-legacy-checkbox-wrap {
+.digitek-search-legacy-checkbox-wrap {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.searchlist-digitek-legacy-label {
+.digitek-search-legacy-label {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -4453,27 +4549,27 @@ body {
   white-space: nowrap;
 }
 
-.searchlist-digitek-legacy-label input[type="checkbox"] {
+.digitek-search-legacy-label input[type="checkbox"] {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
   cursor: pointer;
 }
 
-.searchlist-digitek-legacy-warning {
+.digitek-search-legacy-warning {
   font-size: 12px;
   color: var(--digitek-error);
   margin: 0;
   white-space: nowrap;
 }
 
-.searchlist-digitek-search-row {
+.digitek-search-row {
   display: flex;
   gap: 16px;
   align-items: flex-end;
 }
 
-.searchlist-digitek-field {
+.digitek-field {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -4481,7 +4577,7 @@ body {
   min-width: 0;
 }
 
-.searchlist-digitek-field-fixed {
+.digitek-field-fixed {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -4489,7 +4585,7 @@ body {
   flex-shrink: 0;
 }
 
-.searchlist-digitek-field-label {
+.digitek-field-label {
   font-size: 14px;
   font-weight: 600;
   color: var(--digitek-primary);
@@ -4498,7 +4594,7 @@ body {
   margin-bottom: 0;
 }
 
-.searchlist-digitek-field-label-hidden {
+.digitek-field-label-hidden {
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -4508,7 +4604,7 @@ body {
 }
 
 /* ── 검색 인풋 (search 아이콘 포함) ── */
-.searchlist-digitek-search-input {
+.digitek-search-input {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -4518,11 +4614,11 @@ body {
   border-radius: 4px;
 }
 
-.searchlist-digitek-search-input:focus-within {
+.digitek-search-input:focus-within {
   border-color: var(--digitek-border-focus);
 }
 
-.searchlist-digitek-search-input input {
+.digitek-search-input input {
   flex: 1;
   border: none;
   outline: none;
@@ -4535,12 +4631,12 @@ body {
   min-width: 0;
 }
 
-.searchlist-digitek-search-input input::placeholder {
+.digitek-search-input input::placeholder {
   color: var(--digitek-text-placeholder);
 }
 
 /* ── 필터 토글 ── */
-.searchlist-digitek-filter-toggle {
+.digitek-filter-toggle {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -4550,7 +4646,7 @@ body {
   padding: 0;
 }
 
-.searchlist-digitek-filter-toggle-text {
+.digitek-filter-toggle-text {
   font-size: 14px;
   font-weight: 600;
   color: var(--digitek-text-secondary);
@@ -4558,75 +4654,76 @@ body {
   letter-spacing: -0.35px;
 }
 
-.searchlist-digitek-filter-toggle .dicon {
+.digitek-filter-toggle .dicon {
   transition: transform 0.2s ease;
 }
 
-.searchlist-digitek-filter-toggle[aria-expanded="true"] .dicon {
+.digitek-filter-toggle[aria-expanded="true"] .dicon {
   transform: rotate(180deg);
 }
 
 /* ── 필터 확장 영역 ── */
-.searchlist-digitek-filter-area {
+.digitek-search-filter-area {
   display: none;
   flex-direction: column;
   gap: 16px;
 }
 
-.searchlist-digitek-filter-area.show {
+.digitek-search-filter-area.show {
   display: flex;
 }
 
-.searchlist-digitek-filter-row {
+.digitek-search-filter-row {
   display: flex;
   gap: 16px;
 }
 
-.searchlist-digitek-filter-row > * {
+.digitek-search-filter-row > * {
   flex: 1;
   min-width: 0;
 }
 
 /* ── 셀렉트/인풋 full-width in filter fields ── */
-.searchlist-digitek-field .select-digitek,
-.searchlist-digitek-field .date-select-digitek {
+.digitek-field .select-digitek,
+.digitek-field .date-select-digitek {
   width: 100%;
 }
 
-.searchlist-digitek-field .select-digitek-trigger,
-.searchlist-digitek-field .date-select-digitek-trigger {
+.digitek-field .select-digitek-trigger,
+.digitek-field .date-select-digitek-trigger {
   width: 100%;
 }
 
 /* ── 결과 섹션 ── */
-.searchlist-digitek-results {
+.digitek-search-results {
   margin-top: 24px;
   border: 1px solid var(--digitek-border);
   border-radius: 4px;
   background: var(--digitek-bg-white);
 }
 
-.searchlist-digitek-results .table-digitek {
+.digitek-search-results .table-digitek {
   table-layout: fixed;
 }
 
-.searchlist-digitek-results .table-digitek th,
-.searchlist-digitek-results .table-digitek td {
+.digitek-search-results .table-digitek th,
+.digitek-search-results .table-digitek td {
   height: 44px;
   padding: 0 24px;
   vertical-align: middle;
   box-sizing: border-box;
 }
 
-.searchlist-digitek-results-header {
+.digitek-results-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 18px 24px;
   border-bottom: 1px solid var(--digitek-border);
+  flex-shrink: 0;
 }
 
-.searchlist-digitek-results-title {
+.digitek-results-title {
   font-size: 18px;
   font-weight: 600;
   color: var(--digitek-text-primary);
@@ -4635,12 +4732,12 @@ body {
   flex-shrink: 0;
 }
 
-.searchlist-digitek-results-count {
+.digitek-search-results-count {
   color: var(--digitek-primary);
 }
 
 /* ── 결과 헤더 중앙 아코디언 토글 ── */
-.searchlist-digitek-results-toggle {
+.digitek-search-results-toggle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4650,22 +4747,22 @@ body {
   cursor: pointer;
 }
 
-.searchlist-digitek-results-toggle .dicon {
+.digitek-search-results-toggle .dicon {
   transition: transform 0.2s ease;
 }
 
-.searchlist-digitek-results-toggle[aria-expanded="false"] .dicon {
+.digitek-search-results-toggle[aria-expanded="false"] .dicon {
   transform: rotate(180deg);
 }
 
-.searchlist-digitek-results-actions {
+.digitek-results-actions {
   display: flex;
   align-items: center;
   gap: 12px;
   flex-shrink: 0;
 }
 
-.searchlist-digitek-view-option {
+.digitek-search-view-option {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -4680,12 +4777,12 @@ body {
   padding: 0;
 }
 
-.searchlist-digitek-view-option.active {
+.digitek-search-view-option.active {
   color: var(--digitek-primary);
 }
 
 /* ── 페이지네이션 래퍼 ── */
-.searchlist-digitek-pagination {
+.digitek-search-pagination {
   display: flex;
   justify-content: center;
   padding: 24px 16px;
@@ -4693,11 +4790,11 @@ body {
 }
 
 /* ==========================================================================
-   검색 분할형 (Search Split Page)
+   검색 분할형 공통 (Search Split)
    ========================================================================== */
 
 /* ── 전체 레이아웃 (3-panel) ── */
-.searchsplit-digitek-body {
+.digitek-split-body {
   display: flex;
   flex: 1;
   min-width: 0;
@@ -4707,7 +4804,7 @@ body {
 }
 
 /* ── 패널 래퍼 (flex 크기 + 접기 애니메이션 담당) ── */
-.searchsplit-digitek-panel-wrapper {
+.digitek-split-panel-wrapper {
   position: relative;
   flex-shrink: 0;
   width: var(--digitek-split-search-width);
@@ -4719,7 +4816,7 @@ body {
 }
 
 /* ── 좌측 검색 패널 ── */
-.searchsplit-digitek-search-panel {
+.digitek-split-search-panel {
   flex: 1;
   min-height: 0;
   display: flex;
@@ -4731,14 +4828,14 @@ body {
   border-right: 1px solid var(--digitek-border);
 }
 
-.searchsplit-digitek-header {
+.digitek-split-header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
 
-.searchsplit-digitek-title {
+.digitek-split-title {
   font-size: 28px;
   font-weight: 600;
   color: var(--digitek-text-primary);
@@ -4752,13 +4849,13 @@ body {
 }
 
 /* ── 검색 필드 (세로 배치) ── */
-.searchsplit-digitek-search-fields {
+.digitek-split-search-fields {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.searchsplit-digitek-search-input {
+.digitek-split-search-input {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -4768,11 +4865,11 @@ body {
   border-radius: 4px;
 }
 
-.searchsplit-digitek-search-input:focus-within {
+.digitek-split-search-input:focus-within {
   border-color: var(--digitek-border-focus);
 }
 
-.searchsplit-digitek-search-input input {
+.digitek-split-search-input input {
   flex: 1;
   border: none;
   outline: none;
@@ -4785,88 +4882,35 @@ body {
   min-width: 0;
 }
 
-.searchsplit-digitek-search-input input::placeholder {
+.digitek-split-search-input input::placeholder {
   color: var(--digitek-text-placeholder);
 }
 
 /* ── 구분선 ── */
-.searchsplit-digitek-divider {
+.digitek-split-divider {
   border: none;
   border-top: 1px solid var(--digitek-border);
   margin: 0;
 }
 
-/* ── 필터 토글 ── */
-.searchsplit-digitek-filter-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-  border: none;
-  background: none;
-  padding: 0;
-}
-
-.searchsplit-digitek-filter-toggle-text {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--digitek-text-secondary);
-  line-height: 20px;
-  letter-spacing: -0.35px;
-}
-
-.searchsplit-digitek-filter-toggle .dicon {
-  transition: transform 0.2s ease;
-}
-
-.searchsplit-digitek-filter-toggle[aria-expanded="true"] .dicon {
-  transform: rotate(180deg);
-}
-
 /* ── 필터 영역 (2열 그리드) ── */
-.searchsplit-digitek-filter-area {
+.digitek-split-filter-area {
   display: none;
   flex-direction: column;
   gap: 20px;
 }
 
-.searchsplit-digitek-filter-area.show {
+.digitek-split-filter-area.show {
   display: flex;
 }
 
-.searchsplit-digitek-filter-row {
+.digitek-split-filter-row {
   display: flex;
   gap: 12px;
 }
 
-.searchsplit-digitek-field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1;
-  min-width: 0;
-}
-
-.searchsplit-digitek-field-label {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--digitek-primary);
-  line-height: 20px;
-  letter-spacing: -0.35px;
-}
-
-.searchsplit-digitek-field .select-digitek,
-.searchsplit-digitek-field .date-select-digitek {
-  width: 100%;
-}
-
-.searchsplit-digitek-field .select-digitek-trigger,
-.searchsplit-digitek-field .date-select-digitek-trigger {
-  width: 100%;
-}
-
 /* ── 결과 영역 ── */
-.searchsplit-digitek-results {
+.digitek-split-results {
   flex: 1;
   min-width: 0;
   display: flex;
@@ -4878,7 +4922,7 @@ body {
 }
 
 /* ── 뷰 탭 (나란히 보기 / 펼쳐서 보기) ── */
-.searchsplit-digitek-view-tabs {
+.digitek-split-view-tabs {
   display: flex;
   gap: 0;
   padding: 5px;
@@ -4888,7 +4932,7 @@ body {
   align-self: flex-start;
 }
 
-.searchsplit-digitek-view-tab {
+.digitek-split-view-tab {
   padding: 4px 16px;
   font-size: 12px;
   font-weight: 500;
@@ -4901,7 +4945,7 @@ body {
   transition: all 0.15s ease;
 }
 
-.searchsplit-digitek-view-tab.active {
+.digitek-split-view-tab.active {
   background: var(--digitek-bg-white);
   border-color: var(--digitek-border);
   color: var(--digitek-text-primary);
@@ -4909,7 +4953,7 @@ body {
 }
 
 /* ── 결과 카드 (흰색 카드) ── */
-.searchsplit-digitek-results-card {
+.digitek-split-results-card {
   flex: 1;
   min-height: 0;
   display: flex;
@@ -4920,32 +4964,13 @@ body {
   overflow: hidden;
 }
 
-/* ── 결과 헤더 ── */
-.searchsplit-digitek-results-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 24px;
-  border-bottom: 1px solid var(--digitek-border);
-  flex-shrink: 0;
-}
-
-.searchsplit-digitek-results-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--digitek-text-primary);
-  line-height: 26px;
-  letter-spacing: -0.45px;
-  flex-shrink: 0;
-}
-
-.searchsplit-digitek-results-count {
+.digitek-split-results-count {
   color: var(--digitek-primary);
   font-weight: 600;
 }
 
 /* ── 결과 헤더 중앙 아코디언 토글 ── */
-.searchsplit-digitek-results-toggle {
+.digitek-split-results-toggle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4956,35 +4981,28 @@ body {
   border-radius: 4px;
 }
 
-.searchsplit-digitek-results-toggle .dicon {
+.digitek-split-results-toggle .dicon {
   filter: brightness(0) opacity(0.55);
   transition: transform 0.2s ease;
 }
 
-.searchsplit-digitek-results-toggle[aria-expanded="false"] .dicon {
+.digitek-split-results-toggle[aria-expanded="false"] .dicon {
   transform: rotate(180deg);
 }
 
-.searchsplit-digitek-results-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
-}
-
 /* ── 테이블 래퍼 ── */
-.searchsplit-digitek-table-wrap {
+.digitek-split-table-wrap {
   flex: 1;
   overflow: auto;
 }
 
-.searchsplit-digitek-results .table-digitek {
+.digitek-split-results .table-digitek {
   table-layout: fixed;
   width: 100%;
 }
 
-.searchsplit-digitek-results .table-digitek th,
-.searchsplit-digitek-results .table-digitek td {
+.digitek-split-results .table-digitek th,
+.digitek-split-results .table-digitek td {
   height: 44px;
   max-height: 44px;
   padding: 0 24px;
@@ -4995,21 +5013,21 @@ body {
   text-overflow: ellipsis;
 }
 
-.searchsplit-digitek-table-row {
+.digitek-split-table-row {
   cursor: pointer;
   transition: background-color 0.1s ease;
 }
 
-.searchsplit-digitek-table-row:hover {
+.digitek-split-table-row:hover {
   background-color: #f7f7fb;
 }
 
-.searchsplit-digitek-table-row.active {
+.digitek-split-table-row.active {
   background-color: #eef3fb;
 }
 
 /* ── 페이지네이션 ── */
-.searchsplit-digitek-pagination {
+.digitek-split-pagination {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -5019,7 +5037,7 @@ body {
 }
 
 /* ── 상세 패널 ── */
-.searchsplit-digitek-detail {
+.digitek-split-detail {
   position: absolute;
   right: 0;
   top: 0;
@@ -5037,33 +5055,33 @@ body {
 }
 
 /* 상세 패널 열림 상태 */
-.searchsplit-digitek-body-detail-open .searchsplit-digitek-detail {
+.digitek-split-body-detail-open .digitek-split-detail {
   width: var(--digitek-split-detail-width);
   min-width: var(--digitek-split-detail-min);
   opacity: 1;
 }
 
 /* 전체 보기 상태: 검색 패널 + 결과 영역 숨기고 상세 패널 전체 너비 */
-.searchsplit-digitek-body-fullview .searchsplit-digitek-panel-wrapper {
+.digitek-split-body-fullview .digitek-split-panel-wrapper {
   display: none;
 }
 
-.searchsplit-digitek-body-fullview .searchsplit-digitek-results {
+.digitek-split-body-fullview .digitek-split-results {
   display: none;
 }
 
-.searchsplit-digitek-body-fullview .searchsplit-digitek-search-collapse-handle {
+.digitek-split-body-fullview .digitek-split-search-collapse-handle {
   display: none;
 }
 
-.searchsplit-digitek-body-fullview .searchsplit-digitek-detail {
+.digitek-split-body-fullview .digitek-split-detail {
   width: 100%;
   left: 0;
   min-width: 0;
 }
 
 /* ── 검색 패널 접기 핸들 ── */
-.searchsplit-digitek-search-collapse-handle {
+.digitek-split-search-collapse-handle {
   position: absolute;
   right: -16px;
   top: 50%;
@@ -5081,11 +5099,11 @@ body {
   z-index: 10;
 }
 
-.searchsplit-digitek-search-collapse-handle:hover {
+.digitek-split-search-collapse-handle:hover {
   background: #f5f5f5;
 }
 
-.searchsplit-digitek-search-collapse-handle .dicon {
+.digitek-split-search-collapse-handle .dicon {
   filter: brightness(0) opacity(0.55);
   transition: transform 0.2s ease;
   width: 12px;
@@ -5093,12 +5111,12 @@ body {
 }
 
 /* 접힘 상태: chevron-left → 180deg = chevron-right */
-.searchsplit-digitek-body.searchsplit-search-collapsed .searchsplit-digitek-search-collapse-handle .dicon {
+.digitek-split-body.digitek-split-search-collapsed .digitek-split-search-collapse-handle .dicon {
   transform: rotate(180deg);
 }
 
 /* form: wrapper 안에서 콘텐츠 클리핑 담당 */
-.searchsplit-digitek-panel-wrapper > form {
+.digitek-split-panel-wrapper > form {
   flex: 1;
   min-height: 0;
   overflow: hidden;
@@ -5107,28 +5125,28 @@ body {
 }
 
 /* 검색 패널 접힘 상태 */
-.searchsplit-digitek-body.searchsplit-search-collapsed .searchsplit-digitek-panel-wrapper {
+.digitek-split-body.digitek-split-search-collapsed .digitek-split-panel-wrapper {
   width: 0;
   min-width: 0;
 }
 
-.searchsplit-digitek-body.searchsplit-search-collapsed .searchsplit-digitek-search-collapse-handle {
+.digitek-split-body.digitek-split-search-collapsed .digitek-split-search-collapse-handle {
   border-radius: 4px;
 }
 
 /* ── 상세 패널 헤더 ── */
-.searchsplit-digitek-detail-header {
+.digitek-split-detail-header {
   padding: 24px;
   flex-shrink: 0;
 }
 
-.searchsplit-digitek-detail-title-row {
+.digitek-split-detail-title-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.searchsplit-digitek-detail-title {
+.digitek-split-detail-title {
   font-size: 28px;
   font-weight: 600;
   color: var(--digitek-text-primary);
@@ -5137,12 +5155,12 @@ body {
   margin: 0;
 }
 
-.searchsplit-digitek-detail-actions {
+.digitek-split-detail-actions {
   display: flex;
   gap: 12px;
 }
 
-.searchsplit-digitek-detail-btn {
+.digitek-split-detail-btn {
   width: 42px;
   height: 42px;
   display: flex;
@@ -5155,18 +5173,18 @@ body {
   transition: background-color 0.15s ease;
 }
 
-.searchsplit-digitek-detail-btn:hover {
+.digitek-split-detail-btn:hover {
   background-color: #f7f7fb;
 }
 
-.searchsplit-digitek-detail-title-group {
+.digitek-split-detail-title-group {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
 /* ── 상세 패널 본문 ── */
-.searchsplit-digitek-detail-body {
+.digitek-split-detail-body {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
@@ -5177,34 +5195,34 @@ body {
 }
 
 /* flex 스크롤: 자식이 shrink되지 않아야 overflow-y: auto가 동작 */
-.searchsplit-digitek-detail-body > * {
+.digitek-split-detail-body > * {
   flex-shrink: 0;
 }
 
 /* ── 섹션 (일정, 세부사항, 담당자, 고객일정) ── */
-.searchsplit-digitek-detail-section {
+.digitek-split-detail-section {
   /* 개별 섹션 타입이 padding/border 를 직접 정의 */
 }
 
-.searchsplit-digitek-detail-section:first-child {
+.digitek-split-detail-section:first-child {
   background: #f7f7fb;
   border-radius: 8px;
   padding: 18px 20px;
 }
 
-.searchsplit-digitek-section-divider {
+.digitek-split-section-divider {
   border: none;
   border-top: 1px solid var(--digitek-border);
   margin: 14px 0;
 }
 
 /* ── 일정 섹션 ── */
-.searchsplit-digitek-schedule-header {
+.digitek-split-schedule-header {
   display: flex;
   padding-bottom: 12px;
 }
 
-.searchsplit-digitek-schedule-label {
+.digitek-split-schedule-label {
   font-size: 14px;
   font-weight: 600;
   color: #a0aec0;
@@ -5212,40 +5230,40 @@ body {
   letter-spacing: -0.35px;
 }
 
-.searchsplit-digitek-schedule-label-date {
+.digitek-split-schedule-label-date {
   margin-left: 89px;
 }
 
-.searchsplit-digitek-schedule-rows {
+.digitek-split-schedule-rows {
   display: flex;
   flex-direction: column;
   gap: 15px;
   padding-top: 10px;
 }
 
-.searchsplit-digitek-schedule-row {
+.digitek-split-schedule-row {
   display: flex;
   align-items: center;
 }
 
-.searchsplit-digitek-schedule-row .searchsplit-digitek-info-label {
+.digitek-split-schedule-row .digitek-split-info-label {
   width: 169px;
   min-width: 169px;
 }
 
 /* ── 정보 그리드 (라벨 + 값) ── */
-.searchsplit-digitek-info-grid {
+.digitek-split-info-grid {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.searchsplit-digitek-info-row {
+.digitek-split-info-row {
   display: flex;
   align-items: flex-start;
 }
 
-.searchsplit-digitek-info-label {
+.digitek-split-info-label {
   width: 107px;
   min-width: 107px;
   font-size: 14px;
@@ -5254,12 +5272,12 @@ body {
   line-height: 20px;
 }
 
-.searchsplit-digitek-detail-section-contact .searchsplit-digitek-info-label {
+.digitek-split-detail-section-contact .digitek-split-info-label {
   width: 131px;
   min-width: 131px;
 }
 
-.searchsplit-digitek-info-value {
+.digitek-split-info-value {
   font-size: 14px;
   color: var(--digitek-text-primary);
   line-height: 20px;
@@ -5268,7 +5286,7 @@ body {
 }
 
 /* ── 상세 패널 배지 (헤더 아래 타입 라벨) ── */
-.searchsplit-digitek-detail-badge {
+.digitek-split-detail-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -5286,7 +5304,7 @@ body {
    상세 확대 모달 (Search Split Detail Modal)
    ════════════════════════════════════════════════ */
 
-.searchsplit-digitek-modal-overlay {
+.digitek-split-modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
@@ -5296,11 +5314,11 @@ body {
   justify-content: center;
 }
 
-.searchsplit-digitek-modal-overlay[hidden] {
+.digitek-split-modal-overlay[hidden] {
   display: none;
 }
 
-.searchsplit-digitek-modal {
+.digitek-split-modal {
   display: flex;
   width: min(1200px, 90vw);
   height: 85vh;
@@ -5315,14 +5333,14 @@ body {
 }
 
 /* 모달 내부 헤더: 부모 패딩 사용하므로 자체 패딩 제거 */
-.searchsplit-digitek-modal .searchsplit-digitek-detail-header {
+.digitek-split-modal .digitek-split-detail-header {
   padding: 0;
   width: 100%;
   flex-shrink: 0;
 }
 
 /* 모달 본문: 좌-일정 / 우-아코디언 2열 레이아웃 */
-.searchsplit-digitek-modal-body {
+.digitek-split-modal-body {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
@@ -5332,7 +5350,7 @@ body {
   width: 100%;
 }
 
-.searchsplit-digitek-modal-schedule-col {
+.digitek-split-modal-schedule-col {
   flex: 0 0 auto;
   min-width: 200px;
   background: #f7f7fb;
@@ -5340,7 +5358,7 @@ body {
   padding: 18px 20px;
 }
 
-.searchsplit-digitek-modal-detail-col {
+.digitek-split-modal-detail-col {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -5537,27 +5555,13 @@ body {
 
 /* ── ECR 검토 화면 ── */
 .ecr-review-layout {
-  padding: 16px;
-}
-.ecr-review-fieldset {
-  border: none;
-  padding: 0;
-  margin: 0;
-  min-width: 0;
-}
-.ecr-review-legend {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--digitek-text-primary);
-  padding: 0 6px;
-  margin-left: 10px;
-  width: auto;
+  padding: 24px;
 }
 .ecr-header-actions {
   display: flex;
   justify-content: flex-end;
   gap: 6px;
-  padding: 8px 10px 6px;
+  margin-bottom: 12px;
 }
 /* 헤더 테이블 (컬럼 제목 행) */
 .ecr-header-table {
@@ -5566,12 +5570,13 @@ body {
   table-layout: fixed;
 }
 .ecr-header-table th {
-  border: 1px solid #ccc;
+  border-bottom: 1px solid var(--digitek-border);
   padding: 6px 8px;
   font-size: 13px;
-  font-weight: 600;
-  background: #f0f0f0;
-  text-align: center;
+  font-weight: 400;
+  background: #f8fafc;
+  color: #a3a3a3;
+  text-align: left;
 }
 /* 부서 그룹 컨테이너 (각 그룹 사이 마진) */
 .ecr-groups-container {
@@ -5587,13 +5592,16 @@ body {
   table-layout: fixed;
 }
 .ecr-group-table td {
-  border: 1px solid #ccc;
+  border: 1px solid var(--digitek-border);
   padding: 6px 8px;
   font-size: 13px;
   vertical-align: middle;
 }
 .ecr-checkbox-cell {
   text-align: center;
+}
+.ecr-checkbox-cell .checkbox-digitek {
+  justify-content: center;
 }
 .ecr-dept-name {
   text-align: center;
@@ -5602,7 +5610,7 @@ body {
 .ecr-task-label-cell {
   text-align: center;
   vertical-align: middle;
-  background: #fafafa;
+  background: var(--digitek-bg-gray);
   font-size: 12px;
   color: var(--digitek-text-secondary);
   white-space: nowrap;
@@ -5613,7 +5621,7 @@ body {
   justify-content: center;
   width: 18px;
   height: 18px;
-  border: 1px solid #999;
+  border: 1px solid var(--digitek-border);
   background: #fff;
   border-radius: 50%;
   font-size: 14px;
@@ -5640,15 +5648,16 @@ body {
 }
 .ecr-task-table th,
 .ecr-task-table td {
-  border: 1px solid #ddd;
+  border: 1px solid var(--digitek-border);
   padding: 5px 8px;
   font-size: 12px;
   vertical-align: middle;
 }
 .ecr-task-table thead th {
-  background: #f5f5f5;
+  background: #f8fafc;
+  color: #a3a3a3;
   text-align: center;
-  font-weight: 600;
+  font-weight: 400;
   white-space: nowrap;
 }
 .ecr-task-link {
@@ -5684,7 +5693,7 @@ body {
   gap: 4px;
 }
 .ecr-date-input {
-  border: 1px solid #ccc;
+  border: 1px solid var(--digitek-border);
   border-radius: 3px;
   padding: 2px 4px;
   font-size: 12px;
@@ -5705,14 +5714,14 @@ body {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: 1px solid #ccc;
+  border: 1px solid var(--digitek-border);
   background: #fff;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 11px;
-  color: #777;
+  color: var(--digitek-text-tertiary);
   padding: 0;
   line-height: 1;
 }
@@ -6007,7 +6016,7 @@ body {
   flex-shrink: 0;
 }
 
-.approval-line-digitek-input-actions .request-digitek-action-link {
+.approval-line-digitek-input-actions .digitek-action-link {
   white-space: nowrap;
 }
 

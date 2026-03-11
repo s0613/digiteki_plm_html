@@ -5,7 +5,7 @@
     <thead>
       <tr>
         <!-- [커스텀] 열 헤더: th 내 텍스트를 컬럼명에 맞게 변경 -->
-        <th class="table-digitek-checkbox" scope="col"><input type="checkbox" aria-label="전체 선택"></th>
+        <th class="table-digitek-checkbox" scope="col"><label class="checkbox-digitek"><input type="checkbox" aria-label="전체 선택"></label></th>
         <th scope="col">부품번호</th>
         <th scope="col">부품명</th>
         <th scope="col">Rev</th>
@@ -18,7 +18,7 @@
     <tbody>
       <!-- [커스텀] Thymeleaf 반복 예시:
            <tr th:each="item : ${itemList}">
-             <td class="table-digitek-checkbox"><input type="checkbox" aria-label="행 선택"></td>
+             <td class="table-digitek-checkbox"><label class="checkbox-digitek"><input type="checkbox" aria-label="행 선택"></label></td>
              <td th:text="${item.partNo}">H00.015-56</td>
              <td th:text="${item.partName}">FET_N-Channel_BSS138P</td>
              <td th:text="${item.rev}">제품 1</td>
@@ -29,7 +29,7 @@
            </tr>
       -->
       <tr>
-        <td class="table-digitek-checkbox"><input type="checkbox" checked aria-label="행 선택"></td>
+        <td class="table-digitek-checkbox"><label class="checkbox-digitek"><input type="checkbox" checked aria-label="행 선택"></label></td>
         <!-- [커스텀] td 내 텍스트를 실제 데이터 필드로 교체 -->
         <td>H00.015-56</td>
         <td>FET_N-Channel_BSS138P</td>
@@ -40,7 +40,7 @@
         <td><span class="table-digitek-date">2025-04-30 <i class="dicon dicon-calendar" aria-hidden="true"></i></span></td>
       </tr>
       <tr>
-        <td class="table-digitek-checkbox"><input type="checkbox" checked aria-label="행 선택"></td>
+        <td class="table-digitek-checkbox"><label class="checkbox-digitek"><input type="checkbox" checked aria-label="행 선택"></label></td>
         <td>H00.015-56</td>
         <td>FET_N-Channel_BSS138P</td>
         <td>제품 1</td>
@@ -50,7 +50,7 @@
         <td><span class="table-digitek-date">2025-04-30 <i class="dicon dicon-calendar" aria-hidden="true"></i></span></td>
       </tr>
       <tr>
-        <td class="table-digitek-checkbox"><input type="checkbox" aria-label="행 선택"></td>
+        <td class="table-digitek-checkbox"><label class="checkbox-digitek"><input type="checkbox" aria-label="행 선택"></label></td>
         <td>H00.015-56</td>
         <td>FET_N-Channel_BSS138P</td>
         <td>제품 1</td>
@@ -61,7 +61,7 @@
       </tr>
       <!-- 입력 행 -->
       <tr class="table-digitek-input-row">
-        <td class="table-digitek-checkbox"><input type="checkbox" disabled aria-label="행 선택"></td>
+        <td class="table-digitek-checkbox"><label class="checkbox-digitek checkbox-digitek-disabled"><input type="checkbox" disabled aria-label="행 선택"></label></td>
         <td><input type="text" class="form-control input-digitek input-digitek-sm" placeholder="입력"></td>
         <td><input type="text" class="form-control input-digitek input-digitek-sm" placeholder="입력"></td>
         <td><input type="text" class="form-control input-digitek input-digitek-sm" placeholder="입력"></td>
