@@ -19,12 +19,13 @@
     <th:block th:replace="~{fragments/gnb :: gnb}"></th:block>
     <div id="page-content" class="flex-grow-1 overflow-y-digitek-auto"
          style="background: var(--digitek-bg-gray);">
-      <layout:fragment name="content">
+      <th:block layout:fragment="content">
         <!-- 각 페이지 콘텐츠가 여기에 주입됩니다 -->
-      </layout:fragment>
+      </th:block>
     </div>
   </div>
 </div>
+<script th:src="@{/js/turbo.js}"></script>
 <script th:src="@{/js/jquery.slim.min.js}"></script>
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 <script th:src="@{/js/digitek.js}"></script>
