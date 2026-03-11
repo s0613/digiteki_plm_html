@@ -174,8 +174,8 @@
                 <!-- 3레벨 서브-서브메뉴 -->
                 <ul class="nav flex-column sidebar-digitek-sub-submenu" style="max-height: 0;" aria-label="시작 하위 메뉴">
                   <li class="nav-item">
-                    <a class="sidebar-digitek-sub-submenu-item" href="content/searchlist.html"
-                       data-route="content/searchlist.html">
+                    <a class="sidebar-digitek-sub-submenu-item" href="/pages/content/searchlist.html"
+                       data-route="/pages/content/searchlist.html">
                       <span class="sidebar-digitek-menu-label">시작 검색</span>
                     </a>
                   </li>
@@ -204,6 +204,64 @@
                     </a>
                   </li>
                 </ul>
+              </li>
+            </ul>
+          </li>
+
+          <!-- 문서 등록 (리프 메뉴) -->
+          <li class="nav-item">
+            <a class="sidebar-digitek-menu-item" href="/pages/content/doc-create.html"
+               data-route="/pages/content/doc-create.html">
+              <span class="sidebar-digitek-icon-label">
+                <i class="dicon dicon-file-edit icon-digitek-20"></i>
+                <span class="sidebar-digitek-menu-label">문서 등록</span>
+              </span>
+            </a>
+          </li>
+
+          <!-- ECR 검토 (리프 메뉴) -->
+          <li class="nav-item">
+            <a class="sidebar-digitek-menu-item" href="/pages/content/ecr-review.html"
+               data-route="/pages/content/ecr-review.html">
+              <span class="sidebar-digitek-icon-label">
+                <i class="dicon dicon-reload icon-digitek-20"></i>
+                <span class="sidebar-digitek-menu-label">ECR 검토</span>
+              </span>
+            </a>
+          </li>
+
+          <!-- 관리 (서브메뉴 토글) -->
+          <li class="nav-item">
+            <a class="sidebar-digitek-menu-item" href="#" aria-expanded="false">
+              <span class="sidebar-digitek-icon-label">
+                <i class="dicon dicon-settings icon-digitek-20"></i>
+                <span class="sidebar-digitek-menu-label">관리</span>
+              </span>
+              <span class="sidebar-digitek-chevron">
+                <i class="dicon dicon-chevron-down icon-digitek-20"></i>
+              </span>
+            </a>
+            <ul class="nav flex-column sidebar-digitek-submenu" style="max-height: 0;" aria-label="관리 하위 메뉴">
+              <li class="nav-item">
+                <a class="sidebar-digitek-submenu-item" href="/pages/content/group-manage.html"
+                   data-route="/pages/content/group-manage.html">
+                  <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+                  <span class="sidebar-digitek-menu-label">그룹 관리</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="sidebar-digitek-submenu-item" href="/pages/content/code-manage.html"
+                   data-route="/pages/content/code-manage.html">
+                  <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+                  <span class="sidebar-digitek-menu-label">코드 관리</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="sidebar-digitek-submenu-item" href="/pages/content/doc-classify.html"
+                   data-route="/pages/content/doc-classify.html">
+                  <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+                  <span class="sidebar-digitek-menu-label">문서 분류 관리</span>
+                </a>
               </li>
             </ul>
           </li>
