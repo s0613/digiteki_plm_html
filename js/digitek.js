@@ -2004,7 +2004,11 @@
   }
 
   // 컨텐츠 영역 컴포넌트만 재초기화 (turbo-frame 교체 후 호출)
-  // delegateEvent 기반 컴포넌트(Accordion, TabButton, FileUpload 등)는 재초기화 불필요
+  // delegateEvent 기반 컴포넌트는 재초기화 불필요:
+  //   Accordion, TabButton, FileUpload (document 위임)
+  //   SearchList, SearchSplit (내부에서 delegateEvent 전용으로 구현)
+  //   GNBSearch (GNB 영역은 프레임 교체 대상이 아님)
+  //   Locale, Sidebar (초기화 1회로 충분)
   function initContent() {
     Select.init();
     DateSelect.init();
@@ -2034,6 +2038,11 @@
     if (e.target.id !== "main-content") return;
     initContent();
     updateSidebarActive();
+  });
+
+  // Turbo Drive 전체 페이지 전환 시 폴백 초기화
+  document.addEventListener("turbo:load", function () {
+    initAll();
   });
 
   // DOMContentLoaded 자동 초기화 (전체)
