@@ -5,6 +5,8 @@
 docs/*
 !docs/css-class-reference.md
 !docs/component-usage-audit.md
+!docs/superpowers/
+!docs/superpowers/**
 *.plan.md
 *.spec.md
 *.notes.md
