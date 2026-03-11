@@ -540,13 +540,15 @@ td .date-select-digitek {
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
+  right: 0;
+  min-width: 210px;
   z-index: 20;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 24px;
-  padding: 24px 20px;
+  gap: 12px;
+  padding: 12px 8px;
   background-color: var(--digitek-bg-white);
   border-radius: 4px;
   box-shadow: var(--digitek-shadow-calendar);
@@ -561,10 +563,10 @@ td .date-select-digitek {
 }
 
 .date-select-digitek-calendar-title {
-  font-size: 18px;
-  line-height: 26px;
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 600;
-  letter-spacing: -0.45px;
+  letter-spacing: -0.35px;
   color: var(--digitek-text-primary);
   text-align: center;
 }
@@ -590,8 +592,8 @@ td .date-select-digitek {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
-  width: 295px;
+  gap: 4px;
+  width: 100%;
 }
 
 .date-select-digitek-week-header {
@@ -602,11 +604,11 @@ td .date-select-digitek {
 .date-select-digitek-day-header {
   flex: 1 0 0;
   min-width: 0;
-  padding: 12px 15px;
-  font-size: 13px;
-  line-height: 18px;
+  padding: 6px 2px;
+  font-size: 11px;
+  line-height: 16px;
   font-weight: 400;
-  letter-spacing: -0.325px;
+  letter-spacing: -0.275px;
   color: var(--digitek-text-primary);
   text-align: center;
   background-color: var(--digitek-bg-white);
@@ -628,16 +630,16 @@ td .date-select-digitek {
 .date-select-digitek-day {
   flex: 1 0 0;
   min-width: 0;
-  padding: 12px 18px;
-  font-size: 13px;
+  padding: 6px 2px;
+  font-size: 12px;
   line-height: 18px;
   font-weight: 600;
-  letter-spacing: -0.325px;
+  letter-spacing: -0.3px;
   color: var(--digitek-text-primary);
   text-align: center;
   background: none;
   border: none;
-  border-radius: 9999px;
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.15s ease;
 }
@@ -5557,6 +5559,146 @@ td .date-select-digitek {
   background: #f7f7fb;
   width: 160px;
   font-weight: 500;
+}
+
+/* ========================================================================== */
+/*  공통 페이지 레이아웃 컴포넌트                                                 */
+/* ========================================================================== */
+
+/* ── 페이지 컨테이너 ── */
+.content-page-digitek {
+  padding: 24px;
+  background: var(--digitek-bg-white);
+  min-height: 100%;
+}
+
+/* ── 페이지 헤더 (제목 + 우측 액션 버튼) ── */
+.page-header-digitek {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* ── 페이지 제목 ── */
+.page-title-digitek {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--digitek-text-primary);
+  letter-spacing: -0.5px;
+  line-height: 28px;
+  margin: 0;
+}
+
+/* ── 섹션 카드 컨테이너 ── */
+.content-section-digitek {
+  margin-bottom: 16px;
+  border: 1px solid var(--digitek-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--digitek-bg-white);
+}
+
+/* ── 섹션 헤더 (제목 + 우측 액션) ── */
+.content-section-header-digitek {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: var(--digitek-bg-gray);
+  border-bottom: 1px solid var(--digitek-border);
+}
+
+/* ── 섹션 제목 ── */
+.content-section-title-digitek {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--digitek-primary);
+  line-height: 20px;
+}
+
+/* ── 섹션 본문 ── */
+.content-section-body-digitek {
+  padding: 20px;
+}
+
+/* ── 패널/카드 컨테이너 ── */
+.content-panel-digitek {
+  background: var(--digitek-bg-white);
+  border: 1px solid var(--digitek-border);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── 폼 key-value 테이블 ── */
+.form-table-digitek {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  line-height: 20px;
+}
+.form-table-digitek td {
+  padding: 8px 16px;
+  vertical-align: middle;
+}
+.form-table-digitek td + td {
+  border-left: 1px solid var(--digitek-border);
+}
+.form-table-digitek tr + tr td {
+  border-top: 1px solid var(--digitek-border);
+}
+.form-table-digitek select,
+.form-table-digitek input[type="text"] {
+  width: 100%;
+  height: 30px;
+  border: 1px solid var(--digitek-border);
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 13px;
+  color: var(--digitek-text-primary);
+  background: var(--digitek-bg-white);
+}
+.form-table-digitek input[type="text"]::placeholder {
+  color: var(--digitek-text-tertiary);
+}
+
+/* ── 폼 라벨 셀 (회색 배경, 굵은 글씨) ── */
+.form-label-cell-digitek {
+  background: var(--digitek-bg-gray);
+  font-weight: 600;
+  color: var(--digitek-text-primary);
+  white-space: nowrap;
+}
+
+/* ── 폼 값 셀 ── */
+.form-value-cell-digitek {
+  background: var(--digitek-bg-white);
+}
+
+/* ── 작은 원형 추가 버튼 (목록 행 추가용) ── */
+.btn-digitek-circle-sm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--digitek-border);
+  background: #fff;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.btn-digitek-circle-sm:hover {
+  background: var(--digitek-primary-bg);
+  border-color: var(--digitek-primary);
+  color: var(--digitek-primary);
 }
 
 /* ── ECR 검토 화면 ── */
