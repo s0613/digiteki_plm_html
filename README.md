@@ -79,8 +79,10 @@ GNB와 Sidebar를 재로드 없이 유지하면서 콘텐츠 영역만 교체하
     </div>
   </div>
 </div>
-<script th:src="@{/js/digitek.js}"></script>
 <script th:src="@{/js/turbo.js}"></script>
+<script th:src="@{/js/jquery.slim.min.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/digitek.js}"></script>
 </body>
 </html>
 ```
