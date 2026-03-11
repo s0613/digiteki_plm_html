@@ -694,6 +694,8 @@
     },
 
     _initEditor: function (editor) {
+      if (editor.dataset.initialized) return;
+      editor.dataset.initialized = "true";
       var contentEl = editor.querySelector(".text-editor-digitek-contents");
       if (!contentEl) return;
 
@@ -1428,7 +1430,8 @@
 
   var GanttResizer = {
     init: function () {
-      document.querySelectorAll(".digitek-gantt-resizer").forEach(function (resizer) {
+      document.querySelectorAll(".digitek-gantt-resizer:not([data-initialized])").forEach(function (resizer) {
+        resizer.setAttribute("data-initialized", "true");
         resizer.addEventListener("mousedown", function (e) {
           e.preventDefault();
           var container = resizer.closest(".digitek-gantt-container");
@@ -1478,7 +1481,8 @@
 
       var dragSrc = null;
 
-      tbody.querySelectorAll(".draggable-row").forEach(function (row) {
+      tbody.querySelectorAll(".draggable-row:not([data-initialized])").forEach(function (row) {
+        row.setAttribute("data-initialized", "true");
         row.addEventListener("dragstart", function (e) {
           dragSrc = this;
           e.dataTransfer.effectAllowed = "move";
