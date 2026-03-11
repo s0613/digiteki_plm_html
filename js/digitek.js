@@ -1927,11 +1927,27 @@
   function updateSidebarActive() {
     var path = window.location.pathname;
 
-    // 기존 active 클래스 전부 제거
+    // 기존 active 클래스 전부 제거 + 서브메뉴 상태 초기화
     document.querySelectorAll(
       ".sidebar-digitek-menu-item, .sidebar-digitek-submenu-item, .sidebar-digitek-sub-submenu-item"
     ).forEach(function (link) {
       link.classList.remove("sidebar-digitek-active", "sidebar-digitek-sub-active");
+      link.classList.remove("sidebar-digitek-parent-open");
+      if (link.hasAttribute("aria-expanded")) {
+        link.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // 열려 있는 서브메뉴/서브-서브메뉴 maxHeight 초기화
+    document.querySelectorAll(
+      ".sidebar-digitek-submenu, .sidebar-digitek-sub-submenu"
+    ).forEach(function (submenu) {
+      submenu.style.maxHeight = "0";
+    });
+
+    // chevron 닫기
+    document.querySelectorAll(".sidebar-digitek-chevron").forEach(function (chev) {
+      chev.classList.remove("sidebar-digitek-chevron-open");
     });
 
     // 현재 경로와 일치하는 링크 찾기 (href="#" 인 부모 메뉴는 매칭 안 됨)
