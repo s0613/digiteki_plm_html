@@ -8,6 +8,7 @@
 </head>
 <body>
   <th:block layout:fragment="content">
+    <turbo-frame id="main-content">
     <!-- 메인 페이지 콘텐츠: 6개 영역 (높이 조절 가능) -->
 <!-- [커스텀] 각 영역 height는 필요에 따라 수정하세요 -->
 <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:16px; padding:16px;">
@@ -33,6 +34,7 @@
     <!-- [커스텀] 영역 6 내용 -->
   </div>
 </div>
+    </turbo-frame>
   </th:block>
 </body>
 </html>
