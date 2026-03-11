@@ -4,6 +4,7 @@
 # AI-generated plans, docs, and notes
 docs/*
 !docs/css-class-reference.md
+!docs/component-usage-audit.md
 *.plan.md
 *.spec.md
 *.notes.md
