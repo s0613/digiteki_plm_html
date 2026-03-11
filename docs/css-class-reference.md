@@ -21,7 +21,7 @@
 11. [FormField / FormGrid](#11-formfield--formgrid)
 12. [Breadcrumb (브레드크럼)](#12-breadcrumb-브레드크럼)
 13. [FileUpload (파일 업로드)](#13-fileupload-파일-업로드)
-14. [Progress (원형 프로그레스)](#14-progress-원형-프로그레스)
+14. [Progress (프로그레스)](#14-progress-프로그레스)
 15. [ColorAsset (색상 선택)](#15-colorasset-색상-선택)
 16. [Table (테이블)](#16-table-테이블)
 17. [TextEditor (텍스트 에디터)](#17-texteditor-텍스트-에디터)
@@ -384,7 +384,9 @@
 
 ---
 
-## 14. Progress (원형 프로그레스)
+## 14. Progress (프로그레스)
+
+### 원형 프로그레스
 
 ```html
 <span class="progress-digitek-circular" style="--percent: 75;"></span>
@@ -395,6 +397,20 @@
 | `.progress-digitek-circular` | conic-gradient 원형 프로그레스 |
 
 커스터마이징: `--progress-size`, `--progress-color`, `--progress-bg` CSS 변수 오버라이드
+
+### 직선 프로그레스
+
+```html
+<div class="progress-digitek-linear" style="--percent: 65;"></div>
+```
+
+Thymeleaf: `<div class="progress-digitek-linear" th:style="'--percent:' + ${progress}"></div>`
+
+| 클래스 | 설명 |
+|--------|------|
+| `.progress-digitek-linear` | 직선 프로그레스바 |
+
+커스터마이징: `--progress-width` (기본 200px), `--progress-height` (기본 6px), `--progress-color`, `--progress-bg` CSS 변수 오버라이드
 
 ---
 
@@ -902,48 +918,6 @@ Bootstrap 4 미지원 유틸리티를 보완합니다. 네이밍: `.{속성}-dig
 | `.code-manage-list` | 좌측 목록 (35%) |
 | `.code-manage-detail` | 우측 상세 |
 | `.code-manage-section-title` | 섹션 제목 (파랑) |
-
-### ECR 검토 — `ecr-*`
-
-| 클래스 | 설명 |
-|--------|------|
-| `.ecr-review-layout` | 레이아웃 |
-| `.ecr-review-fieldset` | 필드셋 |
-| `.ecr-review-legend` | 범례 |
-| `.ecr-header-actions` | 헤더 액션 |
-| `.ecr-header-table` | 헤더 테이블 |
-| `.ecr-groups-container` | 부서 그룹 컨테이너 |
-| `.ecr-group-table` | 그룹 테이블 |
-| `.ecr-task-table` | 업무 테이블 |
-| `.ecr-task-link` | 업무 링크 |
-| `.ecr-add-task-btn` | 업무 추가 버튼 (원형) |
-| `.ecr-del-btn` | 삭제 버튼 (원형) |
-| `.ecr-date-input` | 날짜 입력 |
-
-### 문서 분류 관리 — `doc-classify-*`
-
-| 클래스 | 설명 |
-|--------|------|
-| `.doc-classify-layout` | 레이아웃 |
-| `.doc-classify-top-grid` | 상단 3열 그리드 |
-| `.doc-classify-panel` | 패널 카드 |
-| `.doc-classify-select` | 다중 선택 리스트 |
-| `.doc-classify-bottom-card` | 하단 카드 |
-
-### 문서 등록 — `doc-create-digitek-*`
-
-| 클래스 | 설명 |
-|--------|------|
-| `.doc-create-digitek` | 페이지 컨테이너 |
-| `.doc-create-digitek-header` | 헤더 |
-| `.doc-create-digitek-header-title` | 제목 (20px) |
-| `.doc-create-digitek-section` | 섹션 카드 |
-| `.doc-create-digitek-section-header` | 섹션 헤더 (회색 배경) |
-| `.doc-create-digitek-section-title` | 섹션 제목 (파랑) |
-| `.doc-create-digitek-section-body` | 섹션 본문 |
-| `.doc-create-digitek-form-table` | 폼 테이블 |
-| `.doc-create-digitek-form-label-cell` | 라벨 셀 (회색 배경) |
-| `.doc-create-digitek-form-value-cell` | 값 셀 |
 
 ### 결재 라인 (재사용) — `approval-line-digitek-*`
 
