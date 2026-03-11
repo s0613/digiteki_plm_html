@@ -9,12 +9,12 @@
 <body>
   <th:block layout:fragment="content">
       <!-- 코드 관리 콘텐츠 영역 -->
-<div class="code-manage-layout">
+<div style="display:flex; flex-direction:column; gap:16px; padding:16px; background:var(--digitek-bg-white); min-height:100%;">
 
   <!-- 상단: 페이지 헤더 -->
-  <div class="code-manage-header">
-    <h6 class="code-manage-header-title">공통코드 관리</h6>
-    <div class="code-manage-header-actions">
+  <div class="page-header-digitek">
+    <h6 class="content-section-title-digitek">공통코드 관리</h6>
+    <div class="d-flex gap-digitek-8">
       <!-- [커스텀] 수정/등록 버튼: th:onclick 또는 JS 바인딩 -->
       <button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-36">수정</button>
       <button type="button" class="btn btn-digitek btn-digitek-primary btn-digitek-36">등록</button>
@@ -22,22 +22,22 @@
   </div>
 
   <!-- 검색 바 -->
-  <div class="code-manage-search-bar">
-    <label for="codeSearchColumn">컬럼 선택:</label>
+  <div class="d-flex align-items-center gap-digitek-12">
+    <label for="codeSearchColumn" style="font-size:13px; font-weight:500; white-space:nowrap; margin:0;">컬럼 선택:</label>
     <!-- [커스텀] select 옵션: th:each로 동적 바인딩 -->
-    <select id="codeSearchColumn">
+    <select id="codeSearchColumn" style="height:32px; font-size:13px; border:1px solid var(--digitek-border); border-radius:4px; padding:0 8px;">
       <option value="codeValue">코드값</option>
       <option value="code">code</option>
     </select>
-    <label for="codeSearchInput">검색:</label>
-    <input type="text" id="codeSearchInput" placeholder="검색어 입력">
+    <label for="codeSearchInput" style="font-size:13px; font-weight:500; white-space:nowrap; margin:0;">검색:</label>
+    <input type="text" id="codeSearchInput" placeholder="검색어 입력" style="height:32px; font-size:13px; border:1px solid var(--digitek-border); border-radius:4px; padding:0 8px;">
   </div>
 
   <!-- 좌우 분할 영역 -->
-  <div class="code-manage-body">
+  <div style="display:flex; gap:16px; flex:1; min-height:0;">
     <!-- 좌: 코드 목록 -->
-    <div class="code-manage-list">
-      <h6 class="code-manage-section-title">코드 목록</h6>
+    <div class="content-panel-digitek" style="flex:0 0 35%; min-height:400px; border-radius:4px;">
+      <h6 class="content-section-title-digitek">코드 목록</h6>
       <!-- [커스텀] Grid 영역: 코드 목록 테이블 -->
       <table class="table table-bordered table-sm mb-0">
         <thead>
@@ -57,7 +57,7 @@
     </div>
 
     <!-- 우: 공통코드 상세 정보 -->
-    <div class="code-manage-detail">
+    <div class="content-panel-digitek" style="flex:1; min-height:400px; border-radius:4px;">
       <!-- [커스텀] Grid 영역: 상세 정보 -->
       <div class="digitek-info-grid">
         <div class="digitek-info-title">공통코드 상세 정보</div>
