@@ -25,7 +25,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <span class="content-section-title-digitek">대분류</span>
         <!-- [커스텀] 검색어 입력 시 목록 필터링 처리 -->
-        <input type="text" class="form-control form-control-sm input-digitek" style="width:130px" placeholder="대분류 검색">
+        <input type="text" class="form-control form-control-sm" style="width:130px" placeholder="대분류 검색">
       </div>
       <!-- [커스텀] 대분류 목록: select option 태그 (단일 선택) -->
       <!-- [커스텀] 선택 시 중분류 목록 동적 로드: onchange="loadMiddleCategory(this.value)" -->
@@ -44,7 +44,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <span class="content-section-title-digitek">중분류</span>
         <!-- [커스텀] 검색어 입력 시 목록 필터링 처리 -->
-        <input type="text" class="form-control form-control-sm input-digitek" style="width:130px" placeholder="중분류 검색">
+        <input type="text" class="form-control form-control-sm" style="width:130px" placeholder="중분류 검색">
       </div>
       <!-- [커스텀] 중분류 목록: select option 태그 (단일 선택) -->
       <!-- [커스텀] 선택 시 소분류 목록 동적 로드: onchange="loadSubCategory(this.value)" -->
@@ -58,7 +58,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <span class="content-section-title-digitek">소분류</span>
         <!-- [커스텀] 검색어 입력 시 목록 필터링 처리 -->
-        <input type="text" class="form-control form-control-sm input-digitek" style="width:130px" placeholder="소분류 검색">
+        <input type="text" class="form-control form-control-sm" style="width:130px" placeholder="소분류 검색">
       </div>
       <!-- [커스텀] 소분류 목록: select option 태그 (단일 선택) -->
       <!-- [커스텀] 선택 시 하단 문서 유형 그리드 필터링 처리 -->
@@ -72,7 +72,7 @@
 
   <!-- 하단: 문서 유형 -->
   <div class="content-panel-digitek" style="gap:0">
-    <div class="mb-digitek-12">
+    <div style="margin-bottom:12px">
       <span class="content-section-title-digitek">문서 유형</span>
     </div>
     <!-- [커스텀] Thymeleaf 반복 예시: <tr th:each="item : ${docTypeList}"> -->
