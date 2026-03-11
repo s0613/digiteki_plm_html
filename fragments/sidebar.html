@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Sidebar 프래그먼트 -->
+<div th:fragment="sidebar" class="sidebar-digitek-container">
+  <nav class="sidebar-digitek sidebar-digitek-expanded" aria-label="메인 메뉴">
+
+    <!-- 헤더 (로고 + 접기 버튼) -->
+    <div class="sidebar-digitek-header">
+      <div class="sidebar-digitek-logo sidebar-logo-full">
+        <img th:src="@{/images/icons/logo.png}" width="108" height="52" alt="HLKlemove 로고" aria-hidden="true">
+      </div>
+      <div class="sidebar-digitek-logo sidebar-logo-collapsed">
+        <img th:src="@{/images/icons/logo-collapsed.png}" width="54" height="26" alt="HL 로고" aria-hidden="true">
+      </div>
+      <button class="sidebar-collapse-handle sidebar-toggle-btn" aria-label="사이드바 접기/펼치기">
+        <i class="dicon dicon-chevron-left icon-digitek-20" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <!-- 메뉴 영역 -->
+    <div class="flex-grow-1 overflow-auto sidebar-digitek-menu-area">
+      <ul class="nav flex-column">
+
+        <!-- 결재 관리 -->
+        <li class="nav-item">
+          <a class="sidebar-digitek-menu-item"
+             th:href="@{/approve/manage}"
+             th:classappend="${currentMenu == 'main'} ? 'sidebar-digitek-active'">
+            <span class="sidebar-digitek-icon-label">
+              <i class="dicon dicon-file-blank icon-digitek-20"></i>
+              <span class="sidebar-digitek-menu-label">결재 관리</span>
+            </span>
+          </a>
+        </li>
+
+        <!-- 문서 관리 -->
+        <li class="nav-item">
+          <a class="sidebar-digitek-menu-item"
+             th:href="@{/doc/search}"
+             th:classappend="${currentMenu == 'searchlist'} ? 'sidebar-digitek-active'">
+            <span class="sidebar-digitek-icon-label">
+              <i class="dicon dicon-folder icon-digitek-20"></i>
+              <span class="sidebar-digitek-menu-label">문서 관리</span>
+            </span>
+          </a>
+        </li>
+
+        <!-- 부품 관리 -->
+        <li class="nav-item">
+          <a class="sidebar-digitek-menu-item"
+             th:href="@{/part/manage}"
+             th:classappend="${currentMenu == 'partManage'} ? 'sidebar-digitek-active'">
+            <span class="sidebar-digitek-icon-label">
+              <i class="dicon dicon-settings icon-digitek-20"></i>
+              <span class="sidebar-digitek-menu-label">부품 관리</span>
+            </span>
+          </a>
+        </li>
+
+        <!-- 도면 관리 -->
+        <li class="nav-item">
+          <a class="sidebar-digitek-menu-item"
+             th:href="@{/draw/manage}"
+             th:classappend="${currentMenu == 'drawManage'} ? 'sidebar-digitek-active'">
+            <span class="sidebar-digitek-icon-label">
+              <i class="dicon dicon-folder-edit icon-digitek-20"></i>
+              <span class="sidebar-digitek-menu-label">도면 관리</span>
+            </span>
+          </a>
+        </li>
+
+        <!-- PMS (서브메뉴 토글) -->
+        <li class="nav-item">
+          <a class="sidebar-digitek-menu-item"
+             href="#" aria-expanded="false"
+             th:classappend="${currentMenuGroup == 'pms'} ? 'sidebar-digitek-active sidebar-digitek-parent-open'">
+            <span class="sidebar-digitek-icon-label">
+              <i class="dicon dicon-layer icon-digitek-20"></i>
+              <span class="sidebar-digitek-menu-label">PMS</span>
+            </span>
+            <span class="sidebar-digitek-chevron"
+                  th:classappend="${currentMenuGroup == 'pms'} ? 'sidebar-digitek-chevron-open'">
+              <i class="dicon dicon-chevron-down icon-digitek-20"></i>
+            </span>
+          </a>
+          <ul class="nav flex-column sidebar-digitek-submenu" aria-label="PMS 하위 메뉴"
+              th:style="${currentMenuGroup == 'pms'} ? 'max-height: 144px;' : 'max-height: 0;'">
+            <li class="nav-item">
+              <a class="sidebar-digitek-submenu-item"
+                 th:href="@{/pms/project}"
+                 th:classappend="${currentMenu == 'pmsProjectSearch'} ? 'sidebar-digitek-active'">
+                <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+                <span class="sidebar-digitek-menu-label">프로젝트 검색</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="sidebar-digitek-submenu-item"
+                 th:href="@{/pms/project/new}"
+                 th:classappend="${currentMenu == 'pms'} ? 'sidebar-digitek-active'">
+                <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+                <span class="sidebar-digitek-menu-label">프로젝트 등록</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="sidebar-digitek-submenu-item"
+                 th:href="@{/pms/task}"
+                 th:classappend="${currentMenu == 'pmsTask'} ? 'sidebar-digitek-active'">
+                <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+                <span class="sidebar-digitek-menu-label">My Task</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="sidebar-digitek-submenu-item"
+                 th:href="@{/pms/issue}"
+                 th:classappend="${currentMenu == 'pmsIssue'} ? 'sidebar-digitek-active'">
+                <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+                <span class="sidebar-digitek-menu-label">이슈 검색</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- 설계 변경 -->
+        <li class="nav-item">
+          <a class="sidebar-digitek-menu-item"
+             th:href="@{/ecr/list}"
+             th:classappend="${currentMenu == 'searchsplit'} ? 'sidebar-digitek-active'">
+            <span class="sidebar-digitek-icon-label">
+              <i class="dicon dicon-reload icon-digitek-20"></i>
+              <span class="sidebar-digitek-menu-label">설계 변경</span>
+            </span>
+          </a>
+        </li>
+
+        <!-- 시험/시작/해석 (서브메뉴 토글) -->
+        <!-- currentMenuGroup: 'test'(시험 직속), 'start'(시작 3레벨) 모두 이 그룹을 열어야 함 -->
+        <li class="nav-item">
+          <a class="sidebar-digitek-menu-item"
+             href="#" aria-expanded="false"
+             th:classappend="${currentMenuGroup == 'test' or currentMenuGroup == 'start'} ? 'sidebar-digitek-active sidebar-digitek-parent-open'">
+            <span class="sidebar-digitek-icon-label">
+              <i class="dicon dicon-chart-bar icon-digitek-20"></i>
+              <span class="sidebar-digitek-menu-label">시험/시작/해석</span>
+            </span>
+            <span class="sidebar-digitek-chevron"
+                  th:classappend="${currentMenuGroup == 'test' or currentMenuGroup == 'start'} ? 'sidebar-digitek-chevron-open'">
+              <i class="dicon dicon-chevron-down icon-digitek-20"></i>
+            </span>
+          </a>
+          <ul class="nav flex-column sidebar-digitek-submenu" aria-label="시험/시작/해석 하위 메뉴"
+              th:style="${currentMenuGroup == 'test' or currentMenuGroup == 'start'} ? 'max-height: 216px;' : 'max-height: 0;'">
+            <!-- 시험 (리프) -->
+            <li class="nav-item">
+              <a class="sidebar-digitek-submenu-item"
+                 th:href="@{/test/list}"
+                 th:classappend="${currentMenu == 'testList'} ? 'sidebar-digitek-active'">
+                <span class="sidebar-digitek-icon-label">
+                  <i class="dicon dicon-flask icon-digitek-20"></i>
+                  <span class="sidebar-digitek-menu-label">시험</span>
+                </span>
+              </a>
+            </li>
+            <!-- 시작 (3레벨 토글) -->
+            <li class="nav-item">
+              <a class="sidebar-digitek-submenu-item"
+                 href="#" aria-expanded="false"
+                 th:classappend="${currentMenuGroup == 'start'} ? 'sidebar-digitek-active sidebar-digitek-parent-open'">
+                <span class="sidebar-digitek-icon-label">
+                  <i class="dicon dicon-start-arrow icon-digitek-20"></i>
+                  <span class="sidebar-digitek-menu-label">시작</span>
+                </span>
+                <span class="sidebar-digitek-chevron"
+                      th:classappend="${currentMenuGroup == 'start'} ? 'sidebar-digitek-chevron-open'">
+                  <i class="dicon dicon-chevron-down icon-digitek-16"></i>
+                </span>
+              </a>
+              <ul class="nav flex-column sidebar-digitek-sub-submenu" aria-label="시작 하위 메뉴"
+                  th:style="${currentMenuGroup == 'start'} ? 'max-height: 180px;' : 'max-height: 0;'">
+                <li class="nav-item">
+                  <a class="sidebar-digitek-sub-submenu-item"
+                     th:href="@{/start/search}"
+                     th:classappend="${currentMenu == 'startSearch'} ? 'sidebar-digitek-active'">
+                    <span class="sidebar-digitek-menu-label">시작 검색</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="sidebar-digitek-sub-submenu-item"
+                     th:href="@{/start/request/new}"
+                     th:classappend="${currentMenu == 'requestregister'} ? 'sidebar-digitek-active'">
+                    <span class="sidebar-digitek-menu-label">시작 의뢰 등록</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="sidebar-digitek-sub-submenu-item"
+                     th:href="@{/start/result/new}"
+                     th:classappend="${currentMenu == 'requestregister'} ? 'sidebar-digitek-active'">
+                    <span class="sidebar-digitek-menu-label">시작 결과 등록</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="sidebar-digitek-sub-submenu-item"
+                     th:href="@{/mpr/search}"
+                     th:classappend="${currentMenu == 'mprSearch'} ? 'sidebar-digitek-active'">
+                    <span class="sidebar-digitek-menu-label">MPR 검색</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="sidebar-digitek-sub-submenu-item"
+                     th:href="@{/mpr/new}"
+                     th:classappend="${currentMenu == 'mprNew'} ? 'sidebar-digitek-active'">
+                    <span class="sidebar-digitek-menu-label">MPR 등록</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <!-- 문서 등록 -->
+        <li class="nav-item">
+          <a class="sidebar-digitek-menu-item"
+             th:href="@{/doc/create}"
+             th:classappend="${currentMenu == 'doc-create'} ? 'sidebar-digitek-active'">
+            <span class="sidebar-digitek-icon-label">
+              <i class="dicon dicon-file-edit icon-digitek-20"></i>
+              <span class="sidebar-digitek-menu-label">문서 등록</span>
+            </span>
+          </a>
+        </li>
+
+        <!-- ECR 검토 -->
+        <li class="nav-item">
+          <a class="sidebar-digitek-menu-item"
+             th:href="@{/ecr/review}"
+             th:classappend="${currentMenu == 'ecr-review'} ? 'sidebar-digitek-active'">
+            <span class="sidebar-digitek-icon-label">
+              <i class="dicon dicon-reload icon-digitek-20"></i>
+              <span class="sidebar-digitek-menu-label">ECR 검토</span>
+            </span>
+          </a>
+        </li>
+
+        <!-- 관리 (서브메뉴 토글) -->
+        <li class="nav-item">
+          <a class="sidebar-digitek-menu-item"
+             href="#" aria-expanded="false"
+             th:classappend="${currentMenuGroup == 'admin'} ? 'sidebar-digitek-active sidebar-digitek-parent-open'">
+            <span class="sidebar-digitek-icon-label">
+              <i class="dicon dicon-settings icon-digitek-20"></i>
+              <span class="sidebar-digitek-menu-label">관리</span>
+            </span>
+            <span class="sidebar-digitek-chevron"
+                  th:classappend="${currentMenuGroup == 'admin'} ? 'sidebar-digitek-chevron-open'">
+              <i class="dicon dicon-chevron-down icon-digitek-20"></i>
+            </span>
+          </a>
+          <ul class="nav flex-column sidebar-digitek-submenu" aria-label="관리 하위 메뉴"
+              th:style="${currentMenuGroup == 'admin'} ? 'max-height: 108px;' : 'max-height: 0;'">
+            <li class="nav-item">
+              <a class="sidebar-digitek-submenu-item"
+                 th:href="@{/admin/group}"
+                 th:classappend="${currentMenu == 'group-manage'} ? 'sidebar-digitek-active'">
+                <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+                <span class="sidebar-digitek-menu-label">그룹 관리</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="sidebar-digitek-submenu-item"
+                 th:href="@{/admin/code}"
+                 th:classappend="${currentMenu == 'code-manage'} ? 'sidebar-digitek-active'">
+                <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+                <span class="sidebar-digitek-menu-label">코드 관리</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="sidebar-digitek-submenu-item"
+                 th:href="@{/admin/doc-classify}"
+                 th:classappend="${currentMenu == 'doc-classify'} ? 'sidebar-digitek-active'">
+                <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
+                <span class="sidebar-digitek-menu-label">문서 분류 관리</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- 대시보드 -->
+        <li class="nav-item">
+          <a class="sidebar-digitek-menu-item"
+             th:href="@{/dashboard}"
+             th:classappend="${currentMenu == 'dashboard'} ? 'sidebar-digitek-active'">
+            <span class="sidebar-digitek-icon-label">
+              <i class="dicon dicon-chart-pie icon-digitek-20"></i>
+              <span class="sidebar-digitek-menu-label">대시보드</span>
+            </span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+</div>
+</body>
+</html>
