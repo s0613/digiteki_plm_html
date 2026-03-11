@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>직선 진행률 바 — 컴포넌트 테스트</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/icons.css">
+  <link rel="stylesheet" href="css/digitek.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f4f5f7;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #111;
+    }
+
+    /* ── Header ── */
+    .page-header {
+      background: #1a1f36;
+      color: #fff;
+      padding: 28px 40px;
+    }
+    .page-header h1 { margin: 0 0 4px; font-size: 20px; font-weight: 700; }
+    .page-header p  { margin: 0; font-size: 13px; color: #a0a3b1; }
+    .page-header .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; color: #7e84a3; text-decoration: none; margin-bottom: 12px;
+    }
+    .page-header .back-link:hover { color: #fff; }
+
+    /* ── Layout ── */
+    .container { max-width: 860px; margin: 0 auto; padding: 32px 40px; }
+
+    /* ── Card ── */
+    .card {
+      background: #fff;
+      border: 1px solid #e5e5ec;
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+    }
+    .card-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2f66ba;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f0f0f5;
+    }
+
+    /* ── Row ── */
+    .demo-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f7f7fb;
+    }
+    .demo-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .demo-label {
+      font-size: 12px;
+      color: #767676;
+      width: 140px;
+      flex-shrink: 0;
+    }
+    .demo-pct {
+      font-size: 12px;
+      font-weight: 600;
+      color: #111;
+      width: 36px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ── Code block ── */
+    .code-block {
+      background: #f4f5f7;
+      border: 1px solid #e5e5ec;
+      border-radius: 6px;
+      padding: 14px 16px;
+      font-family: 'Consolas', 'Menlo', monospace;
+      font-size: 12px;
+      line-height: 1.7;
+      color: #333;
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+    .code-block .kw  { color: #2f66ba; }
+    .code-block .str { color: #b05a00; }
+    .code-block .cmt { color: #999; font-style: italic; }
+
+    /* ── Interactive demo ── */
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .slider-row label { font-size: 13px; color: #555; width: 80px; flex-shrink: 0; }
+    .slider-row input[type=range] { flex: 1; accent-color: #2f66ba; }
+    .slider-row .val { font-size: 13px; font-weight: 700; color: #2f66ba; width: 40px; text-align: right; }
+    #live-bar-wrap { margin-top: 12px; }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <a href="index.html" class="back-link">← 컴포넌트 목록으로</a>
+  <h1>직선 진행률 바 <code style="font-size:14px;background:rgba(255,255,255,0.1);padding:2px 8px;border-radius:4px;">.progress-digitek-linear</code></h1>
+  <p>CSS 변수(--percent, --progress-width, --progress-height, --progress-color)만으로 커스텀 가능한 직선 프로그레스 바</p>
+</div>
+
+<div class="container">
+
+  <!-- ① 색상 변형 -->
+  <div class="card">
+    <div class="card-title">① 색상 변형</div>
+
+    <div class="demo-row">
+      <span class="demo-label">success</span>
+      <div class="progress-digitek-linear" style="--percent: 75; --progress-width: 360px;" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+      <span class="demo-pct">75%</span>
+    </div>
+    <div class="demo-row">
+      <span class="demo-label">warning</span>
+      <div class="progress-digitek-linear" style="--percent: 50; --progress-width: 360px; --progress-color: #F09436; --progress-bg: rgba(240,148,54,0.16);" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+      <span class="demo-pct">50%</span>
+    </div>
+    <div class="demo-row">
+      <span class="demo-label">danger</span>
+      <div class="progress-digitek-linear" style="--percent: 25; --progress-width: 360px; --progress-color: #DC0000; --progress-bg: rgba(220,0,0,0.16);" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      <span class="demo-pct">25%</span>
+    </div>
+    <div class="demo-row">
+      <span class="demo-label">info</span>
+      <div class="progress-digitek-linear" style="--percent: 60; --progress-width: 360px; --progress-color: #2F66BA; --progress-bg: rgba(47,102,186,0.16);" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+      <span class="demo-pct">60%</span>
+    </div>
+  </div>
+
+  <!-- ② 길이 커스텀 -->
+  <div class="card">
+    <div class="card-title">② 길이 커스텀 (--progress-width)</div>
+
+    <div class="demo-row">
+      <span class="demo-label">80px</span>
+      <div class="progress-digitek-linear" style="--percent: 90; --progress-width: 80px;" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+      <span class="demo-pct">90%</span>
+    </div>
+    <div class="demo-row">
+      <span class="demo-label">160px</span>
+      <div class="progress-digitek-linear" style="--percent: 70; --progress-width: 160px;" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+      <span class="demo-pct">70%</span>
+    </div>
+    <div class="demo-row">
+      <span class="demo-label">260px (기본)</span>
+      <div class="progress-digitek-linear" style="--percent: 55; --progress-width: 260px;" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+      <span class="demo-pct">55%</span>
+    </div>
+    <div class="demo-row">
+      <span class="demo-label">400px</span>
+      <div class="progress-digitek-linear" style="--percent: 40; --progress-width: 400px;" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+      <span class="demo-pct">40%</span>
+    </div>
+    <div class="demo-row">
+      <span class="demo-label">100% (full)</span>
+      <div class="progress-digitek-linear" style="--percent: 65; --progress-width: 100%;" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+      <span class="demo-pct">65%</span>
+    </div>
+  </div>
+
+  <!-- ③ 높이 커스텀 -->
+  <div class="card">
+    <div class="card-title">③ 높이 커스텀 (--progress-height)</div>
+
+    <div class="demo-row">
+      <span class="demo-label">2px (ultra thin)</span>
+      <div class="progress-digitek-linear" style="--percent: 80; --progress-width: 360px; --progress-height: 2px;" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+      <span class="demo-pct">80%</span>
+    </div>
+    <div class="demo-row">
+      <span class="demo-label">4px (thin)</span>
+      <div class="progress-digitek-linear" style="--percent: 65; --progress-width: 360px; --progress-height: 4px;" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+      <span class="demo-pct">65%</span>
+    </div>
+    <div class="demo-row">
+      <span class="demo-label">6px (기본)</span>
+      <div class="progress-digitek-linear" style="--percent: 50; --progress-width: 360px;" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+      <span class="demo-pct">50%</span>
+    </div>
+    <div class="demo-row">
+      <span class="demo-label">10px (thick)</span>
+      <div class="progress-digitek-linear" style="--percent: 35; --progress-width: 360px; --progress-height: 10px;" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+      <span class="demo-pct">35%</span>
+    </div>
+    <div class="demo-row">
+      <span class="demo-label">16px (bold)</span>
+      <div class="progress-digitek-linear" style="--percent: 20; --progress-width: 360px; --progress-height: 16px;" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+      <span class="demo-pct">20%</span>
+    </div>
+  </div>
+
+  <!-- ④ 인터랙티브 미리보기 -->
+  <div class="card">
+    <div class="card-title">④ 인터랙티브 미리보기</div>
+
+    <div class="slider-row">
+      <label>퍼센트</label>
+      <input type="range" id="ctrl-percent" min="0" max="100" value="60">
+      <span class="val" id="val-percent">60%</span>
+    </div>
+    <div class="slider-row">
+      <label>길이 (px)</label>
+      <input type="range" id="ctrl-width" min="60" max="560" value="300">
+      <span class="val" id="val-width">300px</span>
+    </div>
+    <div class="slider-row">
+      <label>높이 (px)</label>
+      <input type="range" id="ctrl-height" min="2" max="20" value="6">
+      <span class="val" id="val-height">6px</span>
+    </div>
+
+    <div id="live-bar-wrap">
+      <div id="live-bar" class="progress-digitek-linear" role="progressbar"
+           style="--percent: 60; --progress-width: 300px; --progress-height: 6px; --progress-color: #2F66BA; --progress-bg: rgba(47,102,186,0.16);"
+           aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ 사용 가이드 -->
+  <div class="card">
+    <div class="card-title">⑤ 사용 가이드</div>
+
+    <div class="code-block">
+<span class="cmt">&lt;!-- 기본 --&gt;</span>
+&lt;<span class="kw">div</span> class=<span class="str">"progress-digitek-linear"</span>
+     style=<span class="str">"--percent: 65;"</span>&gt;&lt;/<span class="kw">div</span>&gt;
+
+<span class="cmt">&lt;!-- 길이 + 색상 + 높이 커스텀 --&gt;</span>
+&lt;<span class="kw">div</span> class=<span class="str">"progress-digitek-linear"</span>
+     style=<span class="str">"--percent: 50;
+            --progress-width: 300px;
+            --progress-height: 8px;
+            --progress-color: #2F66BA;
+            --progress-bg: rgba(47,102,186,0.16);"</span>&gt;&lt;/<span class="kw">div</span>&gt;
+
+<span class="cmt">&lt;!-- Thymeleaf 동적 바인딩 --&gt;</span>
+&lt;<span class="kw">div</span> class=<span class="str">"progress-digitek-linear"</span>
+     th:style=<span class="str">"'--percent:' + ${progress}"</span>&gt;&lt;/<span class="kw">div</span>&gt;
+    </div>
+
+    <table style="width:100%;border-collapse:collapse;margin-top:20px;font-size:12px;">
+      <thead>
+        <tr style="background:#f4f5f7;">
+          <th style="padding:8px 12px;text-align:left;border:1px solid #e5e5ec;color:#555;font-weight:600;">CSS 변수</th>
+          <th style="padding:8px 12px;text-align:left;border:1px solid #e5e5ec;color:#555;font-weight:600;">기본값</th>
+          <th style="padding:8px 12px;text-align:left;border:1px solid #e5e5ec;color:#555;font-weight:600;">설명</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:8px 12px;border:1px solid #e5e5ec;font-family:monospace;">--percent</td>
+          <td style="padding:8px 12px;border:1px solid #e5e5ec;font-family:monospace;color:#b05a00;">0</td>
+          <td style="padding:8px 12px;border:1px solid #e5e5ec;color:#555;">진행률 (0~100)</td>
+        </tr>
+        <tr style="background:#fafafa;">
+          <td style="padding:8px 12px;border:1px solid #e5e5ec;font-family:monospace;">--progress-width</td>
+          <td style="padding:8px 12px;border:1px solid #e5e5ec;font-family:monospace;color:#b05a00;">200px</td>
+          <td style="padding:8px 12px;border:1px solid #e5e5ec;color:#555;">바 전체 길이 (px, % 모두 가능)</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 12px;border:1px solid #e5e5ec;font-family:monospace;">--progress-height</td>
+          <td style="padding:8px 12px;border:1px solid #e5e5ec;font-family:monospace;color:#b05a00;">6px</td>
+          <td style="padding:8px 12px;border:1px solid #e5e5ec;color:#555;">바 높이</td>
+        </tr>
+        <tr style="background:#fafafa;">
+          <td style="padding:8px 12px;border:1px solid #e5e5ec;font-family:monospace;">--progress-color</td>
+          <td style="padding:8px 12px;border:1px solid #e5e5ec;font-family:monospace;color:#b05a00;">#29C23B</td>
+          <td style="padding:8px 12px;border:1px solid #e5e5ec;color:#555;">채워진 색상 (success 녹색)</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 12px;border:1px solid #e5e5ec;font-family:monospace;">--progress-bg</td>
+          <td style="padding:8px 12px;border:1px solid #e5e5ec;font-family:monospace;color:#b05a00;">rgba(41,194,59,0.16)</td>
+          <td style="padding:8px 12px;border:1px solid #e5e5ec;color:#555;">빈 배경 색상</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<script>
+  const bar     = document.getElementById('live-bar');
+  const pctCtrl = document.getElementById('ctrl-percent');
+  const wCtrl   = document.getElementById('ctrl-width');
+  const hCtrl   = document.getElementById('ctrl-height');
+
+  function updateBar() {
+    const pct = pctCtrl.value;
+    const w   = wCtrl.value;
+    const h   = hCtrl.value;
+    bar.style.setProperty('--percent', pct);
+    bar.style.setProperty('--progress-width', w + 'px');
+    bar.style.setProperty('--progress-height', h + 'px');
+    bar.setAttribute('aria-valuenow', pct);
+    document.getElementById('val-percent').textContent = pct + '%';
+    document.getElementById('val-width').textContent   = w + 'px';
+    document.getElementById('val-height').textContent  = h + 'px';
+  }
+
+  pctCtrl.addEventListener('input', updateBar);
+  wCtrl.addEventListener('input', updateBar);
+  hCtrl.addEventListener('input', updateBar);
+</script>
+
+</body>
+</html>

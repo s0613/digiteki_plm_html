@@ -1,0 +1,9 @@
+<!-- 직선 진행률 바
+     [커스텀] 퍼센트 변경: --percent 값을 변경 (0~100)
+     [커스텀] 길이 변경: --progress-width 변수 오버라이드 (기본 200px)
+     [커스텀] 색상 변경: --progress-color, --progress-bg 변수 오버라이드
+     [커스텀] 높이 변경: --progress-height 변수 오버라이드 (기본 6px)
+     [커스텀] Thymeleaf 동적 바인딩:
+       <div class="progress-digitek-linear" th:style="'--percent:' + ${progress}"></div>
+-->
+<div class="progress-digitek-linear" role="progressbar" aria-label="진행률" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--percent: 65;"></div>

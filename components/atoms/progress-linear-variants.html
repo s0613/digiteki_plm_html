@@ -1,0 +1,52 @@
+<!-- 직선 진행률 바 변형: success / warning / danger / info / 길이 커스텀 -->
+<div style="display: flex; flex-direction: column; gap: 16px; padding: 4px 0;">
+
+  <!-- success (녹색) — 기본 200px -->
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div class="progress-digitek-linear" role="progressbar" aria-label="진행률" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="--percent: 75;"></div>
+    <span style="font-size: 12px; color: #555;">success 75%</span>
+  </div>
+
+  <!-- warning (주황색) — 기본 200px -->
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div class="progress-digitek-linear" role="progressbar" aria-label="진행률" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="--percent: 50; --progress-color: #F09436; --progress-bg: rgba(240, 148, 54, 0.16);"></div>
+    <span style="font-size: 12px; color: #555;">warning 50%</span>
+  </div>
+
+  <!-- danger (빨간색) — 기본 200px -->
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div class="progress-digitek-linear" role="progressbar" aria-label="진행률" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="--percent: 25; --progress-color: #DC0000; --progress-bg: rgba(220, 0, 0, 0.16);"></div>
+    <span style="font-size: 12px; color: #555;">danger 25%</span>
+  </div>
+
+  <!-- info (파란색) — 기본 200px -->
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div class="progress-digitek-linear" role="progressbar" aria-label="진행률" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="--percent: 60; --progress-color: #2F66BA; --progress-bg: rgba(47, 102, 186, 0.16);"></div>
+    <span style="font-size: 12px; color: #555;">info 60%</span>
+  </div>
+
+  <!-- 길이 커스텀 — 100px -->
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div class="progress-digitek-linear" role="progressbar" aria-label="진행률" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="--percent: 80; --progress-width: 100px;"></div>
+    <span style="font-size: 12px; color: #555;">100px 80%</span>
+  </div>
+
+  <!-- 길이 커스텀 — 400px -->
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div class="progress-digitek-linear" role="progressbar" aria-label="진행률" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="--percent: 40; --progress-width: 400px;"></div>
+    <span style="font-size: 12px; color: #555;">400px 40%</span>
+  </div>
+
+  <!-- 높이 커스텀 — thin (3px) -->
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div class="progress-digitek-linear" role="progressbar" aria-label="진행률" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="--percent: 70; --progress-height: 3px;"></div>
+    <span style="font-size: 12px; color: #555;">thin 3px 70%</span>
+  </div>
+
+  <!-- 높이 커스텀 — thick (10px) -->
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div class="progress-digitek-linear" role="progressbar" aria-label="진행률" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="--percent: 55; --progress-height: 10px;"></div>
+    <span style="font-size: 12px; color: #555;">thick 10px 55%</span>
+  </div>
+
+</div>
