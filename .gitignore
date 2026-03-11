@@ -2,7 +2,8 @@
 .worktrees/
 
 # AI-generated plans, docs, and notes
-docs/
+docs/*
+!docs/css-class-reference.md
 *.plan.md
 *.spec.md
 *.notes.md
