@@ -1735,6 +1735,40 @@ td .date-select-digitek {
 }
 
 /* ========================================================================== */
+/*  Progress (진행률 - 직선)                                                     */
+/* ========================================================================== */
+
+/* ── 직선 프로그레스바 ──
+   사용법: <div class="progress-digitek-linear" style="--percent: 65;"></div>
+   Thymeleaf: <div class="progress-digitek-linear" th:style="'--percent:' + ${progress}"></div>
+   길이 변경: --progress-width CSS 변수 오버라이드 (기본 200px)
+   색상 변경: --progress-color, --progress-bg CSS 변수 오버라이드
+   높이 변경: --progress-height CSS 변수 오버라이드 (기본 6px) */
+.progress-digitek-linear {
+  --progress-width: 200px;
+  --progress-height: 6px;
+  --progress-color: #29C23B;
+  --progress-bg: rgba(41, 194, 59, 0.16);
+  --percent: 0;
+  display: inline-block;
+  width: var(--progress-width);
+  height: var(--progress-height);
+  background-color: var(--progress-bg);
+  border-radius: calc(var(--progress-height) / 2);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.progress-digitek-linear::after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: calc(var(--percent) * 1%);
+  background-color: var(--progress-color);
+  border-radius: calc(var(--progress-height) / 2);
+  transition: width 0.3s ease;
+}
+
+/* ========================================================================== */
 /*  ColorAsset (색상 선택)                                                       */
 /* ========================================================================== */
 
