@@ -2041,8 +2041,12 @@
   });
 
   // Turbo Drive 전체 페이지 전환 시 폴백 초기화
+  // initAll() 대신 initContent() + updateSidebarActive()를 사용:
+  // initAll()은 delegateEvent 기반 컴포넌트(Accordion, Select, Sidebar 등)를 재등록하므로
+  // Drive 내비게이션마다 document 이벤트 리스너가 누적됨.
   document.addEventListener("turbo:load", function () {
-    initAll();
+    initContent();
+    updateSidebarActive();
   });
 
   // DOMContentLoaded 자동 초기화 (전체)
