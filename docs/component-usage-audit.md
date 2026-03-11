@@ -12,24 +12,23 @@
 
 ## 1. Full-page 필수 컴포넌트
 
-> `router-content`: 전체 full-page에 미구현 — AJAX 라우터 통합 플랜에 포함되어 있으나 아직 미완료
+> 컨텐츠 컨테이너 ID: `id="page-content"` 사용 중 (전체 10개 파일)
 
-| 파일 | layout-digitek | gnb-digitek | sidebar-digitek | breadcrumb-digitek | router-content |
+| 파일 | layout-digitek | gnb-digitek | sidebar-digitek | breadcrumb-digitek | page-content |
 |---|:---:|:---:|:---:|:---:|:---:|
-| main-full-page.html | ✅ | ✅ | ✅ | ➖ | ❌ |
-| code-manage-full-page.html | ✅ | ✅ | ✅ | ➖ | ❌ |
-| doc-classify-full-page.html | ✅ | ✅ | ✅ | ➖ | ❌ |
-| group-manage-full-page.html | ✅ | ✅ | ✅ | ➖ | ❌ |
-| pms-full-page.html | ✅ | ✅ | ✅ | ✅ | ❌ |
-| doc-create-full-page.html | ✅ | ✅ | ✅ | ➖ | ❌ |
-| requestregister-full-page.html | ✅ | ✅ | ✅ | ✅ | ❌ |
-| ecr-review-full-page.html | ✅ | ✅ | ✅ | ➖ | ❌ |
-| searchlist-full-page.html | ✅ | ✅ | ✅ | ✅ | ❌ |
-| searchsplit-full-page.html | ✅ | ✅ | ✅ | ✅ | ❌ |
+| main-full-page.html | ✅ | ✅ | ✅ | ➖ | ✅ |
+| code-manage-full-page.html | ✅ | ✅ | ✅ | ➖ | ✅ |
+| doc-classify-full-page.html | ✅ | ✅ | ✅ | ➖ | ✅ |
+| group-manage-full-page.html | ✅ | ✅ | ✅ | ➖ | ✅ |
+| pms-full-page.html | ✅ | ✅ | ✅ | ✅ | ✅ |
+| doc-create-full-page.html | ✅ | ✅ | ✅ | ➖ | ✅ |
+| requestregister-full-page.html | ✅ | ✅ | ✅ | ✅ | ✅ |
+| ecr-review-full-page.html | ✅ | ✅ | ✅ | ➖ | ✅ |
+| searchlist-full-page.html | ✅ | ✅ | ✅ | ✅ | ✅ |
+| searchsplit-full-page.html | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 **비고:**
 - `breadcrumb-digitek`: 대시보드·관리 페이지(main, code-manage, doc-classify, group-manage, doc-create, ecr-review)는 없어도 됨(➖), 상세·검색 페이지(pms, requestregister, searchlist, searchsplit)는 있어야 함(✅)
-- `router-content`: 전체 10개 파일 모두 미구현(❌) — 추후 일괄 작업 필요
 
 ---
 
@@ -104,9 +103,7 @@
 
 ### 즉시 수정 필요
 
-| # | 위치 | 내용 |
-|---|---|---|
-| 1 | 전체 full-page (10개) | `router-content` 미구현 — AJAX 라우터 통합 작업 일괄 필요 |
+없음 — 필수 컴포넌트는 모든 full-page에 정상 적용됨
 
 ### 검토 필요
 
