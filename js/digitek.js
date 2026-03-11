@@ -1762,6 +1762,248 @@
   };
 
   /* ================================================================== */
+  /*  DateSelect (날짜 선택)                                              */
+  /* ================================================================== */
+
+  var DateSelect = {
+    _openCalendar: null,
+
+    init: function () {
+      // 트리거 클릭 → 캘린더 열기/닫기
+      delegateEvent("click", ".date-select-digitek-trigger", function (e, trigger) {
+        if (trigger.classList.contains("date-select-digitek-trigger-disabled")) return;
+
+        var container = trigger.closest(".date-select-digitek");
+        if (!container) return;
+
+        var existingCalendar = container.querySelector(".date-select-digitek-calendar");
+        if (existingCalendar) {
+          DateSelect._close(container);
+        } else {
+          DateSelect._closeAll();
+          DateSelect._open(container, trigger);
+        }
+      });
+
+      // 이전/다음 달 버튼
+      delegateEvent("click", ".date-select-digitek-nav-btn", function (e, btn) {
+        e.stopPropagation();
+        var calendar = btn.closest(".date-select-digitek-calendar");
+        if (!calendar) return;
+        var container = calendar.closest(".date-select-digitek");
+        if (!container) return;
+
+        var direction = btn.getAttribute("aria-label") === "이전 달" ? -1 : 1;
+        var year = parseInt(calendar.dataset.year);
+        var month = parseInt(calendar.dataset.month);
+
+        month += direction;
+        if (month < 0) { month = 11; year--; }
+        if (month > 11) { month = 0; year++; }
+
+        calendar.dataset.year = year;
+        calendar.dataset.month = month;
+        DateSelect._renderGrid(calendar, year, month, container);
+      });
+
+      // 날짜 선택
+      delegateEvent("click", ".date-select-digitek-day", function (e, day) {
+        if (day.classList.contains("date-select-digitek-day-disabled")) return;
+        e.stopPropagation();
+
+        var calendar = day.closest(".date-select-digitek-calendar");
+        if (!calendar) return;
+        var container = calendar.closest(".date-select-digitek");
+        if (!container) return;
+
+        var year = parseInt(calendar.dataset.year);
+        var month = parseInt(calendar.dataset.month);
+        var allDays = calendar.querySelectorAll(".date-select-digitek-day");
+        var dayIndex = Array.from(allDays).indexOf(day);
+        var dayNum = parseInt(day.textContent);
+
+        if (day.classList.contains("date-select-digitek-day-other-month")) {
+          // 첫 번째 현재 달 날짜 인덱스 파악
+          var firstCurrentIdx = -1;
+          allDays.forEach(function (d, i) {
+            if (firstCurrentIdx === -1 && !d.classList.contains("date-select-digitek-day-other-month")) {
+              firstCurrentIdx = i;
+            }
+          });
+          if (dayIndex < firstCurrentIdx) {
+            month--; if (month < 0) { month = 11; year--; }
+          } else {
+            month++; if (month > 11) { month = 0; year++; }
+          }
+        }
+
+        var mm = month + 1;
+        var dateStr = year + "-" + (mm < 10 ? "0" + mm : mm) + "-" + (dayNum < 10 ? "0" + dayNum : dayNum);
+
+        // 트리거 텍스트 업데이트
+        var trigger = container.querySelector(".date-select-digitek-trigger");
+        var textEl = trigger && trigger.querySelector(".date-select-digitek-text, .date-select-digitek-placeholder");
+        if (textEl) {
+          textEl.textContent = dateStr;
+          textEl.classList.remove("date-select-digitek-placeholder");
+          if (!textEl.classList.contains("date-select-digitek-text")) {
+            textEl.classList.add("date-select-digitek-text");
+          }
+        }
+
+        // 숨겨진 입력 업데이트
+        var hiddenInput = container.querySelector("input[type=hidden]");
+        if (hiddenInput) hiddenInput.value = dateStr;
+
+        DateSelect._close(container);
+        emit(container, "digitek:date-select-change", { value: dateStr });
+      });
+
+      // 외부 클릭 → 닫기
+      document.addEventListener("mousedown", function (e) {
+        if (DateSelect._openCalendar) {
+          var container = DateSelect._openCalendar.closest(".date-select-digitek");
+          if (container && !container.contains(e.target)) {
+            DateSelect._closeAll();
+          }
+        }
+      });
+    },
+
+    _open: function (container, trigger) {
+      var hiddenInput = container.querySelector("input[type=hidden]");
+      var value = hiddenInput ? hiddenInput.value : "";
+      var today = new Date();
+      var year, month;
+
+      if (value && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+        var parts = value.split("-");
+        year = parseInt(parts[0]);
+        month = parseInt(parts[1]) - 1;
+      } else {
+        year = today.getFullYear();
+        month = today.getMonth();
+      }
+
+      var calendar = document.createElement("div");
+      calendar.className = "date-select-digitek-calendar";
+      calendar.dataset.year = year;
+      calendar.dataset.month = month;
+
+      // 헤더
+      var header = createEl("div", "date-select-digitek-calendar-header");
+      var prevBtn = createEl("button", "date-select-digitek-nav-btn", { type: "button" });
+      prevBtn.setAttribute("aria-label", "이전 달");
+      prevBtn.innerHTML = '<i class="dicon dicon-chevron-left icon-digitek-20" style="color:#111" aria-hidden="true"></i>';
+      var titleEl = createEl("span", "date-select-digitek-calendar-title");
+      var nextBtn = createEl("button", "date-select-digitek-nav-btn", { type: "button" });
+      nextBtn.setAttribute("aria-label", "다음 달");
+      nextBtn.innerHTML = '<i class="dicon dicon-chevron-right icon-digitek-20" style="color:#111" aria-hidden="true"></i>';
+      header.appendChild(prevBtn);
+      header.appendChild(titleEl);
+      header.appendChild(nextBtn);
+      calendar.appendChild(header);
+
+      // 그리드
+      var grid = createEl("div", "date-select-digitek-grid");
+      var weekHeader = createEl("div", "date-select-digitek-week-header");
+      ["일", "월", "화", "수", "목", "금", "토"].forEach(function (label, i) {
+        var cls = "date-select-digitek-day-header" + (i === 0 || i === 6 ? " date-select-digitek-day-weekend" : "");
+        weekHeader.appendChild(createEl("div", cls, null, label));
+      });
+      var monthWeeks = createEl("div", "date-select-digitek-month-weeks");
+      grid.appendChild(weekHeader);
+      grid.appendChild(monthWeeks);
+      calendar.appendChild(grid);
+
+      container.appendChild(calendar);
+      DateSelect._renderGrid(calendar, year, month, container);
+
+      trigger.classList.add("date-select-digitek-trigger-focused");
+      DateSelect._openCalendar = calendar;
+    },
+
+    _renderGrid: function (calendar, year, month, container) {
+      var titleEl = calendar.querySelector(".date-select-digitek-calendar-title");
+      if (titleEl) titleEl.textContent = year + ". " + (month + 1);
+
+      var hiddenInput = container.querySelector("input[type=hidden]");
+      var selectedValue = hiddenInput ? hiddenInput.value : "";
+      var selYear = null, selMonth = null, selDay = null;
+      if (selectedValue && /^\d{4}-\d{2}-\d{2}$/.test(selectedValue)) {
+        var parts = selectedValue.split("-");
+        selYear = parseInt(parts[0]);
+        selMonth = parseInt(parts[1]) - 1;
+        selDay = parseInt(parts[2]);
+      }
+
+      var monthWeeks = calendar.querySelector(".date-select-digitek-month-weeks");
+      if (!monthWeeks) return;
+      monthWeeks.innerHTML = "";
+
+      var firstDay = new Date(year, month, 1).getDay();
+      var daysInMonth = new Date(year, month + 1, 0).getDate();
+      var daysInPrev = new Date(year, month, 0).getDate();
+
+      var days = [];
+      for (var i = firstDay - 1; i >= 0; i--) {
+        days.push({ day: daysInPrev - i, prev: true });
+      }
+      for (var d = 1; d <= daysInMonth; d++) {
+        days.push({ day: d });
+      }
+      var remaining = (7 - (days.length % 7)) % 7;
+      for (var n = 1; n <= remaining; n++) {
+        days.push({ day: n, next: true });
+      }
+
+      for (var w = 0; w < days.length; w += 7) {
+        var row = createEl("div", "date-select-digitek-week-row");
+        for (var col = 0; col < 7 && (w + col) < days.length; col++) {
+          var info = days[w + col];
+          var cls = "date-select-digitek-day";
+          if (col === 0 || col === 6) cls += " date-select-digitek-day-weekend";
+          if (info.prev || info.next) cls += " date-select-digitek-day-other-month";
+
+          var dy = year, dm = month;
+          if (info.prev) { dm--; if (dm < 0) { dm = 11; dy--; } }
+          if (info.next) { dm++; if (dm > 11) { dm = 0; dy++; } }
+
+          if (selYear === dy && selMonth === dm && selDay === info.day) {
+            cls += " date-select-digitek-day-selected";
+          }
+
+          var btn = createEl("button", cls, { type: "button" }, String(info.day));
+          if (selYear === dy && selMonth === dm && selDay === info.day) {
+            btn.setAttribute("aria-selected", "true");
+          }
+          row.appendChild(btn);
+        }
+        monthWeeks.appendChild(row);
+      }
+    },
+
+    _close: function (container) {
+      var calendar = container.querySelector(".date-select-digitek-calendar");
+      if (calendar) calendar.remove();
+      var trigger = container.querySelector(".date-select-digitek-trigger");
+      if (trigger) trigger.classList.remove("date-select-digitek-trigger-focused");
+      if (DateSelect._openCalendar && !document.body.contains(DateSelect._openCalendar)) {
+        DateSelect._openCalendar = null;
+      }
+    },
+
+    _closeAll: function () {
+      document.querySelectorAll(".date-select-digitek-calendar").forEach(function (cal) {
+        var container = cal.closest(".date-select-digitek");
+        if (container) DateSelect._close(container);
+      });
+      DateSelect._openCalendar = null;
+    },
+  };
+
+
+  /* ================================================================== */
   /*  초기화 & 공개 API                                                   */
   /* ================================================================== */
 
@@ -1773,6 +2015,7 @@
     FileUpload.init();
     GNBSearch.init();
     Select.init();
+    DateSelect.init();
     TextEditor.init();
     Locale.init();
     GanttResizer.init();
@@ -1808,6 +2051,7 @@
     FileUpload: FileUpload,
     GNBSearch: GNBSearch,
     Select: Select,
+    DateSelect: DateSelect,
     TextEditor: TextEditor,
     Locale: Locale,
     GanttResizer: GanttResizer,

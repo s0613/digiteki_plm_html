@@ -5,6 +5,7 @@
   <title>Digiteki PLM - HTML 템플릿</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/digitek.css">
+  <link rel="stylesheet" href="css/icons.css">
   <style>
     * { box-sizing: border-box; }
     body { margin: 0; background: #f4f5f7; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
@@ -460,7 +461,7 @@
     <div class="comp-group">
       <h4>DateSelect (날짜 선택)</h4>
       <div class="comp-list">
-        
+
         <div class="comp-item">
           <span class="comp-label">기본 날짜 선택</span>
           <span class="comp-file">components/forms/dateselect-default.html</span>
@@ -480,6 +481,32 @@
           <span class="comp-label">캘린더 열림 상태</span>
           <span class="comp-file">components/forms/dateselect-open.html</span>
           <button class="btn-copy" onclick="copySnippet('components/forms/dateselect-open.html')">복사</button>
+        </div>
+      </div>
+      <!-- 인터랙티브 미리보기 -->
+      <div style="margin-top:12px; padding:16px 20px; background:#f8f9fc; border:1px solid #e5e5ec; border-radius:6px;">
+        <div style="font-size:12px; font-weight:600; color:#2f66ba; margin-bottom:12px;">▶ 인터랙티브 미리보기 — 버튼을 클릭하면 캘린더가 열립니다</div>
+        <div style="display:flex; gap:24px; align-items:flex-start; flex-wrap:wrap;">
+          <div>
+            <div style="font-size:11px; color:#999; margin-bottom:6px;">기본 (날짜 미선택)</div>
+            <div class="date-select-digitek" style="width:200px;">
+              <button type="button" class="date-select-digitek-trigger" aria-label="날짜 선택" aria-haspopup="dialog">
+                <span class="date-select-digitek-text date-select-digitek-placeholder">0000-00-00</span>
+                <i class="dicon dicon-calendar icon-digitek-20 date-select-digitek-icon" style="color:#767676;" aria-hidden="true"></i>
+              </button>
+              <input type="hidden" name="previewDate1" value="">
+            </div>
+          </div>
+          <div>
+            <div style="font-size:11px; color:#999; margin-bottom:6px;">날짜 선택됨</div>
+            <div class="date-select-digitek" style="width:200px;">
+              <button type="button" class="date-select-digitek-trigger" aria-label="날짜 선택" aria-haspopup="dialog">
+                <span class="date-select-digitek-text">2026-03-11</span>
+                <i class="dicon dicon-calendar icon-digitek-20 date-select-digitek-icon" style="color:#767676;" aria-hidden="true"></i>
+              </button>
+              <input type="hidden" name="previewDate2" value="2026-03-11">
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -932,6 +959,7 @@
 
 <div class="toast" id="toast"></div>
 
+<script src="js/digitek.js"></script>
 <script>
 function toggleSnippets() {
   const btn = document.getElementById('snippetToggle');

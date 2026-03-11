@@ -262,9 +262,6 @@
           <div class="digitek-results-header">
             <!-- [커스텀] th:text="'검색 결과 (' + ${searchResult.totalCount} + ')'" 으로 총 결과 수 동적 바인딩 -->
             <span class="digitek-results-title">검색 결과 <span class="digitek-split-results-count">(1830)</span></span>
-            <button type="button" class="digitek-split-results-toggle" aria-expanded="true" aria-controls="searchsplit-results-body searchsplit-results-pagination" aria-label="검색 결과 영역 접기/펼치기" data-toggle="searchsplit-results">
-              <i class="dicon dicon-chevron-left icon-digitek-24 text-digitek-secondary" aria-hidden="true"></i>
-            </button>
             <div class="digitek-results-actions">
               <!-- [Thymeleaf] th:href="@{/search(view='list')}" -->
               <a href="/search?view=list" class="digitek-search-view-option">

@@ -368,6 +368,12 @@ body {
   width: 335px;
 }
 
+/* 테이블 셀 안에서는 셀 너비에 맞게 */
+td .select-digitek,
+td .date-select-digitek {
+  width: 100%;
+}
+
 /* 셀렉트 트리거 */
 .select-digitek-trigger {
   display: flex;
@@ -5660,75 +5666,8 @@ body {
   font-weight: 400;
   white-space: nowrap;
 }
-.ecr-task-link {
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: 12px;
-  color: var(--digitek-text-primary);
-  text-decoration: underline;
-  cursor: pointer;
-  text-align: left;
-}
-.ecr-task-link:hover {
-  color: var(--digitek-primary);
-}
-.ecr-user-search {
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: 12px;
-  color: var(--digitek-text-secondary);
-  text-decoration: none;
-  cursor: pointer;
-  white-space: nowrap;
-}
-.ecr-user-search:hover {
-  color: var(--digitek-primary);
-  text-decoration: underline;
-}
-.ecr-date-wrap {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.ecr-date-input {
-  border: 1px solid var(--digitek-border);
-  border-radius: 3px;
-  padding: 2px 4px;
-  font-size: 12px;
-  width: 100px;
-}
-.ecr-cal-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-}
 .ecr-del-cell {
   text-align: center;
-}
-.ecr-del-btn {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 1px solid var(--digitek-border);
-  background: #fff;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  color: var(--digitek-text-tertiary);
-  padding: 0;
-  line-height: 1;
-}
-.ecr-del-btn:hover {
-  background: #fee;
-  border-color: #f88;
-  color: #c00;
 }
 
 /* ── 문서 분류 관리 화면 ── */
