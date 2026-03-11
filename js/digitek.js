@@ -417,11 +417,11 @@
       });
 
       // 파일 카드 삭제
-      delegateEvent("click", ".request-digitek-file-card-remove", function (e, btn) {
+      delegateEvent("click", ".digitek-file-card-remove", function (e, btn) {
         e.stopPropagation();
-        var card = btn.closest(".request-digitek-file-card");
+        var card = btn.closest(".digitek-file-card");
         if (card) {
-          var name = card.querySelector(".request-digitek-file-card-name");
+          var name = card.querySelector(".digitek-file-card-name");
           emit(card, "digitek:file-removed", { name: name ? name.textContent : "" });
           card.remove();
         }
@@ -1381,12 +1381,12 @@
 
   var GanttResizer = {
     init: function () {
-      document.querySelectorAll(".pms-digitek-gantt-resizer").forEach(function (resizer) {
+      document.querySelectorAll(".digitek-gantt-resizer").forEach(function (resizer) {
         resizer.addEventListener("mousedown", function (e) {
           e.preventDefault();
-          var container = resizer.closest(".pms-digitek-gantt-container");
+          var container = resizer.closest(".digitek-gantt-container");
           if (!container) return;
-          var tableWrap = container.querySelector(".pms-digitek-gantt-table-wrap");
+          var tableWrap = container.querySelector(".digitek-gantt-table-wrap");
           if (!tableWrap) return;
           var startX = e.clientX;
           var startWidth = tableWrap.offsetWidth;
@@ -1500,7 +1500,7 @@
           icon.classList.toggle('dicon-chevron-down', !nowExpanded);
           icon.classList.toggle('dicon-chevron-up', nowExpanded);
         }
-        var area = btn.closest('.searchlist-digitek-search-panel').querySelector('.searchlist-digitek-filter-area');
+        var area = btn.closest('.digitek-search-panel').querySelector('.digitek-search-filter-area');
         if (area) area.classList.toggle('show');
       });
 
@@ -1528,47 +1528,47 @@
           icon.classList.toggle('dicon-chevron-down', !nowExpanded);
           icon.classList.toggle('dicon-chevron-up', nowExpanded);
         }
-        var area = btn.closest('.searchsplit-digitek-search-panel').querySelector('.searchsplit-digitek-filter-area');
+        var area = btn.closest('.digitek-split-search-panel').querySelector('.digitek-split-filter-area');
         if (area) area.classList.toggle('show');
       });
 
       /* 뷰 탭 토글 */
-      delegateEvent('click', '.searchsplit-digitek-view-tab', function (e, tab) {
-        tab.closest('.searchsplit-digitek-view-tabs').querySelectorAll('.searchsplit-digitek-view-tab').forEach(function (t) {
+      delegateEvent('click', '.digitek-split-view-tab', function (e, tab) {
+        tab.closest('.digitek-split-view-tabs').querySelectorAll('.digitek-split-view-tab').forEach(function (t) {
           t.classList.remove('active');
           t.setAttribute('aria-pressed', 'false');
         });
         tab.classList.add('active');
         tab.setAttribute('aria-pressed', 'true');
-        var container = tab.closest('.searchsplit-digitek-body');
+        var container = tab.closest('.digitek-split-body');
         if (!container) return;
         var isFullView = tab.textContent.trim() === '펼쳐서 보기';
-        container.classList.toggle('searchsplit-digitek-body-fullview', isFullView);
+        container.classList.toggle('digitek-split-body-fullview', isFullView);
       });
 
       /* 행 클릭 → 상세 패널 열기 */
       delegateEvent('click', '[data-detail-trigger]', function (e, row) {
-        var body = row.closest('.searchsplit-digitek-body');
+        var body = row.closest('.digitek-split-body');
         if (!body) return;
-        body.classList.add('searchsplit-digitek-body-detail-open');
-        document.querySelectorAll('.searchsplit-digitek-table-row').forEach(function (r) { r.classList.remove('active'); });
+        body.classList.add('digitek-split-body-detail-open');
+        document.querySelectorAll('.digitek-split-table-row').forEach(function (r) { r.classList.remove('active'); });
         row.classList.add('active');
       });
 
       /* 상세 패널 닫기 */
       delegateEvent('click', '[data-action="close"]', function (e, btn) {
-        var body = btn.closest('.searchsplit-digitek-body');
+        var body = btn.closest('.digitek-split-body');
         if (body) {
-          body.classList.remove('searchsplit-digitek-body-detail-open');
-          body.classList.remove('searchsplit-digitek-body-fullview');
+          body.classList.remove('digitek-split-body-detail-open');
+          body.classList.remove('digitek-split-body-fullview');
         }
       });
 
       /* 확대 버튼 → 전체 보기 */
       delegateEvent('click', '[data-action="expand"]', function (e, btn) {
-        var panel = btn.closest('.searchsplit-digitek-detail');
-        var body = btn.closest('.searchsplit-digitek-body');
-        if (body) body.classList.add('searchsplit-digitek-body-fullview');
+        var panel = btn.closest('.digitek-split-detail');
+        var body = btn.closest('.digitek-split-body');
+        if (body) body.classList.add('digitek-split-body-fullview');
         if (panel) {
           var expandBtn = panel.querySelector('[data-action="expand"]');
           var shrinkBtn = panel.querySelector('[data-action="shrink"]');
@@ -1579,9 +1579,9 @@
 
       /* 축소 버튼 → 전체 보기 해제 + 팝업 */
       delegateEvent('click', '[data-action="shrink"]', function (e, btn) {
-        var panel = btn.closest('.searchsplit-digitek-detail');
-        var body = btn.closest('.searchsplit-digitek-body');
-        if (body) body.classList.remove('searchsplit-digitek-body-fullview');
+        var panel = btn.closest('.digitek-split-detail');
+        var body = btn.closest('.digitek-split-body');
+        if (body) body.classList.remove('digitek-split-body-fullview');
         if (panel) {
           var expandBtn = panel.querySelector('[data-action="expand"]');
           var shrinkBtn = panel.querySelector('[data-action="shrink"]');
@@ -1596,9 +1596,9 @@
         var expanded = btn.getAttribute('aria-expanded') === 'true';
         var nowExpanded = !expanded;
         btn.setAttribute('aria-expanded', String(nowExpanded));
-        var card = btn.closest('.searchsplit-digitek-results-card');
+        var card = btn.closest('.digitek-split-results-card');
         if (card) {
-          card.querySelectorAll('.searchsplit-digitek-table-wrap, .searchsplit-digitek-pagination').forEach(function (el) {
+          card.querySelectorAll('.digitek-split-table-wrap, .digitek-split-pagination').forEach(function (el) {
             el.style.display = nowExpanded ? '' : 'none';
           });
         }
@@ -1609,8 +1609,8 @@
         var expanded = btn.getAttribute('aria-expanded') === 'true';
         var nowExpanded = !expanded;
         btn.setAttribute('aria-expanded', String(nowExpanded));
-        var body = btn.closest('.searchsplit-digitek-body');
-        if (body) body.classList.toggle('searchsplit-search-collapsed', !nowExpanded);
+        var body = btn.closest('.digitek-split-body');
+        if (body) body.classList.toggle('digitek-split-search-collapsed', !nowExpanded);
       });
     },
 
@@ -1627,10 +1627,146 @@
   };
 
   /* ================================================================== */
+  /*  Router — AJAX 콘텐츠 교체 + history.pushState                      */
+  /* ================================================================== */
+
+  var Router = {
+    contentEl: null,
+
+    init: function () {
+      Router.contentEl = document.getElementById('page-content');
+      if (!Router.contentEl) return; // shell 페이지가 아니면 비활성화
+
+      // 사이드바 [data-route] 링크 클릭 인터셉트
+      delegateEvent('click', '[data-route]', function (e, el) {
+        e.preventDefault();
+        var url = el.getAttribute('data-route');
+        if (url) Router.navigate(url);
+      });
+
+      // 브라우저 뒤로가기/앞으로가기 처리
+      window.addEventListener('popstate', function (e) {
+        if (e.state && e.state.route) {
+          Router._load(e.state.route, false);
+        }
+      });
+
+      // 최초 진입 시 콘텐츠 로드
+      // 우선순위: data-initial-route 속성 > 현재 URL pathname
+      var hasContent = Router.contentEl.children.length > 0 &&
+        !Router.contentEl.querySelector('[data-router-placeholder]');
+      if (!hasContent) {
+        var initialRoute = Router.contentEl.getAttribute('data-initial-route') ||
+          window.location.pathname;
+        Router._load(initialRoute, false);
+      }
+    },
+
+    /**
+     * 특정 URL로 AJAX 이동
+     * @param {string} url - 이동할 경로 (예: "/search/list")
+     */
+    navigate: function (url) {
+      Router._load(url, true);
+    },
+
+    _load: function (url, pushState) {
+      if (!Router.contentEl) return;
+
+      // 로딩 상태 표시
+      Router.contentEl.setAttribute('aria-busy', 'true');
+      Router.contentEl.style.opacity = '0.5';
+
+      fetch(url, {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Accept': 'text/html'
+        }
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.text();
+        })
+        .then(function (html) {
+          // 서버가 전체 페이지를 반환한 경우: #page-content 내부만 추출
+          // 서버가 프래그먼트를 반환한 경우: 그대로 사용
+          var content = Router._extractContent(html);
+          Router.contentEl.innerHTML = content;
+          Router.contentEl.removeAttribute('aria-busy');
+          Router.contentEl.style.opacity = '';
+
+          if (pushState) {
+            history.pushState({ route: url }, '', url);
+          }
+
+          // 페이지별 컴포넌트 재초기화
+          window.Digitek.reinit();
+
+          // 활성 메뉴 상태 업데이트
+          Router._updateActiveMenu(url);
+
+          // 페이지 최상단으로 스크롤
+          Router.contentEl.scrollTop = 0;
+        })
+        .catch(function (err) {
+          console.error('[Router] 콘텐츠 로드 실패:', url, err);
+          Router.contentEl.innerHTML =
+            '<div style="padding:2rem;color:var(--digitek-danger);">페이지를 불러오지 못했습니다.</div>';
+          Router.contentEl.removeAttribute('aria-busy');
+          Router.contentEl.style.opacity = '';
+        });
+    },
+
+    /**
+     * 서버 응답이 전체 HTML인 경우 #page-content 내부만 추출
+     * 프래그먼트인 경우 그대로 반환
+     */
+    _extractContent: function (html) {
+      // 전체 HTML 문서인지 확인
+      if (html.trim().toLowerCase().indexOf('<!doctype') === -1 &&
+          html.trim().toLowerCase().indexOf('<html') === -1) {
+        return html; // 이미 프래그먼트
+      }
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(html, 'text/html');
+      var contentEl = doc.getElementById('page-content');
+      return contentEl ? contentEl.innerHTML : html;
+    },
+
+    /**
+     * 사이드바 활성 메뉴 상태 갱신
+     */
+    _updateActiveMenu: function (url) {
+      // 기존 active 제거
+      document.querySelectorAll(
+        '.sidebar-digitek-active, .sidebar-digitek-sub-active'
+      ).forEach(function (el) {
+        el.classList.remove('sidebar-digitek-active', 'sidebar-digitek-sub-active');
+      });
+
+      // 현재 URL과 매칭되는 data-route 링크에 active 추가
+      var link = document.querySelector('[data-route="' + url + '"]');
+      if (!link) return;
+
+      link.classList.add('sidebar-digitek-active');
+
+      // 부모 서브메뉴 항목도 active 처리
+      var parentSubmenu = link.closest('ul.sidebar-digitek-submenu');
+      if (parentSubmenu) {
+        var parentLink = parentSubmenu.previousElementSibling;
+        if (parentLink && parentLink.classList.contains('sidebar-digitek-submenu-item')) {
+          parentLink.classList.add('sidebar-digitek-sub-active');
+        }
+      }
+    }
+  };
+
+  /* ================================================================== */
   /*  초기화 & 공개 API                                                   */
   /* ================================================================== */
 
   function initAll() {
+    Router.init();      // 가장 먼저 초기화 (shell 페이지에서만 활성화됨)
     Sidebar.init();     // GNB/사이드바가 인라인 HTML로 이미 DOM에 있으므로 즉시 바인딩
     Accordion.init();
     TabButton.init();
@@ -1654,12 +1790,18 @@
 
   // window.Digitek 네임스페이스 노출
   window.Digitek = {
-    /** 수동 재초기화 (동적으로 HTML을 삽입한 뒤 호출) */
+    /**
+     * 수동 재초기화 — AJAX로 콘텐츠를 교체한 뒤 Router가 자동 호출
+     * delegateEvent 기반 모듈: document 레벨 리스너이므로 재초기화 불필요
+     * 직접 DOM 바인딩 모듈만 재초기화
+     */
     reinit: function () {
-      TextEditor.init(); // TextEditor만 재초기화 (이벤트 위임이 아닌 직접 바인딩)
+      TextEditor.init(); // 직접 바인딩 방식: 재초기화 필요
+      Select.init();     // 커스텀 드롭다운: 새로 삽입된 DOM에 재초기화
     },
 
     /** 모듈별 접근 */
+    Router: Router,
     Accordion: Accordion,
     TabButton: TabButton,
     Sidebar: Sidebar,

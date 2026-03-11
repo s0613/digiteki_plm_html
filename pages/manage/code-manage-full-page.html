@@ -273,7 +273,7 @@
       </div>
     </header>
     <!-- 콘텐츠 영역 -->
-    <div class="flex-grow-1 overflow-y-digitek-auto" style="background: var(--digitek-bg-gray);">
+    <div id="page-content" class="flex-grow-1 overflow-y-digitek-auto" style="background: var(--digitek-bg-gray);">
       <!-- 코드 관리 콘텐츠 영역 -->
 <div class="code-manage-layout">
 
@@ -325,66 +325,66 @@
     <!-- 우: 공통코드 상세 정보 -->
     <div class="code-manage-detail">
       <!-- [커스텀] Grid 영역: 상세 정보 -->
-      <div class="pms-digitek-info-grid">
-        <div class="pms-digitek-info-title">공통코드 상세 정보</div>
+      <div class="digitek-info-grid">
+        <div class="digitek-info-title">공통코드 상세 정보</div>
         <!-- [커스텀] th:text="${item.XXX}" 으로 각 필드 동적 바인딩 -->
-        <div class="pms-digitek-info-field-full">
-          <span class="pms-digitek-info-label"><span class="badge-digitek-category">Code</span></span>
-          <span class="pms-digitek-info-value">DG001</span>
+        <div class="digitek-info-field-full">
+          <span class="digitek-info-label"><span class="badge-digitek-category">Code</span></span>
+          <span class="digitek-info-value">DG001</span>
         </div>
-        <div class="pms-digitek-info-row">
-          <div class="pms-digitek-info-field">
-            <span class="pms-digitek-info-label"><span class="badge-digitek-category">코드값</span></span>
-            <span class="pms-digitek-info-value">DIGI</span>
+        <div class="digitek-info-row">
+          <div class="digitek-info-field">
+            <span class="digitek-info-label"><span class="badge-digitek-category">코드값</span></span>
+            <span class="digitek-info-value">DIGI</span>
           </div>
-          <div class="pms-digitek-info-field">
-            <span class="pms-digitek-info-label"><span class="badge-digitek-category">코드 타입</span></span>
-            <span class="pms-digitek-info-value">DGCODE</span>
-          </div>
-        </div>
-        <div class="pms-digitek-info-row">
-          <div class="pms-digitek-info-field">
-            <span class="pms-digitek-info-label"><span class="badge-digitek-category">DD Code</span></span>
-            <span class="pms-digitek-info-value">DG001</span>
-          </div>
-          <div class="pms-digitek-info-field">
-            <span class="pms-digitek-info-label"><span class="badge-digitek-category">부모 코드</span></span>
-            <span class="pms-digitek-info-value"></span>
+          <div class="digitek-info-field">
+            <span class="digitek-info-label"><span class="badge-digitek-category">코드 타입</span></span>
+            <span class="digitek-info-value">DGCODE</span>
           </div>
         </div>
-        <div class="pms-digitek-info-row">
-          <div class="pms-digitek-info-field">
-            <span class="pms-digitek-info-label"><span class="badge-digitek-category">부모 타입</span></span>
-            <span class="pms-digitek-info-value"></span>
+        <div class="digitek-info-row">
+          <div class="digitek-info-field">
+            <span class="digitek-info-label"><span class="badge-digitek-category">DD Code</span></span>
+            <span class="digitek-info-value">DG001</span>
           </div>
-          <div class="pms-digitek-info-field">
-            <span class="pms-digitek-info-label"><span class="badge-digitek-category">etc1</span></span>
-            <span class="pms-digitek-info-value"></span>
-          </div>
-        </div>
-        <div class="pms-digitek-info-row">
-          <div class="pms-digitek-info-field">
-            <span class="pms-digitek-info-label"><span class="badge-digitek-category">etc2</span></span>
-            <span class="pms-digitek-info-value"></span>
-          </div>
-          <div class="pms-digitek-info-field">
-            <span class="pms-digitek-info-label"><span class="badge-digitek-category">etc3</span></span>
-            <span class="pms-digitek-info-value"></span>
+          <div class="digitek-info-field">
+            <span class="digitek-info-label"><span class="badge-digitek-category">부모 코드</span></span>
+            <span class="digitek-info-value"></span>
           </div>
         </div>
-        <div class="pms-digitek-info-row">
-          <div class="pms-digitek-info-field">
-            <span class="pms-digitek-info-label"><span class="badge-digitek-category">etc4</span></span>
-            <span class="pms-digitek-info-value"></span>
+        <div class="digitek-info-row">
+          <div class="digitek-info-field">
+            <span class="digitek-info-label"><span class="badge-digitek-category">부모 타입</span></span>
+            <span class="digitek-info-value"></span>
           </div>
-          <div class="pms-digitek-info-field">
-            <span class="pms-digitek-info-label"><span class="badge-digitek-category">etc5</span></span>
-            <span class="pms-digitek-info-value"></span>
+          <div class="digitek-info-field">
+            <span class="digitek-info-label"><span class="badge-digitek-category">etc1</span></span>
+            <span class="digitek-info-value"></span>
           </div>
         </div>
-        <div class="pms-digitek-info-field-full">
-          <span class="pms-digitek-info-label"><span class="badge-digitek-category">Description</span></span>
-          <span class="pms-digitek-info-value"></span>
+        <div class="digitek-info-row">
+          <div class="digitek-info-field">
+            <span class="digitek-info-label"><span class="badge-digitek-category">etc2</span></span>
+            <span class="digitek-info-value"></span>
+          </div>
+          <div class="digitek-info-field">
+            <span class="digitek-info-label"><span class="badge-digitek-category">etc3</span></span>
+            <span class="digitek-info-value"></span>
+          </div>
+        </div>
+        <div class="digitek-info-row">
+          <div class="digitek-info-field">
+            <span class="digitek-info-label"><span class="badge-digitek-category">etc4</span></span>
+            <span class="digitek-info-value"></span>
+          </div>
+          <div class="digitek-info-field">
+            <span class="digitek-info-label"><span class="badge-digitek-category">etc5</span></span>
+            <span class="digitek-info-value"></span>
+          </div>
+        </div>
+        <div class="digitek-info-field-full">
+          <span class="digitek-info-label"><span class="badge-digitek-category">Description</span></span>
+          <span class="digitek-info-value"></span>
         </div>
       </div>
     </div>

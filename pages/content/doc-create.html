@@ -1,0 +1,268 @@
+<!-- doc-create 콘텐츠 프래그먼트 (GNB/Sidebar 없음) -->
+      <form>
+        <!-- 헤더 -->
+        <div class="doc-create-digitek-header">
+          <h2 class="doc-create-digitek-header-title">Create Document</h2>
+          <div class="doc-create-digitek-header-actions">
+            <!-- [커스텀] th:href="@{/approval/save}" 으로 결재요청 저장 연결 -->
+            <button type="button" class="digitek-action-link" style="font-size: 14px;">결재요청 저장</button>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 1. 문서 분류                                                   -->
+        <!-- ============================================================ -->
+        <div class="doc-create-digitek-section">
+          <div class="doc-create-digitek-section-header">
+            <span class="doc-create-digitek-section-title">문서 분류</span>
+          </div>
+          <table class="doc-create-digitek-form-table">
+            <!-- [커스텀] th:each로 서버 분류 데이터 바인딩 -->
+            <tr>
+              <td class="doc-create-digitek-form-label-cell">대분류</td>
+              <td class="doc-create-digitek-form-value-cell">
+                <select name="majorCategory">
+                  <option value="" selected>-------- 전체 --------</option>
+                  <option value="a">분류 A</option>
+                  <option value="b">분류 B</option>
+                </select>
+              </td>
+              <td class="doc-create-digitek-form-label-cell">중분류</td>
+              <td class="doc-create-digitek-form-value-cell">
+                <select name="middleCategory">
+                  <option value="" selected>-------- 전체 --------</option>
+                  <option value="a">분류 A</option>
+                </select>
+              </td>
+              <td class="doc-create-digitek-form-label-cell">소분류</td>
+              <td class="doc-create-digitek-form-value-cell">
+                <select name="minorCategory">
+                  <option value="" selected>-------- 전체 --------</option>
+                  <option value="a">분류 A</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 2. 문서 속성                                                   -->
+        <!-- ============================================================ -->
+        <div class="doc-create-digitek-section">
+          <div class="doc-create-digitek-section-header">
+            <span class="doc-create-digitek-section-title">문서 속성</span>
+          </div>
+          <table class="doc-create-digitek-form-table">
+            <!-- Row 1: 문서 제목 (전체 너비) -->
+            <tr>
+              <td class="doc-create-digitek-form-label-cell">문서 제목</td>
+              <td class="doc-create-digitek-form-value-cell" colspan="5">
+                <!-- [커스텀] th:field="*{title}" 으로 폼 바인딩 -->
+                <input type="text" name="docTitle" placeholder="문서 제목을 입력해 주세요">
+              </td>
+            </tr>
+            <!-- Row 2: Lab/office, Class (product), Product (item) — 3쌍 -->
+            <tr>
+              <td class="doc-create-digitek-form-label-cell">Lab/office</td>
+              <td class="doc-create-digitek-form-value-cell">
+                <input type="text" name="labOffice" value="K04">
+              </td>
+              <td class="doc-create-digitek-form-label-cell">Class (product)</td>
+              <td class="doc-create-digitek-form-value-cell">
+                <select name="classProduct">
+                  <option value="" selected>-------- 전체 --------</option>
+                  <option value="a">Product A</option>
+                </select>
+              </td>
+              <td class="doc-create-digitek-form-label-cell">Product (item)</td>
+              <td class="doc-create-digitek-form-value-cell">
+                <select name="productItem">
+                  <option value="" selected>-------- 전체 --------</option>
+                  <option value="a">Item A</option>
+                </select>
+              </td>
+            </tr>
+            <!-- Row 3: Project (CAR), 법인 — 2쌍 -->
+            <tr>
+              <td class="doc-create-digitek-form-label-cell">Project (CAR)</td>
+              <td class="doc-create-digitek-form-value-cell">
+                <input type="text" name="projectCar">
+              </td>
+              <td class="doc-create-digitek-form-label-cell">법인</td>
+              <td class="doc-create-digitek-form-value-cell">
+                <select name="corporation">
+                  <option value="" selected>-------- 전체 --------</option>
+                  <option value="a">법인 A</option>
+                </select>
+              </td>
+              <td colspan="2"></td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 3. 연관 Document                                              -->
+        <!-- ============================================================ -->
+        <div class="doc-create-digitek-section">
+          <div class="doc-create-digitek-section-header">
+            <span class="doc-create-digitek-section-title">연관 Document</span>
+            <div class="doc-create-digitek-section-actions">
+              <button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-36">추가</button>
+              <button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-36">삭제</button>
+            </div>
+          </div>
+          <table class="digitek-table" aria-label="연관 Document">
+            <thead>
+              <tr>
+                <th class="digitek-table-checkbox" scope="col"><input type="checkbox" aria-label="전체 선택"></th>
+                <th scope="col">문서번호</th>
+                <th scope="col">Version</th>
+                <th scope="col">제목</th>
+                <th scope="col">상태</th>
+                <th scope="col">작성자</th>
+                <th scope="col">작성일</th>
+              </tr>
+            </thead>
+            <!-- [커스텀] th:each="doc : ${relatedDocuments}" 으로 동적 생성 -->
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 4. 연관 Material                                              -->
+        <!-- ============================================================ -->
+        <div class="doc-create-digitek-section">
+          <div class="doc-create-digitek-section-header">
+            <span class="doc-create-digitek-section-title">연관 Material</span>
+            <div class="doc-create-digitek-section-actions">
+              <button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-36">추가</button>
+              <button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-36">삭제</button>
+            </div>
+          </div>
+          <!-- [커스텀] 데이터 추가 시 table 동적 생성 -->
+          <div class="doc-create-digitek-section-empty"></div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 5. 연관 ECN                                                   -->
+        <!-- ============================================================ -->
+        <div class="doc-create-digitek-section">
+          <div class="doc-create-digitek-section-header">
+            <span class="doc-create-digitek-section-title">연관 ECN</span>
+            <div class="doc-create-digitek-section-actions">
+              <button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-36">추가</button>
+              <button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-36">삭제</button>
+            </div>
+          </div>
+          <!-- [커스텀] 데이터 추가 시 table 동적 생성 -->
+          <div class="doc-create-digitek-section-empty"></div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 6. 첨부파일                                                    -->
+        <!-- ============================================================ -->
+        <div class="doc-create-digitek-section">
+          <div class="doc-create-digitek-section-header">
+            <span class="doc-create-digitek-section-title">첨부파일</span>
+          </div>
+          <div class="doc-create-digitek-section-body">
+            <!-- [커스텀] JS 연동: 파일 선택/드래그 시 file-upload-digitek-file-list에 항목 추가 -->
+            <div class="file-upload-digitek" role="button" tabindex="0" aria-label="파일 업로드">
+              <p class="file-upload-digitek-label">파일을 이 영역으로 드래그하세요</p>
+              <input type="file" class="file-upload-digitek-input" multiple />
+            </div>
+            <!-- [커스텀] 파일 목록: JS로 동적 추가/제거 -->
+            <div class="file-upload-digitek-file-list"></div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 7. 결재자 지정 (재사용 컴포넌트)                                 -->
+        <!-- ============================================================ -->
+        <!-- [재사용] Thymeleaf에서 별도 페이지로 분리하여 재사용:
+             <div id="approvalLine"
+                  th:replace="thymeleaf/page/worklist/includeHKLApprovalForm :: HKLApprovalForm(TYPE1)">
+             </div>
+             아래 HTML은 해당 컴포넌트의 인라인 미리보기입니다.
+             실제 프로젝트에서는 th:replace로 교체됩니다. -->
+        <div class="doc-create-digitek-section">
+          <div class="doc-create-digitek-section-header">
+            <span class="doc-create-digitek-section-title">결재자 지정</span>
+          </div>
+          <div class="doc-create-digitek-section-body">
+            <table class="approval-line-digitek" aria-label="결재자 지정">
+              <thead>
+                <tr>
+                  <th class="approval-line-digitek-step" scope="col">결재단계</th>
+                  <th scope="col">결재자지정</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- 입력 행: 결재단계 native select + 결재자 input + 추가/결재선검색 -->
+                <tr>
+                  <td class="approval-line-digitek-step">
+                    <select name="approvalStep">
+                      <option value="reviewer1" selected>Reviewer_1</option>
+                      <option value="reviewer2">Reviewer_2</option>
+                      <option value="approver">승인자</option>
+                      <option value="distribution">DistributionList</option>
+                    </select>
+                  </td>
+                  <td>
+                    <div class="approval-line-digitek-input-row">
+                      <input type="text" class="form-control input-digitek"
+                             placeholder="결재자를 입력해 주세요" aria-label="결재자 입력">
+                      <div class="approval-line-digitek-input-actions">
+                        <button type="button" class="digitek-action-link">추가</button>
+                        <button type="button" class="digitek-action-link">결재선검색</button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Reviewer_1: 결재자 배정 완료 -->
+                <tr>
+                  <td class="approval-line-digitek-step">Reviewer_1</td>
+                  <td>
+                    <div class="approval-line-digitek-assignee-list">
+                      <span class="approval-line-digitek-assignee-tag">
+                        이종찬
+                        <button type="button" class="approval-line-digitek-assignee-remove" aria-label="이종찬 삭제">
+                          <i class="dicon dicon-close icon-digitek-16" aria-hidden="true"></i>
+                        </button>
+                      </span>
+                      <span class="approval-line-digitek-assignee-tag">
+                        이준한
+                        <button type="button" class="approval-line-digitek-assignee-remove" aria-label="이준한 삭제">
+                          <i class="dicon dicon-close icon-digitek-16" aria-hidden="true"></i>
+                        </button>
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Reviewer_2 -->
+                <tr>
+                  <td class="approval-line-digitek-step">Reviewer_2</td>
+                  <td></td>
+                </tr>
+
+                <!-- 승인자 (필수) -->
+                <tr>
+                  <td class="approval-line-digitek-step">
+                    <span class="approval-line-digitek-required">승인자</span>
+                  </td>
+                  <td></td>
+                </tr>
+
+                <!-- DistributionList -->
+                <tr>
+                  <td class="approval-line-digitek-step">DistributionList</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </form>

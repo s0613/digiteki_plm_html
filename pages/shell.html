@@ -3,191 +3,203 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>메인 페이지 (Main Page)</title>
-  <link rel="stylesheet" href="../../css/bootstrap.min.css">
-  <link rel="stylesheet" href="../../css/digitek.css">
-  <link rel="stylesheet" href="../../css/icons.css">
+  <title>Digitek PLM</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/digitek.css">
+  <link rel="stylesheet" href="../css/icons.css">
   <style>body { margin: 0; background: #fff; }</style>
 </head>
 <body>
-<!-- 메인 페이지: Sidebar + GNB + Content 전체 레이아웃 -->
+<!-- Shell 레이아웃: GNB + Sidebar 고정, #page-content 영역만 AJAX로 교체됨 -->
+<!-- [커스텀] Thymeleaf 적용 시: layout/shell.html 로 이동, th:replace로 sidebar/gnb 포함 -->
 <div class="layout-digitek">
+
+  <!-- ===================== SIDEBAR (고정 영역) ===================== -->
   <!-- 펼침: sidebar-digitek-expanded (250px) / 접힘: sidebar-digitek-collapsed (96px) -->
-  <!-- 3레벨 메뉴 구조: 1레벨(메뉴) → 2레벨(서브메뉴) → 3레벨(서브-서브메뉴) -->
-  <!-- [커스텀] 현재 활성 메뉴 아이템에 'sidebar-digitek-active' 클래스 추가 -->
-  <!-- [커스텀] Thymeleaf 현재 경로 기반 active 처리 예시:
-       th:classappend="${#strings.startsWith(#httpServletRequest.requestURI, '/pms')} ? 'sidebar-digitek-active'" -->
+  <!-- [커스텀] Thymeleaf active 처리: th:classappend="${currentMenu == 'search'} ? 'sidebar-digitek-active'" -->
   <div class="sidebar-digitek-container">
     <nav class="sidebar-digitek sidebar-digitek-expanded" aria-label="메인 메뉴">
       <!-- 헤더 (로고 + 접기 버튼) -->
       <div class="sidebar-digitek-header">
-        <!-- 펼침 로고 -->
         <div class="sidebar-digitek-logo sidebar-logo-full">
-          <img src="../../images/icons/logo.png" width="108" height="52" alt="HLKlemove 로고" aria-hidden="true">
+          <img src="../images/icons/logo.png" width="108" height="52" alt="HLKlemove 로고" aria-hidden="true">
         </div>
-        <!-- 접힘 로고 (기본 hidden, collapsed 상태에서 표시) -->
         <div class="sidebar-digitek-logo sidebar-logo-collapsed">
-          <img src="../../images/icons/logo-collapsed.png" width="54" height="26" alt="HL 로고" aria-hidden="true">
+          <img src="../images/icons/logo-collapsed.png" width="54" height="26" alt="HL 로고" aria-hidden="true">
         </div>
-        <!-- 접기/펼치기 버튼 -->
         <button class="sidebar-collapse-handle sidebar-toggle-btn" aria-label="사이드바 접기/펼치기">
           <i class="dicon dicon-chevron-left icon-digitek-20" aria-hidden="true"></i>
         </button>
       </div>
-  
+
       <!-- 메뉴 영역 -->
+      <!-- [커스텀] data-route: HTML 프로토타입용 상대경로. 실제 서버 배포 시 절대경로로 변경 -->
+      <!-- 예: data-route="content/searchlist.html" → data-route="/search/list" -->
       <div class="flex-grow-1 overflow-auto sidebar-digitek-menu-area">
         <ul class="nav flex-column">
-          <!-- 결재 관리 (하위 메뉴 없음) -->
+
+          <!-- 결재 관리 (리프 메뉴: data-route 있음) -->
           <li class="nav-item">
-            <a class="sidebar-digitek-menu-item" href="#">
+            <a class="sidebar-digitek-menu-item" href="content/main.html"
+               data-route="content/main.html">
               <span class="sidebar-digitek-icon-label">
                 <i class="dicon dicon-file-blank icon-digitek-20"></i>
                 <span class="sidebar-digitek-menu-label">결재 관리</span>
               </span>
             </a>
           </li>
-  
-          <!-- 문서 관리 (하위 메뉴 없음) -->
+
+          <!-- 문서 관리 (리프 메뉴) -->
           <li class="nav-item">
-            <a class="sidebar-digitek-menu-item" href="#">
+            <a class="sidebar-digitek-menu-item" href="content/searchlist.html"
+               data-route="content/searchlist.html">
               <span class="sidebar-digitek-icon-label">
                 <i class="dicon dicon-folder icon-digitek-20"></i>
                 <span class="sidebar-digitek-menu-label">문서 관리</span>
               </span>
             </a>
           </li>
-  
-          <!-- 부품 관리 (하위 메뉴 없음) -->
+
+          <!-- 부품 관리 (리프 메뉴) -->
           <li class="nav-item">
-            <a class="sidebar-digitek-menu-item" href="#">
+            <a class="sidebar-digitek-menu-item" href="content/main.html"
+               data-route="content/main.html">
               <span class="sidebar-digitek-icon-label">
                 <i class="dicon dicon-settings icon-digitek-20"></i>
                 <span class="sidebar-digitek-menu-label">부품 관리</span>
               </span>
             </a>
           </li>
-  
-          <!-- 도면 관리 (하위 메뉴 없음) -->
+
+          <!-- 도면 관리 (리프 메뉴) -->
           <li class="nav-item">
-            <a class="sidebar-digitek-menu-item" href="#">
+            <a class="sidebar-digitek-menu-item" href="content/main.html"
+               data-route="content/main.html">
               <span class="sidebar-digitek-icon-label">
                 <i class="dicon dicon-folder-edit icon-digitek-20"></i>
                 <span class="sidebar-digitek-menu-label">도면 관리</span>
               </span>
             </a>
           </li>
-  
-          <!-- PMS (펼쳐진 2레벨 서브메뉴) -->
+
+          <!-- PMS (서브메뉴 토글: data-route 없음) -->
           <li class="nav-item">
-            <!-- [커스텀] href="#"은 JavaScript에서 preventDefault()로 처리하세요 -->
-            <a class="sidebar-digitek-menu-item" href="#" aria-expanded="true">
+            <a class="sidebar-digitek-menu-item" href="#" aria-expanded="false">
               <span class="sidebar-digitek-icon-label">
                 <i class="dicon dicon-layer icon-digitek-20"></i>
                 <span class="sidebar-digitek-menu-label">PMS</span>
               </span>
-              <span class="sidebar-digitek-chevron sidebar-digitek-chevron-open">
+              <span class="sidebar-digitek-chevron">
                 <i class="dicon dicon-chevron-down icon-digitek-20"></i>
               </span>
             </a>
-            <!-- 2레벨 서브메뉴: max-height = 항목 수 x 36px (4개 = 144px) -->
-            <ul class="nav flex-column sidebar-digitek-submenu" style="max-height: 144px;" aria-label="PMS 하위 메뉴">
+            <!-- 2레벨 서브메뉴 -->
+            <ul class="nav flex-column sidebar-digitek-submenu" style="max-height: 0;" aria-label="PMS 하위 메뉴">
               <li class="nav-item">
-                <a class="sidebar-digitek-submenu-item" href="#">
+                <a class="sidebar-digitek-submenu-item" href="content/searchlist.html"
+                   data-route="content/searchlist.html">
                   <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
                   <span class="sidebar-digitek-menu-label">프로젝트 검색</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="sidebar-digitek-submenu-item" href="#">
+                <a class="sidebar-digitek-submenu-item" href="content/pms.html"
+                   data-route="content/pms.html">
                   <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
                   <span class="sidebar-digitek-menu-label">프로젝트 등록</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="sidebar-digitek-submenu-item" href="#">
+                <a class="sidebar-digitek-submenu-item" href="content/pms.html"
+                   data-route="content/pms.html">
                   <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
                   <span class="sidebar-digitek-menu-label">My Task</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="sidebar-digitek-submenu-item" href="#">
+                <a class="sidebar-digitek-submenu-item" href="content/searchlist.html"
+                   data-route="content/searchlist.html">
                   <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
                   <span class="sidebar-digitek-menu-label">이슈 검색</span>
                 </a>
               </li>
             </ul>
           </li>
-  
-          <!-- 설계 변경 (하위 메뉴 없음) -->
+
+          <!-- 설계 변경 (리프 메뉴) -->
           <li class="nav-item">
-            <a class="sidebar-digitek-menu-item" href="#">
+            <a class="sidebar-digitek-menu-item" href="content/searchsplit.html"
+               data-route="content/searchsplit.html">
               <span class="sidebar-digitek-icon-label">
                 <i class="dicon dicon-reload icon-digitek-20"></i>
                 <span class="sidebar-digitek-menu-label">설계 변경</span>
               </span>
             </a>
           </li>
-  
-          <!-- 시험/시작/해석 (3레벨 메뉴 포함) -->
+
+          <!-- 시험/시작/해석 (서브메뉴 토글: data-route 없음) -->
           <li class="nav-item">
-            <!-- [커스텀] href="#"은 JavaScript에서 preventDefault()로 처리하세요 -->
-            <a class="sidebar-digitek-menu-item sidebar-digitek-parent-open" href="#" aria-expanded="true">
+            <a class="sidebar-digitek-menu-item" href="#" aria-expanded="false">
               <span class="sidebar-digitek-icon-label">
                 <i class="dicon dicon-chart-bar icon-digitek-20"></i>
                 <span class="sidebar-digitek-menu-label">시험/시작/해석</span>
               </span>
-              <span class="sidebar-digitek-chevron sidebar-digitek-chevron-open">
+              <span class="sidebar-digitek-chevron">
                 <i class="dicon dicon-chevron-down icon-digitek-20"></i>
               </span>
             </a>
-            <!-- 2레벨 서브메뉴: max-height = (2레벨 항목 수 + 펼쳐진 3레벨 항목 수) x 36px -->
-            <ul class="nav flex-column sidebar-digitek-submenu" style="max-height: 252px;" aria-label="시험/시작/해석 하위 메뉴">
-              <!-- 2레벨: 시험 (아이콘 있음, 3레벨 없음) -->
+            <!-- 2레벨 서브메뉴 -->
+            <ul class="nav flex-column sidebar-digitek-submenu" style="max-height: 0;" aria-label="시험/시작/해석 하위 메뉴">
+              <!-- 2레벨: 시험 (리프) -->
               <li class="nav-item">
-                <a class="sidebar-digitek-submenu-item" href="#">
+                <a class="sidebar-digitek-submenu-item" href="content/searchlist.html"
+                   data-route="content/searchlist.html">
                   <span class="sidebar-digitek-icon-label">
                     <i class="dicon dicon-flask icon-digitek-20"></i>
                     <span class="sidebar-digitek-menu-label">시험</span>
                   </span>
                 </a>
               </li>
-              <!-- 2레벨: 시작 (아이콘 있음, 3레벨 chevron 16px) -->
+              <!-- 2레벨: 시작 (3레벨 토글: data-route 없음) -->
               <li class="nav-item">
-                <!-- [커스텀] href="#"은 JavaScript에서 preventDefault()로 처리하세요 -->
-                <a class="sidebar-digitek-submenu-item" href="#" aria-expanded="true">
+                <a class="sidebar-digitek-submenu-item" href="#" aria-expanded="false">
                   <span class="sidebar-digitek-icon-label">
                     <i class="dicon dicon-start-arrow icon-digitek-20"></i>
                     <span class="sidebar-digitek-menu-label">시작</span>
                   </span>
-                  <span class="sidebar-digitek-chevron sidebar-digitek-chevron-open">
+                  <span class="sidebar-digitek-chevron">
                     <i class="dicon dicon-chevron-down icon-digitek-16"></i>
                   </span>
                 </a>
-                <!-- 3레벨 서브-서브메뉴: max-height = 항목 수 x 36px (5개 = 180px) -->
-                <ul class="nav flex-column sidebar-digitek-sub-submenu" style="max-height: 180px;" aria-label="시작 하위 메뉴">
+                <!-- 3레벨 서브-서브메뉴 -->
+                <ul class="nav flex-column sidebar-digitek-sub-submenu" style="max-height: 0;" aria-label="시작 하위 메뉴">
                   <li class="nav-item">
-                    <a class="sidebar-digitek-sub-submenu-item" href="#">
+                    <a class="sidebar-digitek-sub-submenu-item" href="content/searchlist.html"
+                       data-route="content/searchlist.html">
                       <span class="sidebar-digitek-menu-label">시작 검색</span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="sidebar-digitek-sub-submenu-item" href="#">
+                    <a class="sidebar-digitek-sub-submenu-item" href="content/requestregister.html"
+                       data-route="content/requestregister.html">
                       <span class="sidebar-digitek-menu-label">시작 의뢰 등록</span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="sidebar-digitek-sub-submenu-item" href="#">
+                    <a class="sidebar-digitek-sub-submenu-item" href="content/requestregister.html"
+                       data-route="content/requestregister.html">
                       <span class="sidebar-digitek-menu-label">시작 결과 등록</span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="sidebar-digitek-sub-submenu-item" href="#">
+                    <a class="sidebar-digitek-sub-submenu-item" href="content/searchsplit.html"
+                       data-route="content/searchsplit.html">
                       <span class="sidebar-digitek-menu-label">MPR 검색</span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="sidebar-digitek-sub-submenu-item" href="#">
+                    <a class="sidebar-digitek-sub-submenu-item" href="content/requestregister.html"
+                       data-route="content/requestregister.html">
                       <span class="sidebar-digitek-menu-label">MPR 등록</span>
                     </a>
                   </li>
@@ -195,31 +207,31 @@
               </li>
             </ul>
           </li>
-  
-          <!-- 대시보드 (하위 메뉴 없음) -->
+
+          <!-- 대시보드 (리프 메뉴) -->
           <li class="nav-item">
-            <a class="sidebar-digitek-menu-item" href="#">
+            <a class="sidebar-digitek-menu-item" href="content/main.html"
+               data-route="content/main.html">
               <span class="sidebar-digitek-icon-label">
                 <i class="dicon dicon-chart-pie icon-digitek-20"></i>
                 <span class="sidebar-digitek-menu-label">대시보드</span>
               </span>
             </a>
           </li>
+
         </ul>
       </div>
     </nav>
   </div>
 
+  <!-- ===================== MAIN AREA ===================== -->
   <div class="layout-digitek-main-area">
+
+    <!-- GNB (고정 영역) -->
     <header class="gnb-digitek">
       <!-- [커스텀] 검색 인풋: 필요 시 주석 해제하여 사용
       <div class="gnb-digitek-search-wrap">
-        <input
-          type="text"
-          class="gnb-digitek-search-field"
-          placeholder="검색어를 입력해 주세요"
-          aria-label="검색어 입력"
-        />
+        <input type="text" class="gnb-digitek-search-field" placeholder="검색어를 입력해 주세요" aria-label="검색어 입력" />
         <button class="btn-digitek-icon-plain" aria-label="검색">
           <i class="dicon dicon-search-lg icon-digitek-24 text-digitek-secondary"></i>
         </button>
@@ -228,83 +240,53 @@
 
       <!-- 우측 영역 -->
       <div class="gnb-digitek-right">
-        <!-- 알림/메일 아이콘 -->
         <div class="gnb-digitek-icon-group">
           <button class="gnb-digitek-icon-btn" aria-label="알림">
             <i class="dicon dicon-bell icon-digitek-24 text-digitek-secondary"></i>
-            <!-- [커스텀] 알림 뱃지 숫자 변경: th:text="${notificationCount}" -->
-            <!-- [커스텀] 알림 없을 경우 뱃지 숨김: th:if="${notificationCount > 0}" -->
             <span class="gnb-digitek-badge">5</span>
           </button>
-
           <button class="gnb-digitek-icon-btn" aria-label="메일">
             <i class="dicon dicon-mail icon-digitek-24 text-digitek-secondary"></i>
-            <!-- [커스텀] 메일 뱃지 숫자 변경: th:text="${mailCount}" -->
-            <!-- [커스텀] 메일 없을 경우 뱃지 숨김: th:if="${mailCount > 0}" -->
             <span class="gnb-digitek-badge">12</span>
           </button>
         </div>
 
-        <!-- 다국어 선택 -->
-        <!-- [커스텀] JS 연동: 버튼 클릭 시 gnb-digitek-locale-wrap에 'open' 클래스 토글 -->
-        <!-- [커스텀] 선택된 언어 표시: th:text="${session.locale == 'ko' ? 'KO' : 'EN'}" -->
         <div class="gnb-digitek-locale-wrap">
           <button class="gnb-digitek-locale-btn" aria-label="언어 선택" aria-haspopup="menu" aria-expanded="false">
             KO
             <i class="dicon dicon-chevron-down-sm" style="width: 12px; height: 12px;" aria-hidden="true"></i>
           </button>
           <div class="gnb-digitek-locale-dropdown" role="menu">
-            <!-- [커스텀] 현재 선택 언어 옵션에 'active' 클래스 추가 -->
             <button class="gnb-digitek-locale-option active" role="menuitem">KO</button>
             <button class="gnb-digitek-locale-option" role="menuitem">EN</button>
           </div>
         </div>
 
-        <!-- 프로필 -->
-        <!-- [커스텀] JS 연동: 클릭 시 프로필 드롭다운 표시 (필요에 따라 구현) -->
-        <!-- [참고] div[role="button"] 키보드 이벤트(Enter/Space)는 digitek.js가 자동 처리합니다 -->
         <div class="gnb-digitek-profile" role="button" tabindex="0" aria-label="프로필 메뉴" aria-haspopup="menu" aria-expanded="false">
           <div class="gnb-digitek-avatar">
-            <img src="../../images/icons/avatar.png" width="32" height="32" alt="" aria-hidden="true" style="border-radius: 50%;">
+            <img src="../images/icons/avatar.png" width="32" height="32" alt="" aria-hidden="true" style="border-radius: 50%;">
           </div>
-          <!-- [커스텀] 현재 로그인 사용자명 변경: th:text="${user.name}" -->
           <span class="gnb-digitek-profile-name">사용자 이름</span>
         </div>
       </div>
     </header>
-    <!-- 콘텐츠 영역 -->
-    <div id="page-content" class="flex-grow-1 overflow-y-digitek-auto" style="background: var(--digitek-bg-gray);">
-      <!-- 메인 페이지 콘텐츠: 6개 영역 (높이 조절 가능) -->
-<!-- [커스텀] 각 영역 height는 필요에 따라 수정하세요 -->
-<div class="main-page-grid">
-  <!-- 1행: 3등분 (각 span 2) -->
-  <div class="main-page-area" style="grid-column: span 2; height: 200px;">
-    <!-- [커스텀] 영역 1 내용 -->
-  </div>
-  <div class="main-page-area" style="grid-column: span 2; height: 200px;">
-    <!-- [커스텀] 영역 2 내용 -->
-  </div>
-  <div class="main-page-area" style="grid-column: span 2; height: 200px;">
-    <!-- [커스텀] 영역 3 내용 -->
-  </div>
-  <!-- 2행: 2등분 (각 span 3) -->
-  <div class="main-page-area" style="grid-column: span 3; height: 250px;">
-    <!-- [커스텀] 영역 4 내용 -->
-  </div>
-  <div class="main-page-area" style="grid-column: span 3; height: 250px;">
-    <!-- [커스텀] 영역 5 내용 -->
-  </div>
-  <!-- 3행: 전체 너비 (span 6) -->
-  <div class="main-page-area" style="grid-column: span 6; height: 200px;">
-    <!-- [커스텀] 영역 6 내용 -->
-  </div>
-</div>
+
+    <!-- ===================== 콘텐츠 영역 (AJAX 교체 대상) ===================== -->
+    <!-- Router가 data-route 클릭 시 이 영역의 innerHTML을 교체함 -->
+    <!-- data-initial-route: 최초 로드 시 자동으로 불러올 콘텐츠 경로 -->
+    <div id="page-content" class="flex-grow-1 overflow-y-digitek-auto"
+         style="background: var(--digitek-bg-gray);"
+         data-initial-route="content/main.html">
+      <div data-router-placeholder style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--digitek-text-secondary);">
+        페이지를 불러오는 중...
+      </div>
     </div>
+
   </div>
 </div>
 
-<script src="../../js/jquery.slim.min.js"></script>
-<script src="../../js/bootstrap.bundle.min.js"></script>
-<script src="../../js/digitek.js"></script>
+<script src="../js/jquery.slim.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/digitek.js"></script>
 </body>
 </html>
