@@ -8,6 +8,7 @@
 </head>
 <body>
   <th:block layout:fragment="content">
+    <turbo-frame id="main-content">
     <div class="digitek-form-page">
       <!-- [커스텀] 폼 제출 설정:
            th:action="@{/request/save}" th:object="${requestForm}" method="post" 추가
@@ -533,6 +534,7 @@
       </div>
       </form>
     </div>
+    </turbo-frame>
   </th:block>
 </body>
 </html>
