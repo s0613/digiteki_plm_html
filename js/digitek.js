@@ -2004,14 +2004,13 @@
   }
 
   // 컨텐츠 영역 컴포넌트만 재초기화 (turbo-frame 교체 후 호출)
-  // delegateEvent 기반 컴포넌트는 재초기화 불필요:
+  // delegateEvent 기반 컴포넌트는 재초기화 불필요 (document 위임으로 새 요소 자동 동작):
   //   Accordion, TabButton, FileUpload (document 위임)
+  //   Select, DateSelect (document 위임 — initAll()에서 1회만 등록)
   //   SearchList, SearchSplit (내부에서 delegateEvent 전용으로 구현)
   //   GNBSearch (GNB 영역은 프레임 교체 대상이 아님)
   //   Locale, Sidebar (초기화 1회로 충분)
   function initContent() {
-    Select.init();
-    DateSelect.init();
     TextEditor.init();
     GanttResizer.init();
     DraggableTable.init();
