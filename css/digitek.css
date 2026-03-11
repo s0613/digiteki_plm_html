@@ -1857,6 +1857,10 @@ td .date-select-digitek {
   justify-content: center;
 }
 
+.text-center .checkbox-digitek {
+  justify-content: center;
+}
+
 .table-digitek-input-row td {
   background: #f8fafc;
   color: #a3a3a3;

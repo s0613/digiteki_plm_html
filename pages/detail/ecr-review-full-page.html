@@ -278,7 +278,7 @@
 
       <!-- ECR 검토 콘텐츠 영역 -->
       <!-- 설계변경 작성 중 각 부서에 업무를 할당하는 리스트 -->
-      <div class="ecr-review-layout">
+      <div class="content-page-digitek">
         <div class="digitek-sections">
           <div class="accordion-digitek-page">
             <div class="accordion-digitek-page-header accordion-digitek-page-header-open">
@@ -287,7 +287,7 @@
             <div class="accordion-digitek-page-content">
 
           <!-- 상단 우측 버튼 -->
-          <div class="ecr-header-actions">
+          <div class="d-flex justify-content-end mb-digitek-12 gap-digitek-8">
             <!-- [커스텀] 추가 클릭 시 새 부서 그룹 행 동적 추가 -->
             <button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-36">추가</button>
             <!-- [커스텀] 삭제 클릭 시 체크된 부서 그룹 행 삭제 -->
@@ -295,7 +295,7 @@
           </div>
 
           <!-- 헤더 테이블 (컬럼 제목 행) -->
-          <table class="ecr-header-table">
+          <table class="table-digitek" style="table-layout:fixed">
             <colgroup>
               <col style="width: 34px">
               <col style="width: 110px">
@@ -311,9 +311,9 @@
           </table>
 
           <!-- 부서 그룹 목록 (각 그룹이 독립된 박스로 분리) -->
-          <div class="ecr-groups-container">
+          <div class="d-flex flex-column gap-digitek-8 mt-digitek-8">
             <!-- [구조 참고] 각 그룹은 ecr-group-table로 독립된 테이블 -->
-            <table class="ecr-group-table">
+            <table class="table-digitek" style="table-layout:fixed">
               <colgroup>
                 <col style="width: 34px">
                 <col style="width: 110px">
@@ -321,17 +321,17 @@
               </colgroup>
               <tbody>
                 <tr class="ecr-dept-row">
-                  <td class="ecr-checkbox-cell"><label class="checkbox-digitek"><input type="checkbox" aria-label="행 선택"></label></td>
-                  <td class="ecr-dept-name">R&amp;D</td>
+                  <td class="text-center"><label class="checkbox-digitek"><input type="checkbox" aria-label="행 선택"></label></td>
+                  <td class="text-center fw-semibold">R&amp;D</td>
                   <td>변경 요청에 따른 설계 자체 부품의 변경은 설계상 큰 문제가 없을 것으로 판단됨.</td>
                 </tr>
                 <tr class="ecr-task-row">
-                  <td colspan="2" class="ecr-task-label-cell">
+                  <td colspan="2" class="form-label-cell-digitek text-center" style="font-size:12px">
                     변경 대상 업무
-                    <button type="button" class="ecr-add-task-btn" aria-label="업무 추가">+</button>
+                    <button type="button" class="btn-digitek-circle-sm" aria-label="업무 추가">+</button>
                   </td>
-                  <td class="ecr-task-content-cell">
-                    <table class="ecr-task-table">
+                  <td class="p-0">
+                    <table class="table-digitek">
                       <thead>
                         <tr>
                           <th>수행 업무</th>
@@ -355,7 +355,7 @@
                               <input type="hidden" name="completionDate" value="2026-01-01">
                             </div>
                           </td>
-                          <td class="ecr-del-cell"><button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-24" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button></td>
+                          <td class="text-center"><button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-24" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button></td>
                         </tr>
                         <tr draggable="true" class="draggable-row">
                           <td><button type="button" class="table-digitek-action-link">BOM</button></td>
@@ -370,7 +370,7 @@
                               <input type="hidden" name="completionDate" value="">
                             </div>
                           </td>
-                          <td class="ecr-del-cell"><button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-24" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button></td>
+                          <td class="text-center"><button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-24" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button></td>
                         </tr>
                         <tr draggable="true" class="draggable-row">
                           <td><button type="button" class="table-digitek-action-link">DFMEA</button></td>
@@ -385,7 +385,7 @@
                               <input type="hidden" name="completionDate" value="">
                             </div>
                           </td>
-                          <td class="ecr-del-cell"><button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-24" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button></td>
+                          <td class="text-center"><button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-24" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button></td>
                         </tr>
                       </tbody>
                     </table>
@@ -395,7 +395,7 @@
             </table>
 
             <!-- ── 그룹 2: 구매 ── -->
-            <table class="ecr-group-table">
+            <table class="table-digitek" style="table-layout:fixed">
               <colgroup>
                 <col style="width: 34px">
                 <col style="width: 110px">
@@ -403,18 +403,18 @@
               </colgroup>
               <tbody>
                 <tr class="ecr-dept-row">
-                  <td class="ecr-checkbox-cell"><label class="checkbox-digitek"><input type="checkbox" aria-label="행 선택"></label></td>
-                  <td class="ecr-dept-name">구매</td>
+                  <td class="text-center"><label class="checkbox-digitek"><input type="checkbox" aria-label="행 선택"></label></td>
+                  <td class="text-center fw-semibold">구매</td>
                   <td>업체 확인 결과 부품 수배에는 큰 영향 없음</td>
                 </tr>
                 <tr class="ecr-task-row">
-                  <td colspan="2" class="ecr-task-label-cell">
+                  <td colspan="2" class="form-label-cell-digitek text-center" style="font-size:12px">
                     변경 대상 업무
-                    <button type="button" class="ecr-add-task-btn" aria-label="업무 추가">+</button>
+                    <button type="button" class="btn-digitek-circle-sm" aria-label="업무 추가">+</button>
                   </td>
-                  <td class="ecr-task-content-cell">
+                  <td class="p-0">
                     <!-- [커스텀] data-draggable-table 속성으로 행 드래그 순서 변경 활성화 -->
-                    <table class="ecr-task-table">
+                    <table class="table-digitek">
                       <thead>
                         <tr>
                           <th>수행 업무</th>
@@ -438,7 +438,7 @@
                               <input type="hidden" name="completionDate" value="2026-01-01">
                             </div>
                           </td>
-                          <td class="ecr-del-cell"><button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-24" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button></td>
+                          <td class="text-center"><button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-24" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button></td>
                         </tr>
                         <tr draggable="true" class="draggable-row">
                           <td><button type="button" class="table-digitek-action-link">업체 검사기준서</button></td>
@@ -453,7 +453,7 @@
                               <input type="hidden" name="completionDate" value="2026-01-01">
                             </div>
                           </td>
-                          <td class="ecr-del-cell"><button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-24" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button></td>
+                          <td class="text-center"><button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-24" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button></td>
                         </tr>
                         <tr draggable="true" class="draggable-row">
                           <td><button type="button" class="table-digitek-action-link">업체 품질협양서</button></td>
@@ -468,7 +468,7 @@
                               <input type="hidden" name="completionDate" value="2026-01-01">
                             </div>
                           </td>
-                          <td class="ecr-del-cell"><button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-24" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button></td>
+                          <td class="text-center"><button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-24" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button></td>
                         </tr>
                       </tbody>
                     </table>
@@ -478,7 +478,7 @@
             </table>
 
             <!-- ── 그룹 3: 품질 ── -->
-            <table class="ecr-group-table">
+            <table class="table-digitek" style="table-layout:fixed">
               <colgroup>
                 <col style="width: 34px">
                 <col style="width: 110px">
@@ -486,17 +486,17 @@
               </colgroup>
               <tbody>
                 <tr class="ecr-dept-row">
-                  <td class="ecr-checkbox-cell"><label class="checkbox-digitek"><input type="checkbox" aria-label="행 선택"></label></td>
-                  <td class="ecr-dept-name">품질</td>
+                  <td class="text-center"><label class="checkbox-digitek"><input type="checkbox" aria-label="행 선택"></label></td>
+                  <td class="text-center fw-semibold">품질</td>
                   <td>변경 적용 시 품질 개선이 기대됨. 품질적인 리스크 위협은 없을 것으로 판단됨.</td>
                 </tr>
                 <tr class="ecr-task-row">
-                  <td colspan="2" class="ecr-task-label-cell">
+                  <td colspan="2" class="form-label-cell-digitek text-center" style="font-size:12px">
                     변경 대상 업무
-                    <button type="button" class="ecr-add-task-btn" aria-label="업무 추가">+</button>
+                    <button type="button" class="btn-digitek-circle-sm" aria-label="업무 추가">+</button>
                   </td>
-                  <td class="ecr-task-content-cell">
-                    <table class="ecr-task-table">
+                  <td class="p-0">
+                    <table class="table-digitek">
                       <thead>
                         <tr>
                           <th>수행 업무</th>
@@ -520,7 +520,7 @@
                               <input type="hidden" name="completionDate" value="2026-01-01">
                             </div>
                           </td>
-                          <td class="ecr-del-cell"><button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-24" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button></td>
+                          <td class="text-center"><button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-24" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button></td>
                         </tr>
                         <tr draggable="true" class="draggable-row">
                           <td><button type="button" class="table-digitek-action-link">QPR_8D보고서</button></td>
@@ -535,7 +535,7 @@
                               <input type="hidden" name="completionDate" value="2026-01-01">
                             </div>
                           </td>
-                          <td class="ecr-del-cell"><button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-24" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button></td>
+                          <td class="text-center"><button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-24" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button></td>
                         </tr>
                         <tr draggable="true" class="draggable-row">
                           <td><button type="button" class="table-digitek-action-link">신뢰성 시험 결과서</button></td>
@@ -550,7 +550,7 @@
                               <input type="hidden" name="completionDate" value="2026-01-01">
                             </div>
                           </td>
-                          <td class="ecr-del-cell"><button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-24" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button></td>
+                          <td class="text-center"><button type="button" class="btn btn-digitek btn-digitek-outline btn-digitek-24" aria-label="삭제"><i class="dicon dicon-close" aria-hidden="true"></i></button></td>
                         </tr>
                       </tbody>
                     </table>
@@ -561,7 +561,7 @@
 
             <!-- ── 그룹 4: 신규 입력 행 ── -->
             <!-- [커스텀] 추가 버튼 클릭 시 이 구조로 동적 행 삽입 -->
-            <table class="ecr-group-table">
+            <table class="table-digitek" style="table-layout:fixed">
               <colgroup>
                 <col style="width: 34px">
                 <col style="width: 110px">
@@ -569,7 +569,7 @@
               </colgroup>
               <tbody>
                 <tr class="ecr-dept-row">
-                  <td class="ecr-checkbox-cell"><label class="checkbox-digitek"><input type="checkbox" aria-label="행 선택"></label></td>
+                  <td class="text-center"><label class="checkbox-digitek"><input type="checkbox" aria-label="행 선택"></label></td>
                   <td>
                     <div class="select-digitek">
                       <button type="button" class="select-digitek-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="부서 선택">
@@ -588,18 +588,18 @@
                   <td><input type="text" class="form-control input-digitek input-digitek-sm" placeholder="검토 의견을 입력하세요"></td>
                 </tr>
                 <tr class="ecr-task-row">
-                  <td colspan="2" class="ecr-task-label-cell">
+                  <td colspan="2" class="form-label-cell-digitek text-center" style="font-size:12px">
                     변경 대상 업무
-                    <button type="button" class="ecr-add-task-btn" aria-label="업무 추가">+</button>
+                    <button type="button" class="btn-digitek-circle-sm" aria-label="업무 추가">+</button>
                   </td>
-                  <td class="ecr-task-content-cell ecr-task-content-empty">
-                    <!-- [커스텀] + 버튼 클릭 시 ecr-task-table 동적 생성 -->
+                  <td class="p-0" style="min-height:40px">
+                    <!-- [커스텀] + 버튼 클릭 시 table-digitek 동적 생성 -->
                   </td>
                 </tr>
               </tbody>
             </table>
 
-          </div><!-- /ecr-groups-container -->
+          </div><!-- /d-flex flex-column gap-digitek-8 mt-digitek-8 -->
 
             </div><!-- /accordion-digitek-page-content -->
           </div><!-- /accordion-digitek-page -->
