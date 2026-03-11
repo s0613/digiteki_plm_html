@@ -26,6 +26,7 @@
         <li class="nav-item">
           <a class="sidebar-digitek-menu-item"
              th:href="@{/approve/manage}"
+             data-turbo-frame="main-content"
              th:classappend="${currentMenu == 'main'} ? 'sidebar-digitek-active'">
             <span class="sidebar-digitek-icon-label">
               <i class="dicon dicon-file-blank icon-digitek-20"></i>
@@ -38,6 +39,7 @@
         <li class="nav-item">
           <a class="sidebar-digitek-menu-item"
              th:href="@{/doc/search}"
+             data-turbo-frame="main-content"
              th:classappend="${currentMenu == 'searchlist'} ? 'sidebar-digitek-active'">
             <span class="sidebar-digitek-icon-label">
               <i class="dicon dicon-folder icon-digitek-20"></i>
@@ -50,6 +52,7 @@
         <li class="nav-item">
           <a class="sidebar-digitek-menu-item"
              th:href="@{/part/manage}"
+             data-turbo-frame="main-content"
              th:classappend="${currentMenu == 'partManage'} ? 'sidebar-digitek-active'">
             <span class="sidebar-digitek-icon-label">
               <i class="dicon dicon-settings icon-digitek-20"></i>
@@ -62,6 +65,7 @@
         <li class="nav-item">
           <a class="sidebar-digitek-menu-item"
              th:href="@{/draw/manage}"
+             data-turbo-frame="main-content"
              th:classappend="${currentMenu == 'drawManage'} ? 'sidebar-digitek-active'">
             <span class="sidebar-digitek-icon-label">
               <i class="dicon dicon-folder-edit icon-digitek-20"></i>
@@ -89,6 +93,7 @@
             <li class="nav-item">
               <a class="sidebar-digitek-submenu-item"
                  th:href="@{/pms/project}"
+                 data-turbo-frame="main-content"
                  th:classappend="${currentMenu == 'pmsProjectSearch'} ? 'sidebar-digitek-active'">
                 <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
                 <span class="sidebar-digitek-menu-label">프로젝트 검색</span>
@@ -97,6 +102,7 @@
             <li class="nav-item">
               <a class="sidebar-digitek-submenu-item"
                  th:href="@{/pms/project/new}"
+                 data-turbo-frame="main-content"
                  th:classappend="${currentMenu == 'pms'} ? 'sidebar-digitek-active'">
                 <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
                 <span class="sidebar-digitek-menu-label">프로젝트 등록</span>
@@ -105,6 +111,7 @@
             <li class="nav-item">
               <a class="sidebar-digitek-submenu-item"
                  th:href="@{/pms/task}"
+                 data-turbo-frame="main-content"
                  th:classappend="${currentMenu == 'pmsTask'} ? 'sidebar-digitek-active'">
                 <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
                 <span class="sidebar-digitek-menu-label">My Task</span>
@@ -113,6 +120,7 @@
             <li class="nav-item">
               <a class="sidebar-digitek-submenu-item"
                  th:href="@{/pms/issue}"
+                 data-turbo-frame="main-content"
                  th:classappend="${currentMenu == 'pmsIssue'} ? 'sidebar-digitek-active'">
                 <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
                 <span class="sidebar-digitek-menu-label">이슈 검색</span>
@@ -125,6 +133,7 @@
         <li class="nav-item">
           <a class="sidebar-digitek-menu-item"
              th:href="@{/ecr/list}"
+             data-turbo-frame="main-content"
              th:classappend="${currentMenu == 'searchsplit'} ? 'sidebar-digitek-active'">
             <span class="sidebar-digitek-icon-label">
               <i class="dicon dicon-reload icon-digitek-20"></i>
@@ -154,6 +163,7 @@
             <li class="nav-item">
               <a class="sidebar-digitek-submenu-item"
                  th:href="@{/test/list}"
+                 data-turbo-frame="main-content"
                  th:classappend="${currentMenu == 'testList'} ? 'sidebar-digitek-active'">
                 <span class="sidebar-digitek-icon-label">
                   <i class="dicon dicon-flask icon-digitek-20"></i>
@@ -180,6 +190,7 @@
                 <li class="nav-item">
                   <a class="sidebar-digitek-sub-submenu-item"
                      th:href="@{/start/search}"
+                     data-turbo-frame="main-content"
                      th:classappend="${currentMenu == 'startSearch'} ? 'sidebar-digitek-active'">
                     <span class="sidebar-digitek-menu-label">시작 검색</span>
                   </a>
@@ -187,6 +198,7 @@
                 <li class="nav-item">
                   <a class="sidebar-digitek-sub-submenu-item"
                      th:href="@{/start/request/new}"
+                     data-turbo-frame="main-content"
                      th:classappend="${currentMenu == 'requestregister'} ? 'sidebar-digitek-active'">
                     <span class="sidebar-digitek-menu-label">시작 의뢰 등록</span>
                   </a>
@@ -194,6 +206,7 @@
                 <li class="nav-item">
                   <a class="sidebar-digitek-sub-submenu-item"
                      th:href="@{/start/result/new}"
+                     data-turbo-frame="main-content"
                      th:classappend="${currentMenu == 'requestregister'} ? 'sidebar-digitek-active'">
                     <span class="sidebar-digitek-menu-label">시작 결과 등록</span>
                   </a>
@@ -201,6 +214,7 @@
                 <li class="nav-item">
                   <a class="sidebar-digitek-sub-submenu-item"
                      th:href="@{/mpr/search}"
+                     data-turbo-frame="main-content"
                      th:classappend="${currentMenu == 'mprSearch'} ? 'sidebar-digitek-active'">
                     <span class="sidebar-digitek-menu-label">MPR 검색</span>
                   </a>
@@ -208,6 +222,7 @@
                 <li class="nav-item">
                   <a class="sidebar-digitek-sub-submenu-item"
                      th:href="@{/mpr/new}"
+                     data-turbo-frame="main-content"
                      th:classappend="${currentMenu == 'mprNew'} ? 'sidebar-digitek-active'">
                     <span class="sidebar-digitek-menu-label">MPR 등록</span>
                   </a>
@@ -221,6 +236,7 @@
         <li class="nav-item">
           <a class="sidebar-digitek-menu-item"
              th:href="@{/doc/create}"
+             data-turbo-frame="main-content"
              th:classappend="${currentMenu == 'doc-create'} ? 'sidebar-digitek-active'">
             <span class="sidebar-digitek-icon-label">
               <i class="dicon dicon-file-edit icon-digitek-20"></i>
@@ -233,6 +249,7 @@
         <li class="nav-item">
           <a class="sidebar-digitek-menu-item"
              th:href="@{/ecr/review}"
+             data-turbo-frame="main-content"
              th:classappend="${currentMenu == 'ecr-review'} ? 'sidebar-digitek-active'">
             <span class="sidebar-digitek-icon-label">
               <i class="dicon dicon-reload icon-digitek-20"></i>
@@ -260,6 +277,7 @@
             <li class="nav-item">
               <a class="sidebar-digitek-submenu-item"
                  th:href="@{/admin/group}"
+                 data-turbo-frame="main-content"
                  th:classappend="${currentMenu == 'group-manage'} ? 'sidebar-digitek-active'">
                 <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
                 <span class="sidebar-digitek-menu-label">그룹 관리</span>
@@ -268,6 +286,7 @@
             <li class="nav-item">
               <a class="sidebar-digitek-submenu-item"
                  th:href="@{/admin/code}"
+                 data-turbo-frame="main-content"
                  th:classappend="${currentMenu == 'code-manage'} ? 'sidebar-digitek-active'">
                 <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
                 <span class="sidebar-digitek-menu-label">코드 관리</span>
@@ -276,6 +295,7 @@
             <li class="nav-item">
               <a class="sidebar-digitek-submenu-item"
                  th:href="@{/admin/doc-classify}"
+                 data-turbo-frame="main-content"
                  th:classappend="${currentMenu == 'doc-classify'} ? 'sidebar-digitek-active'">
                 <span class="sidebar-digitek-submenu-icon" aria-hidden="true"></span>
                 <span class="sidebar-digitek-menu-label">문서 분류 관리</span>
@@ -288,6 +308,7 @@
         <li class="nav-item">
           <a class="sidebar-digitek-menu-item"
              th:href="@{/dashboard}"
+             data-turbo-frame="main-content"
              th:classappend="${currentMenu == 'dashboard'} ? 'sidebar-digitek-active'">
             <span class="sidebar-digitek-icon-label">
               <i class="dicon dicon-chart-pie icon-digitek-20"></i>
