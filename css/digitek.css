@@ -5686,7 +5686,7 @@ td .date-select-digitek {
   width: 18px;
   height: 18px;
   border: 1px solid var(--digitek-border);
-  background: #fff;
+  background: var(--digitek-bg-white);
   border-radius: 50%;
   font-size: 14px;
   line-height: 1;
